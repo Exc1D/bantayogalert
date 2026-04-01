@@ -1,4 +1,14 @@
-{/* Phase 4: Replace with full NavRail implementation */}
+import { RoleGate } from '../auth/RoleGate'
+
+/**
+ * NavRail - Left navigation rail with role-aware visibility.
+ *
+ * Visible to all authenticated users:
+ * - Feed, Map, Alerts, Profile
+ *
+ * Admin-only (municipal_admin, provincial_superadmin):
+ * - Contacts
+ */
 export function NavRail() {
   return (
     <aside className="w-16 h-screen bg-white border-r border-gray-200 flex flex-col items-center py-4 gap-4">
@@ -7,27 +17,56 @@ export function NavRail() {
         BA
       </div>
 
-      {/* Navigation items - Phase 4 */}
+      {/* Navigation items */}
       <nav className="flex-1 flex flex-col gap-2 mt-4">
-        {['feed', 'map', 'alerts', 'profile'].map((item) => (
+        {/* Feed - visible to all */}
+        <button
+          className="w-10 h-10 rounded-lg flex items-center justify-center text-gray-500 hover:bg-gray-100 hover:text-gray-900 transition-colors"
+          aria-label="Feed"
+        >
+          📋
+        </button>
+
+        {/* Map - visible to all */}
+        <button
+          className="w-10 h-10 rounded-lg flex items-center justify-center text-gray-500 hover:bg-gray-100 hover:text-gray-900 transition-colors"
+          aria-label="Map"
+        >
+          📍
+        </button>
+
+        {/* Alerts - visible to all */}
+        <button
+          className="w-10 h-10 rounded-lg flex items-center justify-center text-gray-500 hover:bg-gray-100 hover:text-gray-900 transition-colors"
+          aria-label="Alerts"
+        >
+          🔔
+        </button>
+
+        {/* Profile - visible to all */}
+        <button
+          className="w-10 h-10 rounded-lg flex items-center justify-center text-gray-500 hover:bg-gray-100 hover:text-gray-900 transition-colors"
+          aria-label="Profile"
+        >
+          👤
+        </button>
+
+        {/* Contacts - admin only (D-08, D-10) */}
+        <RoleGate roles={['municipal_admin', 'provincial_superadmin']}>
           <button
-            key={item}
-            className="w-10 h-10 rounded-lg flex items-center justify-center text-gray-500 hover:bg-gray-100 hover:text-gray-900 transition-colors capitalize"
-            aria-label={item}
+            className="w-10 h-10 rounded-lg flex items-center justify-center text-gray-500 hover:bg-gray-100 hover:text-gray-900 transition-colors"
+            aria-label="Contacts"
           >
-            {item === 'feed' && '📋'}
-            {item === 'map' && '📍'}
-            {item === 'alerts' && '🔔'}
-            {item === 'profile' && '👤'}
+            👥
           </button>
-        ))}
+        </RoleGate>
       </nav>
 
-      {/* Admin section - Phase 4 */}
+      {/* Settings - visible to all (opens profile modal) */}
       <div className="mt-auto">
         <button
           className="w-10 h-10 rounded-lg flex items-center justify-center text-gray-500 hover:bg-gray-100"
-          aria-label="admin"
+          aria-label="Settings"
         >
           ⚙️
         </button>
