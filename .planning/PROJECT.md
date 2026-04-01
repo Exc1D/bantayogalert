@@ -12,7 +12,8 @@ Citizens in Camarines Norte can report emergencies in seconds and understand act
 
 ### Validated
 
-(None yet — greenfield build)
+- [x] **SEC-05**: Storage upload validation — path format `media/{userId}/{reportId}/{uuid}.{ext}`, MIME types `jpeg/png/webp/mp4`, 5MB/file enforced in `storage.rules`
+- [x] **SEC-06**: Custom claims set server-side only — `setCustomClaims` uses `admin.auth().setCustomUserClaims()` directly (no callable HTTPS endpoint); validated in Phase 01
 
 ### Active
 
@@ -49,6 +50,7 @@ Citizens in Camarines Norte can report emergencies in seconds and understand act
 The existing `bantayog-alert-demo` repo (separate) has partial implementation but is not the target for this project. This repo (`bantayogalert`) starts from scratch using SPEC.md as the source of truth.
 
 **Technical environment:**
+
 - React 18 + Vite + Tailwind CSS + TypeScript (frontend)
 - Firebase suite: Auth (email/password + custom claims), Firestore, Storage, Cloud Functions, Cloud Messaging, Hosting
 - React-Leaflet + Leaflet for map
@@ -56,12 +58,14 @@ The existing `bantayog-alert-demo` repo (separate) has partial implementation bu
 - PWA with offline report queue
 
 **Domain context:**
-- 12 municipalities in Camarines Norte with agreed stable codes: `basud`, `daet`, `josenunez`, `labo`, `mercedes`, `paracale`, `sanlorenzo`, `sanvicente`, `talisay`, `vinzales`, `capalonga`, `jomalig`
+
+- 12 municipalities in Camarines Norte with agreed stable codes: `basud`, `daet`, `josepanganiban`, `labo`, `mercedes`, `paracale`, `sanlorenzo`, `sanvicente`, `talisay`, `vinzales`, `capalonga`, `staelena`
 - 7 workflow states: `pending` → `verified` → `dispatched` → `acknowledged` → `in_progress` → `resolved` (terminal), with `rejected` as terminal
 - 3 roles: citizen, municipal_admin, provincial_superadmin
 - Map-first desktop and feed-first mobile are non-negotiable UX requirements
 
 **Known issues to address:**
+
 - Municipality scope enforcement must be baked into Firestore rules AND Cloud Function gate — not just UI filtering
 - Map persistence guarantee is structural (MapCanvas and RightModal are DOM siblings in DesktopShell), not a coding convention
 - Announcements use FCM topic fan-out to avoid per-user Notification doc write storm
@@ -77,21 +81,22 @@ The existing `bantayog-alert-demo` repo (separate) has partial implementation bu
 
 ## Key Decisions
 
-| Decision | Rationale | Outcome |
-|----------|-----------|---------|
-| Firebase-first backend | Firestore rules + Cloud Functions for all business logic enforcement | — Pending |
-| MapContext + ModalContext as DOM siblings | Guarantees map never remounts on modal toggle — structural, not conventional | — Pending |
-| DispatchedTarget is an immutable snapshot | Routing history must stay accurate even after contact directory edits | — Pending |
-| Append-only Activity subcollection | Parent report document stays lean; history never mutates main doc | — Pending |
-| Zod validators + DOMPurify for all user content | Defense in depth: rules don't catch everything | — Pending |
-| FCM topic fan-out over per-user notification docs | Province-wide announcement would create thundering herd on writes | — Pending |
-| 12 Fine-grained phases | Complex domain requires deliberate sequencing; map shell before admin | — Pending |
+| Decision                                          | Rationale                                                                    | Outcome   |
+| ------------------------------------------------- | ---------------------------------------------------------------------------- | --------- |
+| Firebase-first backend                            | Firestore rules + Cloud Functions for all business logic enforcement         | ✓ Phase 01 |
+| MapContext + ModalContext as DOM siblings         | Guarantees map never remounts on modal toggle — structural, not conventional | ✓ Phase 01 |
+| DispatchedTarget is an immutable snapshot         | Routing history must stay accurate even after contact directory edits        | — Pending |
+| Append-only Activity subcollection                | Parent report document stays lean; history never mutates main doc            | — Pending |
+| Zod validators + DOMPurify for all user content   | Defense in depth: rules don't catch everything                               | — Pending |
+| FCM topic fan-out over per-user notification docs | Province-wide announcement would create thundering herd on writes            | — Pending |
+| 12 Fine-grained phases                            | Complex domain requires deliberate sequencing; map shell before admin        | ✓ Phase 01 |
 
 ## Evolution
 
 This document evolves at phase transitions and milestone boundaries.
 
 **After each phase transition** (via `/gsd:transition`):
+
 1. Requirements invalidated? → Move to Out of Scope with reason
 2. Requirements validated? → Move to Validated with phase reference
 3. New requirements emerged? → Add to Active
@@ -99,10 +104,12 @@ This document evolves at phase transitions and milestone boundaries.
 5. "What This Is" still accurate? → Update if drifted
 
 **After each milestone** (via `/gsd:complete-milestone`):
+
 1. Full review of all sections
 2. Core Value check — still the right priority?
 3. Audit Out of Scope — reasons still valid?
 4. Update Context with current state
 
 ---
-*Last updated: 2026-04-01 after initialization*
+
+_Last updated: 2026-04-01 after initialization_
