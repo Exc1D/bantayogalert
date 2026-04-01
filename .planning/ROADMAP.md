@@ -12,7 +12,7 @@
 ## Phases
 
 - [x] **Phase 1: Foundation** — Project scaffold, Firebase setup, basic shell, tooling (completed 2026-04-01)
-- [ ] **Phase 2: Auth & Role Model** — Complete auth flows, role enforcement, municipality scoping
+- [x] **Phase 2: Auth & Role Model** — Complete auth flows, role enforcement, municipality scoping (completed 2026-04-01)
 - [ ] **Phase 3: Reporting Domain** — Report submission, media uploads, Zod validation, sanitization, basic feed
 - [ ] **Phase 4: Desktop Map + Modal Architecture** — Full Leaflet integration, marker management, right-modal reuse
 - [ ] **Phase 5: Mobile Shell + Navigation** — Mobile layout, tab navigation, mobile-specific report flow, basic PWA
@@ -73,7 +73,7 @@ Plans:
 7. Firestore security rules enforce that municipal_admin can never read or write reports, contacts, announcements, or audit data outside their assigned municipality
 8. provincial_superadmin has province-wide access enforced by Firestore rules
 
-**Plans:** 6/7 plans executed
+**Plans:** 7/7 plans complete
 
 ---
 

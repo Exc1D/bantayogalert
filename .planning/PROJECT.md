@@ -14,6 +14,15 @@ Citizens in Camarines Norte can report emergencies in seconds and understand act
 
 - [x] **SEC-05**: Storage upload validation — path format `media/{userId}/{reportId}/{uuid}.{ext}`, MIME types `jpeg/png/webp/mp4`, 5MB/file enforced in `storage.rules`
 - [x] **SEC-06**: Custom claims set server-side only — `setCustomClaims` uses `admin.auth().setCustomUserClaims()` directly (no callable HTTPS endpoint); validated in Phase 01
+- [x] **AUTH-01**: User registration with email/password, municipality, phone — validated in Phase 02
+- [x] **AUTH-02**: Session persistence via onAuthStateChanged — validated in Phase 02
+- [x] **AUTH-03**: Sign-out functionality — validated in Phase 02
+- [x] **AUTH-04**: Custom claims (role, municipality) extracted from Firebase ID tokens — validated in Phase 02
+- [x] **AUTH-05**: RoleGate, ProtectedRoute, AuthGuard components for role-based UI access — validated in Phase 02
+- [x] **AUTH-06**: municipal_admin custom claim includes municipality code — validated in Phase 02
+- [x] **SEC-01**: Firestore rules enforce municipality scope for municipal_admin — validated in Phase 02
+- [x] **SEC-02**: municipal_admin cannot read/write outside assigned municipality — validated in Phase 02
+- [x] **SEC-03**: provincial_superadmin has province-wide access — validated in Phase 02
 
 ### Active
 
@@ -81,15 +90,20 @@ The existing `bantayog-alert-demo` repo (separate) has partial implementation bu
 
 ## Key Decisions
 
-| Decision                                          | Rationale                                                                    | Outcome   |
-| ------------------------------------------------- | ---------------------------------------------------------------------------- | --------- |
+| Decision                                          | Rationale                                                                    | Outcome    |
+| ------------------------------------------------- | ---------------------------------------------------------------------------- | ---------- |
 | Firebase-first backend                            | Firestore rules + Cloud Functions for all business logic enforcement         | ✓ Phase 01 |
 | MapContext + ModalContext as DOM siblings         | Guarantees map never remounts on modal toggle — structural, not conventional | ✓ Phase 01 |
-| DispatchedTarget is an immutable snapshot         | Routing history must stay accurate even after contact directory edits        | — Pending |
-| Append-only Activity subcollection                | Parent report document stays lean; history never mutates main doc            | — Pending |
-| Zod validators + DOMPurify for all user content   | Defense in depth: rules don't catch everything                               | — Pending |
-| FCM topic fan-out over per-user notification docs | Province-wide announcement would create thundering herd on writes            | — Pending |
+| DispatchedTarget is an immutable snapshot         | Routing history must stay accurate even after contact directory edits        | — Pending  |
+| Append-only Activity subcollection                | Parent report document stays lean; history never mutates main doc            | — Pending  |
+| Zod validators + DOMPurify for all user content   | Defense in depth: rules don't catch everything                               | — Pending  |
+| FCM topic fan-out over per-user notification docs | Province-wide announcement would create thundering herd on writes            | — Pending  |
 | 12 Fine-grained phases                            | Complex domain requires deliberate sequencing; map shell before admin        | ✓ Phase 01 |
+| Provincial admin scope-limited                    | Provincial admin can only grant municipal_admin for their own municipality   | ✓ Phase 02 |
+| User can only request admin for own municipality  | Prevents cross-municipality admin request spoofing                           | ✓ Phase 02 |
+| Explicit null municipality rejection              | Location critical for responders; null tokens explicitly rejected            | ✓ Phase 02 |
+| Atomic approval via Firestore transaction         | Both custom claims and request status succeed or fail together               | ✓ Phase 02 |
+| RoleGate optional municipality prop               | Fine-grained access control beyond just role checking                        | ✓ Phase 02 |
 
 ## Evolution
 
@@ -112,4 +126,4 @@ This document evolves at phase transitions and milestone boundaries.
 
 ---
 
-_Last updated: 2026-04-01 after initialization_
+_Last updated: 2026-04-02 after Phase 02 completion_
