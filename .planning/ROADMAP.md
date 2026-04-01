@@ -73,7 +73,7 @@ Plans:
 7. Firestore security rules enforce that municipal_admin can never read or write reports, contacts, announcements, or audit data outside their assigned municipality
 8. provincial_superadmin has province-wide access enforced by Firestore rules
 
-**Plans:** 2/7 plans executed
+**Plans:** 5/7 plans executed
 
 ---
 
