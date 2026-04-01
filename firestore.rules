@@ -1,0 +1,66 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Helper functions
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    function isRole(role) {
+      return isAuthenticated() && request.auth.token.role == role;
+    }
+
+    function isMunicipalityAdmin() {
+      return isRole('municipal_admin');
+    }
+
+    function isProvincialSuperadmin() {
+      return isRole('provincial_superadmin');
+    }
+
+    function hasValidMunicipalityScope(targetMunicipality) {
+      return request.auth.token.municipality == targetMunicipality
+          || isProvincialSuperadmin();
+    }
+
+    // Users collection
+    match /users/{userId} {
+      allow read: if isAuthenticated() && (
+        request.auth.uid == userId
+        || isProvincialSuperadmin()
+        || (isMunicipalityAdmin() && request.auth.token.municipality == resource.data.municipality)
+      );
+      allow create: if isAuthenticated() && request.auth.uid == userId;
+      allow update: if isAuthenticated() && (
+        request.auth.uid == userId
+        || isProvincialSuperadmin()
+      );
+    }
+
+    // Reports collection - scaffold, full rules in Phase 2
+    match /reports/{reportId} {
+      allow read: if isAuthenticated();
+      allow create: if isAuthenticated();
+      allow update: if isAuthenticated() && hasValidMunicipalityScope(resource.data.assignedMunicipality);
+    }
+
+    // Contacts collection - scaffold
+    match /contacts/{contactId} {
+      allow read: if isAuthenticated();
+      allow write: if isAuthenticated() && hasValidMunicipalityScope(resource.data.municipality);
+    }
+
+    // Announcements collection - scaffold
+    match /announcements/{announcementId} {
+      allow read: if isAuthenticated();
+      allow create: if isAuthenticated();
+      allow update: if isAuthenticated();
+    }
+
+    // Audit collection - system only
+    match /audit/{auditId} {
+      allow read: if isAuthenticated();
+      allow write: if false; // Cloud Functions only
+    }
+  }
+}
