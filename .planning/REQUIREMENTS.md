@@ -4,11 +4,11 @@
 
 ### AUTH — Authentication & Authorization
 
-- [ ] **AUTH-01**: User can sign up with email/password and create an account
+- [x] **AUTH-01**: User can sign up with email/password and create an account
 - [x] **AUTH-02**: User can sign in and maintain a session across page reloads
 - [x] **AUTH-03**: User can sign out from any page
 - [x] **AUTH-04**: User roles (citizen, municipal_admin, provincial_superadmin) are stored as Firebase Auth custom claims
-- [ ] **AUTH-05**: RoleGate component restricts UI elements by role; ProtectedRoute redirects unauthenticated users
+- [x] **AUTH-05**: RoleGate component restricts UI elements by role; ProtectedRoute redirects unauthenticated users
 - [ ] **AUTH-06**: municipal_admin custom claim includes assigned municipality code
 
 ### REPO — Report Submission
@@ -138,11 +138,11 @@
 
 | REQ-ID | Phase | Status |
 |--------|-------|--------|
-| AUTH-01 | Phase 2 | Pending |
+| AUTH-01 | Phase 2 | Complete |
 | AUTH-02 | Phase 2 | Complete |
 | AUTH-03 | Phase 2 | Complete |
 | AUTH-04 | Phase 2 | Complete |
-| AUTH-05 | Phase 2 | Pending |
+| AUTH-05 | Phase 2 | Complete |
 | AUTH-06 | Phase 2 | Pending |
 | REPO-01 | Phase 3 | Pending |
 | REPO-02 | Phase 3 | Pending |
