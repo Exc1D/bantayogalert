@@ -11,7 +11,7 @@
 
 ## Phases
 
-- [ ] **Phase 1: Foundation** — Project scaffold, Firebase setup, basic shell, tooling
+- [x] **Phase 1: Foundation** — Project scaffold, Firebase setup, basic shell, tooling (completed 2026-04-01)
 - [ ] **Phase 2: Auth & Role Model** — Complete auth flows, role enforcement, municipality scoping
 - [ ] **Phase 3: Reporting Domain** — Report submission, media uploads, Zod validation, sanitization, basic feed
 - [ ] **Phase 4: Desktop Map + Modal Architecture** — Full Leaflet integration, marker management, right-modal reuse
@@ -45,12 +45,12 @@
 5. Basic DesktopShell (NavRail placeholder, MapCanvas placeholder, RightModal placeholder) renders correctly
 6. Basic MobileShell (BottomTab with placeholder screens) renders correctly
 
-**Plans:** 2/3 plans executed
+**Plans:** 3/3 plans complete
 
 Plans:
 - [x] 01-01-PLAN.md — Project scaffold (Vite + React 18 + Tailwind + TypeScript + CI pipeline)
 - [x] 01-02-PLAN.md — Firebase initialization + emulator config + Storage rules (SEC-05, SEC-06 scaffold)
-- [ ] 01-03-PLAN.md — Shell stubs (DesktopShell + MobileShell) + Vitest/Playwright setup
+- [x] 01-03-PLAN.md — Shell stubs (DesktopShell + MobileShell) + Vitest/Playwright setup
 
 ---
 
@@ -326,7 +326,7 @@ Plans:
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Foundation | 1/3 | In progress | 2026-04-01 |
+| 1. Foundation | 3/3 | Complete | 2026-04-01 |
 | 2. Auth & Role Model | 0/8 | Not started | - |
 | 3. Reporting Domain | 0/8 | Not started | - |
 | 4. Desktop Map + Modal Architecture | 0/9 | Not started | - |
