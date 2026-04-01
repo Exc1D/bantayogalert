@@ -1,4 +1,6 @@
 import { useModal } from '../../contexts/ModalContext'
+import { AdminApprovalPanel } from '../admin/AdminApprovalPanel'
+import { RoleGate } from '../auth/RoleGate'
 
 // Phase 4: Replace with full section-aware modal
 export function RightModal() {
@@ -22,8 +24,13 @@ export function RightModal() {
 
       {/* Modal content - Phase 4 */}
       <div className="flex-1 overflow-auto p-4">
-        {/* Phase 4: Render FeedPanel, ReportDetail, ProfilePanel, AlertsPanel, AdminPanel, or ContactsPanel based on section */}
-        <p className="text-gray-500">Phase 4: {section || 'panel'} content goes here</p>
+        {section === 'admin' ? (
+          <RoleGate roles={['provincial_superadmin']}>
+            <AdminApprovalPanel />
+          </RoleGate>
+        ) : (
+          <p className="text-gray-500">Phase 4: {section || 'panel'} content goes here</p>
+        )}
       </div>
     </div>
   )
