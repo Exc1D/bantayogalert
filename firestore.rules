@@ -117,10 +117,21 @@ service cloud.firestore {
       allow delete: if false;
     }
 
-    // Contacts collection - scaffold
+    // Contacts collection
+    // municipal_admin: read/write own municipality only
+    // provincial_superadmin: read/write all
+    // citizens: no access
     match /contacts/{contactId} {
-      allow read: if isAuthenticated();
-      allow write: if isAuthenticated() && hasValidMunicipalityScope(resource.data.municipality);
+      allow read: if hasMunicipalityAccess(request, resource.data.municipality);
+
+      allow create: if hasMunicipalityAccess(request, request.resource.data.municipality)
+        && hasRole('municipal_admin');
+
+      allow update: if hasMunicipalityAccess(request, resource.data.municipality)
+        && hasRole('municipal_admin');
+
+      allow delete: if hasMunicipalityAccess(request, resource.data.municipality)
+        && hasRole('municipal_admin');
     }
 
     // Announcements collection - scaffold
