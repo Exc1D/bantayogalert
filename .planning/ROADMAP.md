@@ -12,7 +12,7 @@
 ## Phases
 
 - [x] **Phase 1: Foundation** — Project scaffold, Firebase setup, basic shell, tooling (completed 2026-04-01)
-- [x] **Phase 2: Auth & Role Model** — Complete auth flows, role enforcement, municipality scoping (completed 2026-04-01)
+- [x] **Phase 2: Auth & Role Model** — Complete auth flows, role enforcement, municipality scoping (completed 2026-04-02)
 - [ ] **Phase 3: Reporting Domain** — Report submission, media uploads, Zod validation, sanitization, basic feed
 - [ ] **Phase 4: Desktop Map + Modal Architecture** — Full Leaflet integration, marker management, right-modal reuse
 - [ ] **Phase 5: Mobile Shell + Navigation** — Mobile layout, tab navigation, mobile-specific report flow, basic PWA
@@ -48,6 +48,7 @@
 **Plans:** 3/3 plans complete
 
 Plans:
+
 - [x] 01-01-PLAN.md — Project scaffold (Vite + React 18 + Tailwind + TypeScript + CI pipeline)
 - [x] 01-02-PLAN.md — Firebase initialization + emulator config + Storage rules (SEC-05, SEC-06 scaffold)
 - [x] 01-03-PLAN.md — Shell stubs (DesktopShell + MobileShell) + Vitest/Playwright setup
@@ -211,7 +212,7 @@ Plans:
 3. Published announcements are visible in the Alerts tab to qualifying users
 4. Citizens see multi_municipality announcements if their municipality is in targetMunicipalities
 5. Announcement delivery logs are written to the Announcement/notifications subcollection
-6. Push notifications are sent via FCM topic (municipality_{code} or province_wide)
+6. Push notifications are sent via FCM topic (municipality\_{code} or province_wide)
 7. Published announcements cannot be edited; only provincial_superadmin can unpublish
 8. A scheduled Cloud Function auto-expires announcements past their expiresAt timestamp
 
@@ -304,41 +305,41 @@ Plans:
 
 ## Coverage
 
-| Phase | Requirement Count | Requirements |
-|-------|-------------------|--------------|
-| 1 | 2 | SEC-06, SEC-05 |
-| 2 | 9 | AUTH-01, AUTH-02, AUTH-03, AUTH-04, AUTH-05, AUTH-06, SEC-01, SEC-02, SEC-03 |
-| 3 | 8 | REPO-01, REPO-02, REPO-03, REPO-04, REPO-05, FEED-01, FEED-02, SEC-04 |
-| 4 | 10 | MAP-01, MAP-02, MAP-03, MAP-04, MAP-05, MAP-06, MAP-07, FEED-03, FEED-04, FEED-05 |
-| 5 | 6 | MOBI-01, MOBI-02, MOBI-03, MOBI-04, MOBI-05, MOBI-06 |
-| 6 | 13 | WORK-01, WORK-02, WORK-03, WORK-04, WORK-05, WORK-06, WORK-07, WORK-08, WORK-09, WORK-10, OBS-01, OBS-02, OBS-03 |
-| 7 | 4 | CONT-01, CONT-02, CONT-03, CONT-04 |
-| 8 | 8 | ALRT-01, ALRT-02, ALRT-03, ALRT-04, ALRT-05, ALRT-06, ALRT-07, ALRT-08 |
-| 9 | 4 | PROF-01, PROF-02, PROF-03, PROF-04 |
-| 10 | 1 | OBS-02 (analytics portion) |
-| 11 | 8 | A11Y-01, A11Y-02, A11Y-03, A11Y-04, A11Y-05, SEO-01, SEO-02, SEO-03 |
-| 12 | 0 | (verification phase) |
-| **Total** | **72** | |
+| Phase     | Requirement Count | Requirements                                                                                                     |
+| --------- | ----------------- | ---------------------------------------------------------------------------------------------------------------- |
+| 1         | 2                 | SEC-06, SEC-05                                                                                                   |
+| 2         | 9                 | AUTH-01, AUTH-02, AUTH-03, AUTH-04, AUTH-05, AUTH-06, SEC-01, SEC-02, SEC-03                                     |
+| 3         | 8                 | REPO-01, REPO-02, REPO-03, REPO-04, REPO-05, FEED-01, FEED-02, SEC-04                                            |
+| 4         | 10                | MAP-01, MAP-02, MAP-03, MAP-04, MAP-05, MAP-06, MAP-07, FEED-03, FEED-04, FEED-05                                |
+| 5         | 6                 | MOBI-01, MOBI-02, MOBI-03, MOBI-04, MOBI-05, MOBI-06                                                             |
+| 6         | 13                | WORK-01, WORK-02, WORK-03, WORK-04, WORK-05, WORK-06, WORK-07, WORK-08, WORK-09, WORK-10, OBS-01, OBS-02, OBS-03 |
+| 7         | 4                 | CONT-01, CONT-02, CONT-03, CONT-04                                                                               |
+| 8         | 8                 | ALRT-01, ALRT-02, ALRT-03, ALRT-04, ALRT-05, ALRT-06, ALRT-07, ALRT-08                                           |
+| 9         | 4                 | PROF-01, PROF-02, PROF-03, PROF-04                                                                               |
+| 10        | 1                 | OBS-02 (analytics portion)                                                                                       |
+| 11        | 8                 | A11Y-01, A11Y-02, A11Y-03, A11Y-04, A11Y-05, SEO-01, SEO-02, SEO-03                                              |
+| 12        | 0                 | (verification phase)                                                                                             |
+| **Total** | **72**            |                                                                                                                  |
 
 ---
 
 ## Progress Table
 
-| Phase | Plans Complete | Status | Completed |
-|-------|----------------|--------|-----------|
-| 1. Foundation | 3/3 | Complete | 2026-04-01 |
-| 2. Auth & Role Model | 0/8 | Not started | - |
-| 3. Reporting Domain | 0/8 | Not started | - |
-| 4. Desktop Map + Modal Architecture | 0/9 | Not started | - |
-| 5. Mobile Shell + Navigation | 0/6 | Not started | - |
-| 6. Admin Triage + Workflow | 0/13 | Not started | - |
-| 7. Contacts Directory | 0/4 | Not started | - |
-| 8. Announcements + Push Notifications | 0/8 | Not started | - |
-| 9. Profile + Report Tracker | 0/4 | Not started | - |
-| 10. Analytics + Disaster Mapping | 0/5 | Not started | - |
-| 11. PWA + Accessibility + Hardening | 0/8 | Not started | - |
-| 12. Release Verification | 0/6 | Not started | - |
+| Phase                                 | Plans Complete | Status      | Completed  |
+| ------------------------------------- | -------------- | ----------- | ---------- |
+| 1. Foundation                         | 3/3            | Complete    | 2026-04-01 |
+| 2. Auth & Role Model                  | 7/7            | Complete    | 2026-04-02 |
+| 3. Reporting Domain                   | 0/8            | Not started | -          |
+| 4. Desktop Map + Modal Architecture   | 0/9            | Not started | -          |
+| 5. Mobile Shell + Navigation          | 0/6            | Not started | -          |
+| 6. Admin Triage + Workflow            | 0/13           | Not started | -          |
+| 7. Contacts Directory                 | 0/4            | Not started | -          |
+| 8. Announcements + Push Notifications | 0/8            | Not started | -          |
+| 9. Profile + Report Tracker           | 0/4            | Not started | -          |
+| 10. Analytics + Disaster Mapping      | 0/5            | Not started | -          |
+| 11. PWA + Accessibility + Hardening   | 0/8            | Not started | -          |
+| 12. Release Verification              | 0/6            | Not started | -          |
 
 ---
 
-*Last updated: 2026-04-01*
+_Last updated: 2026-04-02_
