@@ -90,8 +90,8 @@
 - [ ] **SEC-02**: municipal_admin can never read or write reports, contacts, announcements, or audit data outside their assigned municipality
 - [ ] **SEC-03**: provincial_superadmin has province-wide access to all collections
 - [ ] **SEC-04**: Citizens can only see public report fields; admin-only fields (verifiedBy, rejectedReason, dispatchedTo, etc.) are blocked by Firestore rules
-- [ ] **SEC-05**: Storage rules validate upload path (media/{userId}/{reportId}/{uuid}.{ext}), MIME type (jpeg/png/webp/mp4), and size (5MB/file, 10MB/report total)
-- [ ] **SEC-06**: Firebase Auth custom claims (role, municipality) are set exclusively by a privileged Cloud Function — never by the client
+- [x] **SEC-05**: Storage rules validate upload path (media/{userId}/{reportId}/{uuid}.{ext}), MIME type (jpeg/png/webp/mp4), and size (5MB/file, 10MB/report total)
+- [x] **SEC-06**: Firebase Auth custom claims (role, municipality) are set exclusively by a privileged Cloud Function — never by the client
 
 ### A11Y — Accessibility
 
@@ -197,8 +197,8 @@
 | SEC-02 | Phase 2 | Pending |
 | SEC-03 | Phase 2 | Pending |
 | SEC-04 | Phase 3 | Pending |
-| SEC-05 | Phase 1 | Pending |
-| SEC-06 | Phase 1 | Pending |
+| SEC-05 | Phase 1 | Complete |
+| SEC-06 | Phase 1 | Complete |
 | A11Y-01 | Phase 11 | Pending |
 | A11Y-02 | Phase 11 | Pending |
 | A11Y-03 | Phase 11 | Pending |
