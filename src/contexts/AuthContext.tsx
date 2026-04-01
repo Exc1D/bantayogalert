@@ -18,13 +18,16 @@ interface AuthContextValue {
 const AuthContext = createContext<AuthContextValue | null>(null)
 
 export function AuthProvider({ children }: { children: ReactNode }) {
-  const [user, _setUser] = useState<User | null>(null)
+  const [user] = useState<User | null>(null)
   const [loading, setLoading] = useState(false)
 
   // Phase 2: Full Firebase Auth integration
+  // setUser will be used; email/password params will be used
+  void user // suppress "unused variable" — placeholder until Phase 2
+
   const signIn = async (_email: string, _password: string) => {
     setLoading(true)
-    // Phase 2: implement
+    // Phase 2: implement with Firebase Auth
     setLoading(false)
   }
 

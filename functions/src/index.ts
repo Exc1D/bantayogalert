@@ -56,32 +56,6 @@ export async function setCustomClaims(
   functions.logger.info(`Custom claims set for user ${uid}: role=${role}, municipality=${municipality}`)
 }
 
-/**
- * HTTPS callable function to set custom claims — only callable by other Cloud Functions
- * or via Firebase Admin SDK from a trusted environment.
- * Direct client calls are rejected.
- */
-export const setUserCustomClaims = functions.https.onCall(async (data, context) => {
-  // Reject if not from a trusted environment (this function should only be called
-  // by other Cloud Functions or from the Firebase Admin SDK directly, not by clients)
-  // In production, this would check against a secret or service account
-  if (!context.auth) {
-    throw new functions.https.HttpsError('unauthenticated', 'Must be authenticated')
-  }
-
-  const { uid, role, municipality } = data
-
-  if (!uid || !role) {
-    throw new functions.https.HttpsError('invalid-argument', 'uid and role are required')
-  }
-
-  // Only provincial_superadmin can set claims (or system)
-  // For Phase 1, we allow it; in Phase 2 this will be restricted
-  await setCustomClaims(uid, role, municipality || null)
-
-  return { success: true }
-})
-
 // Placeholder for future Cloud Functions
 export const pendingReportAutoReject = functions.pubsub
   .schedule('0 3 * * *') // Daily at 03:00 PHT
