@@ -5,6 +5,7 @@ admin.initializeApp()
 
 // Re-export callable functions from separate modules
 export { setCustomClaims } from './setCustomClaims'
+export { createAdminRequest, reviewAdminRequest } from './adminRequest'
 
 // Placeholder for future Cloud Functions
 export const pendingReportAutoReject = functions.pubsub
