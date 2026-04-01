@@ -1,26 +1,57 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
-    // Helper functions
+    // ============================================================
+    // HELPER FUNCTIONS - Municipality Scoping
+    // ============================================================
+
+    // Core municipality access helper - used by all collection rules
+    // Explicitly rejects null municipality tokens to prevent edge cases
+    function hasMunicipalityAccess(request, targetMunicipality) {
+      return (
+        request.auth != null &&
+        request.auth.token.municipality != null &&
+        // provincial_superadmin bypasses all scoping
+        (request.auth.token.role == 'provincial_superadmin' ||
+          // municipal_admin must match target municipality
+          (request.auth.token.role == 'municipal_admin' &&
+            request.auth.token.municipality == targetMunicipality))
+      )
+    }
+
+    // Helper for documents with municipality field
+    function canAccessMunicipality(targetMunicipality) {
+      return hasMunicipalityAccess(request, targetMunicipality)
+    }
+
+    // Check if user is authenticated with valid municipality
+    // Rejects null municipality tokens explicitly
+    function hasValidMunicipality() {
+      return request.auth != null && request.auth.token.municipality != null
+    }
+
+    // Check if user is authenticated
     function isAuthenticated() {
-      return request.auth != null;
+      return request.auth != null
     }
 
-    function isRole(role) {
-      return isAuthenticated() && request.auth.token.role == role;
+    // Check role
+    function hasRole(role) {
+      return isAuthenticated() && request.auth.token.role == role
     }
 
+    // Role-based helpers (aliases for compatibility)
     function isMunicipalityAdmin() {
-      return isRole('municipal_admin');
+      return hasRole('municipal_admin');
     }
 
     function isProvincialSuperadmin() {
-      return isRole('provincial_superadmin');
+      return hasRole('provincial_superadmin');
     }
 
+    // Legacy alias for backwards compatibility
     function hasValidMunicipalityScope(targetMunicipality) {
-      return request.auth.token.municipality == targetMunicipality
-          || isProvincialSuperadmin();
+      return hasMunicipalityAccess(request, targetMunicipality);
     }
 
     // Users collection
