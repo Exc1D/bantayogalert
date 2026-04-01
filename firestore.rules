@@ -88,11 +88,33 @@ service cloud.firestore {
       allow delete: if false;
     }
 
-    // Reports collection - scaffold, full rules in Phase 2
+    // Reports collection
+    // Citizens: can read all public reports (province-wide), create their own
+    // municipal_admin: can read/write only their municipality
+    // provincial_superadmin: can read/write all
+    // NULL MUNICIPALITY TOKENS ARE REJECTED - location is critical for responders
     match /reports/{reportId} {
-      allow read: if isAuthenticated();
-      allow create: if isAuthenticated();
-      allow update: if isAuthenticated() && hasValidMunicipalityScope(resource.data.assignedMunicipality);
+      allow read: if isAuthenticated() && hasValidMunicipality() && (
+        // Citizens can read reports (public fields only via client, but rule allows read)
+        // Admin fields filtered at application level per SEC-04
+        hasRole('citizen')
+        || hasMunicipalityAccess(request, resource.data.assignedMunicipality)
+      );
+
+      allow create: if isAuthenticated() && hasValidMunicipality() && (
+        // Citizens and admins can create reports
+        // Must specify their municipality (must match token)
+        request.resource.data.submitterUid == request.auth.uid
+        && request.resource.data.assignedMunicipality == request.auth.token.municipality
+        && hasRole('citizen')
+      );
+
+      allow update: if isAuthenticated() && hasValidMunicipality() && (
+        hasMunicipalityAccess(request, resource.data.assignedMunicipality)
+      );
+
+      // No delete by clients - provincial_superadmin via Cloud Function only
+      allow delete: if false;
     }
 
     // Contacts collection - scaffold
