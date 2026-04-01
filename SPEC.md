@@ -1,4 +1,5 @@
 # Bantayog Alert — Technical Specification
+
 **Version:** 1.0
 **Date:** 2026-04-01
 **Status:** Pre-implementation
@@ -107,6 +108,7 @@ Bantayog Alert is a dual-surface disaster reporting and emergency coordination p
 ### 2.2 Key Architectural Decisions
 
 **Separation of concerns:**
+
 - `MapContext` owns the Leaflet instance — no component outside `src/components/map/` directly manipulates the map.
 - `ModalContext` owns right-modal state — any section (feed, profile, alerts, admin) can open the modal without coupling to the map.
 - Report mutations go through `reportService` + Cloud Functions — never directly from the client.
@@ -117,15 +119,17 @@ The `RightModal` component accepts a `section` prop: `'feed' | 'profile' | 'aler
 
 **Map persistence guarantee:**
 `DesktopShell` renders:
+
 ```tsx
 <div className="flex h-screen">
-  <NavRail />           {/* fixed left, ~64px */}
+  <NavRail /> {/* fixed left, ~64px */}
   <main className="flex-1 relative">
-    <MapCanvas />        {/* full-bleed, z-0, always mounted */}
-    <RightModal />       {/* absolute overlay, z-10, does NOT affect map DOM */}
+    <MapCanvas /> {/* full-bleed, z-0, always mounted */}
+    <RightModal /> {/* absolute overlay, z-10, does NOT affect map DOM */}
   </main>
 </div>
 ```
+
 Closing the modal removes the overlay; the map's DOM and viewport state are never touched.
 
 **Firestore as the primary backend:** All business logic, permissions, and workflow enforcement live in Firestore security rules + Cloud Functions. The client is a thin, role-aware interface.
@@ -161,6 +165,7 @@ Closing the modal removes the overlay; the map's DOM and viewport state are neve
 ### 3.2 Navigation Rail (Left)
 
 Width: **64px** collapsed, **200px** expanded on hover. Contains:
+
 - Logo (top)
 - Feed — opens feed panel in right modal
 - Map — centers viewport on user's municipality (no modal)
@@ -172,15 +177,15 @@ Width: **64px** collapsed, **200px** expanded on hover. Contains:
 
 ### 3.3 Right Modal Sections
 
-| Section | Trigger | Content |
-|---|---|---|
-| `feed` | Nav Rail → Feed | Paginated report stream, filters, sort |
-| `report-detail` | Click pin or feed card | Full report detail, action buttons, activity timeline |
-| `profile` | Nav Rail → Profile | Account info, preferences, report tracker |
-| `alerts` | Nav Rail → Alerts | Announcement list, create form (admin) |
-| `admin` | Nav Rail → Admin | Triage queue, analytics, contacts |
-| `contacts` | Nav Rail → Contacts | Contact directory CRUD (admin) |
-| `announcement-create` | Alerts → New | Announcement form with scope selector |
+| Section               | Trigger                | Content                                               |
+| --------------------- | ---------------------- | ----------------------------------------------------- |
+| `feed`                | Nav Rail → Feed        | Paginated report stream, filters, sort                |
+| `report-detail`       | Click pin or feed card | Full report detail, action buttons, activity timeline |
+| `profile`             | Nav Rail → Profile     | Account info, preferences, report tracker             |
+| `alerts`              | Nav Rail → Alerts      | Announcement list, create form (admin)                |
+| `admin`               | Nav Rail → Admin       | Triage queue, analytics, contacts                     |
+| `contacts`            | Nav Rail → Contacts    | Contact directory CRUD (admin)                        |
+| `announcement-create` | Alerts → New           | Announcement form with scope selector                 |
 
 ### 3.4 Map Interactions
 
@@ -212,24 +217,28 @@ Width: **64px** collapsed, **200px** expanded on hover. Contains:
 ### 4.2 Tab Definitions
 
 **Feed Tab:**
+
 - Paginated report stream (newest first by default)
 - Pull-to-refresh
 - FAB for new report (+)
 - Each card: type icon, category, severity badge, municipality, time, truncated description, media thumbnail
 
 **Map Tab:**
+
 - Full-bleed Leaflet map
 - Floating filter chips at top (type, severity, status)
 - Current location button (bottom right)
 - FAB for new report (+)
 
 **Alerts Tab:**
+
 - Chronological announcement feed
 - Scope badge (municipality vs. province)
 - Unread indicator
 - Create button (admin only)
 
 **Profile Tab:**
+
 - Avatar, name, email, role badge
 - Report tracker (active + recent)
 - Preferences (notifications on/off, municipality)
@@ -242,6 +251,7 @@ Step 1: Type Selection  →  Step 2: Location  →  Step 3: Details  →  Step 4
  (emergency type)        (map pin or auto)    (category, severity,    (camera/gallery)
                                                   description)
 ```
+
 - Step 2 auto-detects location; user can drag pin to adjust
 - Media is optional; max 3 images; compressed to 1024px before upload
 - Progress indicator during upload
@@ -254,6 +264,7 @@ Step 1: Type Selection  →  Step 2: Location  →  Step 3: Details  →  Step 4
 ### 5.1 Entities
 
 **User**
+
 ```
 uid: string
 email: string
@@ -270,6 +281,7 @@ notificationPreferences: {
 ```
 
 **Report**
+
 ```
 id: string
 type: ReportType          # 'flood' | 'landslide' | 'fire' | 'earthquake' | 'medical' | 'crime' | 'infrastructure' | 'other'
@@ -316,7 +328,8 @@ resolvedAt: Timestamp | null
 resolvedNotes: string | null
 ```
 
-**DispatchedTarget** *(snapshot stored on Report at `dispatchedTo` — immutable after routing)*
+**DispatchedTarget** _(snapshot stored on Report at `dispatchedTo` — immutable after routing)_
+
 ```
 contactId: string
 agencyName: string
@@ -329,6 +342,7 @@ dispatchedBy: string  # uid of admin who performed the dispatch
 ```
 
 **Activity (subcollection on Report)**
+
 ```
 id: string
 reportId: string
@@ -343,6 +357,7 @@ createdAt: Timestamp
 ```
 
 **Contact**
+
 ```
 id: string
 municipality: MunicipalityCode
@@ -358,6 +373,7 @@ updatedAt: Timestamp
 ```
 
 **Announcement**
+
 ```
 id: string
 title: string
@@ -375,6 +391,7 @@ active: boolean
 ```
 
 **Notification (subcollection on Announcement)**
+
 ```
 id: string
 announcementId: string
@@ -389,6 +406,7 @@ error: string | null
 ```
 
 **AuditLog (top-level collection, append-only)**
+
 ```
 id: string
 actorUid: string
@@ -407,14 +425,14 @@ createdAt: Timestamp
 ### 5.2 Status Mapping (Internal → Public)
 
 | Internal `status` | Public `publicStatus` Label |
-|---|---|
-| `pending` | "Pending Review" |
-| `verified` | "Verified" |
-| `rejected` | "Rejected" |
-| `dispatched` | "Responder Dispatched" |
-| `acknowledged` | "Responder En Route" |
-| `in_progress` | "Situation Being Addressed" |
-| `resolved` | "Resolved" |
+| ----------------- | --------------------------- |
+| `pending`         | "Pending Review"            |
+| `verified`        | "Verified"                  |
+| `rejected`        | "Rejected"                  |
+| `dispatched`      | "Responder Dispatched"      |
+| `acknowledged`    | "Responder En Route"        |
+| `in_progress`     | "Situation Being Addressed" |
+| `resolved`        | "Resolved"                  |
 
 ---
 
@@ -441,44 +459,54 @@ analytics/province/weekly/{weekDoc}
 ### 6.2 Collection Rules Summary
 
 **`users/{uid}`**
+
 - Read: own doc, or municipal_admin can read users in same municipality, or provincial_superadmin can read all
 - Write: own doc (limited fields), only provincial_superadmin can write role/municipality fields
 
 **`reports/{reportId}`**
+
 - Read: public fields always readable; admin fields only if requester role permits + municipality matches
 - Create: authenticated users (citizen or admin)
 - Update: municipal_admin (own municipality only), provincial_superadmin (any)
 - Delete: provincial_superadmin only
 
 **`reports/{reportId}/activity/{activityId}`**
+
 - Read: same municipality scope as parent report
 - Create: system or admin only (no direct client writes)
 
 **`contacts/{contactId}`**
+
 - Read: municipal_admin (own municipality), provincial_superadmin (all)
 - Write: municipal_admin (own municipality), provincial_superadmin (all)
 
 **`announcements/{announcementId}`**
+
 - Read: visible if — (scope == 'province') OR (scope == 'municipality' AND user's municipality == targetMunicipalities[0]) OR (scope == 'multi_municipality' AND user's municipality IN targetMunicipalities). Citizens only see `active == true`. Admins see all active/draft.
 - Create: municipal_admin (own municipality only), provincial_superadmin (any scope)
 - Update/delete: creator or provincial_superadmin
 
 **`announcements/{announcementId}/notifications/{notificationId}`**
+
 - Read: creator or provincial_superadmin only
 - Write: system only (Cloud Function writes)
 
 **`audit/{auditId}`**
+
 - Read: municipal_admin (own municipality), provincial_superadmin (all)
 - Write: system only (Cloud Function)
 
 **`analytics/municipality/{muniCode}/daily/{dateDoc}`**
+
 - Read: municipal_admin (own municipality), provincial_superadmin (all)
 - Write: system only (Cloud Function `analyticsAggregator`)
 
 **`analytics/municipality/{muniCode}/weekly/{weekDoc}`**
+
 - Read/Write: same as daily
 
 **`analytics/province/daily/{dateDoc}`**
+
 - Read: provincial_superadmin only
 - Write: system only (Cloud Function `analyticsAggregator`)
 
@@ -526,14 +554,14 @@ analytics/province/weekly/{weekDoc}
 
 ### 7.2 Valid State Transitions
 
-| From | To | Who Can Invoke |
-|---|---|---|
-| `pending` | `verified` | municipal_admin (same municipality), provincial_superadmin |
-| `pending` | `rejected` | municipal_admin (same municipality), provincial_superadmin |
-| `verified` | `dispatched` | municipal_admin (same municipality), provincial_superadmin |
-| `dispatched` | `acknowledged` | municipal_admin (same municipality), provincial_superadmin |
-| `acknowledged` | `in_progress` | municipal_admin (same municipality), provincial_superadmin |
-| `in_progress` | `resolved` | municipal_admin (same municipality), provincial_superadmin |
+| From           | To             | Who Can Invoke                                             |
+| -------------- | -------------- | ---------------------------------------------------------- |
+| `pending`      | `verified`     | municipal_admin (same municipality), provincial_superadmin |
+| `pending`      | `rejected`     | municipal_admin (same municipality), provincial_superadmin |
+| `verified`     | `dispatched`   | municipal_admin (same municipality), provincial_superadmin |
+| `dispatched`   | `acknowledged` | municipal_admin (same municipality), provincial_superadmin |
+| `acknowledged` | `in_progress`  | municipal_admin (same municipality), provincial_superadmin |
+| `in_progress`  | `resolved`     | municipal_admin (same municipality), provincial_superadmin |
 
 **Invalid transitions are blocked by Cloud Function validation — never by UI alone.**
 
@@ -562,12 +590,14 @@ Do (in a batched transaction):
 ### 7.4 Activity Logging
 
 Every transition appends an `Activity` document to `reports/{reportId}/activity/`:
+
 - actorUid, actorRole, action, previousState, newState, notes, timestamp
 - This is append-only; parent report document does NOT accumulate history arrays.
 
 ### 7.5 Routing
 
 When transitioning to `dispatched`:
+
 1. Admin selects a `Contact` from the contacts directory
 2. System stores a **snapshot** of the contact (not a reference) on the report: `{ contactId, agencyName, phone, type, municipality }`
 3. This ensures routing history remains accurate even if the contact is later edited or deleted
@@ -582,12 +612,13 @@ draft → published → expired
 
 **Transitions:**
 
-| From | To | Trigger | Who Can Invoke |
-|---|---|---|---|
-| `draft` | `published` | Admin clicks Publish | creator (municipal_admin or provincial_superadmin) |
-| `published` | `expired` | Cloud Function checks `expiresAt` ≤ now | system (`announcementExpiry` function) |
+| From        | To          | Trigger                                 | Who Can Invoke                                     |
+| ----------- | ----------- | --------------------------------------- | -------------------------------------------------- |
+| `draft`     | `published` | Admin clicks Publish                    | creator (municipal_admin or provincial_superadmin) |
+| `published` | `expired`   | Cloud Function checks `expiresAt` ≤ now | system (`announcementExpiry` function)             |
 
 **Transition rules:**
+
 - `draft`: announcement is saved but not visible to citizens. Can be edited freely until published.
 - `published`: visible in the Alerts tab to all qualifying users. **Can NOT be edited after publish** — only `provincial_superadmin` can unpublish (revert to draft) or delete. This prevents mid-incident message drift.
 - `expired`: automatically transitioned by `announcementExpiry` scheduled function running every 15 minutes. Documents remain readable but are marked `active: false`.
@@ -595,6 +626,7 @@ draft → published → expired
 - Published announcements with no `expiresAt` remain active indefinitely until manually unpublished by `provincial_superadmin`.
 
 **Multi-municipality visibility for citizens:**
+
 - Citizens see `multi_municipality` announcements if their `user.municipality` is present in `announcement.targetMunicipalities`.
 - Citizens see `province` announcements regardless of municipality.
 - Citizens see `municipality` announcements only if their `user.municipality` matches `targetMunicipalities[0]`.
@@ -605,11 +637,11 @@ draft → published → expired
 
 ### 8.1 Role Definitions
 
-| Role | Municipality Scope | Report Access | Contact Access | Announcement Scope | Audit Access |
-|---|---|---|---|---|---|
-| `citizen` | N/A | Own reports + all public reports (province-wide feed) | None | Receive municipality + province-wide alerts | None |
-| `municipal_admin` | Single assigned | Own municipality reports (all statuses) | Own municipality only | Own municipality only | Own municipality only |
-| `provincial_superadmin` | All | All reports (all statuses) | All | Any scope | All |
+| Role                    | Municipality Scope | Report Access                                         | Contact Access        | Announcement Scope                          | Audit Access          |
+| ----------------------- | ------------------ | ----------------------------------------------------- | --------------------- | ------------------------------------------- | --------------------- |
+| `citizen`               | N/A                | Own reports + all public reports (province-wide feed) | None                  | Receive municipality + province-wide alerts | None                  |
+| `municipal_admin`       | Single assigned    | Own municipality reports (all statuses)               | Own municipality only | Own municipality only                       | Own municipality only |
+| `provincial_superadmin` | All                | All reports (all statuses)                            | All                   | Any scope                                   | All                   |
 
 > **Citizen report visibility:** "public reports" means all submitted reports regardless of which municipality they belong to, with `publicStatus` shown (not internal `status`). Citizens never see admin-only fields (`verifiedBy`, `rejectedReason`, `dispatchedTo`, etc.).
 
@@ -644,6 +676,7 @@ allow create: if isAuthenticated()
 ### 8.4 Server-Side Scope Validation (Cloud Function Gate)
 
 All Cloud Functions that read reports must:
+
 1. Decode `request.auth.token.municipality` and `request.auth.token.role`
 2. If role is `municipal_admin`, add `.where('assignedMunicipality', '==', token.municipality)` to the query
 3. If role is `citizen`, add `.where('submitterUid', '==', uid)` for their own reports
@@ -663,6 +696,7 @@ This validation exists in **addition to** Firestore rules — defense in depth.
 ## 9. Security Design
 
 ### 9.1 Authentication
+
 - Firebase Auth (email/password)
 - Custom claims set on user record: `role`, `municipality`
 - Claims are set/updated only by a privileged Cloud Function (not client)
@@ -670,20 +704,22 @@ This validation exists in **addition to** Firestore rules — defense in depth.
 
 ### 9.2 Authorization Layers
 
-| Layer | Mechanism | What It Enforces |
-|---|---|---|
-| Firestore rules | Document-level | Read/write permission by role + municipality |
-| Cloud Functions | Application logic | Valid state transitions, scope enforcement, payload validation |
-| Storage rules | Path + MIME + size | Only uploads within authenticated user path |
-| Client routing | React Router + RoleGate | UI element visibility by role |
-| Zod validators | Payload validation | All write payloads validated before submission |
+| Layer           | Mechanism               | What It Enforces                                               |
+| --------------- | ----------------------- | -------------------------------------------------------------- |
+| Firestore rules | Document-level          | Read/write permission by role + municipality                   |
+| Cloud Functions | Application logic       | Valid state transitions, scope enforcement, payload validation |
+| Storage rules   | Path + MIME + size      | Only uploads within authenticated user path                    |
+| Client routing  | React Router + RoleGate | UI element visibility by role                                  |
+| Zod validators  | Payload validation      | All write payloads validated before submission                 |
 
 ### 9.3 Content Sanitization
+
 - All user-generated text fields (description, title, body) sanitized with DOMPurify before storage
 - Rendered text is always sanitized — never trust stored HTML
 - Media filenames are sanitized; actual file content validated by Storage rules
 
 ### 9.4 Upload Security
+
 - Path pattern: `media/{userId}/{reportId}/{uuid}.{ext}`
 - Allowed MIME: image/jpeg, image/png, image/webp, video/mp4
 - Max file size: 5MB per file, 10MB total per report
@@ -693,6 +729,7 @@ This validation exists in **addition to** Firestore rules — defense in depth.
 ### 9.5 Input Validation (Zod Schemas)
 
 Every service method that writes to Firestore validates its input:
+
 - `createReport`: type enum, category enum, severity enum, coordinates bounds, description length, media count
 - `updateReportStatus`: valid state transition per state machine
 - `createAnnouncement`: scope consistency (municipal_admin cannot create province-wide), title length, body length
@@ -705,11 +742,13 @@ Every service method that writes to Firestore validates its input:
 ### 10.1 Realtime Listeners — Scoping Rules
 
 **Allowed:**
+
 - My reports (citizen): `where('submitterUid', '==', uid).limit(20)`
 - Municipal feed (admin): `where('assignedMunicipality', '==', myMuni).limit(50)`
 - Province-wide alerts (all): `where('scope', 'in', ['province', 'myMuni']).limit(30)`
 
 **Forbidden:**
+
 - Province-wide report listener
 - All reports without pagination
 - Broad listeners on admin-only collections from citizen clients
@@ -765,10 +804,12 @@ Every service method that writes to Firestore validates its input:
 ### 11.1 Public vs. Admin Route Separation
 
 Public routes (indexed):
+
 - `/` — landing/map overview (if public report viewing is enabled)
 - `/report/:id` — public report detail (no admin fields)
 
 **No-index routes (configured in React Router + meta tags):**
+
 - All `/admin/*` routes
 - `/profile/*`
 - `/alerts/*`
@@ -778,13 +819,14 @@ Public routes (indexed):
 ### 11.2 Public Route Requirements
 
 Each public page must have:
+
 ```html
 <title>Bantayog Alert | [Page-specific title]</title>
-<meta name="description" content="[Relevant description]">
-<link rel="canonical" href="[canonical URL]">
-<meta property="og:title" content="[Social title]">
-<meta property="og:description" content="[Social description]">
-<meta property="og:type" content="website">
+<meta name="description" content="[Relevant description]" />
+<link rel="canonical" href="[canonical URL]" />
+<meta property="og:title" content="[Social title]" />
+<meta property="og:description" content="[Social description]" />
+<meta property="og:type" content="website" />
 ```
 
 ### 11.3 sitemap.xml and robots.txt
@@ -802,6 +844,7 @@ Each public page must have:
 **Scope:** Pure functions, hooks, validators, state machine logic, formatters.
 
 Priority areas:
+
 - `reportWorkflow.ts` — all valid and invalid state transitions
 - `firestore.rules` — permission matrix test cases
 - `sanitize.ts` — XSS prevention
@@ -814,6 +857,7 @@ Priority areas:
 **Scope:** Service layer → Firestore.
 
 Priority areas:
+
 - Report submission end-to-end
 - State transitions via service layer
 - Announcement creation + delivery log
@@ -825,6 +869,7 @@ Priority areas:
 **Scope:** Full user journeys in real browser.
 
 Critical paths:
+
 - Citizen: sign up → submit report → view in feed → receive alert
 - Municipal admin: sign in → verify report → route to contact → dispatch → resolve
 - Provincial superadmin: view all municipalities → send province-wide alert
@@ -835,6 +880,7 @@ Critical paths:
 ### 12.4 Permission / Scope Tests
 
 Explicit test suites proving:
+
 - `municipal_admin` cannot read/write reports outside assigned municipality
 - `municipal_admin` cannot create province-wide announcements
 - `provincial_superadmin` can access all municipalities
@@ -850,6 +896,7 @@ Explicit test suites proving:
 ### 12.6 Regression Tests — Map Persistence
 
 Playwright test:
+
 1. Open desktop
 2. Pan/zoom map to specific viewport
 3. Open feed modal
@@ -861,48 +908,49 @@ Playwright test:
 
 ## 13. Quality Scorecard
 
-| Category | Weight | Score | Evidence |
-|---|---|---|---|
-| **Performance** | **25** | **/** | |
-| Mobile Lighthouse Performance ≥ 85 on public route | 8 | — | Not yet measured |
-| Desktop Lighthouse Performance ≥ 95 on public route | 4 | — | Not yet measured |
-| LCP on main public route ≤ 2.5s | 4 | — | Not yet measured |
-| CLS on main public route ≤ 0.1 | 2 | — | Not yet measured |
-| Desktop map stays mounted on modal open/close | 4 | — | Architecture guarantees this (see §2) |
-| Feed and map subscriptions are scoped and paginated | 3 | — | Architecture guarantees this (see §10.1) |
-| **Performance Subtotal** | **25** | **TBD** | |
-| **Security** | **25** | **/** | |
-| Zero critical security flaws | 8 | — | Not yet audited |
-| Zero high-severity auth/data-leak flaws | 5 | — | Not yet audited |
-| 100% pass on role, rules, and RBAC tests | 6 | — | Not yet tested |
-| Municipality scoping enforced server-side for municipal_admin | 3 | — | Rules + Cloud Function gate (see §8) |
-| Upload validation, sanitization, admin data protection | 3 | — | Storage rules + DOMPurify + Zod (see §9) |
-| **Security Subtotal** | **25** | **TBD** | |
-| **Design** | **20** | **/** | |
-| Desktop usable at 1280px+, map context preserved | 5 | — | Not yet implemented |
-| Mobile usable at 360px | 5 | — | Not yet implemented |
-| Accessibility score ≥ 95 on key flows | 4 | — | Not yet audited |
-| Right modal consistent across all sections | 3 | — | ModalContext enforces (see §2) |
-| No overflow, clipping, broken states in tested layouts | 3 | — | Not yet tested |
-| **Design Subtotal** | **20** | **TBD** | |
-| **SEO** | **10** | **/** | |
-| Lighthouse SEO ≥ 90 on public routes | 4 | — | Not yet implemented |
-| Public pages have correct title, meta, canonical, social | 3 | — | Spec defined (see §11) |
-| sitemap and robots rules correct | 2 | — | Spec defined (see §11) |
-| Admin/private surfaces excluded from indexing | 1 | — | Spec defined (see §11) |
-| **SEO Subtotal** | **10** | **TBD** | |
-| **Overall Quality** | **20** | **/** | |
-| 100% pass on required unit, integration, E2E suites | 7 | — | Not yet implemented |
-| No blocker bugs in core workflows | 5 | — | Not yet tested |
-| No uncaught console errors in primary journeys | 3 | — | Not yet tested |
-| Observability, audit logging, failure handling in place | 3 | — | Audit + error handling spec defined (see §9, §10) |
-| Core documentation sufficient for another engineer | 2 | — | This SPEC + CLAUDE.md |
-| **Overall Quality Subtotal** | **20** | **TBD** | |
-| **TOTAL** | **100** | **TBD / 100** | |
+| Category                                                      | Weight  | Score         | Evidence                                          |
+| ------------------------------------------------------------- | ------- | ------------- | ------------------------------------------------- |
+| **Performance**                                               | **25**  | **/**         |                                                   |
+| Mobile Lighthouse Performance ≥ 85 on public route            | 8       | —             | Not yet measured                                  |
+| Desktop Lighthouse Performance ≥ 95 on public route           | 4       | —             | Not yet measured                                  |
+| LCP on main public route ≤ 2.5s                               | 4       | —             | Not yet measured                                  |
+| CLS on main public route ≤ 0.1                                | 2       | —             | Not yet measured                                  |
+| Desktop map stays mounted on modal open/close                 | 4       | —             | Architecture guarantees this (see §2)             |
+| Feed and map subscriptions are scoped and paginated           | 3       | —             | Architecture guarantees this (see §10.1)          |
+| **Performance Subtotal**                                      | **25**  | **TBD**       |                                                   |
+| **Security**                                                  | **25**  | **/**         |                                                   |
+| Zero critical security flaws                                  | 8       | —             | Not yet audited                                   |
+| Zero high-severity auth/data-leak flaws                       | 5       | —             | Not yet audited                                   |
+| 100% pass on role, rules, and RBAC tests                      | 6       | —             | Not yet tested                                    |
+| Municipality scoping enforced server-side for municipal_admin | 3       | —             | Rules + Cloud Function gate (see §8)              |
+| Upload validation, sanitization, admin data protection        | 3       | —             | Storage rules + DOMPurify + Zod (see §9)          |
+| **Security Subtotal**                                         | **25**  | **TBD**       |                                                   |
+| **Design**                                                    | **20**  | **/**         |                                                   |
+| Desktop usable at 1280px+, map context preserved              | 5       | —             | Not yet implemented                               |
+| Mobile usable at 360px                                        | 5       | —             | Not yet implemented                               |
+| Accessibility score ≥ 95 on key flows                         | 4       | —             | Not yet audited                                   |
+| Right modal consistent across all sections                    | 3       | —             | ModalContext enforces (see §2)                    |
+| No overflow, clipping, broken states in tested layouts        | 3       | —             | Not yet tested                                    |
+| **Design Subtotal**                                           | **20**  | **TBD**       |                                                   |
+| **SEO**                                                       | **10**  | **/**         |                                                   |
+| Lighthouse SEO ≥ 90 on public routes                          | 4       | —             | Not yet implemented                               |
+| Public pages have correct title, meta, canonical, social      | 3       | —             | Spec defined (see §11)                            |
+| sitemap and robots rules correct                              | 2       | —             | Spec defined (see §11)                            |
+| Admin/private surfaces excluded from indexing                 | 1       | —             | Spec defined (see §11)                            |
+| **SEO Subtotal**                                              | **10**  | **TBD**       |                                                   |
+| **Overall Quality**                                           | **20**  | **/**         |                                                   |
+| 100% pass on required unit, integration, E2E suites           | 7       | —             | Not yet implemented                               |
+| No blocker bugs in core workflows                             | 5       | —             | Not yet tested                                    |
+| No uncaught console errors in primary journeys                | 3       | —             | Not yet tested                                    |
+| Observability, audit logging, failure handling in place       | 3       | —             | Audit + error handling spec defined (see §9, §10) |
+| Core documentation sufficient for another engineer            | 2       | —             | This SPEC + CLAUDE.md                             |
+| **Overall Quality Subtotal**                                  | **20**  | **TBD**       |                                                   |
+| **TOTAL**                                                     | **100** | **TBD / 100** |                                                   |
 
 **Release gate:** 90/100 minimum. Performance ≥ 20/25. Security ≥ 23/25. Design ≥ 16/20. SEO ≥ 8/10. Overall Quality ≥ 17/20.
 
 **Automatic blockers (pre-implementation):**
+
 - Any broken municipality-scope rule → must fix before PR merge
 - Any broken provincial_superadmin permission path → must fix before PR merge
 - Any map reset or remount caused by right-modal navigation → must fix before PR merge
@@ -913,9 +961,11 @@ Playwright test:
 ## 14. Phased Delivery Plan
 
 ### Phase 1: Foundation (Weeks 1–3)
+
 **Goal:** Project scaffold, tooling, auth, Firestore schema, basic shell
 
 Deliverables:
+
 - Vite + React 18 + Tailwind + TypeScript project
 - Firebase project setup (Auth, Firestore, Storage) + Firebase Emulator Suite configured
 - Firestore security rules (initial)
@@ -928,9 +978,11 @@ Deliverables:
 - Vitest configured with base test utilities
 
 ### Phase 2: Auth & Role Model (Weeks 4–5)
+
 **Goal:** Complete auth flows, role enforcement, municipality scoping basics
 
 Deliverables:
+
 - Sign-up, sign-in, sign-out flows
 - RoleGate component and ProtectedRoute
 - Firebase Auth custom claims set via privileged Cloud Function
@@ -938,9 +990,11 @@ Deliverables:
 - Project documentation: auth flow diagram
 
 ### Phase 3: Reporting Domain (Weeks 6–8)
+
 **Goal:** Report submission, media uploads, basic feed
 
 Deliverables:
+
 - ReportForm (desktop modal + mobile flow)
 - Image compression + Storage upload
 - Firestore report document creation
@@ -951,9 +1005,11 @@ Deliverables:
 - Unit tests for reportWorkflow state machine
 
 ### Phase 4: Desktop Map + Modal Architecture (Weeks 9–11)
+
 **Goal:** Full Leaflet integration, marker management, right-modal reuse
 
 Deliverables:
+
 - MapCanvas with React-Leaflet
 - ReportMarker + MarkerCluster
 - MapContext (viewport persistence)
@@ -964,9 +1020,11 @@ Deliverables:
 - Filter state → marker update without map remount
 
 ### Phase 5: Mobile Shell + Navigation (Weeks 12–13)
+
 **Goal:** Complete mobile layout, tab navigation, mobile-specific report flow
 
 Deliverables:
+
 - Full BottomTab implementation
 - Mobile Feed tab
 - Mobile Map tab
@@ -977,9 +1035,11 @@ Deliverables:
 - PWA manifest and service worker (basic)
 
 ### Phase 6: Admin Triage + Workflow (Weeks 14–16)
+
 **Goal:** Admin verification, routing, state transitions, activity logging
 
 Deliverables:
+
 - TriagePanel (verify/reject/route)
 - RoutingPanel with contact selection
 - State transition Cloud Functions with runTransaction
@@ -990,9 +1050,11 @@ Deliverables:
 - Permission tests (municipal_admin scope)
 
 ### Phase 7: Contacts Directory (Week 17)
+
 **Goal:** Contact CRUD, routing snapshots
 
 Deliverables:
+
 - ContactService (CRUD)
 - ContactList, ContactForm components
 - Admin-only contacts panel
@@ -1000,9 +1062,11 @@ Deliverables:
 - Contacts integration tests
 
 ### Phase 8: Announcements + Push Notifications (Weeks 18–20)
+
 **Goal:** Announcement creation, FCM integration, delivery logs, Alerts tab
 
 Deliverables:
+
 - AnnouncementService (create, publish)
 - AnnouncementForm with scope selector
 - FCM Cloud Function (fan-out to topic)
@@ -1014,18 +1078,22 @@ Deliverables:
 - Scope enforcement tests for announcements
 
 ### Phase 9: Profile + Report Tracker (Week 21)
+
 **Goal:** Citizen-facing report history, preferences, notification settings
 
 Deliverables:
+
 - ProfileView (desktop + mobile)
 - ReportTracker (active + recent)
 - Notification preferences
 - Profile integration tests
 
 ### Phase 10: Analytics + Disaster Mapping (Weeks 22–24)
+
 **Goal:** Pre-aggregated analytics, admin dashboard
 
 Deliverables:
+
 - Scheduled analytics Cloud Function
 - Municipality analytics panel
 - Province analytics panel
@@ -1033,9 +1101,11 @@ Deliverables:
 - Pre-aggregation tests
 
 ### Phase 11: PWA + Accessibility + Hardening (Weeks 25–26)
+
 **Goal:** Offline support, accessibility audit, performance tuning, SEO
 
 Deliverables:
+
 - Full PWA (service worker, offline report queue)
 - Accessibility audit and fixes (keyboard nav, ARIA, contrast)
 - SEO: meta tags, sitemap, robots
@@ -1044,9 +1114,11 @@ Deliverables:
 - Production Firebase security rules review
 
 ### Phase 12: Release Verification (Week 27)
+
 **Goal:** Scorecard evaluation, bug fixes, release
 
 Deliverables:
+
 - Full test suite pass
 - Scorecard evaluation against rubric
 - Security audit
@@ -1060,7 +1132,7 @@ Deliverables:
 ## Key Assumptions
 
 1. **Firebase project already provisioned** — Auth, Firestore, Storage, Cloud Functions, Cloud Messaging, and Hosting are all under the same Firebase project.
-2. **Municipality codes are stable** — All 12 municipalities in Camarines Norte have agreed-upon codes (e.g., `basud`, `daet`, `josenunez`, `labo`, `mercedes`, `paracale`, `sanlorenzo`, `sanvicente`, `talisay`, `vinzales`, `capalonga`, `jomalig`) used consistently in all data models.
+2. **Municipality codes are stable** — All 12 municipalities in Camarines Norte have agreed-upon codes (e.g., `basud`, `daet`, `josepanganiban`, `labo`, `mercedes`, `paracale`, `sanlorenzo`, `sanvicente`, `talisay`, `vinzales`, `capalonga`, `staelena`) used consistently in all data models.
 3. **FCM is configured** — Firebase Cloud Messaging is set up and VAPID key is available for web push.
 4. **Offline persistence is acceptable** — Firestore offline persistence is enabled; this is appropriate for a disaster context where connectivity may be intermittent.
 5. **Map tiles are free-tier compatible** — OpenStreetMap tiles are used; no paid tile provider required for initial deployment.
@@ -1074,30 +1146,37 @@ Deliverables:
 ## Biggest Risks
 
 ### R1: Municipality Scope Enforcement Gaps (Critical)
+
 **Risk:** Developers bypass Firestore rules by writing Cloud Functions that don't enforce scope, or add direct client-side writes that skip rules.
 **Mitigation:** Mandatory scope tests in CI; every PR requires passing scope-permission test suite before merge. Cloud Function code review checklist includes scope enforcement.
 
 ### R2: Map Remount Regression (Critical)
+
 **Risk:** A future developer accidentally nests `<MapCanvas>` inside the modal or adds a key that forces remount.
 **Mitigation:** E2E test for map persistence is in the required test suite. Architectural guard: MapContext is defined at DesktopShell level, outside the modal layer. This is documented in CLAUDE.md as a hard architectural rule.
 
 ### R3: Firestore Query Scope Creep (High)
+
 **Risk:** As features grow, queries lose their `.where('municipality', '==', ...)` filter, creating province-wide listeners that burn through read quotas and violate scope.
 **Mitigation:** Query builder utility (`buildScopedQuery`) always injects scope filter. Linting rule flags unbounded report queries. Monthly quota alert on Firestore.
 
 ### R4: Announcement Fan-Out Performance (High)
+
 **Risk:** Province-wide announcement to all 12 municipalities + province topic creates a thundering herd on Firestore writes when writing Notification subdocs.
 **Mitigation:** FCM topic message (single write) instead of individual notification docs per user for push. In-app notifications use a bounded query on the announcement doc, not per-user notification docs.
 
 ### R5: Image Upload Failures on Slow Connections (Medium)
+
 **Risk:** Disaster scenario = slow/spotty internet; large compressed images fail upload, leaving report in broken state.
 **Mitigation:** Chunked upload with resumability consideration; upload state stored in Firestore doc with `mediaUploadStatus` field; retry queue in service worker.
 
 ### R6: State Machine Integrity Under Concurrent Edits (Medium)
+
 **Risk:** Two admins simultaneously process the same report (one verifies, one rejects) using optimistic UI.
 **Mitigation:** All state transitions use Firestore `runTransaction` with optimistic locking. Invalid transitions (e.g., already dispatched) fail the transaction.
 
 ### R7: Accessibility Gaps at Release (Medium)
+
 **Risk:** Keyboard navigation and screen reader support are deferred, leading to < 95 accessibility score.
 **Mitigation:** Accessibility is Phase 11, not deferred further. WCAG 2.1 AA is the baseline. Automated axe-core tests in E2E suite.
 
@@ -1122,17 +1201,17 @@ Deliverables:
 
 ## Current Projected Score (Pre-Implementation)
 
-| Category | Projected (Build to Target) | Notes |
-|---|---|---|
-| Performance | 22–25 / 25 | Map persistence is architecture-guaranteed; pagination and scoping spec'd in §10 |
-| Security | 23–25 / 25 | Firestore rules + Cloud Function gating + Zod + DOMPurify spec'd; final score depends on audit |
-| Design | 18–20 / 20 | Responsive spec'd; accessibility in Phase 11; modal reuse in §2 |
-| SEO | 9–10 / 10 | Public/private separation spec'd; sitemap/robots defined |
-| Overall Quality | 18–20 / 20 | Full test suite spec'd; documentation spec'd |
-| **TOTAL** | **90–100 / 100** | **Target: 90+ to release** |
+| Category        | Projected (Build to Target) | Notes                                                                                          |
+| --------------- | --------------------------- | ---------------------------------------------------------------------------------------------- |
+| Performance     | 22–25 / 25                  | Map persistence is architecture-guaranteed; pagination and scoping spec'd in §10               |
+| Security        | 23–25 / 25                  | Firestore rules + Cloud Function gating + Zod + DOMPurify spec'd; final score depends on audit |
+| Design          | 18–20 / 20                  | Responsive spec'd; accessibility in Phase 11; modal reuse in §2                                |
+| SEO             | 9–10 / 10                   | Public/private separation spec'd; sitemap/robots defined                                       |
+| Overall Quality | 18–20 / 20                  | Full test suite spec'd; documentation spec'd                                                   |
+| **TOTAL**       | **90–100 / 100**            | **Target: 90+ to release**                                                                     |
 
 The projected range reflects that some scores (performance, security, design) are architecture-guaranteed through this spec and the CLAUDE.md guardrails, while others (zero security flaws, actual Lighthouse scores) require implementation and auditing. The **minimum 90/100 release gate is achievable** if every phase delivers on its spec and Phase 11 hardening is thorough.
 
 ---
 
-*This specification is the implementation contract. Before writing code in any phase, engineers must read the relevant sections of this spec and the corresponding CLAUDE.md section. Architectural decisions in §2 (map/modal separation, context boundaries) are binding and must not be violated by subsequent implementation.*
+_This specification is the implementation contract. Before writing code in any phase, engineers must read the relevant sections of this spec and the corresponding CLAUDE.md section. Architectural decisions in §2 (map/modal separation, context boundaries) are binding and must not be violated by subsequent implementation._
