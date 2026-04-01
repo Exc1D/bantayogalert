@@ -45,7 +45,12 @@
 5. Basic DesktopShell (NavRail placeholder, MapCanvas placeholder, RightModal placeholder) renders correctly
 6. Basic MobileShell (BottomTab with placeholder screens) renders correctly
 
-**Plans:** TBD
+**Plans:** 3 plans
+
+Plans:
+- [ ] 01-01-PLAN.md — Project scaffold (Vite + React 18 + Tailwind + TypeScript + CI pipeline)
+- [ ] 01-02-PLAN.md — Firebase initialization + emulator config + Storage rules (SEC-05, SEC-06 scaffold)
+- [ ] 01-03-PLAN.md — Shell stubs (DesktopShell + MobileShell) + Vitest/Playwright setup
 
 ---
 
@@ -321,7 +326,7 @@
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Foundation | 0/6 | Not started | - |
+| 1. Foundation | 0/3 | Not started | - |
 | 2. Auth & Role Model | 0/8 | Not started | - |
 | 3. Reporting Domain | 0/8 | Not started | - |
 | 4. Desktop Map + Modal Architecture | 0/9 | Not started | - |
