@@ -3,7 +3,7 @@ import { collection, query, orderBy, onSnapshot } from 'firebase/firestore'
 import { Timestamp } from 'firebase/firestore'
 import { useReports } from '../../contexts/ReportsContext'
 import { useAuth } from '../../contexts/AuthContext'
-import { updateReportStatus, ReportStatus, ReportActivityEntry } from '../../services/reportService'
+import type { ReportStatus, ReportActivityEntry } from '../../contexts/ReportsContext'
 import { getFirebaseFirestore } from '../../config/firebase'
 import { getMunicipalityName } from '../../data/municipalities'
 import { Button } from '../common/Button'
@@ -81,7 +81,7 @@ interface ReportDetailProps {
 }
 
 export function ReportDetail({ reportId }: ReportDetailProps) {
-  const { reports } = useReports()
+  const { reports, updateReportStatus } = useReports()
   const { user } = useAuth()
   const [activity, setActivity] = useState<ReportActivityEntry[]>([])
   const [loadingActivity, setLoadingActivity] = useState(false)

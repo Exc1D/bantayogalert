@@ -1,9 +1,11 @@
 import {
   collection, doc, addDoc, getDoc,
   query, where, orderBy, limit, onSnapshot,
-  serverTimestamp, Timestamp, runTransaction, Firestore,
-  QuerySnapshot, DocumentData, FieldValue
+  serverTimestamp, Timestamp, Firestore,
+  QuerySnapshot, DocumentData
 } from 'firebase/firestore'
+import { httpsCallable } from 'firebase/functions'
+import { getFirebaseFunctions } from '../config/firebase'
 import {
   createContext, useContext, useState, useEffect, useRef, ReactNode
 } from 'react'
@@ -96,18 +98,6 @@ export interface ReportActivityEntry {
   performedByName?: string
   timestamp: Timestamp
   notes?: string
-}
-
-// ─── State Machine ─────────────────────────────────────────────────────────
-
-const VALID_TRANSITIONS: Record<ReportStatus, ReportStatus[]> = {
-  pending:      ['verified', 'rejected'],
-  verified:     ['dispatched'],
-  dispatched:   ['acknowledged'],
-  acknowledged: ['in_progress'],
-  in_progress: ['resolved'],
-  rejected:    [],
-  resolved:    [],
 }
 
 // ─── Context Value ─────────────────────────────────────────────────────────
@@ -278,71 +268,22 @@ export function ReportsProvider({ children }: { children: ReactNode }) {
   async function updateReportStatus(
     reportId: string,
     newStatus: ReportStatus,
-    actorUid: string,
-    actorRole: string,
-    actorMunicipality: string | null,
+    _actorUid: string,
+    _actorRole: string,
+    _actorMunicipality: string | null,
     notes?: string
   ): Promise<void> {
-    const reportRef = doc(getDb(), 'reports', reportId)
+    // All state transitions go through the transitionReport Cloud Function
+    // The function enforces: state machine validity, role, and municipality scope
+    const functions = getFirebaseFunctions()
+    const transitionFn = httpsCallable<{ reportId: string; newStatus: string; notes?: string }, {
+      success: boolean; previousStatus: string; newStatus: string
+    }>(functions, 'transitionReport')
 
-    await runTransaction(getDb(), async (tx) => {
-      const snap = await tx.get(reportRef)
-      if (!snap.exists()) throw new Error('Report not found')
-
-      const currentStatus = snap.data().status as ReportStatus
-      const allowed = VALID_TRANSITIONS[currentStatus]
-      if (!allowed.includes(newStatus)) {
-        throw new Error(`Invalid transition: ${currentStatus} → ${newStatus}`)
-      }
-
-      const updates: Record<string, FieldValue | string | null> = {
-        status: newStatus,
-        publicStatus: PublicStatusLabel[newStatus],
-        updatedAt: serverTimestamp(),
-      }
-
-      switch (newStatus) {
-        case 'verified':
-          updates.verifiedBy = actorUid
-          updates.verifiedAt = serverTimestamp()
-          break
-        case 'rejected':
-          updates.rejectedBy = actorUid
-          updates.rejectedAt = serverTimestamp()
-          updates.rejectedReason = notes ?? null
-          break
-        case 'dispatched':
-          updates.dispatchedTo = notes ?? null
-          break
-        case 'acknowledged':
-          updates.acknowledgedBy = actorUid
-          updates.acknowledgedAt = serverTimestamp()
-          break
-        case 'in_progress':
-          updates.inProgressBy = actorUid
-          updates.inProgressAt = serverTimestamp()
-          break
-        case 'resolved':
-          updates.resolvedBy = actorUid
-          updates.resolvedAt = serverTimestamp()
-          updates.resolvedNotes = notes ?? null
-          break
-      }
-
-      tx.update(reportRef, updates)
-
-      const activityRef = collection(getDb(), 'reports', reportId, 'activity')
-      tx.set(doc(activityRef), {
-        actorUid,
-        actorRole,
-        actorMunicipality,
-        action: newStatus,
-        previousState: currentStatus,
-        newState: newStatus,
-        notes: notes ?? null,
-        createdAt: serverTimestamp(),
-      })
-    })
+    const result = await transitionFn({ reportId, newStatus, notes })
+    if (!result.data?.success) {
+      throw new Error(`Transition failed: ${result.data}`)
+    }
   }
 
   // ─── getReportById ────────────────────────────────────────────────────
