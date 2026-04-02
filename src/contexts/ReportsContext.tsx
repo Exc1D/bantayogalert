@@ -11,6 +11,7 @@ import { getFirebaseFirestore } from '../config/firebase'
 import { useAuth } from './AuthContext'
 import type { CreateReportInput } from '../utils/validators'
 import DOMPurify from 'dompurify'
+import { encodeGeohash } from '../utils/geohash'
 
 // ─── Shared Types (mirrors reportService.ts) ────────────────────────────────
 
@@ -231,7 +232,10 @@ export function ReportsProvider({ children }: { children: ReactNode }) {
       status: 'pending',
       publicStatus: PublicStatusLabel.pending,
       description: cleanDescription,
-      location: input.location,
+      location: {
+        ...input.location,
+        geohash: encodeGeohash(input.location.lat, input.location.lng),
+      },
       mediaUrls: input.mediaUrls ?? [],
       mediaUploadStatus: 'pending',
       submitterUid,
