@@ -1,4 +1,5 @@
 import { createContext, useContext, useState, ReactNode } from 'react'
+import type { ReportType, Severity } from './ReportsContext'
 
 interface Viewport {
   lat: number
@@ -6,11 +7,18 @@ interface Viewport {
   zoom: number
 }
 
+interface MapFilters {
+  selectedTypes: ReportType[]
+  selectedSeverities: Severity[]
+}
+
 interface MapContextValue {
   viewport: Viewport
   setViewport: (v: Viewport) => void
   selectedPinId: string | null
   setSelectedPinId: (id: string | null) => void
+  filters: MapFilters
+  setFilters: (filters: MapFilters) => void
 }
 
 const defaultViewport: Viewport = {
@@ -19,14 +27,20 @@ const defaultViewport: Viewport = {
   zoom: 10,
 }
 
+const defaultFilters: MapFilters = {
+  selectedTypes: [],
+  selectedSeverities: [],
+}
+
 const MapContext = createContext<MapContextValue | null>(null)
 
 export function MapProvider({ children }: { children: ReactNode }) {
   const [viewport, setViewport] = useState<Viewport>(defaultViewport)
   const [selectedPinId, setSelectedPinId] = useState<string | null>(null)
+  const [filters, setFilters] = useState<MapFilters>(defaultFilters)
 
   return (
-    <MapContext.Provider value={{ viewport, setViewport, selectedPinId, setSelectedPinId }}>
+    <MapContext.Provider value={{ viewport, setViewport, selectedPinId, setSelectedPinId, filters, setFilters }}>
       {children}
     </MapContext.Provider>
   )

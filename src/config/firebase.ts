@@ -4,6 +4,10 @@ import { getFirestore, Firestore } from 'firebase/firestore'
 import { getStorage, FirebaseStorage } from 'firebase/storage'
 import { getFunctions, Functions } from 'firebase/functions'
 import { getMessaging, Messaging } from 'firebase/messaging'
+import { connectFirestoreEmulator } from 'firebase/firestore'
+import { connectAuthEmulator } from 'firebase/auth'
+import { connectStorageEmulator } from 'firebase/storage'
+import { connectFunctionsEmulator } from 'firebase/functions'
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
@@ -16,7 +20,16 @@ const firebaseConfig = {
 
 export function getFirebaseApp(): FirebaseApp {
   if (getApps().length === 0) {
-    return initializeApp(firebaseConfig)
+    const app = initializeApp(firebaseConfig)
+    if (import.meta.env.VITE_USE_EMULATOR === 'true') {
+      // Must connect emulators before any service is used
+      connectAuthEmulator(getAuth(app), 'http://localhost:9099')
+      connectFirestoreEmulator(getFirestore(app), 'localhost', 8080)
+      connectStorageEmulator(getStorage(app), 'localhost', 9199)
+      connectFunctionsEmulator(getFunctions(app), 'localhost', 5001)
+      console.log('[Firebase] Connected to local emulators')
+    }
+    return app
   }
   return getApps()[0]!
 }

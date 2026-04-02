@@ -1,15 +1,14 @@
-import React from 'react'
+import { ReactNode, MouseEventHandler } from 'react'
 
 interface CardProps {
-  children: React.ReactNode
+  children: ReactNode
   className?: string
-  onClick?: () => void
+  onClick?: MouseEventHandler<HTMLDivElement>
 }
-
 export function Card({ children, className = '', onClick }: CardProps) {
   return (
     <div
-      className={`bg-white rounded-lg shadow p-4 ${onClick ? 'cursor-pointer hover:shadow-md' : ''} ${className}`}
+      className={`bg-white rounded-xl shadow-sm border border-gray-100 p-4 ${className}`}
       onClick={onClick}
     >
       {children}

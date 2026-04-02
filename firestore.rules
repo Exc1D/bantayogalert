@@ -1,198 +1,110 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
-    // ============================================================
-    // HELPER FUNCTIONS - Municipality Scoping
-    // ============================================================
-
-    // Core municipality access helper - used by all collection rules
-    // Explicitly rejects null municipality tokens to prevent edge cases
-    function hasMunicipalityAccess(request, targetMunicipality) {
-      return (
-        request.auth != null &&
-        request.auth.token.municipality != null &&
-        // provincial_superadmin bypasses all scoping
-        (request.auth.token.role == 'provincial_superadmin' ||
-          // municipal_admin must match target municipality
-          (request.auth.token.role == 'municipal_admin' &&
-            request.auth.token.municipality == targetMunicipality))
-      )
-    }
-
-    // Helper for documents with municipality field
-    function canAccessMunicipality(targetMunicipality) {
-      return hasMunicipalityAccess(request, targetMunicipality)
-    }
-
-    // Check if user is authenticated with valid municipality
-    // Rejects null municipality tokens explicitly
-    function hasValidMunicipality() {
-      return request.auth != null && request.auth.token.municipality != null
-    }
-
-    // Check if user is authenticated
+    
     function isAuthenticated() {
-      return request.auth != null
+      return request.auth != null;
     }
-
-    // Check role
-    function hasRole(role) {
-      return isAuthenticated() && request.auth.token.role == role
+    
+    function getRole() {
+      return request.auth.token.role;
     }
-
-    // Role-based helpers (aliases for compatibility)
-    function isMunicipalityAdmin() {
-      return hasRole('municipal_admin');
+    
+    function getMunicipality() {
+      return request.auth.token.municipality;
     }
-
-    function isProvincialSuperadmin() {
-      return hasRole('provincial_superadmin');
+    
+    function isOwnDoc(uid) {
+      return request.auth.uid == uid;
     }
-
-    // Legacy alias for backwards compatibility
-    function hasValidMunicipalityScope(targetMunicipality) {
-      return hasMunicipalityAccess(request, targetMunicipality);
-    }
-
+    
     // Users collection
-    match /users/{userId} {
+    match /users/{uid} {
       allow read: if isAuthenticated() && (
-        request.auth.uid == userId
-        || isProvincialSuperadmin()
-        || (isMunicipalityAdmin() && request.auth.token.municipality == resource.data.municipality)
+        isOwnDoc(uid) ||
+        getRole() == 'provincial_superadmin' ||
+        (getRole() == 'municipal_admin' && getMunicipality() == resource.data.municipality)
       );
-      allow create: if isAuthenticated() && request.auth.uid == userId;
-      allow update: if isAuthenticated() && (
-        request.auth.uid == userId
-        || isProvincialSuperadmin()
+      allow write: if isAuthenticated() && (
+        isOwnDoc(uid) ||
+        getRole() == 'provincial_superadmin'
       );
     }
-
-    // Admin Requests collection
-    match /adminRequests/{requestId} {
-      // Anyone authenticated can create a request (for themselves)
-      allow create: if isAuthenticated()
-        && request.auth.uid == request.resource.data.uid
-        && request.resource.data.status == 'pending'
-        && request.resource.data.requestedRole == 'municipal_admin';
-
-      // Users can read their own requests, provincial superadmin can read all
-      allow read: if isAuthenticated()
-        && (request.auth.uid == resource.data.uid || isProvincialSuperadmin());
-
-      // Only provincial_superadmin can update (approve/reject)
-      allow update: if isProvincialSuperadmin()
-        && resource.data.status == 'pending';
-
-      // No deletions
-      allow delete: if false;
-    }
-
+    
     // Reports collection
-    // Citizens: can read all public reports (province-wide), create their own
-    // municipal_admin: can read/write only their municipality
-    // provincial_superadmin: can read/write all
-    // NULL MUNICIPALITY TOKENS ARE REJECTED - location is critical for responders
     match /reports/{reportId} {
-      allow read: if isAuthenticated() && hasValidMunicipality() && (
-        // Citizens can read reports (public fields only via client, but rule allows read)
-        // Admin fields filtered at application level per SEC-04
-        hasRole('citizen')
-        || hasMunicipalityAccess(request, resource.data.assignedMunicipality)
-      );
-
-      allow create: if isAuthenticated() && hasValidMunicipality() && (
-        // Citizens and admins can create reports
-        // Must specify their municipality (must match token)
-        request.resource.data.submitterUid == request.auth.uid
-        && request.resource.data.assignedMunicipality == request.auth.token.municipality
-        && hasRole('citizen')
-      );
-
-      allow update: if isAuthenticated() && hasValidMunicipality() && (
-        hasMunicipalityAccess(request, resource.data.assignedMunicipality)
-      );
-
-      // No delete by clients - provincial_superadmin via Cloud Function only
-      allow delete: if false;
-    }
-
-    // Contacts collection
-    // municipal_admin: read/write own municipality only
-    // provincial_superadmin: read/write all
-    // citizens: no access
-    match /contacts/{contactId} {
-      allow read: if hasMunicipalityAccess(request, resource.data.municipality);
-
-      allow create: if hasMunicipalityAccess(request, request.resource.data.municipality)
-        && hasRole('municipal_admin');
-
-      allow update: if hasMunicipalityAccess(request, resource.data.municipality)
-        && hasRole('municipal_admin');
-
-      allow delete: if hasMunicipalityAccess(request, resource.data.municipality)
-        && hasRole('municipal_admin');
-    }
-
-    // Announcements collection
-    // Citizens: read active announcements visible to their municipality or province-wide
-    // municipal_admin: read/write own municipality only
-    // provincial_superadmin: read/write all scope levels
-    match /announcements/{announcementId} {
       allow read: if isAuthenticated() && (
-        hasRole('provincial_superadmin')
-        || hasMunicipalityAccess(request, resource.data.targetMunicipalities[0])
-        // Citizens can read province-wide or multi_municipality if their muni is included
-        || (
-          hasRole('citizen')
-          && resource.data.active == true
-          && (
-            resource.data.scope == 'province'
-            || (
-              resource.data.scope == 'municipality'
-              && request.auth.token.municipality in resource.data.targetMunicipalities
-            )
-            || (
-              resource.data.scope == 'multi_municipality'
-              && request.auth.token.municipality in resource.data.targetMunicipalities
-            )
-          )
-        )
+        resource.data.submitterUid == request.auth.uid ||
+        getRole() == 'provincial_superadmin' ||
+        (getRole() == 'municipal_admin' && resource.data.assignedMunicipality == getMunicipality())
       );
-
       allow create: if isAuthenticated() && (
-        hasRole('provincial_superadmin')
-        || (
-          hasRole('municipal_admin')
-          && request.resource.data.scope == 'municipality'
-          && request.auth.token.municipality == request.resource.data.targetMunicipalities[0]
-        )
+        request.resource.data.submitterUid == request.auth.uid
       );
-
       allow update: if isAuthenticated() && (
-        hasRole('provincial_superadmin')
-        || (
-          hasRole('municipal_admin')
-          && hasMunicipalityAccess(request, resource.data.targetMunicipalities[0])
-          // Only creator can update draft announcements
-          && resource.data.creatorUid == request.auth.uid
-        )
+        (getRole() == 'municipal_admin' && resource.data.assignedMunicipality == getMunicipality()) ||
+        getRole() == 'provincial_superadmin'
       );
-
-      allow delete: if isAuthenticated() && (
-        hasRole('provincial_superadmin')
-        || resource.data.creatorUid == request.auth.uid
+      allow delete: if getRole() == 'provincial_superadmin';
+      
+      // Activity subcollection
+      match /activity/{activityId} {
+        allow read: if isAuthenticated();
+        allow write: if false; // Cloud Function only
+      }
+    }
+    
+    // Contacts collection
+    match /contacts/{contactId} {
+      allow read: if isAuthenticated() && (
+        getRole() == 'provincial_superadmin' ||
+        (getRole() == 'municipal_admin' && resource.data.municipality == getMunicipality())
+      );
+      allow write: if isAuthenticated() && (
+        getRole() == 'provincial_superadmin' ||
+        (getRole() == 'municipal_admin' && resource.data.municipality == getMunicipality())
       );
     }
-
-    // Audit collection - system only
-    // municipal_admin: read own municipality only
-    // provincial_superadmin: read all
-    // write: system only via Cloud Function
+    
+    // Announcements collection
+    match /announcements/{announcementId} {
+      allow read: if isAuthenticated();
+      allow create: if isAuthenticated() && (
+        (getRole() == 'municipal_admin' && 
+          request.resource.data.scope == 'municipality' &&
+          request.resource.data.targetMunicipalities[0] == getMunicipality()) ||
+        getRole() == 'provincial_superadmin'
+      );
+      allow update, delete: if isAuthenticated() && (
+        getRole() == 'provincial_superadmin' ||
+        resource.data.creatorUid == request.auth.uid
+      );
+      
+      match /notifications/{notificationId} {
+        allow read: if isAuthenticated() && (
+          getRole() == 'provincial_superadmin' ||
+          resource.data.userUid == request.auth.uid
+        );
+        allow write: if false;
+      }
+    }
+    
+    // Audit collection
     match /audit/{auditId} {
-      allow read: if hasMunicipalityAccess(request, resource.data.municipalityScope)
-        || resource.data.municipalityScope == 'province';
-      allow write: if false; // Cloud Functions only
+      allow read: if isAuthenticated() && (
+        getRole() == 'provincial_superadmin' ||
+        (getRole() == 'municipal_admin' && resource.data.actorMunicipality == getMunicipality())
+      );
+      allow write: if false;
+    }
+    
+    // Analytics (read only for admins, write only for system)
+    match /analytics/{path=/**} {
+      allow read: if isAuthenticated() && (
+        getRole() == 'provincial_superadmin' ||
+        (getRole() == 'municipal_admin')
+      );
+      allow write: if false;
     }
   }
 }

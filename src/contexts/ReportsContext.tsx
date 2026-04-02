@@ -1,12 +1,39 @@
 import { createContext, useContext, ReactNode } from 'react'
+import { Timestamp } from 'firebase/firestore'
 
-interface Report {
+export type ReportType = 'flood' | 'landslide' | 'fire' | 'earthquake' | 'medical' | 'crime' | 'infrastructure' | 'other'
+export type Severity = 'low' | 'medium' | 'high' | 'critical'
+export type ReportStatus = 'pending' | 'verified' | 'rejected' | 'dispatched' | 'acknowledged' | 'in_progress' | 'resolved'
+
+export interface ReportActivityEntry {
   id: string
-  // Full Report type in Phase 3
+  action: string
+  performedBy: string
+  performedByName?: string
+  timestamp: Timestamp
+  notes?: string
+}
+
+export interface Report {
+  id: string
+  type: ReportType
+  severity: Severity
+  status: ReportStatus
+  title: string
+  description: string
+  municipality: string
+  barangay?: string
+  location?: { lat: number; lng: number }
+  mediaUrls?: string[]
+  reportedBy: string
+  reportedByName?: string
+  reportedAt: Timestamp
+  updatedAt?: Timestamp
+  assignedTo?: string
+  activity?: ReportActivityEntry[]
 }
 
 interface ReportsContextValue {
-  // Phase 3: scoped subscriptions
   reports: Report[]
 }
 
