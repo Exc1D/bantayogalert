@@ -2,46 +2,30 @@
  * BantayogAlert — Firestore + Auth Seed Script
  *
  * Usage:
+ *   export FIRESTORE_EMULATOR_HOST=127.0.0.1:8080
+ *   export FIREBASE_AUTH_EMULATOR_HOST=127.0.0.1:9099
  *   npm run seed
  *
- * Requires emulators running:
- *   npm run emulators:start
- *
- * Connects Admin SDK directly to local emulator ports.
+ * No firebase-admin initializeApp() needed — env vars tell the SDK
+ * to connect to the emulator automatically.
  */
 
-import { initializeApp, cert, getApps } from 'firebase-admin/app'
+import { initializeApp, getApps } from 'firebase-admin/app'
 import { getAuth } from 'firebase-admin/auth'
 import { getFirestore, Timestamp } from 'firebase-admin/firestore'
 import { getStorage } from 'firebase-admin/storage'
-import { connectFirestoreEmulator } from 'firebase-admin/firestore'
-import { connectAuthEmulator } from 'firebase-admin/auth'
-import { connectStorageEmulator } from 'firebase-admin/storage'
-import { encode as encodeGeohash } from 'ngeohash'
+import ngeohash from 'ngeohash'
 
 // ─── Firebase Admin Init ──────────────────────────────────────────────────
+// For emulator: uses FIRESTORE_EMULATOR_HOST + FIREBASE_AUTH_EMULATOR_HOST env vars.
+// No service account needed for local development.
 
 function getAdminApp() {
   if (getApps().length > 0) return getApps()[0]!
-
-  const serviceAccount = {
+  return initializeApp({
     projectId: 'bantayogalert',
-    clientEmail: 'firebase-adminsdk@bantayogalert.iam.gserviceaccount.com',
-    // Dummy key — emulator doesn't validate tokens, only checks projectId match
-    privateKey: '-----BEGIN RSA PRIVATE KEY-----\nDUMMY\n-----END RSA PRIVATE KEY-----',
-  }
-
-  const app = initializeApp({
-    credential: cert(serviceAccount),
     storageBucket: 'bantayogalert.firebasestorage.app',
   })
-
-  // Connect Admin SDK to local emulators
-  connectFirestoreEmulator(getFirestore(app), 'localhost', 8080)
-  connectAuthEmulator(getAuth(app), 'http://localhost:9099', { disableWarnings: true })
-  connectStorageEmulator(getStorage(app), 'localhost', 9199)
-
-  return app
 }
 
 const adminApp = getAdminApp()
@@ -49,13 +33,6 @@ const db = getFirestore(adminApp)
 const auth = getAuth(adminApp)
 
 // ─── Test Data ─────────────────────────────────────────────────────────────
-
-const REPORT_TYPES = ['flood', 'landslide', 'fire', 'earthquake', 'medical', 'crime', 'infrastructure', 'other'] as const
-const SEVERITIES = ['low', 'medium', 'high', 'critical'] as const
-
-function randomFrom<T>(arr: readonly T[]): T {
-  return arr[Math.floor(Math.random() * arr.length)]!
-}
 
 function daysAgo(n: number): Timestamp {
   return Timestamp.fromDate(new Date(Date.now() - n * 864e5))
@@ -436,19 +413,19 @@ const REPORTS: ReportSeed[] = [
   },
 ]
 
+const PUBLIC_STATUS: Record<string, string> = {
+  pending:      'Pending Review',
+  verified:     'Verified',
+  rejected:     'Rejected',
+  dispatched:   'Responder Dispatched',
+  acknowledged: 'Responder En Route',
+  in_progress:  'Situation Being Addressed',
+  resolved:    'Resolved',
+}
+
 async function seedReports() {
   console.log('\n📋 Creating test reports...')
   for (const r of REPORTS) {
-    const PUBLIC_STATUS: Record<string, string> = {
-      pending: 'Pending Review',
-      verified: 'Verified',
-      rejected: 'Rejected',
-      dispatched: 'Responder Dispatched',
-      acknowledged: 'Responder En Route',
-      in_progress: 'Situation Being Addressed',
-      resolved: 'Resolved',
-    }
-
     const docData: Record<string, unknown> = {
       type: r.type,
       category: r.type,
@@ -461,7 +438,7 @@ async function seedReports() {
         lng: r.lng,
         barangay: r.barangay,
         municipality: r.municipality,
-        geohash: encodeGeohash(r.lat, r.lng, 8),
+        geohash: ngeohash.encode(r.lat, r.lng, 8),
       },
       mediaUrls: [],
       mediaUploadStatus: 'pending',
@@ -536,6 +513,11 @@ async function main() {
   console.log('')
   console.log('⚠️  Make sure emulators are running first:')
   console.log('   npm run emulators:start')
+  console.log('')
+  console.log('Then set env vars and run seed:')
+  console.log('   export FIRESTORE_EMULATOR_HOST=127.0.0.1:8080')
+  console.log('   export FIREBASE_AUTH_EMULATOR_HOST=127.0.0.1:9099')
+  console.log('   npm run seed')
   console.log('')
 
   await clearData()

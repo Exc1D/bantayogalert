@@ -1,8 +1,6 @@
 import * as functions from 'firebase-functions'
 import * as admin from 'firebase-admin'
 
-admin.initializeApp()
-
 /**
  * setCustomClaims - Callable Cloud Function for setting Firebase Auth custom claims.
  * SEC-06 requirement: Custom claims set exclusively by privileged Cloud Function (never client-side).

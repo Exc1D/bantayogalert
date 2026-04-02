@@ -99,7 +99,7 @@ service cloud.firestore {
     }
     
     // Analytics (read only for admins, write only for system)
-    match /analytics/{path=/**} {
+    match /analytics/{path=**} {
       allow read: if isAuthenticated() && (
         getRole() == 'provincial_superadmin' ||
         (getRole() == 'municipal_admin')

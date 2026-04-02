@@ -1,8 +1,6 @@
 import * as functions from 'firebase-functions'
 import * as admin from 'firebase-admin'
 
-admin.initializeApp()
-
 /**
  * createAdminRequest - Callable Cloud Function for users to request municipal_admin role.
  * Users can only request admin access for their own municipality.

@@ -14,7 +14,7 @@
     "emulators:start": "firebase emulators:start --project=bantayogalert",
     "emulators:exec": "firebase emulators:exec --project=bantayogalert",
     "dev:emulator": "npm run emulators:start & npm run dev",
-    "seed": "npx tsx scripts/seed.ts"
+    "seed": "FIRESTORE_EMULATOR_HOST=127.0.0.1:8080 FIREBASE_AUTH_EMULATOR_HOST=127.0.0.1:9099 npx tsx scripts/seed.ts"
   },
   "dependencies": {
     "@types/leaflet": "^1.9.21",
