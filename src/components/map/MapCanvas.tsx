@@ -4,7 +4,7 @@ import L from 'leaflet'
 import { useMap } from '../../contexts/MapContext'
 import { useReports } from '../../contexts/ReportsContext'
 import { useModal } from '../../contexts/ModalContext'
-import type { Report, ReportType, Severity } from '../../contexts/ReportsContext'
+import type { Report, ReportType, SeverityLevel, Severity } from '../../contexts/ReportsContext'
 
 import 'leaflet/dist/leaflet.css'
 
@@ -224,10 +224,10 @@ export function MapCanvas({ className = '' }: MapCanvasProps) {
 
   // Filter reports based on active filters
   const visibleReports = reports.filter((report) => {
-    if (filters.selectedTypes.length > 0 && !filters.selectedTypes.includes(report.type)) {
+    if (filters.selectedTypes.length > 0 && !filters.selectedTypes.includes(report.type as ReportType)) {
       return false
     }
-    if (filters.selectedSeverities.length > 0 && !filters.selectedSeverities.includes(report.severity)) {
+    if (filters.selectedSeverities.length > 0 && !filters.selectedSeverities.includes(report.severity as SeverityLevel)) {
       return false
     }
     return true
@@ -258,8 +258,8 @@ export function MapCanvas({ className = '' }: MapCanvasProps) {
             center={[report.location?.lat ?? 14.1, report.location?.lng ?? 122.9]}
             radius={8}
             pathOptions={{
-              color: getSeverityColor(report.severity),
-              fillColor: getSeverityColor(report.severity),
+              color: getSeverityColor(report.severity as SeverityLevel),
+              fillColor: getSeverityColor(report.severity as SeverityLevel),
               fillOpacity: 0.7,
               weight: 2,
             }}
@@ -269,7 +269,7 @@ export function MapCanvas({ className = '' }: MapCanvasProps) {
           >
             {/* @ts-ignore - leaflet popup typing */}
             <div className="text-sm">
-              <strong>{REPORT_TYPE_ICONS[report.type]} {report.title}</strong>
+              <strong>{REPORT_TYPE_ICONS[report.type as ReportType]} {report.title}</strong>
               <br />
               <span className="capitalize">{report.severity}</span> — {report.municipality}
             </div>

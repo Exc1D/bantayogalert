@@ -1,6 +1,6 @@
 import { Card } from '../common/Card'
 import { Badge } from '../common/Badge'
-import type { Report, ReportType, Severity } from '../../contexts/ReportsContext'
+import type { Report, ReportType, SeverityLevel } from '../../contexts/ReportsContext'
 import { getMunicipalityName } from '../../data/municipalities'
 
 const REPORT_TYPE_ICONS: Record<ReportType, string> = {
@@ -14,7 +14,7 @@ const REPORT_TYPE_ICONS: Record<ReportType, string> = {
   other: '📌',
 }
 
-const SEVERITY_VARIANT: Record<Severity, 'danger' | 'warning' | 'info' | 'success'> = {
+const SEVERITY_VARIANT: Record<SeverityLevel, 'danger' | 'warning' | 'info' | 'success'> = {
   critical: 'danger',
   high: 'warning',
   medium: 'info',
@@ -53,8 +53,8 @@ interface FeedCardProps {
 }
 
 export function FeedCard({ report, onClick }: FeedCardProps) {
-  const icon = REPORT_TYPE_ICONS[report.type] ?? '📌'
-  const severityVariant = SEVERITY_VARIANT[report.severity] ?? 'info'
+  const icon = REPORT_TYPE_ICONS[report.type as ReportType] ?? '📌'
+  const severityVariant = SEVERITY_VARIANT[report.severity as SeverityLevel] ?? 'info'
   const municipalityName = getMunicipalityName(report.municipality as Parameters<typeof getMunicipalityName>[0])
 
   return (

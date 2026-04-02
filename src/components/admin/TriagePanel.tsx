@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useReports } from '../../contexts/ReportsContext'
 import { useAuth } from '../../contexts/AuthContext'
+import type { SeverityLevel } from '../../contexts/ReportsContext'
 import { Card } from '../common/Card'
 import { Badge } from '../common/Badge'
 import { getMunicipalityName } from '../../data/municipalities'
@@ -53,7 +54,7 @@ export function TriagePanel() {
             if (items.length === 0) return null
 
             const sorted = [...items].sort(
-              (a, b) => (SEVERITY_ORDER[a.severity] ?? 4) - (SEVERITY_ORDER[b.severity] ?? 4)
+              (a, b) => (SEVERITY_ORDER[a.severity as SeverityLevel] ?? 4) - (SEVERITY_ORDER[b.severity as SeverityLevel] ?? 4)
             )
 
             return (
