@@ -13,7 +13,8 @@
     "test:e2e": "playwright test",
     "emulators:start": "firebase emulators:start --project=bantayogalert",
     "emulators:exec": "firebase emulators:exec --project=bantayogalert",
-    "dev:emulator": "npm run emulators:start & npm run dev"
+    "dev:emulator": "npm run emulators:start & npm run dev",
+    "seed": "npx tsx scripts/seed.ts"
   },
   "dependencies": {
     "@types/leaflet": "^1.9.21",
@@ -41,11 +42,13 @@
     "eslint": "^9.13.0",
     "eslint-plugin-react-hooks": "^5.0.0",
     "eslint-plugin-react-refresh": "^0.4.14",
+    "firebase-admin": "^13.7.0",
     "globals": "^15.11.0",
     "jsdom": "^29.0.1",
     "postcss": "^8.4.47",
     "prettier": "^3.3.3",
     "tailwindcss": "^3.4.14",
+    "tsx": "^4.21.0",
     "typescript": "~5.6.2",
     "typescript-eslint": "^8.11.0",
     "vite": "^8.0.3",
