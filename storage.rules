@@ -6,34 +6,37 @@ service firebase.storage {
       return request.auth != null;
     }
 
-    function isImage(fileSize) {
-      return request.resource.contentType.matches('image/.*');
+    function isProvincialSuperadmin() {
+      return request.auth.token.role == 'provincial_superadmin';
     }
 
-    function isUnder10MB(fileSize) {
-      return fileSize <= 10 * 1024 * 1024;
+    function isImage() {
+      return request.resource.contentType in ['image/jpeg', 'image/png', 'image/webp'];
+    }
+
+    function isUnder10MB() {
+      return request.resource.size <= 10 * 1024 * 1024;
     }
 
     // User profile images: users/{userId}/profile/{filename}
     match /users/{userId}/{filename} {
       allow read: if isAuthenticated();
       allow write: if isAuthenticated() && request.auth.uid == userId
-        && isImage(request.resource.size)
-        && isUnder10MB(request.resource.size);
+        && isImage() && isUnder10MB();
     }
 
     // Report media: reports/{reportId}/media/{filename}
     match /reports/{reportId}/media/{filename} {
       allow read: if isAuthenticated();
       allow write: if isAuthenticated()
-        && isImage(request.resource.size)
-        && isUnder10MB(request.resource.size);
+        && isImage() && isUnder10MB();
     }
 
     // Contact avatars: contacts/{contactId}/avatar/{filename}
     match /contacts/{contactId}/avatar/{filename} {
       allow read: if isAuthenticated();
-      allow write: if isAuthenticated();
+      allow write: if isAuthenticated()
+        && isImage() && isUnder10MB();
     }
   }
 }
