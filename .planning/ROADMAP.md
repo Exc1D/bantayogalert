@@ -55,7 +55,7 @@
 
 ### Phase 2: Domain Model & Backend Contracts
 
-**Goal**: All TypeScript types, Zod schemas, enums, and Firestore collection structure are defined and validated.
+**Goal**: All TypeScript interfaces, Zod schemas, enums, and Firestore collection structure are defined and validated.
 
 **Depends on**: Phase 1
 
@@ -70,7 +70,11 @@
 6. Municipality and barangay catalog documents exist in the emulator Firestore with all 12 municipalities
 7. Municipality GeoJSON loads from `/public/data/municipalities.geojson` and renders correctly on a test map
 
-**Plans**: TBD
+**Plans**: 4 plans
+- [x] 02-01-PLAN.md — Types & Schemas (user, report, contact, announcement types + Zod)
+- [x] 02-02-PLAN.md — Workflow State Machine (VALID_TRANSITIONS, WORKFLOW_TO_OWNER_STATUS)
+- [x] 02-03-PLAN.md — Firestore Structure (collections, rules skeleton, municipality catalog)
+- [x] 02-04-PLAN.md — GeoJSON & Municipality Data (barangay data, geo utilities)
 
 ---
 
@@ -98,7 +102,12 @@
 13. Input sanitization strips HTML from all text fields on write
 14. Per-user rate limits are enforced on report creation (configurable surge mode available to admins)
 
-**Plans**: TBD
+**Plans**: 5 plans
+- [ ] 03-01-PLAN.md — Firebase Auth Setup (providers, persistence, AuthProvider)
+- [ ] 03-02-PLAN.md — Auth UI (Login/Register/Profile pages, route guards)
+- [ ] 03-03-PLAN.md — Custom Claims & setUserRole CF (callable + auth trigger)
+- [ ] 03-04-PLAN.md — Firestore & Storage Rules Tests (60+ rule tests)
+- [ ] 03-05-PLAN.md — App Check + Input Sanitization + Rate Limiting
 
 ---
 
@@ -320,9 +329,9 @@
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Project Foundation & Tooling | 7/8 | In Progress|  |
-| 2. Domain Model & Backend Contracts | 4/4 | Complete   | 2026-04-03 |
-| 3. Auth & Role Model | 0/14 | Not started | - |
+| 1. Project Foundation & Tooling | 7/8 | In Progress| |
+| 2. Domain Model & Backend Contracts | 4/4 | Complete | 2026-04-03 |
+| 3. Auth & Role Model | 0/5 | Not started | - |
 | 4. Desktop & Mobile Shell | 0/13 | Not started | - |
 | 5. Report Submission | 0/10 | Not started | - |
 | 6. Real-time Map & Feed | 0/8 | Not started | - |
