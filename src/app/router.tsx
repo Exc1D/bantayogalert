@@ -8,6 +8,10 @@ const router = createBrowserRouter([
     path: '/',
     element: <App />,
   },
+  {
+    path: '/app/report',
+    element: <div>ReportForm placeholder — component scaffolding comes in plan 05-03</div>,
+  },
 ])
 
 export { router }
