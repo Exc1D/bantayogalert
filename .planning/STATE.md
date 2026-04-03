@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: executing
-stopped_at: Completed 03-01-PLAN.md
-last_updated: "2026-04-03T13:05:09.840Z"
+stopped_at: Completed 03-04-PLAN.md
+last_updated: "2026-04-03T13:31:07.444Z"
 last_activity: 2026-04-03
 progress:
   total_phases: 12
   completed_phases: 2
   total_plans: 17
-  completed_plans: 13
+  completed_plans: 14
   percent: 0
 ---
 
@@ -26,7 +26,7 @@ See: .planning/PROJECT.md (updated 2026-04-03)
 ## Current Position
 
 Phase: 03 (auth-role-model) — EXECUTING
-Plan: 2 of 5
+Plan: 3 of 5
 Status: Ready to execute
 Last activity: 2026-04-03
 
@@ -55,6 +55,7 @@ Progress: [░░░░░░░░░░] 0%
 | Phase 02 P01 | 2 | 6 tasks | 10 files |
 | Phase 02 P04 | 2 | 2 tasks | 4 files |
 | Phase 03 P01 | 5 | 3 tasks | 6 files |
+| Phase 03 P04 | 27 | 4 tasks | 6 files |
 
 ## Accumulated Context
 
@@ -77,6 +78,9 @@ Recent decisions affecting current work:
 - [Phase 03]: D-45: browserLocalPersistence for session persistence across browser refreshes
 - [Phase 03]: D-44: signInWithPopup (not redirect) for Google OAuth
 - [Phase 03]: D-48: Default role on registration: citizen, provinceCode='CMN', municipalityCode=null
+- [Phase 03]: Contacts create rule: added explicit token municipalityCode validation as defense-in-depth
+- [Phase 03]: Storage rules: narrowed MIME type from image/.* to explicit JPEG/PNG/WebP allowlist
+- [Phase 03]: Firestore rules cannot enforce field-level restrictions - role field protection requires CF layer
 
 ### Pending Todos
 
@@ -89,6 +93,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-04-03T13:05:09.838Z
-Stopped at: Completed 03-01-PLAN.md
+Last session: 2026-04-03T13:31:07.442Z
+Stopped at: Completed 03-04-PLAN.md
 Resume file: None

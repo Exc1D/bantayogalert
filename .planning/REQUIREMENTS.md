@@ -128,8 +128,8 @@
 ### Infrastructure & Security
 
 - [ ] **SEC-01**: Firebase App Check integrated (audit mode initially, enforcement after 2-week burn-in)
-- [ ] **SEC-02**: Firestore security rules enforce RBAC and municipality scope at all layers
-- [ ] **SEC-03**: Storage security rules restrict file types (image/jpeg, image/png, image/webp), size (10MB), and path ownership
+- [x] **SEC-02**: Firestore security rules enforce RBAC and municipality scope at all layers
+- [x] **SEC-03**: Storage security rules restrict file types (image/jpeg, image/png, image/webp), size (10MB), and path ownership
 - [ ] **SEC-04**: Cloud Function authorization checks role + municipality scope before any write
 - [ ] **SEC-05**: Input sanitization on all text fields (HTML stripping, XSS prevention)
 - [ ] **SEC-06**: Rate limiting on report creation (surge mode configurable by admin)
