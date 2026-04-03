@@ -1,27 +1,38 @@
 # Dependencies
 node_modules/
+.pnp
+.pnp.js
 
 # Build
 dist/
 dist-ssr/
+*.local
 
 # Environment
 .env
 .env.local
+.env.*.local
 .env.production
 
 # Firebase
 .firebase/
-firestore-debug.log
+firebase-debug.log*
+firestore-debug.log*
+*-debug.log*
 firestore.indexes.json
 firestore.rules
 storage.rules
 ui-debug.log
 ui.log
 
-# Playwright
-/playwright-report/
-/test-results/
+# Emulator
+.lib/
+emulators/
+
+# Test
+coverage/
+test-results/
+playwright-report/
 /playwright/.cache/
 
 # ESLint
@@ -32,6 +43,14 @@ eslint.log
 
 # PWA
 dev-dist/
+
+# Editor
+.vscode/*
+!.vscode/extensions.json
+.idea/
+*.swp
+*.swo
+*~
 
 # OS
 .DS_Store
