@@ -21,10 +21,10 @@ import { IncidentType, Severity } from '@/types/report'
  */
 export const step1Schema = z.object({
   type: z.nativeEnum(IncidentType, {
-    errorMap: () => ({ message: 'Select an incident type' }),
+    message: 'Select an incident type',
   }),
   severity: z.nativeEnum(Severity, {
-    errorMap: () => ({ message: 'Select a severity level' }),
+    message: 'Select a severity level',
   }),
 })
 
@@ -56,13 +56,19 @@ export const step3Schema = z.object({
     lng: z.number().min(122.3, 'Longitude out of Camarines Norte bounds').max(123.3, 'Longitude out of Camarines Norte bounds'),
     geohash: z.string().length(9, 'Geohash must be 9 characters'),
   }),
-  mediaUrls: z.array(z.string().url()).max(5, 'Maximum 5 images allowed').default([]),
+  mediaUrls: z.array(z.string()).max(5, 'Maximum 5 images allowed').default([]),
 })
 
 /**
  * Full report schema - merge of all steps for final submission
+ * photos field: blob URLs for client-side preview (not submitted to CF)
  */
-export const fullReportSchema = step1Schema.merge(step2Schema).merge(step3Schema)
+export const fullReportSchema = step1Schema
+  .merge(step2Schema)
+  .merge(step3Schema)
+  .extend({
+    photos: z.array(z.string()).default([]),
+  })
 
 export type ReportFormData = z.infer<typeof fullReportSchema>
 

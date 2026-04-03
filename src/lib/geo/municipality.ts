@@ -24,3 +24,12 @@ export async function loadMunicipalitiesGeoJSON(): Promise<GeoJSON.FeatureCollec
   if (!res.ok) throw new Error(`Failed to load municipalities GeoJSON: ${res.status}`)
   return res.json() as unknown as GeoJSON.FeatureCollection
 }
+
+/**
+ * Encode lat/lng to a 9-character geohash for Camarines Norte precision (~2m)
+ */
+export function encodeGeohash(lat: number, lng: number, precision = 9): string {
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
+  const ngeohash = require('ngeohash')
+  return ngeohash.encode(lat, lng, precision)
+}
