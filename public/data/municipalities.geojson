@@ -1,0 +1,17 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {"type":"Feature","properties":{"municipalityCode":"bas","name":"Basud"},"geometry":{"type":"Polygon","coordinates":[[[122.85,14.28],[122.88,14.28],[122.88,14.32],[122.85,14.32],[122.85,14.28]]]}},
+    {"type":"Feature","properties":{"municipalityCode":"cap","name":"Capalonga"},"geometry":{"type":"Polygon","coordinates":[[[122.78,14.28],[122.82,14.28],[122.82,14.33],[122.78,14.33],[122.78,14.28]]]}},
+    {"type":"Feature","properties":{"municipalityCode":"dae","name":"Daet"},"geometry":{"type":"Polygon","coordinates":[[[122.92,14.28],[122.96,14.28],[122.96,14.32],[122.92,14.32],[122.92,14.28]]]}},
+    {"type":"Feature","properties":{"municipalityCode":"ind","name":"Indan"},"geometry":{"type":"Polygon","coordinates":[[[122.85,14.17],[122.90,14.17],[122.90,14.23],[122.85,14.23],[122.85,14.17]]]}},
+    {"type":"Feature","properties":{"municipalityCode":"jpa","name":"Jose Panganiban"},"geometry":{"type":"Polygon","coordinates":[[[122.68,14.30],[122.73,14.30],[122.73,14.35],[122.68,14.35],[122.68,14.30]]]}},
+    {"type":"Feature","properties":{"municipalityCode":"lab","name":"Labo"},"geometry":{"type":"Polygon","coordinates":[[[122.83,14.12],[122.90,14.12],[122.90,14.20],[122.83,14.20],[122.83,14.12]]]}},
+    {"type":"Feature","properties":{"municipalityCode":"mer","name":"Mercedes"},"geometry":{"type":"Polygon","coordinates":[[[122.95,14.23],[122.99,14.23],[122.99,14.28],[122.95,14.28],[122.95,14.23]]]}},
+    {"type":"Feature","properties":{"municipalityCode":"par","name":"Paracale"},"geometry":{"type":"Polygon","coordinates":[[[122.77,14.22],[122.82,14.22],[122.82,14.28],[122.77,14.28],[122.77,14.22]]]}},
+    {"type":"Feature","properties":{"municipalityCode":"slr","name":"San Lorenzo Ruiz"},"geometry":{"type":"Polygon","coordinates":[[[122.73,14.18],[122.78,14.18],[122.78,14.23],[122.73,14.23],[122.73,14.18]]]}},
+    {"type":"Feature","properties":{"municipalityCode":"svi","name":"San Vicente"},"geometry":{"type":"Polygon","coordinates":[[[122.98,14.25],[123.02,14.25],[123.02,14.30],[122.98,14.30],[122.98,14.25]]]}},
+    {"type":"Feature","properties":{"municipalityCode":"sel","name":"Sta. Elena"},"geometry":{"type":"Polygon","coordinates":[[[122.70,14.15],[122.76,14.15],[122.76,14.21],[122.70,14.21],[122.70,14.15]]]}},
+    {"type":"Feature","properties":{"municipalityCode":"vin","name":"Vinzons"},"geometry":{"type":"Polygon","coordinates":[[[122.88,14.20],[122.93,14.20],[122.93,14.26],[122.88,14.26],[122.88,14.20]]]}}
+  ]
+}
