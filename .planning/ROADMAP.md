@@ -218,7 +218,7 @@
 6. User can update their notification preferences from the Profile view
 
 **Plans**: 2 plans
-- [ ] 07-01-PLAN.md — My Reports list (useMyReports hook + MyReportsList component + Profile integration)
+- [x] 07-01-PLAN.md — My Reports list (useMyReports hook + MyReportsList component + Profile integration)
 - [ ] 07-02-PLAN.md — Owner report detail (ReportDetailOwner with activity timeline + owner-aware /app/report/:id view)
 
 ---
@@ -350,7 +350,7 @@
 | 4. Desktop & Mobile Shell | 3/3 | Complete | 2026-04-03 |
 | 5. Report Submission | 4/5 | In Progress | |
 | 6. Real-time Map & Feed | 5/5 | Complete   | 2026-04-03 |
-| 7. Profile & Report Tracker | 0/2 | Not started | |
+| 7. Profile & Report Tracker | 1/2 | In Progress | |
 | 8. Contacts Management | 0/6 | Not started | |
 | 9. Admin Triage | 0/16 | Not started | |
 | 10. Announcements, Push & Alerts | 0/7 | Not started | |
