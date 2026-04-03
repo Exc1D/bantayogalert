@@ -41,7 +41,15 @@
 7. React Query and Zustand are initialized and accessible via provider context
 8. App manifest is served with correct icons and theme colors for home-screen installation
 
-**Plans**: TBD
+**Plans**: 8 plans
+- [ ] 01-01-PLAN.md — Base Scaffold (package.json, tsconfig, vite.config, main.tsx, App.tsx)
+- [ ] 01-02-PLAN.md — Tooling Config (ESLint, Prettier, Tailwind, .env.example)
+- [ ] 01-03-PLAN.md — Firebase & Emulators (firebase.json, rules stubs, config.ts)
+- [ ] 01-04-PLAN.md — Feature Structure (providers, router, folder structure)
+- [ ] 01-05-PLAN.md — PWA Configuration (vite-plugin-pwa, manifest, icons)
+- [ ] 01-06-PLAN.md — Vitest Setup (test runner, smoke test)
+- [ ] 01-07-PLAN.md — Playwright Setup (e2e smoke tests)
+- [ ] 01-08-PLAN.md — GitHub Actions CI (pipeline, .gitignore)
 
 ---
 
@@ -312,7 +320,7 @@
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Project Foundation & Tooling | 0/8 | Not started | - |
+| 1. Project Foundation & Tooling | 0/8 | Ready to execute | - |
 | 2. Domain Model & Backend Contracts | 0/7 | Not started | - |
 | 3. Auth & Role Model | 0/14 | Not started | - |
 | 4. Desktop & Mobile Shell | 0/13 | Not started | - |
