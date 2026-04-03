@@ -12,12 +12,10 @@ Production-grade disaster reporting, official alerting, emergency coordination, 
 
 ### Validated
 
-(None yet — ship to validate)
+- [x] Citizens submit emergency reports with type, severity, location, description, and optional media (Phase 05)
+- [x] Citizens track their own reports through all states from submission to resolution (Phase 05)
 
 ### Active
-
-- [ ] Citizens submit emergency reports with type, severity, location, description, and optional media
-- [ ] Citizens track their own reports through all states from submission to resolution
 - [ ] Citizens consume a real-time map and paginated feed of verified incidents in their municipality
 - [ ] Citizens receive push notifications for official alerts targeting their municipality
 - [ ] Municipal Admins triage, verify, reject, dispatch, acknowledge, and resolve reports within their municipality
