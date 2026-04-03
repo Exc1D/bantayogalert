@@ -14,9 +14,9 @@ Production-grade disaster reporting, official alerting, emergency coordination, 
 
 - [x] Citizens submit emergency reports with type, severity, location, description, and optional media (Phase 05)
 - [x] Citizens track their own reports through all states from submission to resolution (Phase 05)
+- [x] Citizens consume a real-time map and paginated feed of verified incidents in their municipality (Phase 06)
 
 ### Active
-- [ ] Citizens consume a real-time map and paginated feed of verified incidents in their municipality
 - [ ] Citizens receive push notifications for official alerts targeting their municipality
 - [ ] Municipal Admins triage, verify, reject, dispatch, acknowledge, and resolve reports within their municipality
 - [ ] Municipal Admins route reports to responder contacts with snapshot-captured contact details
@@ -134,4 +134,4 @@ Established Firebase Auth, RBAC, and security layer:
 - **Rate limiting**: 5 reports/hour default, 20/hour surge mode, per-municipality configurable (D-54)
 - **Auth validation middleware**: validateSuperadmin, validateMunicipalAdmin, validateAuthenticated, validateWriteScope, validateRole
 
-*Last updated: 2026-04-03 after Phase 3*
+*Last updated: 2026-04-04 after Phase 06*
