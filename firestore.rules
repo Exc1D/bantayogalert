@@ -114,5 +114,18 @@ service cloud.firestore {
       allow read: if isProvincialSuperadmin();
       allow create: if false; // Cloud Functions only
     }
+
+    // Rate limits — user can read own, CF writes only
+    match /rate_limits/{docId} {
+      // Users can read their own rate limit status
+      allow read: if request.auth.uid == docId || isProvincialSuperadmin();
+      allow write: if false; // Only CF can write via setSurgeModeCF
+    }
+
+    // Rate limits surge config — read by authenticated, CF writes only
+    match /rate_limits/surge/{municipalityCode} {
+      allow read: if isAuthenticated();
+      allow write: if false; // Only CF can write via setSurgeModeCF
+    }
   }
 }
