@@ -28,24 +28,25 @@ for (const key of requiredKeys) {
   if (!firebaseConfig[key]) {
     throw new Error(
       `Missing required Firebase configuration: ${key}. ` +
-      `Ensure VITE_FIREBASE_${key} is set in your .env.local file.`
+        `Ensure VITE_FIREBASE_${key} is set in your .env.local file.`
     )
   }
 }
 
-let app: FirebaseApp
-let auth: Auth
-let db: Firestore
-let storage: FirebaseStorage
-
-function getOrInitializeFirebase() {
-  if (!app) {
-    const existingApps = getApps()
-    app = existingApps.length > 0 ? existingApps[0] : initializeApp(firebaseConfig)
-    auth = getAuth(app)
-    db = getFirestore(app)
-    storage = getStorage(app)
-  }
+function getOrInitializeFirebase(): {
+  app: FirebaseApp
+  auth: Auth
+  db: Firestore
+  storage: FirebaseStorage
+} {
+  const existingApps = getApps()
+  const app =
+    existingApps.length > 0
+      ? existingApps[0]!
+      : initializeApp(firebaseConfig)
+  const auth = getAuth(app)
+  const db = getFirestore(app)
+  const storage = getStorage(app)
   return { app, auth, db, storage }
 }
 
