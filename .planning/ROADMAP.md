@@ -70,7 +70,7 @@
 6. Municipality and barangay catalog documents exist in the emulator Firestore with all 12 municipalities
 7. Municipality GeoJSON loads from `/public/data/municipalities.geojson` and renders correctly on a test map
 
-**Plans**: 4 plans
+**Plans**: 5 plans
 - [x] 02-01-PLAN.md — Types & Schemas (user, report, contact, announcement types + Zod)
 - [x] 02-02-PLAN.md — Workflow State Machine (VALID_TRANSITIONS, WORKFLOW_TO_OWNER_STATUS)
 - [x] 02-03-PLAN.md — Firestore Structure (collections, rules skeleton, municipality catalog)
@@ -163,7 +163,7 @@
 9. Submitting citizen receives owner-facing status labels (Submitted, Under Review, Verified, etc.) that reflect the three-layer status mapping
 10. Report form draft is auto-saved to IndexedDB if the citizen abandons the form mid-submission
 
-**Plans**: 4 plans
+**Plans**: 5 plans
 - [x] 05-00-PLAN.md — Test Infrastructure (vitest.config.ts, unit/integration/e2e test stubs)
 - [x] 05-01-PLAN.md — Infrastructure + Cloud Function (submitReport CF, ReportFormSchema, /app/report route)
 - [x] 05-02-PLAN.md — LocationPickerMap + Draft Hook + Media Upload
@@ -190,8 +190,9 @@
 7. Map viewport (center, zoom, selected markers) is preserved when the workspace drawer opens or closes
 8. Real-time Firestore listener delivers new verified reports to both map and feed without a full refetch
 
-**Plans**: 4 plans
-- [ ] 06-01-PLAN.md — Foundation: filterStore, useVerifiedReportsListener, useSupercluster, mapViewport Zustand, reportToGeoJSON, Firestore composite index
+**Plans**: 5 plans
+- [x] 06-01-PLAN.md — Foundation core: filterStore, useVerifiedReportsListener, reportToGeoJSON, uiStore selectedReportId
+- [x] 06-01b-PLAN.md — Supercluster infrastructure: useSupercluster, useMapViewport, firestore composite index
 - [ ] 06-02-PLAN.md — Map layer: ReportMarkers (Supercluster), MunicipalityBoundaries, FilterBar integration with map
 - [ ] 06-03-PLAN.md — Feed layer: ReportFeedCard, ReportFeed, useReportFeed pagination, DesktopShell 60/40 split
 - [ ] 06-04-PLAN.md — Report detail: ReportDetailPanel (shared), desktop drawer wiring, mobile /app/report/:id bottom sheet
@@ -346,7 +347,7 @@
 | 3. Auth & Role Model | 5/5 | Complete | 2026-04-03 |
 | 4. Desktop & Mobile Shell | 3/3 | Complete | 2026-04-03 |
 | 5. Report Submission | 4/5 | In Progress | |
-| 6. Real-time Map & Feed | 0/4 | Not started | |
+| 6. Real-time Map & Feed | 2/5 | In Progress|  |
 | 7. Profile & Report Tracker | 0/6 | Not started | |
 | 8. Contacts Management | 0/6 | Not started | |
 | 9. Admin Triage | 0/16 | Not started | |
