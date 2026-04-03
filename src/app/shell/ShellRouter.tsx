@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { Outlet } from 'react-router-dom'
 import { DesktopShell } from './DesktopShell'
 import { MobileShell } from './MobileShell'
 
@@ -13,5 +14,15 @@ export function ShellRouter() {
     return () => mq.removeEventListener('change', handler)
   }, [])
 
-  return isDesktop ? <DesktopShell /> : <MobileShell />
+  // ShellRouter is a layout component - it renders the shell UI (nav/drawer/map)
+  // and an Outlet for child routes to render inside the shell
+  return isDesktop ? (
+    <DesktopShell>
+      <Outlet />
+    </DesktopShell>
+  ) : (
+    <MobileShell>
+      <Outlet />
+    </MobileShell>
+  )
 }

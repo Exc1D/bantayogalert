@@ -1,6 +1,11 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, type ReactNode } from 'react'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { MapContainer } from 'react-leaflet'
 import { useUIStore, type ActiveTab } from '@/stores/uiStore'
+
+interface MobileShellProps {
+  children?: ReactNode
+}
 
 const TABS: { id: ActiveTab; label: string }[] = [
   { id: 'feed', label: 'Feed' },
@@ -29,24 +34,31 @@ function TabContent({ tab }: { tab: ActiveTab }) {
     case 'profile':
       return <div className="p-4">Profile Content</div>
     case 'report':
-      return <div className="p-4">Report Modal</div>
+      // Report tab navigates to /app/report which renders ReportFormMobileWrapper
+      return null
   }
 }
 
-export function MobileShell() {
+export function MobileShell({ children }: MobileShellProps) {
   const [mounted, setMounted] = useState(false)
   const { activeTab, setActiveTab } = useUIStore()
+  const navigate = useNavigate()
+  const location = useLocation()
 
   useEffect(() => {
     setMounted(true)
   }, [])
+
+  // Check if we're on the report route
+  const isReportRoute = location.pathname === '/app/report'
 
   if (!mounted) return null
 
   return (
     <div className="flex flex-col h-screen w-screen overflow-hidden">
       <div className="flex-1 overflow-hidden relative">
-        {TABS.map((t) => (
+        {/* Show tab content only if NOT on report route */}
+        {!isReportRoute && TABS.map((t) => (
           <div
             key={t.id}
             className={activeTab === t.id ? 'block h-full' : 'hidden'}
@@ -54,14 +66,22 @@ export function MobileShell() {
             <TabContent tab={t.id} />
           </div>
         ))}
+        {/* Child routes render here */}
+        {children}
       </div>
       <div className="h-16 flex-shrink-0 fixed bottom-0 w-full z-20 bg-white border-t border-gray-200 flex">
         {TABS.map((t) => (
           <button
             key={t.id}
-            onClick={() => setActiveTab(t.id)}
+            onClick={() => {
+              if (t.id === 'report') {
+                navigate('/app/report')
+              } else {
+                setActiveTab(t.id)
+              }
+            }}
             className={`flex-1 flex flex-col items-center justify-center gap-1 text-xs ${
-              activeTab === t.id ? 'text-blue-600' : 'text-gray-500'
+              activeTab === t.id || (t.id === 'report' && isReportRoute) ? 'text-blue-600' : 'text-gray-500'
             }`}
           >
             <div className="w-5 h-5 bg-gray-300 rounded" />

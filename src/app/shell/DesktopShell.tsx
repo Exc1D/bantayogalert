@@ -1,6 +1,10 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, type ReactNode } from 'react'
 import { MapContainerWrapper } from './MapContainerWrapper'
 import { WorkspaceDrawer } from './WorkspaceDrawer'
+
+interface DesktopShellProps {
+  children?: ReactNode
+}
 
 function NavRail() {
   return (
@@ -14,7 +18,7 @@ function NavRail() {
   )
 }
 
-export function DesktopShell() {
+export function DesktopShell({ children }: DesktopShellProps) {
   const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
@@ -30,6 +34,8 @@ export function DesktopShell() {
         <MapContainerWrapper>
           <WorkspaceDrawer />
         </MapContainerWrapper>
+        {/* Child routes render here, overlaid on map */}
+        {children}
       </div>
     </div>
   )

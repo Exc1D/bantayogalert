@@ -7,6 +7,8 @@ import { LoginPage } from './app/auth/login/page'
 import { RegisterPage } from './app/auth/register/page'
 import { ProfilePage } from './app/auth/profile/page'
 import { ShellRouter } from './app/shell/ShellRouter'
+import { ReportFormPage } from './app/report/ReportFormPage'
+import { ReportTrack } from './app/report/ReportTrack'
 
 export function App() {
   return (
@@ -28,25 +30,31 @@ export function App() {
             }
           />
 
-          {/* Protected app routes */}
+          {/* Protected app routes - nested routing with ShellRouter as layout */}
           <Route
-            path="/app/*"
+            path="/app"
             element={
               <ProtectedRoute>
                 <ShellRouter />
               </ProtectedRoute>
             }
-          />
+          >
+            <Route index element={<div className="p-4">Feed coming soon</div>} />
+            <Route path="report" element={<ReportFormPage />} />
+            <Route path="track/:reportId" element={<ReportTrack />} />
+          </Route>
 
           {/* Admin routes */}
           <Route
-            path="/admin/*"
+            path="/admin"
             element={
               <AdminRoute>
                 <ShellRouter />
               </AdminRoute>
             }
-          />
+          >
+            <Route index element={<div className="p-4">Admin Dashboard</div>} />
+          </Route>
 
           {/* Root redirect */}
           <Route path="/" element={<Navigate to="/app" replace />} />

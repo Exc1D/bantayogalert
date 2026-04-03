@@ -2,6 +2,7 @@ import { useEffect, useRef } from 'react'
 import FocusTrap from 'focus-trap-react'
 import { useUIStore, type ActivePanel } from '@/stores/uiStore'
 import { useMap } from './MapContainerWrapper'
+import { ReportFormDesktopWrapper } from '../report/ReportFormDesktopWrapper'
 
 interface WorkspaceDrawerProps {
   // mapRef removed — now accessed via useMap() context
@@ -11,11 +12,15 @@ const PANEL_LABELS: Record<NonNullable<ActivePanel>, string> = {
   'report-detail': 'Report Detail',
   'contact-detail': 'Contact Detail',
   'announcement-detail': 'Announcement Detail',
+  'report-form': 'Submit Report',
   settings: 'Settings',
 }
 
 function DrawerContent({ panel }: { panel: ActivePanel }) {
   if (!panel) return null
+  if (panel === 'report-form') {
+    return <ReportFormDesktopWrapper />
+  }
   return (
     <div className="p-4">
       <h2 className="text-lg font-semibold">{PANEL_LABELS[panel]}</h2>

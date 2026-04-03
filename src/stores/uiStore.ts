@@ -1,6 +1,6 @@
 import { create } from 'zustand'
 
-export type ActivePanel = 'report-detail' | 'contact-detail' | 'announcement-detail' | 'settings' | null
+export type ActivePanel = 'report-detail' | 'contact-detail' | 'announcement-detail' | 'report-form' | 'settings' | null
 export type ActiveTab = 'feed' | 'map' | 'report' | 'alerts' | 'profile'
 
 interface UIState {
