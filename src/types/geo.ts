@@ -14,7 +14,7 @@ export interface Barangay {
 }
 
 export const MunicipalitySchema = z.object({
-  code: z.string().length(3),
+  code: z.string().min(3).max(4),
   name: z.string().min(1).max(100),
   center: z.object({ lat: z.number(), lng: z.number() }),
   population: z.number().int().positive().optional(),
