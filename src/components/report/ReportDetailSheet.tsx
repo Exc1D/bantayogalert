@@ -1,28 +1,66 @@
 import { useEffect, useRef, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
+import { doc, getDoc, getFirestore } from 'firebase/firestore'
 import { ReportDetailPanel } from './ReportDetailPanel'
+import { ReportDetailOwner } from './ReportDetailOwner'
 import { useUIStore } from '@/stores/uiStore'
+import { useAuth } from '@/lib/auth/hooks'
 
 export function ReportDetailSheet() {
   const navigate = useNavigate()
   const { id } = useParams<{ id: string }>()
   const setSelectedReportId = useUIStore((s) => s.setSelectedReportId)
   const setActivePanel = useUIStore((s) => s.setActivePanel)
+  const { user } = useAuth()
 
   const [, setSheetOpen] = useState(false)
   const [dragY, setDragY] = useState(0)
+  const [isOwner, setIsOwner] = useState(false)
+  const [ownerCheckDone, setOwnerCheckDone] = useState(false)
   const sheetRef = useRef<HTMLDivElement>(null)
   const startYRef = useRef(0)
   const startDragRef = useRef(0)
 
+  // Check ownership on mount
+  useEffect(() => {
+    if (!id || !user) {
+      setOwnerCheckDone(true)
+      return
+    }
+
+    const currentUid = user.uid
+
+    async function checkOwnership() {
+      try {
+        const firestore = getFirestore()
+        const ref = doc(firestore, 'report_private', id as string)
+        const snap = await getDoc(ref)
+        if (snap.exists()) {
+          const data = snap.data()
+          // Check if current user UID matches the reporterId stored in report_private
+          // The reporterId field should be the user's UID
+          const reporterId = data.reporterId
+          setIsOwner(reporterId === currentUid)
+        }
+      } catch (err) {
+        console.error('Error checking report ownership:', err)
+        setIsOwner(false)
+      } finally {
+        setOwnerCheckDone(true)
+      }
+    }
+
+    checkOwnership()
+  }, [id, user])
+
   // Open sheet on mount
   useEffect(() => {
-    if (id) {
+    if (id && ownerCheckDone) {
       setSelectedReportId(id)
       setActivePanel('report-detail')
       setSheetOpen(true)
     }
-  }, [id, setSelectedReportId, setActivePanel])
+  }, [id, setSelectedReportId, setActivePanel, ownerCheckDone])
 
   const handleClose = () => {
     setSheetOpen(false)
@@ -60,6 +98,27 @@ export function ReportDetailSheet() {
 
   if (!id) return null
 
+  // Show loading while checking ownership
+  if (!ownerCheckDone) {
+    return (
+      <>
+        {/* Scrim overlay */}
+        <div
+          className="fixed inset-0 bg-black/30 z-40"
+          aria-hidden="true"
+        />
+        <div className="fixed left-0 right-0 z-50 bg-white rounded-t-2xl shadow-2xl overflow-hidden flex items-center justify-center"
+          style={{ bottom: 0, height: '40%', maxHeight: '90vh' }}
+        >
+          <div className="text-center">
+            <div className="w-8 h-8 border-4 border-primary-600 border-t-transparent rounded-full animate-spin mx-auto mb-3" />
+            <p className="text-sm text-gray-500">Loading...</p>
+          </div>
+        </div>
+      </>
+    )
+  }
+
   return (
     <>
       {/* Scrim overlay */}
@@ -95,7 +154,11 @@ export function ReportDetailSheet() {
 
         {/* Content */}
         <div className="h-full overflow-hidden">
-          <ReportDetailPanel reportId={id} />
+          {isOwner ? (
+            <ReportDetailOwner reportId={id} />
+          ) : (
+            <ReportDetailPanel reportId={id} />
+          )}
         </div>
       </div>
     </>
