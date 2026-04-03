@@ -29,6 +29,15 @@ service cloud.firestore {
       return resource.data.workflowState == 'verified';
     }
 
+    // Input sanitization: reject fields containing HTML tags
+    function hasNoHTML(text) {
+      return !text.matches('.*<[^>]*>.*');
+    }
+
+    function isValidTextField(text) {
+      return text == null || (text.isString() && hasNoHTML(text));
+    }
+
     // Municipalities catalog — read all, write none (write-once via setup script)
     match /municipalities/{municipalityCode} {
       allow read: if isAuthenticated();
@@ -76,7 +85,8 @@ service cloud.firestore {
       allow read: if isProvincialSuperadmin() ||
         isMunicipalAdmin(resource.data.municipalityCode);
       allow create: if isProvincialSuperadmin() ||
-        isMunicipalAdmin(request.resource.data.municipalityCode);
+        (isMunicipalAdmin(request.resource.data.municipalityCode) &&
+         request.resource.data.municipalityCode == request.auth.token.municipalityCode);
       allow update: if isProvincialSuperadmin() ||
         isMunicipalAdmin(resource.data.municipalityCode);
       allow delete: if isProvincialSuperadmin();
