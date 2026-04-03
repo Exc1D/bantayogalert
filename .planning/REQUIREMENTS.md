@@ -13,8 +13,8 @@
 - [x] **AUTH-04**: User session persists across browser refresh
 - [ ] **AUTH-05**: Superadmin can assign roles (citizen, municipal_admin, provincial_superadmin) via setUserRole callable
 - [x] **AUTH-06**: Custom claims (role, municipalityCode, provinceCode) are enforced server-side
-- [ ] **AUTH-07**: User can update own display name and notification preferences
-- [ ] **AUTH-08**: Unauthenticated users are redirected to login
+- [x] **AUTH-07**: User can update own display name and notification preferences
+- [x] **AUTH-08**: Unauthenticated users are redirected to login
 
 ### Domain Model
 
