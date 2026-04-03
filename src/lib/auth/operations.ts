@@ -4,6 +4,7 @@ import {
   createUserWithEmailAndPassword,
   updateProfile,
   signOut,
+  sendEmailVerification,
   type User,
 } from 'firebase/auth'
 import {
@@ -40,7 +41,7 @@ export async function registerWithEmail(
   await updateProfile(user, { displayName })
 
   // Send email verification
-  await user.sendEmailVerification()
+  await sendEmailVerification(user)
 
   // Create user document in Firestore with default claims
   const defaultNotificationPreferences: NotificationPreferences = {
