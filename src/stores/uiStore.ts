@@ -10,6 +10,8 @@ interface UIState {
   setActivePanel: (panel: ActivePanel) => void
   activeTab: ActiveTab
   setActiveTab: (tab: ActiveTab) => void
+  selectedReportId: string | null
+  setSelectedReportId: (id: string | null) => void
 }
 
 export const useUIStore = create<UIState>((set) => ({
@@ -20,4 +22,6 @@ export const useUIStore = create<UIState>((set) => ({
     set({ activePanel: panel, drawerOpen: panel !== null }),
   activeTab: 'feed',
   setActiveTab: (tab) => set({ activeTab: tab }),
+  selectedReportId: null,
+  setSelectedReportId: (id) => set({ selectedReportId: id }),
 }))
