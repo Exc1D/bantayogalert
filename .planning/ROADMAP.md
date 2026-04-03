@@ -190,7 +190,11 @@
 7. Map viewport (center, zoom, selected markers) is preserved when the workspace drawer opens or closes
 8. Real-time Firestore listener delivers new verified reports to both map and feed without a full refetch
 
-**Plans**: TBD
+**Plans**: 4 plans
+- [ ] 06-01-PLAN.md — Foundation: filterStore, useVerifiedReportsListener, useSupercluster, mapViewport Zustand, reportToGeoJSON, Firestore composite index
+- [ ] 06-02-PLAN.md — Map layer: ReportMarkers (Supercluster), MunicipalityBoundaries, FilterBar integration with map
+- [ ] 06-03-PLAN.md — Feed layer: ReportFeedCard, ReportFeed, useReportFeed pagination, DesktopShell 60/40 split
+- [ ] 06-04-PLAN.md — Report detail: ReportDetailPanel (shared), desktop drawer wiring, mobile /app/report/:id bottom sheet
 
 **UI hint**: yes
 
@@ -341,8 +345,8 @@
 | 2. Domain Model & Backend Contracts | 4/4 | Complete | 2026-04-03 |
 | 3. Auth & Role Model | 5/5 | Complete | 2026-04-03 |
 | 4. Desktop & Mobile Shell | 3/3 | Complete | 2026-04-03 |
-| 5. Report Submission | 4/5 | In Progress|  |
-| 6. Real-time Map & Feed | 0/8 | Not started | |
+| 5. Report Submission | 4/5 | In Progress | |
+| 6. Real-time Map & Feed | 0/4 | Not started | |
 | 7. Profile & Report Tracker | 0/6 | Not started | |
 | 8. Contacts Management | 0/6 | Not started | |
 | 9. Admin Triage | 0/16 | Not started | |
