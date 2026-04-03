@@ -94,6 +94,13 @@ export default defineConfig({
     target: 'es2022',
     sourcemap: true,
   },
+  test: {
+    environment: 'jsdom',
+    setupFiles: ['./src/test/setup.ts'],
+    globals: true,
+    include: ['src/**/*.{test,spec}.{ts,tsx}', 'tests/**/*.{test,spec}.{ts,tsx}'],
+    exclude: ['node_modules/**', 'tests/smoke/**'],
+  },
   server: {
     port: 5173,
     host: true,
