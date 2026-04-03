@@ -5,4 +5,5 @@
  */
 
 export * from './sanitize'
-// rateLimit and validateAuth exports added in Tasks 3 and 4
+export * from './rateLimit'
+export * from './validateAuth'
