@@ -8,7 +8,7 @@
 
 - [ ] **Phase 1: Project Foundation & Tooling** — Scaffolding, CI/CD, PWA shell
 - [x] **Phase 2: Domain Model & Backend Contracts** — Types, schemas, state machine, Firestore structure (completed 2026-04-03)
-- [ ] **Phase 3: Auth & Role Model** — Firebase Auth, custom claims, RBAC, security rules
+- [x] **Phase 3: Auth & Role Model** — Firebase Auth, custom claims, RBAC, security rules (completed 2026-04-03)
 - [ ] **Phase 4: Desktop & Mobile Shell** — Persistent map canvas, workspace drawer, bottom tabs
 - [ ] **Phase 5: Report Submission** — Multi-step form, location picker, media upload, three-tier doc creation
 - [ ] **Phase 6: Real-time Map & Feed** — Leaflet map, marker clustering, paginated feed, dual-canvas filters
@@ -107,7 +107,7 @@
 - [x] 03-02-PLAN.md — Auth UI (Login/Register/Profile pages, route guards)
 - [x] 03-03-PLAN.md — Custom Claims & setUserRole CF (callable + auth trigger)
 - [x] 03-04-PLAN.md — Firestore & Storage Rules Tests (60+ rule tests)
-- [ ] 03-05-PLAN.md — App Check + Input Sanitization + Rate Limiting
+- [x] 03-05-PLAN.md — App Check + Input Sanitization + Rate Limiting
 
 ---
 
@@ -331,7 +331,7 @@
 |-------|----------------|--------|-----------|
 | 1. Project Foundation & Tooling | 7/8 | In Progress| |
 | 2. Domain Model & Backend Contracts | 4/4 | Complete | 2026-04-03 |
-| 3. Auth & Role Model | 4/5 | In Progress|  |
+| 3. Auth & Role Model | 5/5 | Complete   | 2026-04-03 |
 | 4. Desktop & Mobile Shell | 0/13 | Not started | - |
 | 5. Report Submission | 0/10 | Not started | - |
 | 6. Real-time Map & Feed | 0/8 | Not started | - |
