@@ -1,6 +1,7 @@
 import { Helmet } from 'react-helmet-async'
 import { Routes, Route, Navigate } from 'react-router-dom'
 import { AuthProvider } from './lib/auth'
+import { AppCheckProvider } from './lib/app-check'
 import { ProtectedRoute, AdminRoute } from './lib/router/guards'
 import { LoginPage } from './app/auth/login/page'
 import { RegisterPage } from './app/auth/register/page'
@@ -32,45 +33,47 @@ function AdminPanel() {
 export function App() {
   return (
     <AuthProvider>
-      <Helmet>
-        <title>Bantayog Alert</title>
-      </Helmet>
-      <Routes>
-        {/* Auth routes */}
-        <Route path="/auth/login" element={<LoginPage />} />
-        <Route path="/auth/register" element={<RegisterPage />} />
-        <Route
-          path="/auth/profile"
-          element={
-            <ProtectedRoute>
-              <ProfilePage />
-            </ProtectedRoute>
-          }
-        />
+      <AppCheckProvider>
+        <Helmet>
+          <title>Bantayog Alert</title>
+        </Helmet>
+        <Routes>
+          {/* Auth routes */}
+          <Route path="/auth/login" element={<LoginPage />} />
+          <Route path="/auth/register" element={<RegisterPage />} />
+          <Route
+            path="/auth/profile"
+            element={
+              <ProtectedRoute>
+                <ProfilePage />
+              </ProtectedRoute>
+            }
+          />
 
-        {/* Protected app routes */}
-        <Route
-          path="/app/*"
-          element={
-            <ProtectedRoute>
-              <AppLayout />
-            </ProtectedRoute>
-          }
-        />
+          {/* Protected app routes */}
+          <Route
+            path="/app/*"
+            element={
+              <ProtectedRoute>
+                <AppLayout />
+              </ProtectedRoute>
+            }
+          />
 
-        {/* Admin routes */}
-        <Route
-          path="/admin/*"
-          element={
-            <AdminRoute>
-              <AdminPanel />
-            </AdminRoute>
-          }
-        />
+          {/* Admin routes */}
+          <Route
+            path="/admin/*"
+            element={
+              <AdminRoute>
+                <AdminPanel />
+              </AdminRoute>
+            }
+          />
 
-        {/* Root redirect */}
-        <Route path="/" element={<Navigate to="/app" replace />} />
-      </Routes>
+          {/* Root redirect */}
+          <Route path="/" element={<Navigate to="/app" replace />} />
+        </Routes>
+      </AppCheckProvider>
     </AuthProvider>
   )
 }
