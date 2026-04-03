@@ -1,0 +1,38 @@
+# Dependencies
+node_modules/
+
+# Build
+dist/
+dist-ssr/
+
+# Environment
+.env
+.env.local
+.env.production
+
+# Firebase
+.firebase/
+firestore-debug.log
+firestore.indexes.json
+firestore.rules
+storage.rules
+ui-debug.log
+ui.log
+
+# Playwright
+/playwright-report/
+/test-results/
+/playwright/.cache/
+
+# ESLint
+eslint.log
+
+# TypeScript
+*.tsbuildinfo
+
+# PWA
+dev-dist/
+
+# OS
+.DS_Store
+Thumbs.db
