@@ -1,10 +1,108 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
-    // STUB: Rules will be implemented in Phase 3 (Auth & Role Model)
-    // For now, allow all reads/writes in emulator mode
-    match /{document=**} {
-      allow read, write: if true;
+
+    // Helper functions
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    function isOwner(userId) {
+      return isAuthenticated() && request.auth.uid == userId;
+    }
+
+    function hasRole(role) {
+      return isAuthenticated() && request.auth.token.role == role;
+    }
+
+    function isMunicipalAdmin(municipalityCode) {
+      return isAuthenticated() &&
+        request.auth.token.role == 'municipal_admin' &&
+        request.auth.token.municipalityCode == municipalityCode;
+    }
+
+    function isProvincialSuperadmin() {
+      return hasRole('provincial_superadmin');
+    }
+
+    function isVerifiedReport() {
+      return resource.data.workflowState == 'verified';
+    }
+
+    // Municipalities catalog — read all, write none (write-once via setup script)
+    match /municipalities/{municipalityCode} {
+      allow read: if isAuthenticated();
+      allow write: if false; // no client writes
+
+      // Barangays subcollection
+      match /barangays/{barangayCode} {
+        allow read: if isAuthenticated();
+        allow write: if false;
+      }
+    }
+
+    // Users collection — users read own doc, admins read any
+    match /users/{userId} {
+      allow read: if isOwner(userId) || isProvincialSuperadmin() || isMunicipalAdmin(resource.data.municipalityCode);
+      allow create: if isOwner(userId);
+      allow update: if isOwner(userId);
+    }
+
+    // Public reports — verified only
+    match /reports/{reportId} {
+      allow read: if isAuthenticated() && isVerifiedReport();
+      allow create: if false; // created only via Cloud Function
+      allow update: if false;
+    }
+
+    // report_private — owner or admin
+    match /report_private/{reportId} {
+      allow read: if isOwner(resource.data.reporterId) ||
+        isProvincialSuperadmin() ||
+        isMunicipalAdmin(resource.data.municipalityCode);
+      allow create: if false;
+      allow update: if false;
+    }
+
+    // report_ops — admin only
+    match /report_ops/{reportId} {
+      allow read: if isProvincialSuperadmin() ||
+        isMunicipalAdmin(resource.data.municipalityCode);
+      allow write: if false;
+    }
+
+    // Contacts — municipal admin scoped
+    match /contacts/{contactId} {
+      allow read: if isProvincialSuperadmin() ||
+        isMunicipalAdmin(resource.data.municipalityCode);
+      allow create: if isProvincialSuperadmin() ||
+        isMunicipalAdmin(request.resource.data.municipalityCode);
+      allow update: if isProvincialSuperadmin() ||
+        isMunicipalAdmin(resource.data.municipalityCode);
+      allow delete: if isProvincialSuperadmin();
+    }
+
+    // Announcements — read by authenticated, write by admin
+    match /announcements/{announcementId} {
+      allow read: if isAuthenticated();
+      allow create: if isProvincialSuperadmin() ||
+        isMunicipalAdmin(request.resource.data.targetScope.municipalityCode);
+      allow update: if isProvincialSuperadmin() ||
+        isMunicipalAdmin(resource.data.targetScope.municipalityCode);
+      allow delete: if isProvincialSuperadmin();
+    }
+
+    // Analytics — admin read only, Cloud Functions write
+    match /analytics/{municipalityCode}/daily/{date} {
+      allow read: if isProvincialSuperadmin() ||
+        isMunicipalAdmin(municipalityCode);
+      allow write: if false;
+    }
+
+    // Audit — append only, read by admin
+    match /audit/{auditId} {
+      allow read: if isProvincialSuperadmin();
+      allow create: if false; // Cloud Functions only
     }
   }
 }

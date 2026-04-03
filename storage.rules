@@ -1,10 +1,39 @@
 rules_version = '2';
 service firebase.storage {
   match /b/{bucket}/o {
-    // STUB: Rules will be implemented in Phase 3 (Auth & Role Model)
-    // For now, allow all reads/writes in emulator mode
-    match /{allPaths=**} {
-      allow read, write: if true;
+
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    function isImage(fileSize) {
+      return request.resource.contentType.matches('image/.*');
+    }
+
+    function isUnder10MB(fileSize) {
+      return fileSize <= 10 * 1024 * 1024;
+    }
+
+    // User profile images: users/{userId}/profile/{filename}
+    match /users/{userId}/{filename} {
+      allow read: if isAuthenticated();
+      allow write: if isAuthenticated() && request.auth.uid == userId
+        && isImage(request.resource.size)
+        && isUnder10MB(request.resource.size);
+    }
+
+    // Report media: reports/{reportId}/media/{filename}
+    match /reports/{reportId}/media/{filename} {
+      allow read: if isAuthenticated();
+      allow write: if isAuthenticated()
+        && isImage(request.resource.size)
+        && isUnder10MB(request.resource.size);
+    }
+
+    // Contact avatars: contacts/{contactId}/avatar/{filename}
+    match /contacts/{contactId}/avatar/{filename} {
+      allow read: if isAuthenticated();
+      allow write: if isAuthenticated();
     }
   }
 }
