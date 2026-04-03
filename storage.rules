@@ -1,0 +1,10 @@
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/o {
+    // STUB: Rules will be implemented in Phase 3 (Auth & Role Model)
+    // For now, allow all reads/writes in emulator mode
+    match /{allPaths=**} {
+      allow read, write: if true;
+    }
+  }
+}

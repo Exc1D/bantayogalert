@@ -1,0 +1,10 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // STUB: Rules will be implemented in Phase 3 (Auth & Role Model)
+    // For now, allow all reads/writes in emulator mode
+    match /{document=**} {
+      allow read, write: if true;
+    }
+  }
+}
