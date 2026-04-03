@@ -45,6 +45,8 @@ const SubmitReportDataSchema = z.object({
     lng: z.number().min(122.3).max(123.3),
   }),
   mediaUrls: z.array(z.string().url()).max(5).default([]),
+  // Optional reportId - if provided, use it (for media-first upload pattern)
+  reportId: z.string().optional(),
 })
 
 export type SubmitReportData = z.infer<typeof SubmitReportDataSchema>
@@ -79,7 +81,7 @@ export const submitReport = functions.https.onCall(
       )
     }
 
-    const { type, severity, description, municipalityCode, barangayCode, exactLocation, mediaUrls } = parsedData.data
+    const { type, severity, description, municipalityCode, barangayCode, exactLocation, mediaUrls, reportId: providedReportId } = parsedData.data
 
     // 4. Rate limit check
     const rateLimitResult = await checkRateLimit(userId)
@@ -116,9 +118,9 @@ export const submitReport = functions.https.onCall(
 
     const db = getFirestore()
 
-    // Generate reportId BEFORE transaction
-    const reportRef = db.collection('reports').doc()
-    const reportId = reportRef.id
+    // Use provided reportId or generate a new one
+    const reportId = providedReportId ?? db.collection('reports').doc().id
+    const reportRef = db.collection('reports').doc(reportId)
 
     const now = new Date().toISOString()
 

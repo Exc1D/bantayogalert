@@ -13,6 +13,7 @@ interface SubmitReportData {
   barangayCode: string
   exactLocation: { lat: number; lng: number }
   mediaUrls: string[]
+  reportId?: string  // optional - if provided, CF uses it (for media-first upload)
 }
 
 export async function submitReport(
