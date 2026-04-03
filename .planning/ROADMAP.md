@@ -166,7 +166,7 @@
 **Plans**: 4 plans
 - [x] 05-00-PLAN.md — Test Infrastructure (vitest.config.ts, unit/integration/e2e test stubs)
 - [x] 05-01-PLAN.md — Infrastructure + Cloud Function (submitReport CF, ReportFormSchema, /app/report route)
-- [ ] 05-02-PLAN.md — LocationPickerMap + Draft Hook + Media Upload
+- [x] 05-02-PLAN.md — LocationPickerMap + Draft Hook + Media Upload
 - [ ] 05-03-PLAN.md — Multi-step ReportForm Wizard (4 step components)
 - [ ] 05-04-PLAN.md — Desktop/Mobile Shell Integration + Track Page
 
