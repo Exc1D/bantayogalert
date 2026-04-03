@@ -94,7 +94,7 @@ Established the production-grade project scaffold:
 | Vitest (unit) + Playwright (smoke) | Success criteria requires both; standard Vite ecosystem | ✓ Phase 1 |
 | Class-based dark mode | Emergency workers may prefer dark in low-light conditions | ✓ Phase 1 |
 | Three-tier report split (reports + report_private + report_ops) | Firestore has no field-level read restrictions; cleanly separates public/owner/admin data | — Pending Phase 5 |
-| Custom claims for RBAC (role + municipalityCode + provinceCode) | Verified in both Firestore rules and Cloud Functions; cannot be set by clients | — Pending Phase 3 |
+| Custom claims for RBAC (role + municipalityCode + provinceCode) | Verified in both Firestore rules and Cloud Functions; cannot be set by clients | ✓ Phase 3 |
 | Map mounted as sibling to drawer (never child) | Prevents drawer open/close from triggering map remount or viewport reset | — Pending Phase 4 |
 | React Query + Zustand | React Query handles Firestore caching/deduplication; Zustand handles synchronous UI state | ✓ Phase 1 |
 | Supercluster for marker clustering | Client-side clustering with decluster on zoom — no server-side clustering needed | — Pending Phase 6 |
@@ -119,4 +119,21 @@ This document evolves at phase transitions and milestone boundaries.
 4. Update Context with current state (users, feedback, metrics)
 
 ---
-*Last updated: 2026-04-03 after Phase 1*
+## Phase 3 Outcomes
+
+**Phase 3 (Auth & Role Model) — COMPLETED 2026-04-03**
+
+Established Firebase Auth, RBAC, and security layer:
+
+- **Firebase Auth**: Email/password + Google OAuth with browserLocalPersistence (D-43, D-44, D-45)
+- **AuthProvider context**: Exposes authenticated user with custom claims (role, municipalityCode, provinceCode) (D-48)
+- **Auth UI**: Login, Register, Profile pages with route guards (ProtectedRoute, AdminRoute) (D-49, D-50)
+- **Custom claims**: setUserRole callable CF (superadmin-only) + onUserCreated auth trigger for defaults (D-46, D-47)
+- **Claims utilities**: Server-side (functions/src/auth/claims.ts) and client-side (src/lib/auth/claims.ts)
+- **Firestore/Storage rules**: 68 Firestore tests + 23 Storage tests covering RBAC + municipality scope (D-53)
+- **App Check**: Audit mode integration via CustomProvider (D-51)
+- **Input sanitization**: HTML stripping via regex (functions/src/security/sanitize.ts)
+- **Rate limiting**: 5 reports/hour default, 20/hour surge mode, per-municipality configurable (D-54)
+- **Auth validation middleware**: validateSuperadmin, validateMunicipalAdmin, validateAuthenticated, validateWriteScope, validateRole
+
+*Last updated: 2026-04-03 after Phase 3*
