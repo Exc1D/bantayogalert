@@ -63,17 +63,43 @@ This is a greenfield project building toward a full production system. The SPECS
 - **Pending Reports Hidden**: Unverified reports not publicly visible; only submitting citizen sees their own pending reports
 - **Performance Targets**: 90+/100 quality scorecard, Lighthouse ≥85 mobile, ≥95 desktop, LCP ≤2.5s, CLS ≤0.1
 
+## Phase 1 Outcomes
+
+**Phase 1 (Project Foundation & Tooling) — COMPLETED 2026-04-03**
+
+Established the production-grade project scaffold:
+
+- **Feature-based structure**: `src/features/{feature}/` with co-located components, hooks, types, and queries. Shared UI at `src/components/ui/`, utilities at `src/lib/`
+- **Firebase single-project + env overlays**: `.env.local` for dev, `.env.production` for prod. Firebase config at `src/lib/firebase/config.ts`
+- **Emulator suite**: Auth 9099, Firestore 8080, Storage 9199, Functions 5001, UI 4000
+- **PWA**: vite-plugin-pwa with Workbox. CacheFirst for static assets, NetworkFirst for Firestore API, StaleWhileRevalidate for OSM tiles. `registerType: 'prompt'`
+- **Test stack**: Vitest + @testing-library/react (unit), Playwright smoke tests in `tests/smoke/`
+- **Dark mode**: `class` strategy on `<html>` element, NOT `media` query
+- **Emergency theme**: `#dc2626` (red-600) — `theme_color` in PWA manifest
+- **CI**: GitHub Actions pipeline with build → test → emulators:ci → smoke stages
+
+**Version corrections applied during Phase 1** (CLAUDE.md had fabricated versions):
+- react@18.3.28 → react@18.3.1 (18.3.28 does not exist on npm)
+- react-dom@18.3.28 → react-dom@18.3.1
+- @react-leaflet/core@2.1.1 → @react-leaflet/core@2.1.0 (2.1.1 does not exist)
+
 ## Key Decisions
 
 | Decision | Rationale | Outcome |
 |----------|-----------|---------|
-| Three-tier report split (reports + report_private + report_ops) | Firestore has no field-level read restrictions; cleanly separates public/owner/admin data | — Pending |
-| Custom claims for RBAC (role + municipalityCode + provinceCode) | Verified in both Firestore rules and Cloud Functions; cannot be set by clients | — Pending |
-| Map mounted as sibling to drawer (never child) | Prevents drawer open/close from triggering map remount or viewport reset | — Pending |
-| React Query + Zustand | React Query handles Firestore caching/deduplication; Zustand handles synchronous UI state (drawer, filters, selected marker) | — Pending |
-| Supercluster for marker clustering | Client-side clustering with decluster on zoom — no server-side clustering needed | — Pending |
-| Approximate public locations (reduced precision geohash) | Protects reporter privacy; exact coordinates restricted to report_private | — Pending |
-| Contact snapshots at dispatch time | Later edits to contact don't rewrite historical routing events | — Pending |
+| Feature-based structure (src/features/) | Scales across 12 municipalities + multiple roles; co-located domain logic | ✓ Phase 1 |
+| Firebase single-project + env overlays | Overhead of 3 projects unjustified for v1 | ✓ Phase 1 |
+| Full strict TypeScript + noUncheckedIndexedAccess | Prevents null/undefined bugs in disaster scenarios | ✓ Phase 1 |
+| PWA CacheFirst (assets) / NetworkFirst (API) / SWR (tiles) | Intermittent connectivity in disaster scenarios; stale tiles acceptable | ✓ Phase 1 |
+| Vitest (unit) + Playwright (smoke) | Success criteria requires both; standard Vite ecosystem | ✓ Phase 1 |
+| Class-based dark mode | Emergency workers may prefer dark in low-light conditions | ✓ Phase 1 |
+| Three-tier report split (reports + report_private + report_ops) | Firestore has no field-level read restrictions; cleanly separates public/owner/admin data | — Pending Phase 5 |
+| Custom claims for RBAC (role + municipalityCode + provinceCode) | Verified in both Firestore rules and Cloud Functions; cannot be set by clients | — Pending Phase 3 |
+| Map mounted as sibling to drawer (never child) | Prevents drawer open/close from triggering map remount or viewport reset | — Pending Phase 4 |
+| React Query + Zustand | React Query handles Firestore caching/deduplication; Zustand handles synchronous UI state | ✓ Phase 1 |
+| Supercluster for marker clustering | Client-side clustering with decluster on zoom — no server-side clustering needed | — Pending Phase 6 |
+| Approximate public locations (reduced precision geohash) | Protects reporter privacy; exact coordinates restricted to report_private | — Pending Phase 5 |
+| Contact snapshots at dispatch time | Later edits to contact don't rewrite historical routing events | — Pending Phase 8 |
 
 ## Evolution
 
@@ -93,4 +119,4 @@ This document evolves at phase transitions and milestone boundaries.
 4. Update Context with current state (users, feedback, metrics)
 
 ---
-*Last updated: 2026-04-03 after initialization*
+*Last updated: 2026-04-03 after Phase 1*
