@@ -1,7 +1,12 @@
 import { useEffect, useState, type ReactNode } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
-import { MapContainer } from 'react-leaflet'
 import { useUIStore, type ActiveTab } from '@/stores/uiStore'
+import { MapContainerWrapper } from './MapContainerWrapper'
+import { MunicipalityBoundaries } from '@/components/map/MunicipalityBoundaries'
+import { ReportMarkers } from '@/components/map/ReportMarkers'
+import { ReportFeed } from '@/components/report/ReportFeed'
+import { FilterBar } from '@/components/map/FilterBar'
+import { useVerifiedReportsListener } from '@/hooks/useVerifiedReportsListener'
 
 interface MobileShellProps {
   children?: ReactNode
@@ -18,15 +23,19 @@ const TABS: { id: ActiveTab; label: string }[] = [
 function TabContent({ tab }: { tab: ActiveTab }) {
   switch (tab) {
     case 'feed':
-      return <div className="p-4">Feed Content</div>
+      return (
+        <div className="h-full w-full flex flex-col">
+          <FilterBar />
+          <ReportFeed />
+        </div>
+      )
     case 'map':
       return (
         <div className="h-full w-full">
-          <MapContainer
-            center={[14.15, 122.9]}
-            zoom={10}
-            style={{ height: '100%', width: '100%' }}
-          />
+          <MapContainerWrapper>
+            <MunicipalityBoundaries />
+            <ReportMarkers />
+          </MapContainerWrapper>
         </div>
       )
     case 'alerts':
@@ -44,6 +53,9 @@ export function MobileShell({ children }: MobileShellProps) {
   const { activeTab, setActiveTab } = useUIStore()
   const navigate = useNavigate()
   const location = useLocation()
+
+  // Single shared listener that powers both map tab and feed tab
+  useVerifiedReportsListener()
 
   useEffect(() => {
     setMounted(true)

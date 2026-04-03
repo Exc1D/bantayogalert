@@ -3,6 +3,7 @@ import FocusTrap from 'focus-trap-react'
 import { useUIStore, type ActivePanel } from '@/stores/uiStore'
 import { useMap } from './MapContainerWrapper'
 import { ReportFormDesktopWrapper } from '../report/ReportFormDesktopWrapper'
+import { ReportDetailPanel } from '@/components/report/ReportDetailPanel'
 
 interface WorkspaceDrawerProps {
   // mapRef removed — now accessed via useMap() context
@@ -17,9 +18,15 @@ const PANEL_LABELS: Record<NonNullable<ActivePanel>, string> = {
 }
 
 function DrawerContent({ panel }: { panel: ActivePanel }) {
+  const selectedReportId = useUIStore((s) => s.selectedReportId)
+
   if (!panel) return null
   if (panel === 'report-form') {
     return <ReportFormDesktopWrapper />
+  }
+  if (panel === 'report-detail') {
+    if (!selectedReportId) return null
+    return <ReportDetailPanel reportId={selectedReportId} />
   }
   return (
     <div className="p-4">
