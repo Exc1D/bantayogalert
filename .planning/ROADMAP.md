@@ -219,7 +219,7 @@
 
 **Plans**: 2 plans
 - [x] 07-01-PLAN.md — My Reports list (useMyReports hook + MyReportsList component + Profile integration)
-- [ ] 07-02-PLAN.md — Owner report detail (ReportDetailOwner with activity timeline + owner-aware /app/report/:id view)
+- [x] 07-02-PLAN.md — Owner report detail (ReportDetailOwner with activity timeline + owner-aware /app/report/:id view)
 
 ---
 

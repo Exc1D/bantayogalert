@@ -55,8 +55,8 @@
 
 - [ ] **TRK-01**: Citizen sees "My Reports" list in Profile from report_private
 - [ ] **TRK-02**: Each tracked report shows owner status, latest update time, and outcome
-- [ ] **TRK-03**: Clicking tracked report opens report detail with full history
-- [ ] **TRK-04**: Activity timeline shows state transitions visible to the reporter
+- [x] **TRK-03**: Clicking tracked report opens report detail with full history
+- [x] **TRK-04**: Activity timeline shows state transitions visible to the reporter
 
 ### Admin Triage
 
