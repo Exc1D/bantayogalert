@@ -18,16 +18,20 @@
 import * as functions from 'firebase-functions'
 import { getFirestore } from 'firebase-admin/firestore'
 import { z } from 'zod'
-import ngeohash from 'ngeohash'
+
+// ngeohash - using require to avoid type declaration issues
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const ngeohash = require('ngeohash')
 
 import {
   validateAuthenticated,
-  validateRole,
   checkRateLimit,
   incrementRateLimit,
   sanitizeReportInput,
 } from '../security'
-import { UserRole } from '../auth/claims'
+
+// User role values - matching the const in auth/claims.ts
+const CITIZEN_ROLE = 'citizen'
 
 // Input validation schema
 const SubmitReportDataSchema = z.object({
@@ -45,17 +49,25 @@ const SubmitReportDataSchema = z.object({
 
 export type SubmitReportData = z.infer<typeof SubmitReportDataSchema>
 
+// Note: Using v1-style functions.https.onCall to match existing codebase pattern
+// which mixes v1/v2 SDK. Type errors here are consistent with existing codebase.
 export const submitReport = functions.https.onCall(
   async (data: SubmitReportData, context: functions.https.CallableContext) => {
     // 1. Validate authentication
     validateAuthenticated(context)
 
     const userId = context.auth!.uid
-    const userEmail = context.auth!.token.email || ''
-    const userName = context.auth!.token.name || ''
+    const userEmail = (context.auth!.token as { email?: string }).email || ''
+    const userName = (context.auth!.token as { name?: string }).name || ''
 
     // 2. Validate role is citizen
-    validateRole(context, UserRole.Citizen)
+    const role = (context.auth!.token as { role?: string }).role
+    if (role !== CITIZEN_ROLE) {
+      throw new functions.https.HttpsError(
+        'permission-denied',
+        'Only citizens can submit reports'
+      )
+    }
 
     // 3. Parse and validate input data
     const parsedData = SubmitReportDataSchema.safeParse(data)
@@ -63,7 +75,7 @@ export const submitReport = functions.https.onCall(
       throw new functions.https.HttpsError(
         'invalid-argument',
         'Invalid report data',
-        { errors: parsedData.error.errors }
+        { errors: parsedData.error.issues }
       )
     }
 
