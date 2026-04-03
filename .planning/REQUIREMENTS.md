@@ -47,8 +47,8 @@
 - [x] **FM-04**: Filter bar filters map pins and feed simultaneously (type, severity, municipality, date range)
 - [x] **FM-05**: Paginated feed of verified report cards sorted by createdAt DESC
 - [x] **FM-06**: Report cards show severity badge, type icon, location, time, public status
-- [ ] **FM-07**: Clicking map pin opens report detail modal (desktop) or bottom sheet (mobile)
-- [ ] **FM-08**: Map viewport and selected markers preserved when workspace drawer opens/closes
+- [x] **FM-07**: Clicking map pin opens report detail modal (desktop) or bottom sheet (mobile)
+- [x] **FM-08**: Map viewport and selected markers preserved when workspace drawer opens/closes
 - [ ] **FM-09**: Leaflet MapContainer never remounts due to drawer/modal state changes
 
 ### Report Tracking

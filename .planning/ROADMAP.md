@@ -11,7 +11,7 @@
 - [x] **Phase 3: Auth & Role Model** — Firebase Auth, custom claims, RBAC, security rules (completed 2026-04-03)
 - [x] **Phase 4: Desktop & Mobile Shell** — Persistent map canvas, workspace drawer, bottom tabs (completed 2026-04-03)
 - [ ] **Phase 5: Report Submission** — Multi-step form, location picker, media upload, three-tier doc creation
-- [ ] **Phase 6: Real-time Map & Feed** — Leaflet map, marker clustering, paginated feed, dual-canvas filters
+- [x] **Phase 6: Real-time Map & Feed** — Leaflet map, marker clustering, paginated feed, dual-canvas filters (completed 2026-04-03)
 - [ ] **Phase 7: Profile & Report Tracker** — User profile, My Reports list, owner status display
 - [ ] **Phase 8: Contacts Management** — Responder contacts CRUD, municipality-scoped, snapshot capture
 - [ ] **Phase 9: Admin Triage** — Report verification, dispatch, routing, state machine, optimistic concurrency
@@ -195,7 +195,7 @@
 - [x] 06-01b-PLAN.md — Supercluster infrastructure: useSupercluster, useMapViewport, firestore composite index
 - [x] 06-02-PLAN.md — Map layer: ReportMarkers (Supercluster), MunicipalityBoundaries, FilterBar integration with map
 - [x] 06-03-PLAN.md — Feed layer: ReportFeedCard, ReportFeed, useReportFeed pagination, DesktopShell 60/40 split
-- [ ] 06-04-PLAN.md — Report detail: ReportDetailPanel (shared), desktop drawer wiring, mobile /app/report/:id bottom sheet
+- [x] 06-04-PLAN.md — Report detail: ReportDetailPanel (shared), desktop drawer wiring, mobile /app/report/:id bottom sheet
 
 **UI hint**: yes
 
@@ -347,7 +347,7 @@
 | 3. Auth & Role Model | 5/5 | Complete | 2026-04-03 |
 | 4. Desktop & Mobile Shell | 3/3 | Complete | 2026-04-03 |
 | 5. Report Submission | 4/5 | In Progress | |
-| 6. Real-time Map & Feed | 4/5 | In Progress|  |
+| 6. Real-time Map & Feed | 5/5 | Complete   | 2026-04-03 |
 | 7. Profile & Report Tracker | 0/6 | Not started | |
 | 8. Contacts Management | 0/6 | Not started | |
 | 9. Admin Triage | 0/16 | Not started | |
