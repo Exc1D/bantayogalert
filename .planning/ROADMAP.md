@@ -47,7 +47,7 @@
 - [x] 01-03-PLAN.md — Firebase & Emulators (firebase.json, rules stubs, config.ts)
 - [x] 01-04-PLAN.md — Feature Structure (providers, router, folder structure)
 - [x] 01-05-PLAN.md — PWA Configuration (vite-plugin-pwa, manifest, icons)
-- [ ] 01-06-PLAN.md — Vitest Setup (test runner, smoke test)
+- [x] 01-06-PLAN.md — Vitest Setup (test runner, smoke test)
 - [x] 01-07-PLAN.md — Playwright Setup (e2e smoke tests)
 - [ ] 01-08-PLAN.md — GitHub Actions CI (pipeline, .gitignore)
 
@@ -320,7 +320,7 @@
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Project Foundation & Tooling | 6/8 | In Progress|  |
+| 1. Project Foundation & Tooling | 7/8 | In Progress|  |
 | 2. Domain Model & Backend Contracts | 0/7 | Not started | - |
 | 3. Auth & Role Model | 0/14 | Not started | - |
 | 4. Desktop & Mobile Shell | 0/13 | Not started | - |
