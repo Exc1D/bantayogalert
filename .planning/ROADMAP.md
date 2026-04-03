@@ -164,6 +164,7 @@
 10. Report form draft is auto-saved to IndexedDB if the citizen abandons the form mid-submission
 
 **Plans**: 4 plans
+- [ ] 05-00-PLAN.md — Test Infrastructure (vitest.config.ts, unit/integration/e2e test stubs)
 - [ ] 05-01-PLAN.md — Infrastructure + Cloud Function (submitReport CF, ReportFormSchema, /app/report route)
 - [ ] 05-02-PLAN.md — LocationPickerMap + Draft Hook + Media Upload
 - [ ] 05-03-PLAN.md — Multi-step ReportForm Wizard (4 step components)
@@ -340,7 +341,7 @@
 | 2. Domain Model & Backend Contracts | 4/4 | Complete | 2026-04-03 |
 | 3. Auth & Role Model | 5/5 | Complete | 2026-04-03 |
 | 4. Desktop & Mobile Shell | 3/3 | Complete | 2026-04-03 |
-| 5. Report Submission | 0/4 | In Progress | |
+| 5. Report Submission | 0/5 | In Progress | |
 | 6. Real-time Map & Feed | 0/8 | Not started | |
 | 7. Profile & Report Tracker | 0/6 | Not started | |
 | 8. Contacts Management | 0/6 | Not started | |
