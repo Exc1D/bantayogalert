@@ -34,7 +34,7 @@ export const ContactSchema = z.object({
   phones: z.array(z.string().regex(/^\+?[\d\s-]{7,20}$/)).min(1).max(5),
   email: z.string().email().optional(),
   capabilities: z.array(z.string()).min(1).max(20),
-  municipalityCode: z.string().length(3),
-  barangayCode: z.string().length(6).optional(),
+  municipalityCode: z.string().min(3).max(4),
+  barangayCode: z.string().min(6).max(7).optional(),
   isActive: z.boolean().default(true),
 })

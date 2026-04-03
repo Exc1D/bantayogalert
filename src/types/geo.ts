@@ -21,7 +21,7 @@ export const MunicipalitySchema = z.object({
 })
 
 export const BarangaySchema = z.object({
-  code: z.string().length(6),
-  municipalityCode: z.string().length(3),
+  code: z.string().min(6).max(7),
+  municipalityCode: z.string().min(3).max(4),
   name: z.string().min(1).max(100),
 })

@@ -34,7 +34,7 @@ export const AppUserSchema = z.object({
   email: z.string().email(),
   displayName: z.string().min(1).max(100),
   role: z.nativeEnum(UserRole),
-  municipalityCode: z.string().length(3).nullable(),
+  municipalityCode: z.string().min(3).max(4).nullable(),
   provinceCode: z.literal('CMN'),
   notificationPreferences: NotificationPreferencesSchema,
 })

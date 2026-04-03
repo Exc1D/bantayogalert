@@ -18,8 +18,8 @@
 
 ### Domain Model
 
-- [ ] **DM-01**: All report entities defined with TypeScript types matching SPECS.md §5
-- [ ] **DM-02**: Zod validation schemas shared between client and Cloud Functions
+- [x] **DM-01**: All report entities defined with TypeScript types matching SPECS.md §5
+- [x] **DM-02**: Zod validation schemas shared between client and Cloud Functions
 - [ ] **DM-03**: Workflow state machine with VALID_TRANSITIONS map enforced server-side
 - [ ] **DM-04**: Three-layer status mapping (WorkflowState → OwnerStatus → PublicStatus) computed by Cloud Functions
 - [ ] **DM-05**: Municipality and barangay catalog data seeded in Firestore

@@ -43,6 +43,6 @@ export const AnnouncementSchema = z.object({
   severity: z.nativeEnum(AnnouncementSeverity),
   targetScope: z.discriminatedUnion('type', [
     z.object({ type: z.literal('province') }),
-    z.object({ type: z.literal('municipality'), municipalityCode: z.string().length(3) }),
+    z.object({ type: z.literal('municipality'), municipalityCode: z.string().min(3).max(4) }),
   ]),
 })

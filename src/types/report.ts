@@ -114,8 +114,8 @@ export const ReportSchema = z.object({
   severity: z.nativeEnum(Severity),
   description: z.string().min(10).max(2000),
   location: GeoLocationSchema,
-  municipalityCode: z.string().length(3),
-  barangayCode: z.string().length(6),
+  municipalityCode: z.string().min(3).max(4),
+  barangayCode: z.string().min(6).max(7),
   mediaUrls: z.array(z.string().url()).max(5),
 })
 

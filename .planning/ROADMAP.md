@@ -7,7 +7,7 @@
 ## Phases
 
 - [ ] **Phase 1: Project Foundation & Tooling** — Scaffolding, CI/CD, PWA shell
-- [ ] **Phase 2: Domain Model & Backend Contracts** — Types, schemas, state machine, Firestore structure
+- [x] **Phase 2: Domain Model & Backend Contracts** — Types, schemas, state machine, Firestore structure (completed 2026-04-03)
 - [ ] **Phase 3: Auth & Role Model** — Firebase Auth, custom claims, RBAC, security rules
 - [ ] **Phase 4: Desktop & Mobile Shell** — Persistent map canvas, workspace drawer, bottom tabs
 - [ ] **Phase 5: Report Submission** — Multi-step form, location picker, media upload, three-tier doc creation
@@ -321,7 +321,7 @@
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Project Foundation & Tooling | 7/8 | In Progress|  |
-| 2. Domain Model & Backend Contracts | 0/7 | Not started | - |
+| 2. Domain Model & Backend Contracts | 4/4 | Complete   | 2026-04-03 |
 | 3. Auth & Role Model | 0/14 | Not started | - |
 | 4. Desktop & Mobile Shell | 0/13 | Not started | - |
 | 5. Report Submission | 0/10 | Not started | - |

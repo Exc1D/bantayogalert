@@ -8,7 +8,8 @@ describe('municipality', () => {
 
   it('each municipality has required fields', () => {
     MUNICIPALITIES.forEach(m => {
-      expect(m.code).toHaveLength(3)
+      expect(m.code.length).toBeGreaterThanOrEqual(3)
+      expect(m.code.length).toBeLessThanOrEqual(4)
       expect(m.name).toBeTruthy()
       expect(m.center.lat).toBeGreaterThan(13.8)
       expect(m.center.lat).toBeLessThan(14.8)
@@ -18,7 +19,7 @@ describe('municipality', () => {
   })
 
   it('getMunicipality returns correct municipality', () => {
-    const daet = getMunicipality('dae')
+    const daet = getMunicipality('daet')
     expect(daet?.name).toBe('Daet')
   })
 

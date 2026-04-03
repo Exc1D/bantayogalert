@@ -22,5 +22,5 @@ export function getMunicipality(code: string): Municipality | undefined {
 export async function loadMunicipalitiesGeoJSON(): Promise<GeoJSON.FeatureCollection> {
   const res = await fetch('/data/municipalities.geojson')
   if (!res.ok) throw new Error(`Failed to load municipalities GeoJSON: ${res.status}`)
-  return res.json() as GeoJSON.FeatureCollection
+  return res.json() as unknown as GeoJSON.FeatureCollection
 }
