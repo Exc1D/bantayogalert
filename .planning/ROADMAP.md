@@ -103,7 +103,7 @@
 14. Per-user rate limits are enforced on report creation (configurable surge mode available to admins)
 
 **Plans**: 5 plans
-- [ ] 03-01-PLAN.md — Firebase Auth Setup (providers, persistence, AuthProvider)
+- [x] 03-01-PLAN.md — Firebase Auth Setup (providers, persistence, AuthProvider)
 - [ ] 03-02-PLAN.md — Auth UI (Login/Register/Profile pages, route guards)
 - [ ] 03-03-PLAN.md — Custom Claims & setUserRole CF (callable + auth trigger)
 - [ ] 03-04-PLAN.md — Firestore & Storage Rules Tests (60+ rule tests)
@@ -331,7 +331,7 @@
 |-------|----------------|--------|-----------|
 | 1. Project Foundation & Tooling | 7/8 | In Progress| |
 | 2. Domain Model & Backend Contracts | 4/4 | Complete | 2026-04-03 |
-| 3. Auth & Role Model | 0/5 | Not started | - |
+| 3. Auth & Role Model | 1/5 | In Progress|  |
 | 4. Desktop & Mobile Shell | 0/13 | Not started | - |
 | 5. Report Submission | 0/10 | Not started | - |
 | 6. Real-time Map & Feed | 0/8 | Not started | - |

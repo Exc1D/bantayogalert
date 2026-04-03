@@ -7,12 +7,12 @@
 
 ### Authentication
 
-- [ ] **AUTH-01**: User can sign up with email and password
-- [ ] **AUTH-02**: User can sign in with Google OAuth
-- [ ] **AUTH-03**: User receives email verification after signup
-- [ ] **AUTH-04**: User session persists across browser refresh
+- [x] **AUTH-01**: User can sign up with email and password
+- [x] **AUTH-02**: User can sign in with Google OAuth
+- [x] **AUTH-03**: User receives email verification after signup
+- [x] **AUTH-04**: User session persists across browser refresh
 - [ ] **AUTH-05**: Superadmin can assign roles (citizen, municipal_admin, provincial_superadmin) via setUserRole callable
-- [ ] **AUTH-06**: Custom claims (role, municipalityCode, provinceCode) are enforced server-side
+- [x] **AUTH-06**: Custom claims (role, municipalityCode, provinceCode) are enforced server-side
 - [ ] **AUTH-07**: User can update own display name and notification preferences
 - [ ] **AUTH-08**: Unauthenticated users are redirected to login
 

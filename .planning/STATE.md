@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: executing
-stopped_at: Completed 02-03-PLAN.md
-last_updated: "2026-04-03T12:35:36.167Z"
+stopped_at: Completed 03-01-PLAN.md
+last_updated: "2026-04-03T13:05:09.840Z"
 last_activity: 2026-04-03
 progress:
   total_phases: 12
   completed_phases: 2
-  total_plans: 12
-  completed_plans: 12
+  total_plans: 17
+  completed_plans: 13
   percent: 0
 ---
 
@@ -21,12 +21,12 @@ progress:
 See: .planning/PROJECT.md (updated 2026-04-03)
 
 **Core value:** Verified incidents are visible and actionable within seconds of confirmation — citizens see real-time verified reports on map and feed; admins dispatch responders without delay; push alerts reach affected municipalities immediately.
-**Current focus:** Phase 2 — domain-model-backend-contracts
+**Current focus:** Phase 03 — auth-role-model
 
 ## Current Position
 
-Phase: 2
-Plan: Not started
+Phase: 03 (auth-role-model) — EXECUTING
+Plan: 2 of 5
 Status: Ready to execute
 Last activity: 2026-04-03
 
@@ -54,6 +54,7 @@ Progress: [░░░░░░░░░░] 0%
 *Updated after each plan completion*
 | Phase 02 P01 | 2 | 6 tasks | 10 files |
 | Phase 02 P04 | 2 | 2 tasks | 4 files |
+| Phase 03 P01 | 5 | 3 tasks | 6 files |
 
 ## Accumulated Context
 
@@ -73,6 +74,9 @@ Recent decisions affecting current work:
 - [Phase 02]: D-40: Firestore rules - authenticated reads for municipalities catalog, deny writes (write-once)
 - [Phase 02]: D-41: Three-tier report access via Firestore rules (reports/verified, report_private/owner+admin, report_ops/admin-only)
 - [Phase 02]: D-42: Storage rules require authentication, image MIME type, and 10MB max file size
+- [Phase 03]: D-45: browserLocalPersistence for session persistence across browser refreshes
+- [Phase 03]: D-44: signInWithPopup (not redirect) for Google OAuth
+- [Phase 03]: D-48: Default role on registration: citizen, provinceCode='CMN', municipalityCode=null
 
 ### Pending Todos
 
@@ -85,6 +89,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-04-03T12:35:36.165Z
-Stopped at: Completed 02-03-PLAN.md
+Last session: 2026-04-03T13:05:09.838Z
+Stopped at: Completed 03-01-PLAN.md
 Resume file: None
