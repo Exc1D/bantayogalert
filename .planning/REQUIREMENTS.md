@@ -137,12 +137,12 @@
 
 ### PWA & Offline
 
-- [ ] **PWA-01**: Service worker (Workbox via vite-plugin-pwa) with NetworkFirst for API, CacheFirst for tiles
-- [ ] **PWA-02**: App shell, critical CSS/JS, and municipality GeoJSON pre-cached
+- [x] **PWA-01**: Service worker (Workbox via vite-plugin-pwa) with NetworkFirst for API, CacheFirst for tiles
+- [x] **PWA-02**: App shell, critical CSS/JS, and municipality GeoJSON pre-cached
 - [ ] **PWA-03**: Offline report draft saved to IndexedDB; submit when online
 - [ ] **PWA-04**: Visible connection status indicator with offline messaging
-- [ ] **PWA-05**: Custom install prompt for home-screen installation
-- [ ] **PWA-06**: App manifest with proper icons and theme colors
+- [x] **PWA-05**: Custom install prompt for home-screen installation
+- [x] **PWA-06**: App manifest with proper icons and theme colors
 
 ### SEO & Public Surfaces
 
