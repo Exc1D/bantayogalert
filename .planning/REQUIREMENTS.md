@@ -192,6 +192,7 @@ Explicitly excluded. Documented to prevent scope creep.
 ## Traceability
 
 Requirement-to-phase mapping populated during roadmap creation.
+Note: Phase 8 (Contacts) and Phase 9 (Admin Triage) were reordered per research — dispatch requires existing contacts.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
@@ -200,8 +201,8 @@ Requirement-to-phase mapping populated during roadmap creation.
 | RPT-01 through RPT-11 | Phase 5 | Pending |
 | FM-01 through FM-09 | Phase 6 | Pending |
 | TRK-01 through TRK-04 | Phase 7 | Pending |
-| TRI-01 through TRI-16 | Phase 8 | Pending |
-| CON-01 through CON-06 | Phase 9 | Pending |
+| CON-01 through CON-06 | Phase 8 | Pending |
+| TRI-01 through TRI-16 | Phase 9 | Pending |
 | ALR-01 through ALR-07 | Phase 10 | Pending |
 | DSK-01 through DSK-07 | Phase 4 | Pending |
 | MOB-01 through MOB-07 | Phase 4 | Pending |
@@ -213,8 +214,8 @@ Requirement-to-phase mapping populated during roadmap creation.
 **Coverage:**
 - v1 requirements: 73 total
 - Mapped to phases: 73
-- Unmapped: 0 ✓
+- Unmapped: 0
 
 ---
 *Requirements defined: 2026-04-03*
-*Last updated: 2026-04-03 after initial research synthesis*
+*Last updated: 2026-04-03 after roadmap creation — phase order corrected (Contacts before Triage)*
