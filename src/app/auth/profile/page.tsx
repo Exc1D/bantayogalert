@@ -1,8 +1,11 @@
 import { useState, useEffect, type FormEvent } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { doc, getDoc } from 'firebase/firestore'
 import { useAuth } from '../../../lib/auth/hooks'
 import { updateUserProfile, logout } from '../../../lib/auth/operations'
-import { UserRole } from '../../../types/user'
+import { db } from '@/lib/firebase/config'
+import { UserRole, type NotificationPreferences } from '../../../types/user'
+import { MyReportsList } from '@/components/profile/MyReportsList'
 
 const ALERT_TYPE_OPTIONS = [
   { value: 'flood', label: 'Flood' },
@@ -31,12 +34,31 @@ export function ProfilePage() {
     }
   }, [user])
 
-  // Load notification preferences from Firestore if available
-  // For now, use defaults; will be enhanced when Firestore user doc is read
+  // Load notification preferences from Firestore on mount
   useEffect(() => {
-    // This would normally fetch from Firestore
-    // Keeping local state for now
-  }, [])
+    if (!user) return
+
+    const uid = user.uid
+
+    async function loadPreferences() {
+      try {
+        const userDoc = await getDoc(doc(db, 'users', uid))
+        if (userDoc.exists()) {
+          const data = userDoc.data()
+          if (data.notificationPreferences) {
+            const prefs = data.notificationPreferences as NotificationPreferences
+            setPushEnabled(prefs.pushEnabled ?? false)
+            setEmailEnabled(prefs.emailEnabled ?? true)
+            setSelectedAlertTypes(prefs.alertTypes ?? ['all'])
+          }
+        }
+      } catch {
+        // If Firestore read fails, defaults are already set
+      }
+    }
+
+    loadPreferences()
+  }, [user])
 
   async function handleSave(e: FormEvent) {
     e.preventDefault()
@@ -219,6 +241,13 @@ export function ProfilePage() {
                 </button>
               </div>
             </form>
+
+            {/* My Reports Section */}
+            <div className="mt-8 pt-6 border-t border-gray-200">
+              <MyReportsList
+                onSelectReport={(reportId) => navigate(`/app/report/${reportId}`)}
+              />
+            </div>
 
             {/* Sign Out */}
             <div className="mt-8 pt-6 border-t border-gray-200">
