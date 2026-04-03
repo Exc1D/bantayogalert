@@ -9,7 +9,7 @@
 - [ ] **Phase 1: Project Foundation & Tooling** — Scaffolding, CI/CD, PWA shell
 - [x] **Phase 2: Domain Model & Backend Contracts** — Types, schemas, state machine, Firestore structure (completed 2026-04-03)
 - [x] **Phase 3: Auth & Role Model** — Firebase Auth, custom claims, RBAC, security rules (completed 2026-04-03)
-- [ ] **Phase 4: Desktop & Mobile Shell** — Persistent map canvas, workspace drawer, bottom tabs
+- [x] **Phase 4: Desktop & Mobile Shell** — Persistent map canvas, workspace drawer, bottom tabs (completed 2026-04-03)
 - [ ] **Phase 5: Report Submission** — Multi-step form, location picker, media upload, three-tier doc creation
 - [ ] **Phase 6: Real-time Map & Feed** — Leaflet map, marker clustering, paginated feed, dual-canvas filters
 - [ ] **Phase 7: Profile & Report Tracker** — User profile, My Reports list, owner status display
@@ -136,7 +136,7 @@
 
 **Plans**: 3 plans
 - [x] 04-01-PLAN.md — Shell Scaffold (DesktopShell, MobileShell, WorkspaceDrawer, Zustand uiStore)
-- [ ] 04-02-PLAN.md — Navigation (DesktopNavRail, MobileBottomTabs, role-aware nav items)
+- [x] 04-02-PLAN.md — Navigation (DesktopNavRail, MobileBottomTabs, role-aware nav items)
 - [x] 04-03-PLAN.md — Map Stability + Focus/Keyboard (ref guard, invalidateSize, focus trapping)
 
 **UI hint**: yes
@@ -335,7 +335,7 @@
 | 1. Project Foundation & Tooling | 7/8 | In Progress | |
 | 2. Domain Model & Backend Contracts | 4/4 | Complete | 2026-04-03 |
 | 3. Auth & Role Model | 5/5 | Complete | 2026-04-03 |
-| 4. Desktop & Mobile Shell | 2/3 | In Progress|  |
+| 4. Desktop & Mobile Shell | 3/3 | Complete | 2026-04-03 |
 | 5. Report Submission | 0/10 | Not started | - |
 | 6. Real-time Map & Feed | 0/8 | Not started | - |
 | 7. Profile & Report Tracker | 0/6 | Not started | - |
