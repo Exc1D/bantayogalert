@@ -2,6 +2,7 @@ import * as functions from 'firebase-functions'
 import { onCall } from 'firebase-functions/v2/https'
 import { setUserRole } from './auth/setUserRole'
 import { onUserCreated } from './auth/onUserCreated'
+import { submitReport } from './reports/submitReport'
 
 // Security utilities
 export {
@@ -26,6 +27,7 @@ export {
 
 export { setUserRole }
 export { onUserCreated }
+export { submitReport }
 
 /**
  * Set surge mode for a municipality.
