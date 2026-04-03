@@ -6,29 +6,7 @@ import { ProtectedRoute, AdminRoute } from './lib/router/guards'
 import { LoginPage } from './app/auth/login/page'
 import { RegisterPage } from './app/auth/register/page'
 import { ProfilePage } from './app/auth/profile/page'
-
-// Placeholder components for protected routes (actual pages in later phases)
-function AppLayout() {
-  return (
-    <div style={{ width: '100vw', height: '100vh', backgroundColor: '#f9fafb' }}>
-      <div className="p-4">
-        <h1 className="text-xl font-bold text-gray-900">Bantayog Alert</h1>
-        <p className="text-gray-500 mt-1">App dashboard (coming in Phase 4)</p>
-      </div>
-    </div>
-  )
-}
-
-function AdminPanel() {
-  return (
-    <div style={{ width: '100vw', height: '100vh', backgroundColor: '#f9fafb' }}>
-      <div className="p-4">
-        <h1 className="text-xl font-bold text-gray-900">Admin Panel</h1>
-        <p className="text-gray-500 mt-1">Admin dashboard (coming in Phase 7)</p>
-      </div>
-    </div>
-  )
-}
+import { ShellRouter } from './app/shell/ShellRouter'
 
 export function App() {
   return (
@@ -55,7 +33,7 @@ export function App() {
             path="/app/*"
             element={
               <ProtectedRoute>
-                <AppLayout />
+                <ShellRouter />
               </ProtectedRoute>
             }
           />
@@ -65,7 +43,7 @@ export function App() {
             path="/admin/*"
             element={
               <AdminRoute>
-                <AdminPanel />
+                <ShellRouter />
               </AdminRoute>
             }
           />
