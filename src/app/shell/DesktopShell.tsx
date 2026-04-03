@@ -1,6 +1,9 @@
 import { useEffect, useState, type ReactNode } from 'react'
 import { MapContainerWrapper } from './MapContainerWrapper'
 import { WorkspaceDrawer } from './WorkspaceDrawer'
+import { ReportFeed } from '@/components/report/ReportFeed'
+import { FilterBar } from '@/components/map/FilterBar'
+import { useVerifiedReportsListener } from '@/hooks/useVerifiedReportsListener'
 
 interface DesktopShellProps {
   children?: ReactNode
@@ -27,16 +30,30 @@ export function DesktopShell({ children }: DesktopShellProps) {
 
   if (!mounted) return null
 
+  // Single shared listener at shell level — feeds both map (ReportMarkers) and feed (ReportFeed)
+  useVerifiedReportsListener()
+
   return (
     <div className="flex h-screen w-screen overflow-hidden">
       <NavRail />
-      <div className="flex-1 relative overflow-hidden">
-        <MapContainerWrapper>
-          <WorkspaceDrawer />
-        </MapContainerWrapper>
-        {/* Child routes render here, overlaid on map */}
-        {children}
+      {/* 60% map / 40% feed split */}
+      <div className="flex-1 relative overflow-hidden flex">
+        {/* Map panel — ~60% */}
+        <div className="flex-[3] relative overflow-hidden">
+          <MapContainerWrapper>
+            <WorkspaceDrawer />
+          </MapContainerWrapper>
+        </div>
+        {/* Feed panel — ~40% */}
+        <div className="flex-[2] flex flex-col border-l border-gray-200 bg-white overflow-hidden">
+          {/* FilterBar at top of feed panel (D-139) */}
+          <FilterBar />
+          {/* Paginated feed below filter bar */}
+          <ReportFeed />
+        </div>
       </div>
+      {/* Child routes (for pages that need full-screen overlay, not the feed panel) */}
+      {children}
     </div>
   )
 }
