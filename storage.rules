@@ -1,0 +1,9 @@
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/o {
+    // Placeholder: full rules defined in Phase 2
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

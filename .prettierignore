@@ -1,0 +1,7 @@
+dist
+node_modules
+emulator-data
+.env*
+coverage
+.git
+.cursor
