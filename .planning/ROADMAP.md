@@ -105,7 +105,7 @@
 **Plans**: 5 plans
 - [x] 03-01-PLAN.md — Firebase Auth Setup (providers, persistence, AuthProvider)
 - [ ] 03-02-PLAN.md — Auth UI (Login/Register/Profile pages, route guards)
-- [ ] 03-03-PLAN.md — Custom Claims & setUserRole CF (callable + auth trigger)
+- [x] 03-03-PLAN.md — Custom Claims & setUserRole CF (callable + auth trigger)
 - [x] 03-04-PLAN.md — Firestore & Storage Rules Tests (60+ rule tests)
 - [ ] 03-05-PLAN.md — App Check + Input Sanitization + Rate Limiting
 
@@ -331,7 +331,7 @@
 |-------|----------------|--------|-----------|
 | 1. Project Foundation & Tooling | 7/8 | In Progress| |
 | 2. Domain Model & Backend Contracts | 4/4 | Complete | 2026-04-03 |
-| 3. Auth & Role Model | 2/5 | In Progress|  |
+| 3. Auth & Role Model | 3/5 | In Progress|  |
 | 4. Desktop & Mobile Shell | 0/13 | Not started | - |
 | 5. Report Submission | 0/10 | Not started | - |
 | 6. Real-time Map & Feed | 0/8 | Not started | - |
