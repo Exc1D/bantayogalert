@@ -1,0 +1,53 @@
+import { initializeApp, getApps, type FirebaseApp } from 'firebase/app'
+import { getAuth, type Auth } from 'firebase/auth'
+import { getFirestore, type Firestore } from 'firebase/firestore'
+import { getStorage, type FirebaseStorage } from 'firebase/storage'
+
+const firebaseConfig = {
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  databaseURL: import.meta.env.VITE_FIREBASE_DATABASE_URL,
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_FIREBASE_APP_ID,
+  measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID,
+}
+
+// Validate required config keys at runtime (D-06)
+const requiredKeys: (keyof typeof firebaseConfig)[] = [
+  'apiKey',
+  'authDomain',
+  'projectId',
+  'storageBucket',
+  'messagingSenderId',
+  'appId',
+]
+
+for (const key of requiredKeys) {
+  if (!firebaseConfig[key]) {
+    throw new Error(
+      `Missing required Firebase configuration: ${key}. ` +
+      `Ensure VITE_FIREBASE_${key} is set in your .env.local file.`
+    )
+  }
+}
+
+let app: FirebaseApp
+let auth: Auth
+let db: Firestore
+let storage: FirebaseStorage
+
+function getOrInitializeFirebase() {
+  if (!app) {
+    const existingApps = getApps()
+    app = existingApps.length > 0 ? existingApps[0] : initializeApp(firebaseConfig)
+    auth = getAuth(app)
+    db = getFirestore(app)
+    storage = getStorage(app)
+  }
+  return { app, auth, db, storage }
+}
+
+export const firebase = getOrInitializeFirebase()
+export const { app: firebaseApp, auth, db, storage } = firebase
