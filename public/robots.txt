@@ -1,7 +1,0 @@
-User-agent: *
-Allow: /
-Allow: /public/
-Disallow: /app/
-Disallow: /auth/
-Disallow: /admin/
-Sitemap: https://bantayogalert.ph/sitemap.xml
