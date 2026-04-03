@@ -1,0 +1,1477 @@
+- generic [active] [ref=e1]:
+  - list:
+    - listitem:
+      - link "Skip to main content" [ref=e2] [cursor=pointer]:
+        - /url: "#content"
+    - listitem:
+      - link "Skip to search" [ref=e3] [cursor=pointer]:
+        - /url: "#search"
+  - banner [ref=e7]:
+    - navigation [ref=e8]:
+      - link "MDN" [ref=e10] [cursor=pointer]:
+        - /url: /en-US/
+        - img "MDN" [ref=e11]
+      - generic [ref=e15]:
+        - navigation [ref=e17]:
+          - button "HTML" [ref=e20] [cursor=pointer]:
+            - generic [ref=e21]: HTML
+          - button "CSS" [ref=e24] [cursor=pointer]:
+            - generic [ref=e25]: CSS
+          - button "JavaScript" [ref=e28] [cursor=pointer]:
+            - generic [ref=e29]: JavaScript
+          - button "Web APIs" [ref=e32] [cursor=pointer]:
+            - generic [ref=e33]: Web APIs
+          - button "All" [ref=e36] [cursor=pointer]:
+            - generic [ref=e37]: All
+          - generic [ref=e39]:
+            - button "Learn" [ref=e40] [cursor=pointer]:
+              - generic [ref=e41]: Learn
+            - text: (external)
+          - button "Tools" [ref=e44] [cursor=pointer]:
+            - generic [ref=e45]: Tools
+          - generic [ref=e47]:
+            - button "About" [ref=e48] [cursor=pointer]:
+              - generic [ref=e49]: About
+            - text: (external)
+          - link "Blog" [ref=e51] [cursor=pointer]:
+            - /url: /en-US/blog/
+        - button "Search the site" [ref=e54] [cursor=pointer]:
+          - img [ref=e55]
+    - generic [ref=e59]:
+      - list [ref=e60]:
+        - listitem [ref=e61]:
+          - link "Web" [ref=e62] [cursor=pointer]:
+            - /url: /en-US/docs/Web
+        - listitem [ref=e63]:
+          - link "CSS" [ref=e64] [cursor=pointer]:
+            - /url: /en-US/docs/Web/CSS
+        - listitem [ref=e65]:
+          - link "Guides" [ref=e66] [cursor=pointer]:
+            - /url: /en-US/docs/Web/CSS/Guides
+        - listitem [ref=e67]:
+          - link "Animations" [ref=e68] [cursor=pointer]:
+            - /url: /en-US/docs/Web/CSS/Guides/Animations
+        - listitem [ref=e69]:
+          - link "Using animations" [ref=e70] [cursor=pointer]:
+            - /url: /en-US/docs/Web/CSS/Guides/Animations/Using
+      - button "Switch color theme" [ref=e74] [cursor=pointer]:
+        - generic [ref=e75]: Theme
+      - generic [ref=e78]:
+        - button "English (US)" [ref=e79] [cursor=pointer]:
+          - generic [ref=e80]: English (US)
+        - generic: Remember language
+  - generic [ref=e82]:
+    - main [ref=e83]:
+      - generic [ref=e84]:
+        - heading "Using CSS animations" [level=1] [ref=e85]
+        - generic [ref=e86]:
+          - paragraph [ref=e87]:
+            - strong [ref=e88]: CSS animations
+            - text: "make it possible to animate transitions from one CSS style configuration to another. Animations consist of two components: a style describing the CSS animation and a set of keyframes that indicate the start and end states of the animation's style, as well as possible intermediate waypoints."
+          - paragraph [ref=e89]: "There are three key advantages to CSS animations over traditional script-driven animation techniques:"
+          - list [ref=e90]:
+            - listitem [ref=e91]: You can create basic animations with a few lines of CSS; no JavaScript required.
+            - listitem [ref=e92]: The animations run well, even under moderate system load. Simple animations can often perform poorly in JavaScript. The rendering engine can use frame-skipping and other techniques to keep the performance as smooth as possible.
+            - listitem [ref=e93]: Letting the browser control the animation sequence lets the browser optimize performance and efficiency by, for example, reducing the update frequency of animations running in tabs that aren't currently visible.
+      - complementary [ref=e94]:
+        - navigation [ref=e95]:
+          - heading "In this article" [level=2] [ref=e96]
+          - list [ref=e97]:
+            - listitem [ref=e98]:
+              - link "Configuring an animation" [ref=e99] [cursor=pointer]:
+                - /url: "#configuring_an_animation"
+            - listitem [ref=e100]:
+              - link "Defining an animation sequence using keyframes" [ref=e101] [cursor=pointer]:
+                - /url: "#defining_an_animation_sequence_using_keyframes"
+            - listitem [ref=e102]:
+              - link "Using the animation shorthand" [ref=e103] [cursor=pointer]:
+                - /url: "#using_the_animation_shorthand"
+            - listitem [ref=e104]:
+              - link "Setting multiple animation property values" [ref=e105] [cursor=pointer]:
+                - /url: "#setting_multiple_animation_property_values"
+            - listitem [ref=e106]:
+              - link "Examples" [ref=e107] [cursor=pointer]:
+                - /url: "#examples"
+            - listitem [ref=e108]:
+              - link "See also" [ref=e109] [cursor=pointer]:
+                - /url: "#see_also"
+      - generic [ref=e110]:
+        - region "Configuring an animation" [ref=e111]:
+          - heading "Configuring an animation" [level=2] [ref=e112]:
+            - link "Configuring an animation" [ref=e113] [cursor=pointer]:
+              - /url: "#configuring_an_animation"
+          - paragraph [ref=e114]:
+            - text: To create a CSS animation sequence, you style the element you want to animate with the
+            - link "animation" [ref=e115] [cursor=pointer]:
+              - /url: /en-US/docs/Web/CSS/Reference/Properties/animation
+              - code [ref=e116]: animation
+            - text: property or its sub-properties. This lets you configure the timing, duration, and other details of how the animation sequence should progress. This does
+            - strong [ref=e117]: not
+            - text: configure the actual appearance of the animation, which is done using the
+            - link "@keyframes" [ref=e118] [cursor=pointer]:
+              - /url: /en-US/docs/Web/CSS/Reference/At-rules/@keyframes
+              - code [ref=e119]: "@keyframes"
+            - text: at-rule as described in the
+            - link "Defining animation sequence using keyframes" [ref=e120] [cursor=pointer]:
+              - /url: "#defining_an_animation_sequence_using_keyframes"
+            - text: section below.
+          - paragraph [ref=e121]:
+            - text: The sub-properties of the
+            - link "animation" [ref=e122] [cursor=pointer]:
+              - /url: /en-US/docs/Web/CSS/Reference/Properties/animation
+              - code [ref=e123]: animation
+            - text: "property are:"
+          - generic [ref=e124]:
+            - term [ref=e125]:
+              - link "animation-composition" [ref=e126] [cursor=pointer]:
+                - /url: /en-US/docs/Web/CSS/Reference/Properties/animation-composition
+                - code [ref=e127]: animation-composition
+            - definition [ref=e128]:
+              - paragraph [ref=e129]:
+                - text: Specifies the
+                - link "composite operation" [ref=e130] [cursor=pointer]:
+                  - /url: /en-US/docs/Glossary/Composite_operation
+                - text: to use when multiple animations affect the same property simultaneously. This property is not part of the
+                - code [ref=e131]: animation
+                - text: shorthand property.
+            - term [ref=e132]:
+              - link "animation-delay" [ref=e133] [cursor=pointer]:
+                - /url: /en-US/docs/Web/CSS/Reference/Properties/animation-delay
+                - code [ref=e134]: animation-delay
+            - definition [ref=e135]:
+              - paragraph [ref=e136]: Specifies the delay between an element loading and the start of an animation sequence and whether the animation should start immediately from its beginning or partway through the animation.
+            - term [ref=e137]:
+              - link "animation-direction" [ref=e138] [cursor=pointer]:
+                - /url: /en-US/docs/Web/CSS/Reference/Properties/animation-direction
+                - code [ref=e139]: animation-direction
+            - definition [ref=e140]:
+              - paragraph [ref=e141]: Specifies whether an animation's first iteration should be forward or backward and whether subsequent iterations should alternate direction on each run through the sequence or reset to the start point and repeat.
+            - term [ref=e142]:
+              - link "animation-duration" [ref=e143] [cursor=pointer]:
+                - /url: /en-US/docs/Web/CSS/Reference/Properties/animation-duration
+                - code [ref=e144]: animation-duration
+            - definition [ref=e145]:
+              - paragraph [ref=e146]: Specifies the length of time in which an animation completes one cycle.
+            - term [ref=e147]:
+              - link "animation-fill-mode" [ref=e148] [cursor=pointer]:
+                - /url: /en-US/docs/Web/CSS/Reference/Properties/animation-fill-mode
+                - code [ref=e149]: animation-fill-mode
+            - definition [ref=e150]:
+              - paragraph [ref=e151]: Specifies how an animation applies styles to its target before and after it runs.
+              - paragraph [ref=e153]:
+                - strong [ref=e154]: "Note:"
+                - text: In the case of animation
+                - link "forwards" [ref=e155] [cursor=pointer]:
+                  - /url: /en-US/docs/Web/CSS/Reference/Properties/animation-fill-mode#forwards
+                - text: fill mode, animated properties behave as if included in a set
+                - link "will-change" [ref=e156] [cursor=pointer]:
+                  - /url: /en-US/docs/Web/CSS/Reference/Properties/will-change
+                  - code [ref=e157]: will-change
+                - text: property value. If a new stacking context was created during the animation, the target element retains the stacking context after the animation has finished.
+            - term [ref=e158]:
+              - link "animation-iteration-count" [ref=e159] [cursor=pointer]:
+                - /url: /en-US/docs/Web/CSS/Reference/Properties/animation-iteration-count
+                - code [ref=e160]: animation-iteration-count
+            - definition [ref=e161]:
+              - paragraph [ref=e162]: Specifies the number of times an animation should repeat.
+            - term [ref=e163]:
+              - link "animation-name" [ref=e164] [cursor=pointer]:
+                - /url: /en-US/docs/Web/CSS/Reference/Properties/animation-name
+                - code [ref=e165]: animation-name
+            - definition [ref=e166]:
+              - paragraph [ref=e167]:
+                - text: Specifies the name of the
+                - link "@keyframes" [ref=e168] [cursor=pointer]:
+                  - /url: /en-US/docs/Web/CSS/Reference/At-rules/@keyframes
+                  - code [ref=e169]: "@keyframes"
+                - text: at-rule describing an animation's keyframes.
+            - term [ref=e170]:
+              - link "animation-play-state" [ref=e171] [cursor=pointer]:
+                - /url: /en-US/docs/Web/CSS/Reference/Properties/animation-play-state
+                - code [ref=e172]: animation-play-state
+            - definition [ref=e173]:
+              - paragraph [ref=e174]: Specifies whether to pause or play an animation sequence.
+            - term [ref=e175]:
+              - link "animation-timeline" [ref=e176] [cursor=pointer]:
+                - /url: /en-US/docs/Web/CSS/Reference/Properties/animation-timeline
+                - code [ref=e177]: animation-timeline
+            - definition [ref=e178]:
+              - paragraph [ref=e179]: Specifies the timeline that is used to control the progress of a CSS animation.
+            - term [ref=e180]:
+              - link "animation-timing-function" [ref=e181] [cursor=pointer]:
+                - /url: /en-US/docs/Web/CSS/Reference/Properties/animation-timing-function
+                - code [ref=e182]: animation-timing-function
+            - definition [ref=e183]:
+              - paragraph [ref=e184]: Specifies how an animation transitions through keyframes by establishing acceleration curves.
+        - region "Defining an animation sequence using keyframes" [ref=e185]:
+          - heading "Defining an animation sequence using keyframes" [level=2] [ref=e186]:
+            - link "Defining an animation sequence using keyframes" [ref=e187] [cursor=pointer]:
+              - /url: "#defining_an_animation_sequence_using_keyframes"
+          - paragraph [ref=e188]:
+            - text: After you've configured the animation's timing, you need to define the appearance of the animation. This is done by establishing one or more keyframes using the
+            - link "@keyframes" [ref=e189] [cursor=pointer]:
+              - /url: /en-US/docs/Web/CSS/Reference/At-rules/@keyframes
+              - code [ref=e190]: "@keyframes"
+            - text: at-rule. Each keyframe describes how the animated element should render at a given time during the animation sequence.
+          - paragraph [ref=e191]:
+            - text: Since the timing of the animation is defined in the CSS style that configures the animation, keyframes use a
+            - link "<percentage>" [ref=e192] [cursor=pointer]:
+              - /url: /en-US/docs/Web/CSS/Reference/Values/percentage
+              - code [ref=e193]: <percentage>
+            - text: "to indicate the time during the animation sequence at which they take place. 0% indicates the first moment of the animation sequence, while 100% indicates the final state of the animation. Because these two times are so important, they have special aliases:"
+            - code [ref=e194]: from
+            - text: and
+            - code [ref=e195]: to
+            - text: . Both are optional. If
+            - code [ref=e196]: from
+            - text: /
+            - code [ref=e197]: 0%
+            - text: or
+            - code [ref=e198]: to
+            - text: /
+            - code [ref=e199]: 100%
+            - text: is not specified, the browser starts or finishes the animation using the computed values of all attributes.
+          - paragraph [ref=e200]: You can optionally include additional keyframes that describe intermediate steps between the start and end of the animation.
+        - region "Using the animation shorthand" [ref=e201]:
+          - heading "Using the animation shorthand" [level=2] [ref=e202]:
+            - link "Using the animation shorthand" [ref=e203] [cursor=pointer]:
+              - /url: "#using_the_animation_shorthand"
+          - paragraph [ref=e204]:
+            - text: The
+            - link "animation" [ref=e205] [cursor=pointer]:
+              - /url: /en-US/docs/Web/CSS/Reference/Properties/animation
+              - code [ref=e206]: animation
+            - text: "shorthand is useful for saving space. As an example, some of the rules we've been using through this article:"
+          - generic [ref=e208]:
+            - generic [ref=e209]:
+              - generic [ref=e210]: css
+              - button "Copy" [ref=e213] [cursor=pointer]:
+                - generic [ref=e214]:
+                  - generic: Copy
+            - code [ref=e216]: "p { animation-duration: 3s; animation-name: slide-in; animation-iteration-count: infinite; animation-direction: alternate; }"
+          - paragraph [ref=e217]:
+            - text: ...could be replaced by using the
+            - code [ref=e218]: animation
+            - text: shorthand.
+          - generic [ref=e220]:
+            - generic [ref=e221]:
+              - generic [ref=e222]: css
+              - button "Copy" [ref=e225] [cursor=pointer]:
+                - generic [ref=e226]:
+                  - generic: Copy
+            - code [ref=e228]: "p { animation: 3s infinite alternate slide-in; }"
+          - paragraph [ref=e229]:
+            - text: To learn more about the sequence in which different animation property values can be specified using the
+            - code [ref=e230]: animation
+            - text: shorthand, see the
+            - link "animation" [ref=e231] [cursor=pointer]:
+              - /url: /en-US/docs/Web/CSS/Reference/Properties/animation
+              - code [ref=e232]: animation
+            - text: reference page.
+        - region "Setting multiple animation property values" [ref=e233]:
+          - heading "Setting multiple animation property values" [level=2] [ref=e234]:
+            - link "Setting multiple animation property values" [ref=e235] [cursor=pointer]:
+              - /url: "#setting_multiple_animation_property_values"
+          - paragraph [ref=e236]: The CSS animation longhand properties can accept multiple values, separated by commas. This feature can be used when you want to apply multiple animations in a single rule and set different durations, iteration counts, etc., for each of the animations. Let's look at some quick examples to explain the different permutations.
+          - paragraph [ref=e237]:
+            - text: In this first example, there are three duration and three iteration count values. So each animation is assigned a value of duration and iteration count with the same position as the animation name. The
+            - code [ref=e238]: fadeInOut
+            - text: animation is assigned a duration of
+            - code [ref=e239]: 2.5s
+            - text: and an iteration count of
+            - code [ref=e240]: "2"
+            - text: ", and the"
+            - code [ref=e241]: bounce
+            - text: animation is assigned a duration of
+            - code [ref=e242]: 1s
+            - text: and an iteration count of
+            - code [ref=e243]: "5"
+            - text: .
+          - generic [ref=e245]:
+            - generic [ref=e246]:
+              - generic [ref=e247]: css
+              - button "Copy" [ref=e250] [cursor=pointer]:
+                - generic [ref=e251]:
+                  - generic: Copy
+            - code [ref=e253]: "animation-name: fadeInOut, moveLeft300px, bounce; animation-duration: 2.5s, 5s, 1s; animation-iteration-count: 2, 1, 5;"
+          - paragraph [ref=e254]: In this second example, three animation names are set, but there's only one duration and iteration count. In this case, all three animations are given the same duration and iteration count.
+          - generic [ref=e256]:
+            - generic [ref=e257]:
+              - generic [ref=e258]: css
+              - button "Copy" [ref=e261] [cursor=pointer]:
+                - generic [ref=e262]:
+                  - generic: Copy
+            - code [ref=e264]: "animation-name: fadeInOut, moveLeft300px, bounce; animation-duration: 3s; animation-iteration-count: 1;"
+          - paragraph [ref=e265]:
+            - text: In this third example, three animations are specified, but only two durations and iteration counts. In such cases where there are not enough values in the list to assign a separate one to each animation, the value assignment cycles from the first to the last item in the available list and then cycles back to the first item. So,
+            - code [ref=e266]: fadeInOut
+            - text: gets a duration of
+            - code [ref=e267]: 2.5s
+            - text: ", and"
+            - code [ref=e268]: moveLeft300px
+            - text: gets a duration of
+            - code [ref=e269]: 5s
+            - text: ", which is the last value in the list of duration values. The duration value assignment now resets to the first value;"
+            - code [ref=e270]: bounce
+            - text: ", therefore, gets a duration of"
+            - code [ref=e271]: 2.5s
+            - text: . The iteration count values (and any other property values you specify) will be assigned in the same way.
+          - generic [ref=e273]:
+            - generic [ref=e274]:
+              - generic [ref=e275]: css
+              - button "Copy" [ref=e278] [cursor=pointer]:
+                - generic [ref=e279]:
+                  - generic: Copy
+            - code [ref=e281]: "animation-name: fadeInOut, moveLeft300px, bounce; animation-duration: 2.5s, 5s; animation-iteration-count: 2, 1;"
+          - paragraph [ref=e282]:
+            - text: If the mismatch in the number of animations and animation property values is inverted, say there are five
+            - code [ref=e283]: animation-duration
+            - text: values for three
+            - code [ref=e284]: animation-name
+            - text: values, then the extra or unused animation property values, in this case, two
+            - code [ref=e285]: animation-duration
+            - text: values, don't apply to any animation and are ignored.
+        - region "Examples" [ref=e286]:
+          - heading "Examples" [level=2] [ref=e287]:
+            - link "Examples" [ref=e288] [cursor=pointer]:
+              - /url: "#examples"
+        - region "Making text slide across the browser window" [ref=e289]:
+          - heading "Making text slide across the browser window" [level=3] [ref=e290]:
+            - link "Making text slide across the browser window" [ref=e291] [cursor=pointer]:
+              - /url: "#making_text_slide_across_the_browser_window"
+          - paragraph [ref=e292]:
+            - text: This basic example styles a
+            - link "<p>" [ref=e293] [cursor=pointer]:
+              - /url: /en-US/docs/Web/HTML/Reference/Elements/p
+              - code [ref=e294]: <p>
+            - text: element using the
+            - link "translate" [ref=e295] [cursor=pointer]:
+              - /url: /en-US/docs/Web/CSS/Reference/Properties/translate
+              - code [ref=e296]: translate
+            - text: and
+            - link "scale" [ref=e297] [cursor=pointer]:
+              - /url: /en-US/docs/Web/CSS/Reference/Properties/scale
+              - code [ref=e298]: scale
+            - text: transition properties so that the text slides in from off the right edge of the browser window.
+          - generic [ref=e300]:
+            - generic [ref=e301]:
+              - generic [ref=e302]: css
+              - button "Copy" [ref=e305] [cursor=pointer]:
+                - generic [ref=e306]:
+                  - generic: Copy
+              - generic "Run example in MDN Playground (opens in new tab)" [ref=e307]:
+                - link "Play" [ref=e308] [cursor=pointer]:
+                  - /url: https://developer.mozilla.org/en-US/play?uuid=5300ae47f7d8c18b9bb802d36b708a9dfd06cb93&state=bY%2FBasMwEER%2FZRD05rROSy9KKC39hR59WaxNpFrSGmmdEkL%2BvdiGQkJvy8zOm92L8ZqisWY%2FvnUZ%2BPKMT1IuY4iRCig7fMTQM6LIwA6kYOo9RD0XHKSgSmJoSIyQUUPk3LMF6YyLVBV6x1SRYRG9yEAeMinkgKAVSSb1zdJKzhWulR3mopBBKzAfp%2BAa1Mg8nnGS0PNjl%2FdP8%2F2mMX2txpoRl3mbckikQfLGTWUZLF7q7tbKlNiixuB4E%2FKuy9cud%2Fl94POhUOL6Z63MQ5G0ToAWyjWSssX2tT39oN2tRu0pssVz2z5gu2gLFFD5J9ve57Y3uevy2Pf8l2mMek5srInh6NVcfwE%3D&srcPrefix=%2Fen-US%2Fdocs%2FWeb%2FCSS%2FGuides%2FAnimations%2FUsing%2F
+                  - generic [ref=e309]:
+                    - generic: Play
+            - code [ref=e311]:
+              - text: "p { animation-duration: 3s; animation-name: slide-in; }"
+              - generic [ref=e312]: "@keyframes slide-in"
+              - text: "{ from { translate: 150vw 0; scale: 200% 1; } to { translate: 0 0; scale: 100% 1; } }"
+          - paragraph [ref=e313]:
+            - text: In this example, the style for the
+            - link "<p>" [ref=e314] [cursor=pointer]:
+              - /url: /en-US/docs/Web/HTML/Reference/Elements/p
+              - code [ref=e315]: <p>
+            - text: element specifies that the animation should take 3 seconds to execute from start to finish, using the
+            - link "animation-duration" [ref=e316] [cursor=pointer]:
+              - /url: /en-US/docs/Web/CSS/Reference/Properties/animation-duration
+              - code [ref=e317]: animation-duration
+            - text: property and that the name of the
+            - link "@keyframes" [ref=e318] [cursor=pointer]:
+              - /url: /en-US/docs/Web/CSS/Reference/At-rules/@keyframes
+              - code [ref=e319]: "@keyframes"
+            - text: at-rule defining the keyframes for the animation sequence is
+            - code [ref=e320]: slide-in
+            - text: .
+          - paragraph [ref=e321]:
+            - text: In this case, we have just two keyframes. The first occurs at
+            - code [ref=e322]: 0%
+            - text: (using the alias
+            - code [ref=e323]: from
+            - text: ). Here, we configure the
+            - link "translate" [ref=e324] [cursor=pointer]:
+              - /url: /en-US/docs/Web/CSS/Reference/Properties/translate
+              - code [ref=e325]: translate
+            - text: property of the element to be at
+            - code [ref=e326]: 150vw
+            - text: (that is, beyond the far right edge of the containing element), and the
+            - link "scale" [ref=e327] [cursor=pointer]:
+              - /url: /en-US/docs/Web/CSS/Reference/Properties/scale
+              - code [ref=e328]: scale
+            - text: of the element to be 200% (or two times its default inline size), causing the paragraph to be twice as wide as its
+            - code [ref=e329]: <body>
+            - text: containing block. This causes the first frame of the animation to have the header drawn off the right edge of the browser window.
+          - paragraph [ref=e330]:
+            - text: The second keyframe occurs at
+            - code [ref=e331]: 100%
+            - text: (using the alias
+            - code [ref=e332]: to
+            - text: ). The
+            - link "translate" [ref=e333] [cursor=pointer]:
+              - /url: /en-US/docs/Web/CSS/Reference/Properties/translate
+              - code [ref=e334]: translate
+            - text: property is set to
+            - code [ref=e335]: 0%
+            - text: and the
+            - link "scale" [ref=e336] [cursor=pointer]:
+              - /url: /en-US/docs/Web/CSS/Reference/Properties/scale
+              - code [ref=e337]: scale
+            - text: of the element is set to
+            - code [ref=e338]: "1"
+            - text: ", which is"
+            - code [ref=e339]: 100%
+            - text: . This causes the header to finish its animation in its default state, flush against the left edge of the content area.
+          - generic [ref=e341]:
+            - generic [ref=e342]:
+              - generic [ref=e343]: html
+              - button "Copy" [ref=e346] [cursor=pointer]:
+                - generic [ref=e347]:
+                  - generic: Copy
+              - generic "Run example in MDN Playground (opens in new tab)" [ref=e348]:
+                - link "Play" [ref=e349] [cursor=pointer]:
+                  - /url: https://developer.mozilla.org/en-US/play?uuid=5300ae47f7d8c18b9bb802d36b708a9dfd06cb93&state=bY%2FBasMwEER%2FZRD05rROSy9KKC39hR59WaxNpFrSGmmdEkL%2BvdiGQkJvy8zOm92L8ZqisWY%2FvnUZ%2BPKMT1IuY4iRCig7fMTQM6LIwA6kYOo9RD0XHKSgSmJoSIyQUUPk3LMF6YyLVBV6x1SRYRG9yEAeMinkgKAVSSb1zdJKzhWulR3mopBBKzAfp%2BAa1Mg8nnGS0PNjl%2FdP8%2F2mMX2txpoRl3mbckikQfLGTWUZLF7q7tbKlNiixuB4E%2FKuy9cud%2Fl94POhUOL6Z63MQ5G0ToAWyjWSssX2tT39oN2tRu0pssVz2z5gu2gLFFD5J9ve57Y3uevy2Pf8l2mMek5srInh6NVcfwE%3D&srcPrefix=%2Fen-US%2Fdocs%2FWeb%2FCSS%2FGuides%2FAnimations%2FUsing%2F
+                  - generic [ref=e350]:
+                    - generic: Play
+            - code [ref=e352]:
+              - generic [ref=e353]:
+                - generic [ref=e354]: <p
+                - text: ">"
+              - text: "The Caterpillar and Alice looked at each other for some time in silence: at last the Caterpillar took the hookah out of its mouth, and addressed her in a languid, sleepy voice."
+              - generic [ref=e355]:
+                - generic [ref=e356]: </p
+                - text: ">"
+          - paragraph [ref=e358]:
+            - strong [ref=e359]: "Note:"
+            - text: Reload page to see the animation.
+          - generic [ref=e361]:
+            - generic "Run example in MDN Playground (opens in new tab)" [ref=e363]:
+              - link "Play" [ref=e364] [cursor=pointer]:
+                - /url: https://developer.mozilla.org/en-US/play?uuid=5300ae47f7d8c18b9bb802d36b708a9dfd06cb93&state=bY%2FBasMwEER%2FZRD05rROSy9KKC39hR59WaxNpFrSGmmdEkL%2BvdiGQkJvy8zOm92L8ZqisWY%2FvnUZ%2BPKMT1IuY4iRCig7fMTQM6LIwA6kYOo9RD0XHKSgSmJoSIyQUUPk3LMF6YyLVBV6x1SRYRG9yEAeMinkgKAVSSb1zdJKzhWulR3mopBBKzAfp%2BAa1Mg8nnGS0PNjl%2FdP8%2F2mMX2txpoRl3mbckikQfLGTWUZLF7q7tbKlNiixuB4E%2FKuy9cud%2Fl94POhUOL6Z63MQ5G0ToAWyjWSssX2tT39oN2tRu0pssVz2z5gu2gLFFD5J9ve57Y3uevy2Pf8l2mMek5srInh6NVcfwE%3D&srcPrefix=%2Fen-US%2Fdocs%2FWeb%2FCSS%2FGuides%2FAnimations%2FUsing%2F
+                - generic [ref=e365]:
+                  - generic: Play
+            - iframe [ref=e367]:
+              - paragraph [ref=f83e2]: "The Caterpillar and Alice looked at each other for some time in silence: at last the Caterpillar took the hookah out of its mouth, and addressed her in a languid, sleepy voice."
+        - region "Adding another keyframe animation" [ref=e368]:
+          - heading "Adding another keyframe animation" [level=3] [ref=e369]:
+            - link "Adding another keyframe animation" [ref=e370] [cursor=pointer]:
+              - /url: "#adding_another_keyframe_animation"
+          - paragraph [ref=e371]:
+            - text: Let's add another keyframe to the previous example's animation. Let's say we want Alice's name to turn pink and grow and then shrink back to its original size and color as it moves from right to left. While we could change the
+            - link "font-size" [ref=e372] [cursor=pointer]:
+              - /url: /en-US/docs/Web/CSS/Reference/Properties/font-size
+              - code [ref=e373]: font-size
+            - text: ", changing any properties that impact the box model negatively impacts performance. Instead, we wrap her name in a"
+            - link "<span>" [ref=e374] [cursor=pointer]:
+              - /url: /en-US/docs/Web/HTML/Reference/Elements/span
+              - code [ref=e375]: <span>
+            - text: and then scale and assign a color to that separately. That requires adding a second animation impacting only the
+            - code [ref=e376]: <span>
+            - text: ":"
+          - generic [ref=e378]:
+            - generic [ref=e379]:
+              - generic [ref=e380]: css
+              - button "Copy" [ref=e383] [cursor=pointer]:
+                - generic [ref=e384]:
+                  - generic: Copy
+              - generic "Run example in MDN Playground (opens in new tab)" [ref=e385]:
+                - link "Play" [ref=e386] [cursor=pointer]:
+                  - /url: https://developer.mozilla.org/en-US/play?uuid=a8ed4a1fbb5860a82ae18101c1f8abf37cac3f49&state=vVLNbtswDH4VQkBuzup0CAbYQbGhr9CjL5zFRKwl0pCYFkGRdx8UL0Ca7bLLTiKo74f8pA8XLEXXud38NAjASyB4RqM8c4yYAcXDrswoTz8ij7R7uNQQVSfygAaEYwC1QBn2mqFoIjBOBCxVr3AkGamr0IjFwO4MTHW6NIPqhAH0aKB7YCuQ9GihqSNUJfQ%2BUynkoXqxAEJEORzZN1Ai0XyCN%2BWRvgyye6jLuMaNpbjOfZ%2FotM%2BYqMAh6%2Fu6hMwywUdVfdyumnp%2B266WBkAZMVIHm7Zd9bVzHi6bbNt7xOMVATBq1NxBwgOJ4ZV2HmReOCic0Fhl7Y%2F5UnTwtfSfrwQTdVAie1qz9L%2F5NfBFxHOZI546YIkstP4ZdZz6f5S%2FSWBxGOQmn6v5YrjPmq47W0YpEa0ms23f3qHt%2FwgDNreBmf6F297zNp949%2FP89%2FdyjXutf8Y1zgIlcp2LfAjmzr8A&srcPrefix=%2Fen-US%2Fdocs%2FWeb%2FCSS%2FGuides%2FAnimations%2FUsing%2F
+                  - generic [ref=e387]:
+                    - generic: Play
+            - code [ref=e389]:
+              - generic [ref=e390]: "@keyframes grow-shrink"
+              - text: "{ 25%, 75% { scale: 100%; } 50% { scale: 200%; color: magenta; } }"
+          - paragraph [ref=e391]: "The full code now looks like this:"
+          - generic [ref=e393]:
+            - generic [ref=e394]:
+              - generic [ref=e395]: css
+              - button "Copy" [ref=e398] [cursor=pointer]:
+                - generic [ref=e399]:
+                  - generic: Copy
+              - generic "Run example in MDN Playground (opens in new tab)" [ref=e400]:
+                - link "Play" [ref=e401] [cursor=pointer]:
+                  - /url: https://developer.mozilla.org/en-US/play?uuid=a8ed4a1fbb5860a82ae18101c1f8abf37cac3f49&state=vVLNbtswDH4VQkBuzup0CAbYQbGhr9CjL5zFRKwl0pCYFkGRdx8UL0Ca7bLLTiKo74f8pA8XLEXXud38NAjASyB4RqM8c4yYAcXDrswoTz8ij7R7uNQQVSfygAaEYwC1QBn2mqFoIjBOBCxVr3AkGamr0IjFwO4MTHW6NIPqhAH0aKB7YCuQ9GihqSNUJfQ%2BUynkoXqxAEJEORzZN1Ai0XyCN%2BWRvgyye6jLuMaNpbjOfZ%2FotM%2BYqMAh6%2Fu6hMwywUdVfdyumnp%2B266WBkAZMVIHm7Zd9bVzHi6bbNt7xOMVATBq1NxBwgOJ4ZV2HmReOCic0Fhl7Y%2F5UnTwtfSfrwQTdVAie1qz9L%2F5NfBFxHOZI546YIkstP4ZdZz6f5S%2FSWBxGOQmn6v5YrjPmq47W0YpEa0ms23f3qHt%2FwgDNreBmf6F297zNp949%2FP89%2FdyjXutf8Y1zgIlcp2LfAjmzr8A&srcPrefix=%2Fen-US%2Fdocs%2FWeb%2FCSS%2FGuides%2FAnimations%2FUsing%2F
+                  - generic [ref=e402]:
+                    - generic: Play
+            - code [ref=e404]:
+              - text: "p { animation-duration: 3s; animation-name: slide-in; } p span { display: inline-block; animation-duration: 3s; animation-name: grow-shrink; }"
+              - generic [ref=e405]: "@keyframes slide-in"
+              - text: "{ from { translate: 150vw 0; scale: 200% 1; } to { translate: 0 0; scale: 100% 1; } }"
+              - generic [ref=e406]: "@keyframes grow-shrink"
+              - text: "{ 25%, 75% { scale: 100%; } 50% { scale: 200%; color: magenta; } }"
+          - paragraph [ref=e407]:
+            - text: We've added a
+            - link "<span>" [ref=e408] [cursor=pointer]:
+              - /url: /en-US/docs/Web/HTML/Reference/Elements/span
+              - code [ref=e409]: <span>
+            - text: "around \"Alice\":"
+          - generic [ref=e411]:
+            - generic [ref=e412]:
+              - generic [ref=e413]: html
+              - button "Copy" [ref=e416] [cursor=pointer]:
+                - generic [ref=e417]:
+                  - generic: Copy
+              - generic "Run example in MDN Playground (opens in new tab)" [ref=e418]:
+                - link "Play" [ref=e419] [cursor=pointer]:
+                  - /url: https://developer.mozilla.org/en-US/play?uuid=a8ed4a1fbb5860a82ae18101c1f8abf37cac3f49&state=vVLNbtswDH4VQkBuzup0CAbYQbGhr9CjL5zFRKwl0pCYFkGRdx8UL0Ca7bLLTiKo74f8pA8XLEXXud38NAjASyB4RqM8c4yYAcXDrswoTz8ij7R7uNQQVSfygAaEYwC1QBn2mqFoIjBOBCxVr3AkGamr0IjFwO4MTHW6NIPqhAH0aKB7YCuQ9GihqSNUJfQ%2BUynkoXqxAEJEORzZN1Ai0XyCN%2BWRvgyye6jLuMaNpbjOfZ%2FotM%2BYqMAh6%2Fu6hMwywUdVfdyumnp%2B266WBkAZMVIHm7Zd9bVzHi6bbNt7xOMVATBq1NxBwgOJ4ZV2HmReOCic0Fhl7Y%2F5UnTwtfSfrwQTdVAie1qz9L%2F5NfBFxHOZI546YIkstP4ZdZz6f5S%2FSWBxGOQmn6v5YrjPmq47W0YpEa0ms23f3qHt%2FwgDNreBmf6F297zNp949%2FP89%2FdyjXutf8Y1zgIlcp2LfAjmzr8A&srcPrefix=%2Fen-US%2Fdocs%2FWeb%2FCSS%2FGuides%2FAnimations%2FUsing%2F
+                  - generic [ref=e420]:
+                    - generic: Play
+            - code [ref=e422]:
+              - generic [ref=e423]:
+                - generic [ref=e424]: <p
+                - text: ">"
+              - text: The Caterpillar and
+              - generic [ref=e425]:
+                - generic [ref=e426]: <span
+                - text: ">"
+              - text: Alice
+              - generic [ref=e427]:
+                - generic [ref=e428]: </span
+                - text: ">"
+              - text: "looked at each other for some time in silence: at last the Caterpillar took the hookah out of its mouth, and addressed her in a languid, sleepy voice."
+              - generic [ref=e429]:
+                - generic [ref=e430]: </p
+                - text: ">"
+          - paragraph [ref=e431]:
+            - text: This tells the browser the name should be normal for the first and last 25% of the animation, but turn pink while being scaled up and back again in the middle. We set the spans's
+            - link "display" [ref=e432] [cursor=pointer]:
+              - /url: /en-US/docs/Web/CSS/Reference/Properties/display
+              - code [ref=e433]: display
+            - text: property to
+            - code [ref=e434]: inline-block
+            - text: as the
+            - code [ref=e435]: transform
+            - text: properties do not affect non-replaced
+            - link "inline-level content" [ref=e436] [cursor=pointer]:
+              - /url: /en-US/docs/Glossary/Inline-level_content
+            - text: .
+          - paragraph [ref=e438]:
+            - strong [ref=e439]: "Note:"
+            - text: Reload page to see the animation.
+          - generic [ref=e441]:
+            - generic "Run example in MDN Playground (opens in new tab)" [ref=e443]:
+              - link "Play" [ref=e444] [cursor=pointer]:
+                - /url: https://developer.mozilla.org/en-US/play?uuid=a8ed4a1fbb5860a82ae18101c1f8abf37cac3f49&state=vVLNbtswDH4VQkBuzup0CAbYQbGhr9CjL5zFRKwl0pCYFkGRdx8UL0Ca7bLLTiKo74f8pA8XLEXXud38NAjASyB4RqM8c4yYAcXDrswoTz8ij7R7uNQQVSfygAaEYwC1QBn2mqFoIjBOBCxVr3AkGamr0IjFwO4MTHW6NIPqhAH0aKB7YCuQ9GihqSNUJfQ%2BUynkoXqxAEJEORzZN1Ai0XyCN%2BWRvgyye6jLuMaNpbjOfZ%2FotM%2BYqMAh6%2Fu6hMwywUdVfdyumnp%2B266WBkAZMVIHm7Zd9bVzHi6bbNt7xOMVATBq1NxBwgOJ4ZV2HmReOCic0Fhl7Y%2F5UnTwtfSfrwQTdVAie1qz9L%2F5NfBFxHOZI546YIkstP4ZdZz6f5S%2FSWBxGOQmn6v5YrjPmq47W0YpEa0ms23f3qHt%2FwgDNreBmf6F297zNp949%2FP89%2FdyjXutf8Y1zgIlcp2LfAjmzr8A&srcPrefix=%2Fen-US%2Fdocs%2FWeb%2FCSS%2FGuides%2FAnimations%2FUsing%2F
+                - generic [ref=e445]:
+                  - generic: Play
+            - iframe [ref=e447]:
+              - paragraph [ref=f84e2]:
+                - text: The Caterpillar and
+                - generic [ref=f84e3]: Alice
+                - text: "looked at each other for some time in silence: at last the Caterpillar took the hookah out of its mouth, and addressed her in a languid, sleepy voice."
+        - region "Repeating the animation" [ref=e448]:
+          - heading "Repeating the animation" [level=3] [ref=e449]:
+            - link "Repeating the animation" [ref=e450] [cursor=pointer]:
+              - /url: "#repeating_the_animation"
+          - paragraph [ref=e451]:
+            - text: To make the animation repeat itself, use the
+            - link "animation-iteration-count" [ref=e452] [cursor=pointer]:
+              - /url: /en-US/docs/Web/CSS/Reference/Properties/animation-iteration-count
+              - code [ref=e453]: animation-iteration-count
+            - text: property to indicate how many times to repeat the animation. In this case, let's use
+            - code [ref=e454]: infinite
+            - text: "to have the animation repeat indefinitely:"
+          - generic [ref=e456]:
+            - generic [ref=e457]:
+              - generic [ref=e458]: css
+              - button "Copy" [ref=e461] [cursor=pointer]:
+                - generic [ref=e462]:
+                  - generic: Copy
+              - generic "Run example in MDN Playground (opens in new tab)" [ref=e463]:
+                - link "Play" [ref=e464] [cursor=pointer]:
+                  - /url: https://developer.mozilla.org/en-US/play?uuid=2a4cf5397c15d0b47c5b2f67a06b4102b9a3d821&state=bU%2FBSixBDPyVouHddn2zyrv0iij%2Bgse5hJmMHbc7Wbozisj%2Bu8wMCC7vlCKVqkp9heQlhxjuzw%2B9Ai%2BJ8UzO9Sw5UwXpiKcsAyObnXgEOZiGBPPEFZNVNCsMl8IQRZPMOnAE%2BWKXqTn8ytPNTusymZ0owWaHTRBvKDZ72q2pNI6VW%2BMRS5AoaDPU11nGHVpmPn%2Fi3WTgm17v%2Fy7%2Fh10YWgsxnPG1XJNKIRfT%2FTjXFUTcteNvSqlwRMsy8l70ihTnTbgfbFaPEJ1ExfnY66XXxxN%2FTpUKtx%2BDLXmqVjYEeCVtmZwjDv%2B69w90x41oA2WOuO26Pzisu0uvy3D7j7a71h1%2B6S5r%2FbelfdgFT1w4xJDlNXm4fAM%3D&srcPrefix=%2Fen-US%2Fdocs%2FWeb%2FCSS%2FGuides%2FAnimations%2FUsing%2F
+                  - generic [ref=e465]:
+                    - generic: Play
+            - code [ref=e467]: "p { animation-duration: 3s; animation-name: slide-in; animation-iteration-count: infinite; }"
+          - generic [ref=e469]:
+            - generic "Run example in MDN Playground (opens in new tab)" [ref=e471]:
+              - link "Play" [ref=e472] [cursor=pointer]:
+                - /url: https://developer.mozilla.org/en-US/play?uuid=2a4cf5397c15d0b47c5b2f67a06b4102b9a3d821&state=bU%2FBSixBDPyVouHddn2zyrv0iij%2Bgse5hJmMHbc7Wbozisj%2Bu8wMCC7vlCKVqkp9heQlhxjuzw%2B9Ai%2BJ8UzO9Sw5UwXpiKcsAyObnXgEOZiGBPPEFZNVNCsMl8IQRZPMOnAE%2BWKXqTn8ytPNTusymZ0owWaHTRBvKDZ72q2pNI6VW%2BMRS5AoaDPU11nGHVpmPn%2Fi3WTgm17v%2Fy7%2Fh10YWgsxnPG1XJNKIRfT%2FTjXFUTcteNvSqlwRMsy8l70ihTnTbgfbFaPEJ1ExfnY66XXxxN%2FTpUKtx%2BDLXmqVjYEeCVtmZwjDv%2B69w90x41oA2WOuO26Pzisu0uvy3D7j7a71h1%2B6S5r%2FbelfdgFT1w4xJDlNXm4fAM%3D&srcPrefix=%2Fen-US%2Fdocs%2FWeb%2FCSS%2FGuides%2FAnimations%2FUsing%2F
+                - generic [ref=e473]:
+                  - generic: Play
+            - iframe [ref=e475]:
+              - paragraph [ref=f85e2]: "The Caterpillar and Alice looked at each other for some time in silence: at last the Caterpillar took the hookah out of its mouth, and addressed her in a languid, sleepy voice."
+        - region "Making the animation move back and forth" [ref=e476]:
+          - heading "Making the animation move back and forth" [level=3] [ref=e477]:
+            - link "Making the animation move back and forth" [ref=e478] [cursor=pointer]:
+              - /url: "#making_the_animation_move_back_and_forth"
+          - paragraph [ref=e479]:
+            - text: That made it repeat, but it's very odd having it jump back to the start each time it begins animating. What we really want is for it to move back and forth across the screen. That's easily accomplished by setting
+            - link "animation-direction" [ref=e480] [cursor=pointer]:
+              - /url: /en-US/docs/Web/CSS/Reference/Properties/animation-direction
+              - code [ref=e481]: animation-direction
+            - text: to
+            - code [ref=e482]: alternate
+            - text: ":"
+          - generic [ref=e484]:
+            - generic [ref=e485]:
+              - generic [ref=e486]: css
+              - button "Copy" [ref=e489] [cursor=pointer]:
+                - generic [ref=e490]:
+                  - generic: Copy
+              - generic "Run example in MDN Playground (opens in new tab)" [ref=e491]:
+                - link "Play" [ref=e492] [cursor=pointer]:
+                  - /url: https://developer.mozilla.org/en-US/play?uuid=a1b4c4c4d98b1854c8ff500e806ca4c323c21e45&state=bVDNahtBDH6Vj4Hc7GbdksskhJS%2BQo6%2BiB1tRvWMZGa0DiH43cvuQiEmJwl9v%2BgzZK8lxPB0fj4q8JoZf8i5naUUaiBN%2BF1kZBSzEyeQg2nMMM%2FcMFlDt8pwqQxRdCmsI0eQL3aFusNvPN3stB6z2YkybHbYBPGOarPn3ZpKKTXunROWIFHQZqhvs6QdemE%2Bf%2BBiMvKPoz7dL%2F3DLoy9hxjO%2BFzYpFLJxXSf5rYuEb%2F641dIqXJEL5J4L3oDivMm3I82q0eITqLifMNL0njcAqg4N6WVcj3qy4k%2FpkaV%2B%2F%2BMrdzUrG4b4I20F3KOODwMl3cMjxvQRyoc8XMY7nBYb9ejLsPtG%2B1wqzt80V3XD%2F1dHhR2wTNXDjEUecserv8A&srcPrefix=%2Fen-US%2Fdocs%2FWeb%2FCSS%2FGuides%2FAnimations%2FUsing%2F
+                  - generic [ref=e493]:
+                    - generic: Play
+            - code [ref=e495]: "p { animation-duration: 3s; animation-name: slide-in; animation-iteration-count: infinite; animation-direction: alternate; }"
+          - generic [ref=e497]:
+            - generic "Run example in MDN Playground (opens in new tab)" [ref=e499]:
+              - link "Play" [ref=e500] [cursor=pointer]:
+                - /url: https://developer.mozilla.org/en-US/play?uuid=a1b4c4c4d98b1854c8ff500e806ca4c323c21e45&state=bVDNahtBDH6Vj4Hc7GbdksskhJS%2BQo6%2BiB1tRvWMZGa0DiH43cvuQiEmJwl9v%2BgzZK8lxPB0fj4q8JoZf8i5naUUaiBN%2BF1kZBSzEyeQg2nMMM%2FcMFlDt8pwqQxRdCmsI0eQL3aFusNvPN3stB6z2YkybHbYBPGOarPn3ZpKKTXunROWIFHQZqhvs6QdemE%2Bf%2BBiMvKPoz7dL%2F3DLoy9hxjO%2BFzYpFLJxXSf5rYuEb%2F641dIqXJEL5J4L3oDivMm3I82q0eITqLifMNL0njcAqg4N6WVcj3qy4k%2FpkaV%2B%2F%2BMrdzUrG4b4I20F3KOODwMl3cMjxvQRyoc8XMY7nBYb9ejLsPtG%2B1wqzt80V3XD%2F1dHhR2wTNXDjEUecserv8A&srcPrefix=%2Fen-US%2Fdocs%2FWeb%2FCSS%2FGuides%2FAnimations%2FUsing%2F
+                - generic [ref=e501]:
+                  - generic: Play
+            - iframe [ref=e503]:
+              - paragraph [ref=f86e2]: "The Caterpillar and Alice looked at each other for some time in silence: at last the Caterpillar took the hookah out of its mouth, and addressed her in a languid, sleepy voice."
+        - region "Using animation events" [ref=e504]:
+          - heading "Using animation events" [level=3] [ref=e505]:
+            - link "Using animation events" [ref=e506] [cursor=pointer]:
+              - /url: "#using_animation_events"
+          - paragraph [ref=e507]:
+            - text: You can get additional control over animations — as well as useful information about them — by making use of animation events. These events, represented by the
+            - link "AnimationEvent" [ref=e508] [cursor=pointer]:
+              - /url: /en-US/docs/Web/API/AnimationEvent
+              - code [ref=e509]: AnimationEvent
+            - text: object, can be used to detect when animations start, finish, and begin a new iteration. Each event includes the time at which it occurred as well as the name of the animation that triggered the event.
+          - paragraph [ref=e510]: We'll modify the sliding text example to output some information about each animation event when it occurs, so we can get a look at how they work.
+          - paragraph [ref=e511]:
+            - text: We've included the same keyframe animation as the previous example. This animation will last 3 seconds, be called "slide-in", repeat 3 times, and travel in an alternate direction each time. In the
+            - link "@keyframes" [ref=e512] [cursor=pointer]:
+              - /url: /en-US/docs/Web/CSS/Reference/At-rules/@keyframes
+              - code [ref=e513]: "@keyframes"
+            - text: ", the scale and translation are manipulated along the x-axis to make the element slide across the screen."
+          - generic [ref=e515]:
+            - generic [ref=e516]:
+              - generic [ref=e517]: css
+              - button "Copy" [ref=e520] [cursor=pointer]:
+                - generic [ref=e521]:
+                  - generic: Copy
+              - generic "Run example in MDN Playground (opens in new tab)" [ref=e522]:
+                - link "Play" [ref=e523] [cursor=pointer]:
+                  - /url: https://developer.mozilla.org/en-US/play?uuid=63b8b58383fbcc17ec2b608c297179bef2b351df&state=rVRNa9wwEP0rg2hhF%2FazoRfbWUpDoIGSSwK96JCpNBur0YexxnGWsP%2B9yNrNJpsEQunFHmb05tnvzehR1OysKERVL8HoUyl6ZFVPHUmx%2BpVCcAQu3FM1r5cr6atmJT3AdW0i0AO6xhLEOvQR6tADB%2BgiwdnVFaA3DtkEH1PW4R1BpYKm1Y9lNR%2BC1IcsOfIcBwpA1YYYgWuCBm9pJn01bw6kFx5Qa5OaTqAnCB03HUMMjoDpgYFQ1cDGEaA%2FfADQPXmGtWkpTiAG2IQutVPoIRIlOgfGA6p0%2BkDa2axIppFiVc07u5JeTISKURRiFq3RNDUeHlO%2FJ8Kp7tohKOAkli9LHh0VsAceFQ1TBk5V6DwXcHJ0QJuWVO6Mlqn1yFRKv5X%2B2x1t1i06ivDyq9ZtcDkC4BZ9tMhUwPLr4r6HRZkLUaGlAr4sFp9hOeS20qcXhzewi2Pc8gVuO0j0Jymkgo%2B8NxlOQQfVpXB2S3yes983F3r0fOzGpfQ7xAy1Pk%2Fm%2FTSRyVM7kuIwV4wtSzEBuyt%2BFEhe%2FwvsyZxj8AGuLMZ4iY7gFKTY%2ByBFKf2684NxT8jRMJXjLG%2FWyT5XSLWETDuRRlJYk6UBiL1Je5kbzHjT0HhvksJI8FqjIlcB7CztyVnwnP24uUoHSBdAFptIOm%2BPifDpMbff5a%2BNo%2B1Nue%2FzuyW8K9%2FmHOR9n%2FHc6%2F%2FL98yX91kvqQcbQgMx%2FzAgZ%2BqP8m7T4%2F3x3d8R4xk2DXl9VhurR3Zc7tchXTIkCmHNbc1i%2Bxc%3D&srcPrefix=%2Fen-US%2Fdocs%2FWeb%2FCSS%2FGuides%2FAnimations%2FUsing%2F
+                  - generic [ref=e524]:
+                    - generic: Play
+            - code [ref=e526]: ".slide-in { animation-duration: 3s; animation-name: slide-in; animation-iteration-count: 3; animation-direction: alternate; }"
+          - heading "Adding the animation event listeners" [level=4] [ref=e527]
+          - paragraph [ref=e528]: We'll use JavaScript code to listen for all three possible animation events. This code configures our event listeners; we call it when the document is first loaded in order to set things up.
+          - generic [ref=e530]:
+            - generic [ref=e531]:
+              - generic [ref=e532]: js
+              - button "Copy" [ref=e535] [cursor=pointer]:
+                - generic [ref=e536]:
+                  - generic: Copy
+              - generic "Run example in MDN Playground (opens in new tab)" [ref=e537]:
+                - link "Play" [ref=e538] [cursor=pointer]:
+                  - /url: https://developer.mozilla.org/en-US/play?uuid=63b8b58383fbcc17ec2b608c297179bef2b351df&state=rVRNa9wwEP0rg2hhF%2FazoRfbWUpDoIGSSwK96JCpNBur0YexxnGWsP%2B9yNrNJpsEQunFHmb05tnvzehR1OysKERVL8HoUyl6ZFVPHUmx%2BpVCcAQu3FM1r5cr6atmJT3AdW0i0AO6xhLEOvQR6tADB%2BgiwdnVFaA3DtkEH1PW4R1BpYKm1Y9lNR%2BC1IcsOfIcBwpA1YYYgWuCBm9pJn01bw6kFx5Qa5OaTqAnCB03HUMMjoDpgYFQ1cDGEaA%2FfADQPXmGtWkpTiAG2IQutVPoIRIlOgfGA6p0%2BkDa2axIppFiVc07u5JeTISKURRiFq3RNDUeHlO%2FJ8Kp7tohKOAkli9LHh0VsAceFQ1TBk5V6DwXcHJ0QJuWVO6Mlqn1yFRKv5X%2B2x1t1i06ivDyq9ZtcDkC4BZ9tMhUwPLr4r6HRZkLUaGlAr4sFp9hOeS20qcXhzewi2Pc8gVuO0j0Jymkgo%2B8NxlOQQfVpXB2S3yes983F3r0fOzGpfQ7xAy1Pk%2Fm%2FTSRyVM7kuIwV4wtSzEBuyt%2BFEhe%2FwvsyZxj8AGuLMZ4iY7gFKTY%2ByBFKf2684NxT8jRMJXjLG%2FWyT5XSLWETDuRRlJYk6UBiL1Je5kbzHjT0HhvksJI8FqjIlcB7CztyVnwnP24uUoHSBdAFptIOm%2BPifDpMbff5a%2BNo%2B1Nue%2FzuyW8K9%2FmHOR9n%2FHc6%2F%2FL98yX91kvqQcbQgMx%2FzAgZ%2BqP8m7T4%2F3x3d8R4xk2DXl9VhurR3Zc7tchXTIkCmHNbc1i%2Bxc%3D&srcPrefix=%2Fen-US%2Fdocs%2FWeb%2FCSS%2FGuides%2FAnimations%2FUsing%2F
+                  - generic [ref=e539]:
+                    - generic: Play
+            - code [ref=e541]: const element = document.getElementById("watch-me"); element.addEventListener("animationstart", listener); element.addEventListener("animationend", listener); element.addEventListener("animationiteration", listener); element.className = "slide-in";
+          - paragraph [ref=e542]:
+            - text: This is pretty standard code; you can get details on how it works in the documentation for
+            - link "eventTarget.addEventListener()" [ref=e543] [cursor=pointer]:
+              - /url: /en-US/docs/Web/API/EventTarget/addEventListener
+              - code [ref=e544]: eventTarget.addEventListener()
+            - text: . The last thing this code does is set the
+            - code [ref=e545]: class
+            - text: on the element we'll be animating to "slide-in"; we do this to start the animation.
+          - paragraph [ref=e546]:
+            - text: Why? Because the
+            - code [ref=e547]: animationstart
+            - text: event fires as soon as the animation starts, and in our case, that happens before our code runs. So we'll start the animation ourselves by setting the class of the element to the style that gets animated after the fact.
+          - heading "Receiving the events" [level=4] [ref=e548]
+          - paragraph [ref=e549]:
+            - text: The events get delivered to the
+            - code [ref=e550]: listener()
+            - text: function, which is shown below.
+          - generic [ref=e552]:
+            - generic [ref=e553]:
+              - generic [ref=e554]: js
+              - button "Copy" [ref=e557] [cursor=pointer]:
+                - generic [ref=e558]:
+                  - generic: Copy
+              - generic "Run example in MDN Playground (opens in new tab)" [ref=e559]:
+                - link "Play" [ref=e560] [cursor=pointer]:
+                  - /url: https://developer.mozilla.org/en-US/play?uuid=63b8b58383fbcc17ec2b608c297179bef2b351df&state=rVRNa9wwEP0rg2hhF%2FazoRfbWUpDoIGSSwK96JCpNBur0YexxnGWsP%2B9yNrNJpsEQunFHmb05tnvzehR1OysKERVL8HoUyl6ZFVPHUmx%2BpVCcAQu3FM1r5cr6atmJT3AdW0i0AO6xhLEOvQR6tADB%2BgiwdnVFaA3DtkEH1PW4R1BpYKm1Y9lNR%2BC1IcsOfIcBwpA1YYYgWuCBm9pJn01bw6kFx5Qa5OaTqAnCB03HUMMjoDpgYFQ1cDGEaA%2FfADQPXmGtWkpTiAG2IQutVPoIRIlOgfGA6p0%2BkDa2axIppFiVc07u5JeTISKURRiFq3RNDUeHlO%2FJ8Kp7tohKOAkli9LHh0VsAceFQ1TBk5V6DwXcHJ0QJuWVO6Mlqn1yFRKv5X%2B2x1t1i06ivDyq9ZtcDkC4BZ9tMhUwPLr4r6HRZkLUaGlAr4sFp9hOeS20qcXhzewi2Pc8gVuO0j0Jymkgo%2B8NxlOQQfVpXB2S3yes983F3r0fOzGpfQ7xAy1Pk%2Fm%2FTSRyVM7kuIwV4wtSzEBuyt%2BFEhe%2FwvsyZxj8AGuLMZ4iY7gFKTY%2ByBFKf2684NxT8jRMJXjLG%2FWyT5XSLWETDuRRlJYk6UBiL1Je5kbzHjT0HhvksJI8FqjIlcB7CztyVnwnP24uUoHSBdAFptIOm%2BPifDpMbff5a%2BNo%2B1Nue%2FzuyW8K9%2FmHOR9n%2FHc6%2F%2FL98yX91kvqQcbQgMx%2FzAgZ%2BqP8m7T4%2F3x3d8R4xk2DXl9VhurR3Zc7tchXTIkCmHNbc1i%2Bxc%3D&srcPrefix=%2Fen-US%2Fdocs%2FWeb%2FCSS%2FGuides%2FAnimations%2FUsing%2F
+                  - generic [ref=e561]:
+                    - generic: Play
+            - code [ref=e563]:
+              - text: "function listener(event) { const l = document.createElement(\"li\"); switch (event.type) { case \"animationstart\": l.textContent ="
+              - generic [ref=e564]:
+                - text: "`Started: elapsed time is"
+                - generic [ref=e565]: "${event.elapsedTime}"
+                - text: "`"
+              - text: "; break; case \"animationend\": l.textContent ="
+              - generic [ref=e566]:
+                - text: "`Ended: elapsed time is"
+                - generic [ref=e567]: "${event.elapsedTime}"
+                - text: "`"
+              - text: "; break; case \"animationiteration\": l.textContent ="
+              - generic [ref=e568]:
+                - text: "`New loop started at time"
+                - generic [ref=e569]: "${event.elapsedTime}"
+                - text: "`"
+              - text: "; break; } document.getElementById(\"output\").appendChild(l); }"
+          - paragraph [ref=e570]:
+            - text: This code, too, is very simple. It looks at the
+            - link "event.type" [ref=e571] [cursor=pointer]:
+              - /url: /en-US/docs/Web/API/Event/type
+              - code [ref=e572]: event.type
+            - text: to determine which kind of animation event occurred, then adds an appropriate note to the
+            - link "<ul>" [ref=e573] [cursor=pointer]:
+              - /url: /en-US/docs/Web/HTML/Reference/Elements/ul
+              - code [ref=e574]: <ul>
+            - text: (unordered list) we're using to log these events.
+          - paragraph [ref=e575]: "The output, when all is said and done, looks something like this:"
+          - list [ref=e576]:
+            - listitem [ref=e577]: "Started: elapsed time is 0"
+            - listitem [ref=e578]: New loop started at time 3.01200008392334
+            - listitem [ref=e579]: New loop started at time 6.00600004196167
+            - listitem [ref=e580]: "Ended: elapsed time is 9.234000205993652"
+          - paragraph [ref=e581]:
+            - text: Note that the times are very close to, but not exactly, those expected given the timing established when the animation was configured. Note also that after the final iteration of the animation, the
+            - code [ref=e582]: animationiteration
+            - text: event isn't sent; instead, the
+            - code [ref=e583]: animationend
+            - text: event is sent.
+          - paragraph [ref=e584]: "Just for the sake of completeness, here's the HTML that displays the page content, including the list into which the script inserts information about the received events:"
+          - generic [ref=e586]:
+            - generic [ref=e587]:
+              - generic [ref=e588]: html
+              - button "Copy" [ref=e591] [cursor=pointer]:
+                - generic [ref=e592]:
+                  - generic: Copy
+              - generic "Run example in MDN Playground (opens in new tab)" [ref=e593]:
+                - link "Play" [ref=e594] [cursor=pointer]:
+                  - /url: https://developer.mozilla.org/en-US/play?uuid=63b8b58383fbcc17ec2b608c297179bef2b351df&state=rVRNa9wwEP0rg2hhF%2FazoRfbWUpDoIGSSwK96JCpNBur0YexxnGWsP%2B9yNrNJpsEQunFHmb05tnvzehR1OysKERVL8HoUyl6ZFVPHUmx%2BpVCcAQu3FM1r5cr6atmJT3AdW0i0AO6xhLEOvQR6tADB%2BgiwdnVFaA3DtkEH1PW4R1BpYKm1Y9lNR%2BC1IcsOfIcBwpA1YYYgWuCBm9pJn01bw6kFx5Qa5OaTqAnCB03HUMMjoDpgYFQ1cDGEaA%2FfADQPXmGtWkpTiAG2IQutVPoIRIlOgfGA6p0%2BkDa2axIppFiVc07u5JeTISKURRiFq3RNDUeHlO%2FJ8Kp7tohKOAkli9LHh0VsAceFQ1TBk5V6DwXcHJ0QJuWVO6Mlqn1yFRKv5X%2B2x1t1i06ivDyq9ZtcDkC4BZ9tMhUwPLr4r6HRZkLUaGlAr4sFp9hOeS20qcXhzewi2Pc8gVuO0j0Jymkgo%2B8NxlOQQfVpXB2S3yes983F3r0fOzGpfQ7xAy1Pk%2Fm%2FTSRyVM7kuIwV4wtSzEBuyt%2BFEhe%2FwvsyZxj8AGuLMZ4iY7gFKTY%2ByBFKf2684NxT8jRMJXjLG%2FWyT5XSLWETDuRRlJYk6UBiL1Je5kbzHjT0HhvksJI8FqjIlcB7CztyVnwnP24uUoHSBdAFptIOm%2BPifDpMbff5a%2BNo%2B1Nue%2FzuyW8K9%2FmHOR9n%2FHc6%2F%2FL98yX91kvqQcbQgMx%2FzAgZ%2BqP8m7T4%2F3x3d8R4xk2DXl9VhurR3Zc7tchXTIkCmHNbc1i%2Bxc%3D&srcPrefix=%2Fen-US%2Fdocs%2FWeb%2FCSS%2FGuides%2FAnimations%2FUsing%2F
+                  - generic [ref=e595]:
+                    - generic: Play
+            - code [ref=e597]:
+              - generic [ref=e598]:
+                - generic [ref=e599]: <h1
+                - text: id
+                - generic [ref=e600]: ="watch-me"
+                - text: ">"
+              - text: Watch me move
+              - generic [ref=e601]:
+                - generic [ref=e602]: </h1
+                - text: ">"
+              - generic [ref=e603]:
+                - generic [ref=e604]: <p
+                - text: ">"
+              - text: This example shows how to use CSS animations to make
+              - generic [ref=e605]:
+                - generic [ref=e606]: <code
+                - text: ">"
+              - text: H1
+              - generic [ref=e607]:
+                - generic [ref=e608]: </code
+                - text: ">"
+              - text: elements move across the page.
+              - generic [ref=e609]:
+                - generic [ref=e610]: </p
+                - text: ">"
+              - generic [ref=e611]:
+                - generic [ref=e612]: <p
+                - text: ">"
+              - text: In addition, we output some text each time an animation event fires, so you can see them in action.
+              - generic [ref=e613]:
+                - generic [ref=e614]: </p
+                - text: ">"
+              - generic [ref=e615]:
+                - generic [ref=e616]: <ul
+                - text: id
+                - generic [ref=e617]: ="output"
+                - text: ">"
+              - generic [ref=e618]:
+                - generic [ref=e619]: </ul
+                - text: ">"
+          - paragraph [ref=e620]: And here's the live output.
+          - paragraph [ref=e622]:
+            - strong [ref=e623]: "Note:"
+            - text: Reload page to see the animation.
+          - generic [ref=e625]:
+            - generic "Run example in MDN Playground (opens in new tab)" [ref=e627]:
+              - link "Play" [ref=e628] [cursor=pointer]:
+                - /url: https://developer.mozilla.org/en-US/play?uuid=63b8b58383fbcc17ec2b608c297179bef2b351df&state=rVRNa9wwEP0rg2hhF%2FazoRfbWUpDoIGSSwK96JCpNBur0YexxnGWsP%2B9yNrNJpsEQunFHmb05tnvzehR1OysKERVL8HoUyl6ZFVPHUmx%2BpVCcAQu3FM1r5cr6atmJT3AdW0i0AO6xhLEOvQR6tADB%2BgiwdnVFaA3DtkEH1PW4R1BpYKm1Y9lNR%2BC1IcsOfIcBwpA1YYYgWuCBm9pJn01bw6kFx5Qa5OaTqAnCB03HUMMjoDpgYFQ1cDGEaA%2FfADQPXmGtWkpTiAG2IQutVPoIRIlOgfGA6p0%2BkDa2axIppFiVc07u5JeTISKURRiFq3RNDUeHlO%2FJ8Kp7tohKOAkli9LHh0VsAceFQ1TBk5V6DwXcHJ0QJuWVO6Mlqn1yFRKv5X%2B2x1t1i06ivDyq9ZtcDkC4BZ9tMhUwPLr4r6HRZkLUaGlAr4sFp9hOeS20qcXhzewi2Pc8gVuO0j0Jymkgo%2B8NxlOQQfVpXB2S3yes983F3r0fOzGpfQ7xAy1Pk%2Fm%2FTSRyVM7kuIwV4wtSzEBuyt%2BFEhe%2FwvsyZxj8AGuLMZ4iY7gFKTY%2ByBFKf2684NxT8jRMJXjLG%2FWyT5XSLWETDuRRlJYk6UBiL1Je5kbzHjT0HhvksJI8FqjIlcB7CztyVnwnP24uUoHSBdAFptIOm%2BPifDpMbff5a%2BNo%2B1Nue%2FzuyW8K9%2FmHOR9n%2FHc6%2F%2FL98yX91kvqQcbQgMx%2FzAgZ%2BqP8m7T4%2F3x3d8R4xk2DXl9VhurR3Zc7tchXTIkCmHNbc1i%2Bxc%3D&srcPrefix=%2Fen-US%2Fdocs%2FWeb%2FCSS%2FGuides%2FAnimations%2FUsing%2F
+                - generic [ref=e629]:
+                  - generic: Play
+            - iframe [ref=e631]:
+              - generic [active] [ref=f87e1]:
+                - heading "Watch me move" [level=1] [ref=f87e2]
+                - paragraph [ref=f87e3]:
+                  - text: This example shows how to use CSS animations to make
+                  - code [ref=f87e4]: H1
+                  - text: elements move across the page.
+                - paragraph [ref=f87e5]: In addition, we output some text each time an animation event fires, so you can see them in action.
+                - list
+        - region "Animating display and content-visibility" [ref=e632]:
+          - heading "Animating display and content-visibility" [level=3] [ref=e633]:
+            - link "Animating display and content-visibility" [ref=e634] [cursor=pointer]:
+              - /url: "#animating_display_and_content-visibility"
+          - paragraph [ref=e635]:
+            - text: This example demonstrates how
+            - link "display" [ref=e636] [cursor=pointer]:
+              - /url: /en-US/docs/Web/CSS/Reference/Properties/display
+              - code [ref=e637]: display
+            - text: and
+            - link "content-visibility" [ref=e638] [cursor=pointer]:
+              - /url: /en-US/docs/Web/CSS/Reference/Properties/content-visibility
+              - code [ref=e639]: content-visibility
+            - text: can be animated. This behavior is useful for creating entry/exit animations where you want to for example remove a container from the DOM with
+            - code [ref=e640]: "display: none"
+            - text: ", but have it fade out smoothly with"
+            - link "opacity" [ref=e641] [cursor=pointer]:
+              - /url: /en-US/docs/Web/CSS/Reference/Properties/opacity
+              - code [ref=e642]: opacity
+            - text: rather than disappearing immediately.
+          - paragraph [ref=e643]:
+            - text: Supporting browsers animate
+            - code [ref=e644]: display
+            - text: and
+            - code [ref=e645]: content-visibility
+            - text: with a variation on the
+            - link "discrete animation type" [ref=e646] [cursor=pointer]:
+              - /url: /en-US/docs/Web/CSS/Guides/Animations/Animatable_properties#discrete
+            - text: . This generally means that properties will flip between two values 50% of the way through animating between the two.
+          - paragraph [ref=e647]:
+            - text: There is an exception, however, which is when animating to/from
+            - code [ref=e648]: "display: none"
+            - text: or
+            - code [ref=e649]: "content-visibility: hidden"
+            - text: to a visible value. In this case, the browser will flip between the two values so that the animated content is shown for the entire animation duration.
+          - paragraph [ref=e650]: "So for example:"
+          - list [ref=e651]:
+            - listitem [ref=e652]:
+              - text: When animating
+              - code [ref=e653]: display
+              - text: from
+              - code [ref=e654]: none
+              - text: to
+              - code [ref=e655]: block
+              - text: (or another visible
+              - code [ref=e656]: display
+              - text: value), the value will flip to
+              - code [ref=e657]: block
+              - text: at
+              - code [ref=e658]: 0%
+              - text: of the animation duration so it is visible throughout.
+            - listitem [ref=e659]:
+              - text: When animating
+              - code [ref=e660]: display
+              - text: from
+              - code [ref=e661]: block
+              - text: (or another visible
+              - code [ref=e662]: display
+              - text: value) to
+              - code [ref=e663]: none
+              - text: ", the value will flip to"
+              - code [ref=e664]: none
+              - text: at
+              - code [ref=e665]: 100%
+              - text: of the animation duration so it is visible throughout.
+          - heading "HTML" [level=4] [ref=e666]
+          - paragraph [ref=e667]:
+            - text: The HTML contains two
+            - link "<p>" [ref=e668] [cursor=pointer]:
+              - /url: /en-US/docs/Web/HTML/Reference/Elements/p
+              - code [ref=e669]: <p>
+            - text: elements with a
+            - link "<div>" [ref=e670] [cursor=pointer]:
+              - /url: /en-US/docs/Web/HTML/Reference/Elements/div
+              - code [ref=e671]: <div>
+            - text: in between that we will animate from
+            - code [ref=e672]: display
+            - code [ref=e673]: none
+            - text: to
+            - code [ref=e674]: block
+            - text: .
+          - generic [ref=e676]:
+            - generic [ref=e677]:
+              - generic [ref=e678]: html
+              - button "Copy" [ref=e681] [cursor=pointer]:
+                - generic [ref=e682]:
+                  - generic: Copy
+              - generic "Run example in MDN Playground (opens in new tab)" [ref=e683]:
+                - link "Play" [ref=e684] [cursor=pointer]:
+                  - /url: https://developer.mozilla.org/en-US/play?uuid=87c1218abb14d519405658c96cfa4a1b7512fac2&state=lVRdj9MwEPwrq0iceqiXtoAApe0BgpNA4uMB3ggPbryNTZ11sJ3kwqn%2FHdlJ2l57x8FTFHtmdnZ25ZtIuEJFSbQoL1MCeKtktgFGbSPQIGgCJxBsZhAJtIHSoLX%2BHjbYgtPgdJ4r9ChPX2Sa4%2BWZcnMu67PczReTcAIrdI2XEJJzJGDEwQrdSMrjlBYTXzylBZd1cPFNSAvSArtfEBUWSA6cYA4YyYI5tEOZvRUubalYmwBpwjnokmXStQlMBx1G%2FA70SulscwCf9fAYPiNzYxCVeOV9d4ZT6tPb%2BSbtBBoomWG5YaXwSfl%2BO7t3WRv8SN%2BEpNzLsbJUEnlIy2Cha%2BTDRNhK13iaDux8fliDJtWCdHbfX9%2FPUKthfTHIBKMc%2BRikg0ZXigNTDWstOLZBqMpuC0qWIciQrv9%2F9%2BXTbnjROMqsjZKwTnDjIQJlLlwCs%2Bm0FvOUtj4oLuvudq3JXVj5GxOYxc8NFnN%2FWjLOJeUJPJmW1%2BFkpQ1Hk8DT8hqsVtInwQ9uLgzjsrIHjEZyJxJ49nI42A89%2FN7Ovfc1eQxvwhJJTZApZi1aeDzpLcdrxvFCUmf9aEvCpAZuAgN0Gr%2BwgMyGn7U2DTPcHsTQaerKdaLHCv5iL%2BH%2FjjVuWd5guzas2Jl%2BvT%2B45X36qPuepHKaC0AoA36Ap6zZMWsfxrY3eOxh1%2Bt%2Fy93r4q%2Fet2Etf%2FqtzDRZB1zWVwoLWALXWeWfj%2FhXhab9igozp80ojbis0%2Bh8nlLH8Nv8ECUxWruOlNJAiBnnVzWS%2ByitQ0IPzPzbmkbj8BK8lxw9ZSd7B2GDLdcNHVNSWleUhbEPx6PzLhq5hlHfZRy22Kt9n%2F6A5XIJadSvQhqdD0megOPuoRkdguf3YRnnA1BXbkBuAZXFf61wQHygxN7LbrhOYIFREin%2F1ETbPw%3D%3D&srcPrefix=%2Fen-US%2Fdocs%2FWeb%2FCSS%2FGuides%2FAnimations%2FUsing%2F
+                  - generic [ref=e685]:
+                    - generic: Play
+            - code [ref=e687]:
+              - generic [ref=e688]:
+                - generic [ref=e689]: <p
+                - text: ">"
+              - text: Click anywhere on the screen or press any key to toggle the
+              - generic [ref=e690]:
+                - generic [ref=e691]: <code
+                - text: ">"
+              - text: "&lt;div&gt;"
+              - generic [ref=e692]:
+                - generic [ref=e693]: </code
+                - text: ">"
+              - text: between hidden and showing.
+              - generic [ref=e694]:
+                - generic [ref=e695]: </p
+                - text: ">"
+              - generic [ref=e696]:
+                - generic [ref=e697]: <div
+                - text: ">"
+              - text: This is a
+              - generic [ref=e698]:
+                - generic [ref=e699]: <code
+                - text: ">"
+              - text: "&lt;div&gt;"
+              - generic [ref=e700]:
+                - generic [ref=e701]: </code
+                - text: ">"
+              - text: element that animates between
+              - generic [ref=e702]:
+                - generic [ref=e703]: <code
+                - text: ">"
+              - text: "display: none; opacity: 0"
+              - generic [ref=e704]:
+                - generic [ref=e705]: </code
+                - text: ">"
+              - text: and
+              - generic [ref=e706]:
+                - generic [ref=e707]: <code
+                - text: ">"
+              - text: "display: block; opacity: 1"
+              - generic [ref=e708]:
+                - generic [ref=e709]: </code
+                - text: ">"
+              - text: . Neat, huh?
+              - generic [ref=e710]:
+                - generic [ref=e711]: </div
+                - text: ">"
+              - generic [ref=e712]:
+                - generic [ref=e713]: <p
+                - text: ">"
+              - text: This is another paragraph to show that
+              - generic [ref=e714]:
+                - generic [ref=e715]: <code
+                - text: ">"
+              - text: "display: none;"
+              - generic [ref=e716]:
+                - generic [ref=e717]: </code
+                - text: ">"
+              - text: is being applied and removed on the above
+              - generic [ref=e718]:
+                - generic [ref=e719]: <code
+                - text: ">"
+              - text: "&lt;div&gt;"
+              - generic [ref=e720]:
+                - generic [ref=e721]: </code
+                - text: ">"
+              - text: . If only its
+              - generic [ref=e722]:
+                - generic [ref=e723]: <code
+                - text: ">"
+              - text: opacity
+              - generic [ref=e724]:
+                - generic [ref=e725]: </code
+                - text: ">"
+              - text: was being changed, it would always take up the space in the DOM.
+              - generic [ref=e726]:
+                - generic [ref=e727]: </p
+                - text: ">"
+          - heading "CSS" [level=4] [ref=e728]
+          - generic [ref=e730]:
+            - generic [ref=e731]:
+              - generic [ref=e732]: css
+              - button "Copy" [ref=e735] [cursor=pointer]:
+                - generic [ref=e736]:
+                  - generic: Copy
+              - generic "Run example in MDN Playground (opens in new tab)" [ref=e737]:
+                - link "Play" [ref=e738] [cursor=pointer]:
+                  - /url: https://developer.mozilla.org/en-US/play?uuid=87c1218abb14d519405658c96cfa4a1b7512fac2&state=lVRdj9MwEPwrq0iceqiXtoAApe0BgpNA4uMB3ggPbryNTZ11sJ3kwqn%2FHdlJ2l57x8FTFHtmdnZ25ZtIuEJFSbQoL1MCeKtktgFGbSPQIGgCJxBsZhAJtIHSoLX%2BHjbYgtPgdJ4r9ChPX2Sa4%2BWZcnMu67PczReTcAIrdI2XEJJzJGDEwQrdSMrjlBYTXzylBZd1cPFNSAvSArtfEBUWSA6cYA4YyYI5tEOZvRUubalYmwBpwjnokmXStQlMBx1G%2FA70SulscwCf9fAYPiNzYxCVeOV9d4ZT6tPb%2BSbtBBoomWG5YaXwSfl%2BO7t3WRv8SN%2BEpNzLsbJUEnlIy2Cha%2BTDRNhK13iaDux8fliDJtWCdHbfX9%2FPUKthfTHIBKMc%2BRikg0ZXigNTDWstOLZBqMpuC0qWIciQrv9%2F9%2BXTbnjROMqsjZKwTnDjIQJlLlwCs%2Bm0FvOUtj4oLuvudq3JXVj5GxOYxc8NFnN%2FWjLOJeUJPJmW1%2BFkpQ1Hk8DT8hqsVtInwQ9uLgzjsrIHjEZyJxJ49nI42A89%2FN7Ovfc1eQxvwhJJTZApZi1aeDzpLcdrxvFCUmf9aEvCpAZuAgN0Gr%2BwgMyGn7U2DTPcHsTQaerKdaLHCv5iL%2BH%2FjjVuWd5guzas2Jl%2BvT%2B45X36qPuepHKaC0AoA36Ap6zZMWsfxrY3eOxh1%2Bt%2Fy93r4q%2Fet2Etf%2FqtzDRZB1zWVwoLWALXWeWfj%2FhXhab9igozp80ojbis0%2Bh8nlLH8Nv8ECUxWruOlNJAiBnnVzWS%2ByitQ0IPzPzbmkbj8BK8lxw9ZSd7B2GDLdcNHVNSWleUhbEPx6PzLhq5hlHfZRy22Kt9n%2F6A5XIJadSvQhqdD0megOPuoRkdguf3YRnnA1BXbkBuAZXFf61wQHygxN7LbrhOYIFREin%2F1ETbPw%3D%3D&srcPrefix=%2Fen-US%2Fdocs%2FWeb%2FCSS%2FGuides%2FAnimations%2FUsing%2F
+                  - generic [ref=e739]:
+                    - generic: Play
+            - code [ref=e741]:
+              - text: "html { height: 100vh; } div { font-size: 1.6rem; padding: 20px; border: 3px solid red; border-radius: 20px; width: 480px; opacity: 0; display: none; } /* Animation classes */ div.fade-in { display: block; animation: fade-in 0.7s ease-in forwards; } div.fade-out { animation: fade-out 0.7s ease-out forwards; } /* Animation keyframes */"
+              - generic [ref=e742]: "@keyframes fade-in"
+              - text: "{ 0% { opacity: 0; display: none; } 100% { opacity: 1; display: block; } }"
+              - generic [ref=e743]: "@keyframes fade-out"
+              - text: "{ 0% { opacity: 1; display: block; } 100% { opacity: 0; display: none; } }"
+          - paragraph [ref=e744]:
+            - text: Note the inclusion of the
+            - code [ref=e745]: display
+            - text: property in the keyframe animations.
+          - heading "JavaScript" [level=4] [ref=e746]
+          - paragraph [ref=e747]:
+            - text: Finally, we include a bit of JavaScript to set up event listeners to trigger the animations. Specifically, we add the
+            - code [ref=e748]: fade-in
+            - text: class to the
+            - code [ref=e749]: <div>
+            - text: when we want it to appear, and
+            - code [ref=e750]: fade-out
+            - text: when we want it to disappear.
+          - generic [ref=e752]:
+            - generic [ref=e753]:
+              - generic [ref=e754]: js
+              - button "Copy" [ref=e757] [cursor=pointer]:
+                - generic [ref=e758]:
+                  - generic: Copy
+              - generic "Run example in MDN Playground (opens in new tab)" [ref=e759]:
+                - link "Play" [ref=e760] [cursor=pointer]:
+                  - /url: https://developer.mozilla.org/en-US/play?uuid=87c1218abb14d519405658c96cfa4a1b7512fac2&state=lVRdj9MwEPwrq0iceqiXtoAApe0BgpNA4uMB3ggPbryNTZ11sJ3kwqn%2FHdlJ2l57x8FTFHtmdnZ25ZtIuEJFSbQoL1MCeKtktgFGbSPQIGgCJxBsZhAJtIHSoLX%2BHjbYgtPgdJ4r9ChPX2Sa4%2BWZcnMu67PczReTcAIrdI2XEJJzJGDEwQrdSMrjlBYTXzylBZd1cPFNSAvSArtfEBUWSA6cYA4YyYI5tEOZvRUubalYmwBpwjnokmXStQlMBx1G%2FA70SulscwCf9fAYPiNzYxCVeOV9d4ZT6tPb%2BSbtBBoomWG5YaXwSfl%2BO7t3WRv8SN%2BEpNzLsbJUEnlIy2Cha%2BTDRNhK13iaDux8fliDJtWCdHbfX9%2FPUKthfTHIBKMc%2BRikg0ZXigNTDWstOLZBqMpuC0qWIciQrv9%2F9%2BXTbnjROMqsjZKwTnDjIQJlLlwCs%2Bm0FvOUtj4oLuvudq3JXVj5GxOYxc8NFnN%2FWjLOJeUJPJmW1%2BFkpQ1Hk8DT8hqsVtInwQ9uLgzjsrIHjEZyJxJ49nI42A89%2FN7Ovfc1eQxvwhJJTZApZi1aeDzpLcdrxvFCUmf9aEvCpAZuAgN0Gr%2BwgMyGn7U2DTPcHsTQaerKdaLHCv5iL%2BH%2FjjVuWd5guzas2Jl%2BvT%2B45X36qPuepHKaC0AoA36Ap6zZMWsfxrY3eOxh1%2Bt%2Fy93r4q%2Fet2Etf%2FqtzDRZB1zWVwoLWALXWeWfj%2FhXhab9igozp80ojbis0%2Bh8nlLH8Nv8ECUxWruOlNJAiBnnVzWS%2ByitQ0IPzPzbmkbj8BK8lxw9ZSd7B2GDLdcNHVNSWleUhbEPx6PzLhq5hlHfZRy22Kt9n%2F6A5XIJadSvQhqdD0megOPuoRkdguf3YRnnA1BXbkBuAZXFf61wQHygxN7LbrhOYIFREin%2F1ETbPw%3D%3D&srcPrefix=%2Fen-US%2Fdocs%2FWeb%2FCSS%2FGuides%2FAnimations%2FUsing%2F
+                  - generic [ref=e761]:
+                    - generic: Play
+            - code [ref=e763]: "const divElem = document.querySelector(\"div\"); const htmlElem = document.querySelector(\":root\"); htmlElem.addEventListener(\"click\", showHide); document.addEventListener(\"keydown\", showHide); function showHide() { if (divElem.classList[0] === \"fade-in\") { divElem.classList.remove(\"fade-in\"); divElem.classList.add(\"fade-out\"); } else { divElem.classList.remove(\"fade-out\"); divElem.classList.add(\"fade-in\"); } }"
+          - heading "Result" [level=4] [ref=e764]
+          - paragraph [ref=e765]: "The code renders as follows:"
+          - generic [ref=e767]:
+            - generic "Run example in MDN Playground (opens in new tab)" [ref=e769]:
+              - link "Play" [ref=e770] [cursor=pointer]:
+                - /url: https://developer.mozilla.org/en-US/play?uuid=87c1218abb14d519405658c96cfa4a1b7512fac2&state=lVRdj9MwEPwrq0iceqiXtoAApe0BgpNA4uMB3ggPbryNTZ11sJ3kwqn%2FHdlJ2l57x8FTFHtmdnZ25ZtIuEJFSbQoL1MCeKtktgFGbSPQIGgCJxBsZhAJtIHSoLX%2BHjbYgtPgdJ4r9ChPX2Sa4%2BWZcnMu67PczReTcAIrdI2XEJJzJGDEwQrdSMrjlBYTXzylBZd1cPFNSAvSArtfEBUWSA6cYA4YyYI5tEOZvRUubalYmwBpwjnokmXStQlMBx1G%2FA70SulscwCf9fAYPiNzYxCVeOV9d4ZT6tPb%2BSbtBBoomWG5YaXwSfl%2BO7t3WRv8SN%2BEpNzLsbJUEnlIy2Cha%2BTDRNhK13iaDux8fliDJtWCdHbfX9%2FPUKthfTHIBKMc%2BRikg0ZXigNTDWstOLZBqMpuC0qWIciQrv9%2F9%2BXTbnjROMqsjZKwTnDjIQJlLlwCs%2Bm0FvOUtj4oLuvudq3JXVj5GxOYxc8NFnN%2FWjLOJeUJPJmW1%2BFkpQ1Hk8DT8hqsVtInwQ9uLgzjsrIHjEZyJxJ49nI42A89%2FN7Ovfc1eQxvwhJJTZApZi1aeDzpLcdrxvFCUmf9aEvCpAZuAgN0Gr%2BwgMyGn7U2DTPcHsTQaerKdaLHCv5iL%2BH%2FjjVuWd5guzas2Jl%2BvT%2B45X36qPuepHKaC0AoA36Ap6zZMWsfxrY3eOxh1%2Bt%2Fy93r4q%2Fet2Etf%2FqtzDRZB1zWVwoLWALXWeWfj%2FhXhab9igozp80ojbis0%2Bh8nlLH8Nv8ECUxWruOlNJAiBnnVzWS%2ByitQ0IPzPzbmkbj8BK8lxw9ZSd7B2GDLdcNHVNSWleUhbEPx6PzLhq5hlHfZRy22Kt9n%2F6A5XIJadSvQhqdD0megOPuoRkdguf3YRnnA1BXbkBuAZXFf61wQHygxN7LbrhOYIFREin%2F1ETbPw%3D%3D&srcPrefix=%2Fen-US%2Fdocs%2FWeb%2FCSS%2FGuides%2FAnimations%2FUsing%2F
+                - generic [ref=e771]:
+                  - generic: Play
+            - iframe [ref=e773]:
+              - generic [active] [ref=f88e1]:
+                - paragraph [ref=f88e2]:
+                  - text: Click anywhere on the screen or press any key to toggle the
+                  - code [ref=f88e3]: <div>
+                  - text: between hidden and showing.
+                - paragraph [ref=f88e4]:
+                  - text: This is another paragraph to show that
+                  - code [ref=f88e5]: "display: none;"
+                  - text: is being applied and removed on the above
+                  - code [ref=f88e6]: <div>
+                  - text: . If only its
+                  - code [ref=f88e7]: opacity
+                  - text: was being changed, it would always take up the space in the DOM.
+        - region "See also" [ref=e774]:
+          - heading "See also" [level=2] [ref=e775]:
+            - link "See also" [ref=e776] [cursor=pointer]:
+              - /url: "#see_also"
+          - list [ref=e777]:
+            - listitem [ref=e778]:
+              - link "CSS animations" [ref=e779] [cursor=pointer]:
+                - /url: /en-US/docs/Web/CSS/Guides/Animations
+              - text: module
+            - listitem [ref=e780]:
+              - link "AnimationEvent" [ref=e781] [cursor=pointer]:
+                - /url: /en-US/docs/Web/API/AnimationEvent
+                - code [ref=e782]: AnimationEvent
+            - listitem [ref=e783]:
+              - link "Using CSS transitions" [ref=e784] [cursor=pointer]:
+                - /url: /en-US/docs/Web/CSS/Guides/Transitions/Using
+            - listitem [ref=e785]:
+              - link "Using the Web Animations API" [ref=e786] [cursor=pointer]:
+                - /url: /en-US/docs/Web/API/Web_Animations_API/Using_the_Web_Animations_API
+        - region "Help improve MDN" [ref=e787]:
+          - generic [ref=e788]:
+            - img [ref=e789]
+            - heading "Help improve MDN" [level=2] [ref=e796]
+            - group [ref=e798]:
+              - generic [ref=e799]: Was this page helpful to you?
+              - generic [ref=e800]:
+                - button "Yes" [ref=e802] [cursor=pointer]:
+                  - img [ref=e804]
+                  - generic [ref=e806]:
+                    - generic: "Yes"
+                - button "No" [ref=e808] [cursor=pointer]:
+                  - img [ref=e810]
+                  - generic [ref=e812]:
+                    - generic: "No"
+            - link "Learn how to contribute" [ref=e813] [cursor=pointer]:
+              - /url: /en-US/docs/MDN/Community/Getting_started
+            - paragraph [ref=e814]:
+              - text: This page was last modified on
+              - time [ref=e815]: Dec 15, 2025
+              - text: by
+              - link "MDN contributors" [ref=e816] [cursor=pointer]:
+                - /url: /en-US/docs/Web/CSS/Guides/Animations/Using/contributors.txt
+              - text: .
+            - generic [ref=e817]:
+              - link "View this page on GitHub (external)" [ref=e818] [cursor=pointer]:
+                - /url: https://github.com/mdn/content/blob/main/files/en-us/web/css/guides/animations/using/index.md?plain=1
+              - text: •
+              - link "Report a problem with this content (external)" [ref=e819] [cursor=pointer]:
+                - /url: https://github.com/mdn/content/issues/new?template=page-report.yml&mdn-url=https%3A%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FWeb%2FCSS%2FGuides%2FAnimations%2FUsing&metadata=%3C%21--+Do+not+make+changes+below+this+line+--%3E%0A%3Cdetails%3E%0A%3Csummary%3EPage+report+details%3C%2Fsummary%3E%0A%0A*+Folder%3A+%60en-us%2Fweb%2Fcss%2Fguides%2Fanimations%2Fusing%60%0A*+MDN+URL%3A+https%3A%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FWeb%2FCSS%2FGuides%2FAnimations%2FUsing%0A*+GitHub+URL%3A+https%3A%2F%2Fgithub.com%2Fmdn%2Fcontent%2Fblob%2Fmain%2Ffiles%2Fen-us%2Fweb%2Fcss%2Fguides%2Fanimations%2Fusing%2Findex.md%0A*+Last+commit%3A+https%3A%2F%2Fgithub.com%2Fmdn%2Fcontent%2Fcommit%2F32bdfdb82cf91ce9942b694286dec62be2cc20aa%0A*+Document+last+modified%3A+2025-12-15T12%3A04%3A53.000Z%0A%0A%3C%2Fdetails%3E
+    - complementary [ref=e820]:
+      - navigation [ref=e821]:
+        - generic [ref=e823]:
+          - generic [ref=e825]: Filter sidebar
+          - textbox "Filter sidebar" [ref=e826]:
+            - /placeholder: Filter
+        - list [ref=e828]:
+          - listitem [ref=e829]:
+            - link "CSS" [ref=e830] [cursor=pointer]:
+              - /url: /en-US/docs/Web/CSS
+          - listitem [ref=e831]:
+            - link "Guides" [ref=e832] [cursor=pointer]:
+              - /url: /en-US/docs/Web/CSS/Guides
+          - listitem [ref=e833]:
+            - group [ref=e834]:
+              - generic "Modules" [ref=e835] [cursor=pointer]:
+                - generic [ref=e836]: Modules
+          - listitem [ref=e837]:
+            - group [ref=e838]:
+              - generic "Anchor positioning" [ref=e839] [cursor=pointer]:
+                - generic [ref=e840]: Anchor positioning
+          - listitem [ref=e841]:
+            - group [ref=e842]:
+              - generic "Animations" [ref=e843] [cursor=pointer]:
+                - generic [ref=e844]: Animations
+              - list [ref=e845]:
+                - listitem [ref=e846]:
+                  - link "Animatable properties" [ref=e847] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Guides/Animations/Animatable_properties
+                - listitem [ref=e848]:
+                  - emphasis [ref=e849]:
+                    - link "Using animations" [ref=e850] [cursor=pointer]:
+                      - /url: /en-US/docs/Web/CSS/Guides/Animations/Using
+          - listitem [ref=e851]:
+            - group [ref=e852]:
+              - generic "Backgrounds and borders" [ref=e853] [cursor=pointer]:
+                - generic [ref=e854]: Backgrounds and borders
+          - listitem [ref=e855]:
+            - group [ref=e856]:
+              - generic "Box alignment" [ref=e857] [cursor=pointer]:
+                - generic [ref=e858]: Box alignment
+          - listitem [ref=e859]:
+            - group [ref=e860]:
+              - generic "Box model" [ref=e861] [cursor=pointer]:
+                - generic [ref=e862]: Box model
+          - listitem [ref=e863]:
+            - group [ref=e864]:
+              - generic "Box sizing" [ref=e865] [cursor=pointer]:
+                - generic [ref=e866]: Box sizing
+          - listitem [ref=e867]:
+            - group [ref=e868]:
+              - generic "Cascade" [ref=e869] [cursor=pointer]:
+                - generic [ref=e870]: Cascade
+          - listitem [ref=e871]:
+            - group [ref=e872]:
+              - generic "Cascading variables" [ref=e873] [cursor=pointer]:
+                - generic [ref=e874]: Cascading variables
+          - listitem [ref=e875]:
+            - group [ref=e876]:
+              - generic "Colors" [ref=e877] [cursor=pointer]:
+                - generic [ref=e878]: Colors
+          - listitem [ref=e879]:
+            - group [ref=e880]:
+              - generic "Columns" [ref=e881] [cursor=pointer]:
+                - generic [ref=e882]: Columns
+          - listitem [ref=e883]:
+            - group [ref=e884]:
+              - generic "Conditional rules" [ref=e885] [cursor=pointer]:
+                - generic [ref=e886]: Conditional rules
+          - listitem [ref=e887]:
+            - group [ref=e888]:
+              - generic "Containment" [ref=e889] [cursor=pointer]:
+                - generic [ref=e890]: Containment
+          - listitem [ref=e891]:
+            - group [ref=e892]:
+              - generic "Counters" [ref=e893] [cursor=pointer]:
+                - generic [ref=e894]: Counters
+          - listitem [ref=e895]:
+            - group [ref=e896]:
+              - generic "CSSOM view" [ref=e897] [cursor=pointer]:
+                - generic [ref=e898]: CSSOM view
+          - listitem [ref=e899]:
+            - group [ref=e900]:
+              - generic "Custom functions and mixins" [ref=e901] [cursor=pointer]:
+                - generic [ref=e902]: Custom functions and mixins
+          - listitem [ref=e903]:
+            - group [ref=e904]:
+              - generic "Display" [ref=e905] [cursor=pointer]:
+                - generic [ref=e906]: Display
+          - listitem [ref=e907]:
+            - group [ref=e908]:
+              - generic "Environment variables" [ref=e909] [cursor=pointer]:
+                - generic [ref=e910]: Environment variables
+          - listitem [ref=e911]:
+            - group [ref=e912]:
+              - generic "Filter effects" [ref=e913] [cursor=pointer]:
+                - generic [ref=e914]: Filter effects
+          - listitem [ref=e915]:
+            - group [ref=e916]:
+              - generic "Flexbox" [ref=e917] [cursor=pointer]:
+                - generic [ref=e918]: Flexbox
+          - listitem [ref=e919]:
+            - group [ref=e920]:
+              - generic "Fonts" [ref=e921] [cursor=pointer]:
+                - generic [ref=e922]: Fonts
+          - listitem [ref=e923]:
+            - group [ref=e924]:
+              - generic "Grid" [ref=e925] [cursor=pointer]:
+                - generic [ref=e926]: Grid
+          - listitem [ref=e927]:
+            - group [ref=e928]:
+              - generic "Images" [ref=e929] [cursor=pointer]:
+                - generic [ref=e930]: Images
+          - listitem [ref=e931]:
+            - group [ref=e932]:
+              - generic "Lists" [ref=e933] [cursor=pointer]:
+                - generic [ref=e934]: Lists
+          - listitem [ref=e935]:
+            - group [ref=e936]:
+              - generic "Logical properties" [ref=e937] [cursor=pointer]:
+                - generic [ref=e938]: Logical properties
+          - listitem [ref=e939]:
+            - group [ref=e940]:
+              - generic "Masking" [ref=e941] [cursor=pointer]:
+                - generic [ref=e942]: Masking
+          - listitem [ref=e943]:
+            - group [ref=e944]:
+              - generic "Media queries" [ref=e945] [cursor=pointer]:
+                - generic [ref=e946]: Media queries
+          - listitem [ref=e947]:
+            - group [ref=e948]:
+              - generic "Nesting" [ref=e949] [cursor=pointer]:
+                - generic [ref=e950]: Nesting
+          - listitem [ref=e951]:
+            - group [ref=e952]:
+              - generic "Overflow" [ref=e953] [cursor=pointer]:
+                - generic [ref=e954]: Overflow
+          - listitem [ref=e955]:
+            - group [ref=e956]:
+              - generic "Positioning" [ref=e957] [cursor=pointer]:
+                - generic [ref=e958]: Positioning
+          - listitem [ref=e959]:
+            - group [ref=e960]:
+              - generic "Properties and Values API" [ref=e961] [cursor=pointer]:
+                - generic [ref=e962]: Properties and Values API
+          - listitem [ref=e963]:
+            - group [ref=e964]:
+              - generic "Scroll anchoring" [ref=e965] [cursor=pointer]:
+                - generic [ref=e966]: Scroll anchoring
+          - listitem [ref=e967]:
+            - group [ref=e968]:
+              - generic "Scroll-driven animations" [ref=e969] [cursor=pointer]:
+                - generic [ref=e970]: Scroll-driven animations
+          - listitem [ref=e971]:
+            - group [ref=e972]:
+              - generic "Scroll snap" [ref=e973] [cursor=pointer]:
+                - generic [ref=e974]: Scroll snap
+          - listitem [ref=e975]:
+            - group [ref=e976]:
+              - generic "Selectors" [ref=e977] [cursor=pointer]:
+                - generic [ref=e978]: Selectors
+          - listitem [ref=e979]:
+            - group [ref=e980]:
+              - generic "Shapes" [ref=e981] [cursor=pointer]:
+                - generic [ref=e982]: Shapes
+          - listitem [ref=e983]:
+            - group [ref=e984]:
+              - generic "Syntax" [ref=e985] [cursor=pointer]:
+                - generic [ref=e986]: Syntax
+          - listitem [ref=e987]:
+            - group [ref=e988]:
+              - generic "Text" [ref=e989] [cursor=pointer]:
+                - generic [ref=e990]: Text
+          - listitem [ref=e991]:
+            - group [ref=e992]:
+              - generic "Text decoration" [ref=e993] [cursor=pointer]:
+                - generic [ref=e994]: Text decoration
+          - listitem [ref=e995]:
+            - group [ref=e996]:
+              - generic "Transforms" [ref=e997] [cursor=pointer]:
+                - generic [ref=e998]: Transforms
+          - listitem [ref=e999]:
+            - group [ref=e1000]:
+              - generic "Transitions" [ref=e1001] [cursor=pointer]:
+                - generic [ref=e1002]: Transitions
+          - listitem [ref=e1003]:
+            - group [ref=e1004]:
+              - generic "Values and units" [ref=e1005] [cursor=pointer]:
+                - generic [ref=e1006]: Values and units
+          - listitem [ref=e1007]:
+            - group [ref=e1008]:
+              - generic "Writing modes" [ref=e1009] [cursor=pointer]:
+                - generic [ref=e1010]: Writing modes
+          - listitem [ref=e1011]:
+            - link "How to" [ref=e1012] [cursor=pointer]:
+              - /url: /en-US/docs/Web/CSS/How_to
+          - listitem [ref=e1013]:
+            - group [ref=e1014]:
+              - generic "Layout cookbook" [ref=e1015] [cursor=pointer]:
+                - link "Layout cookbook" [ref=e1016]:
+                  - /url: /en-US/docs/Web/CSS/How_to/Layout_cookbook
+          - listitem [ref=e1017]:
+            - generic [ref=e1018]: Tools
+          - listitem [ref=e1019]:
+            - list [ref=e1020]:
+              - listitem [ref=e1021]:
+                - link "Border-image generator" [ref=e1022] [cursor=pointer]:
+                  - /url: /en-US/docs/Web/CSS/Guides/Backgrounds_and_borders/Border-image_generator
+              - listitem [ref=e1023]:
+                - link "Border-radius generator" [ref=e1024] [cursor=pointer]:
+                  - /url: /en-US/docs/Web/CSS/Guides/Backgrounds_and_borders/Border-radius_generator
+              - listitem [ref=e1025]:
+                - link "Box-shadow generator" [ref=e1026] [cursor=pointer]:
+                  - /url: /en-US/docs/Web/CSS/Guides/Backgrounds_and_borders/Box-shadow_generator
+              - listitem [ref=e1027]:
+                - link "Color format converter" [ref=e1028] [cursor=pointer]:
+                  - /url: /en-US/docs/Web/CSS/Guides/Colors/Color_format_converter
+              - listitem [ref=e1029]:
+                - link "Color mixer" [ref=e1030] [cursor=pointer]:
+                  - /url: /en-US/docs/Web/CSS/Guides/Colors/Color_mixer
+              - listitem [ref=e1031]:
+                - link "Shape generator" [ref=e1032] [cursor=pointer]:
+                  - /url: /en-US/docs/Web/CSS/Guides/Shapes/Shape_generator
+          - listitem [ref=e1033]:
+            - link "Reference" [ref=e1034] [cursor=pointer]:
+              - /url: /en-US/docs/Web/CSS/Reference
+          - listitem [ref=e1035]:
+            - group [ref=e1036]:
+              - generic "Properties" [ref=e1037] [cursor=pointer]:
+                - link "Properties" [ref=e1038]:
+                  - /url: /en-US/docs/Web/CSS/Reference/Properties
+          - listitem [ref=e1039]:
+            - group [ref=e1040]:
+              - generic "Selectors" [ref=e1041] [cursor=pointer]:
+                - link "Selectors" [ref=e1042]:
+                  - /url: /en-US/docs/Web/CSS/Reference/Selectors
+          - listitem [ref=e1043]:
+            - group [ref=e1044]:
+              - generic "Combinators" [ref=e1045] [cursor=pointer]:
+                - link "Combinators" [ref=e1046]:
+                  - /url: /en-US/docs/Web/CSS/Reference/Selectors/Combinators
+          - listitem [ref=e1047]:
+            - group [ref=e1048]:
+              - generic "Pseudo-classes" [ref=e1049] [cursor=pointer]:
+                - link "Pseudo-classes" [ref=e1050]:
+                  - /url: /en-US/docs/Web/CSS/Reference/Selectors/Pseudo-classes
+          - listitem [ref=e1051]:
+            - group [ref=e1052]:
+              - generic "Pseudo-elements" [ref=e1053] [cursor=pointer]:
+                - link "Pseudo-elements" [ref=e1054]:
+                  - /url: /en-US/docs/Web/CSS/Reference/Selectors/Pseudo-elements
+          - listitem [ref=e1055]:
+            - group [ref=e1056]:
+              - generic "At-rules" [ref=e1057] [cursor=pointer]:
+                - link "At-rules" [ref=e1058]:
+                  - /url: /en-US/docs/Web/CSS/Reference/At-rules
+          - listitem [ref=e1059]:
+            - group [ref=e1060]:
+              - generic "Values" [ref=e1061] [cursor=pointer]:
+                - link "Values" [ref=e1062]:
+                  - /url: /en-US/docs/Web/CSS/Reference/Values
+          - listitem [ref=e1063]:
+            - group [ref=e1064]:
+              - generic "Types" [ref=e1065] [cursor=pointer]:
+                - link "Types" [ref=e1066]:
+                  - /url: /en-US/docs/Web/CSS/Reference/Values/Data_types
+          - listitem [ref=e1067]:
+            - group [ref=e1068]:
+              - generic "Functions" [ref=e1069] [cursor=pointer]:
+                - link "Functions" [ref=e1070]:
+                  - /url: /en-US/docs/Web/CSS/Reference/Values/Functions
+  - contentinfo [ref=e1072]:
+    - generic [ref=e1073]:
+      - generic [ref=e1074]:
+        - link "MDN logo" [ref=e1075] [cursor=pointer]:
+          - /url: /
+          - img "MDN" [ref=e1076]
+        - paragraph [ref=e1078]: Your blueprint for a better internet.
+      - list [ref=e1079]:
+        - listitem [ref=e1080]:
+          - link "MDN on GitHub" [ref=e1081] [cursor=pointer]:
+            - /url: https://github.com/mdn/
+        - listitem [ref=e1082]:
+          - link "MDN on Bluesky" [ref=e1083] [cursor=pointer]:
+            - /url: https://bsky.app/profile/developer.mozilla.org
+        - listitem [ref=e1084]:
+          - link "MDN on X" [ref=e1085] [cursor=pointer]:
+            - /url: https://x.com/mozdevnet
+        - listitem [ref=e1086]:
+          - link "MDN on Mastodon" [ref=e1087] [cursor=pointer]:
+            - /url: https://mastodon.social/@mdn
+        - listitem [ref=e1088]:
+          - link "MDN blog RSS feed" [ref=e1089] [cursor=pointer]:
+            - /url: /en-US/blog/rss.xml
+      - generic [ref=e1090]:
+        - term [ref=e1091]: MDN
+        - definition [ref=e1092]:
+          - list [ref=e1093]:
+            - listitem [ref=e1094]:
+              - link "About" [ref=e1095] [cursor=pointer]:
+                - /url: /en-US/about
+            - listitem [ref=e1096]:
+              - link "Blog" [ref=e1097] [cursor=pointer]:
+                - /url: /en-US/blog/
+            - listitem [ref=e1098]:
+              - link "Mozilla careers (external)" [ref=e1099] [cursor=pointer]:
+                - /url: https://www.mozilla.org/en-US/careers/listings/
+            - listitem [ref=e1100]:
+              - link "Advertise with us" [ref=e1101] [cursor=pointer]:
+                - /url: /en-US/advertising
+            - listitem [ref=e1102]:
+              - link "MDN Plus" [ref=e1103] [cursor=pointer]:
+                - /url: /en-US/plus
+            - listitem [ref=e1104]:
+              - link "Product help (external)" [ref=e1105] [cursor=pointer]:
+                - /url: https://support.mozilla.org/products/mdn-plus
+      - generic [ref=e1106]:
+        - term [ref=e1107]: Contribute
+        - definition [ref=e1108]:
+          - list [ref=e1109]:
+            - listitem [ref=e1110]:
+              - link "MDN Community" [ref=e1111] [cursor=pointer]:
+                - /url: /en-US/community
+            - listitem [ref=e1112]:
+              - link "Community resources" [ref=e1113] [cursor=pointer]:
+                - /url: /en-US/docs/MDN/Community
+            - listitem [ref=e1114]:
+              - link "Writing guidelines" [ref=e1115] [cursor=pointer]:
+                - /url: /en-US/docs/MDN/Writing_guidelines
+            - listitem [ref=e1116]:
+              - link "MDN Discord (external)" [ref=e1117] [cursor=pointer]:
+                - /url: /discord
+            - listitem [ref=e1118]:
+              - link "MDN on GitHub (external)" [ref=e1119] [cursor=pointer]:
+                - /url: https://github.com/mdn
+      - generic [ref=e1120]:
+        - term [ref=e1121]: Developers
+        - definition [ref=e1122]:
+          - list [ref=e1123]:
+            - listitem [ref=e1124]:
+              - link "Web technologies" [ref=e1125] [cursor=pointer]:
+                - /url: /en-US/docs/Web
+            - listitem [ref=e1126]:
+              - link "Learn web development" [ref=e1127] [cursor=pointer]:
+                - /url: /en-US/docs/Learn_web_development
+            - listitem [ref=e1128]:
+              - link "Guides" [ref=e1129] [cursor=pointer]:
+                - /url: /en-US/docs/MDN/Guides
+            - listitem [ref=e1130]:
+              - link "Tutorials" [ref=e1131] [cursor=pointer]:
+                - /url: /en-US/docs/MDN/Tutorials
+            - listitem [ref=e1132]:
+              - link "Glossary" [ref=e1133] [cursor=pointer]:
+                - /url: /en-US/docs/Glossary
+            - listitem [ref=e1134]:
+              - link "Hacks blog (external)" [ref=e1135] [cursor=pointer]:
+                - /url: https://hacks.mozilla.org/
+    - generic [ref=e1136]:
+      - link "Mozilla logo" [ref=e1137] [cursor=pointer]:
+        - /url: https://www.mozilla.org/
+        - img "Mozilla" [ref=e1138]
+      - list [ref=e1140]:
+        - listitem [ref=e1141]:
+          - link "Website Privacy Notice (external)" [ref=e1142] [cursor=pointer]:
+            - /url: https://www.mozilla.org/privacy/websites/
+        - listitem [ref=e1143]:
+          - link "Telemetry Settings (external)" [ref=e1144] [cursor=pointer]:
+            - /url: https://www.mozilla.org/en-US/privacy/websites/data-preferences/
+        - listitem [ref=e1145]:
+          - link "Legal (external)" [ref=e1146] [cursor=pointer]:
+            - /url: https://www.mozilla.org/about/legal/terms/mozilla
+        - listitem [ref=e1147]:
+          - link "Community Participation Guidelines (external)" [ref=e1148] [cursor=pointer]:
+            - /url: https://www.mozilla.org/about/governance/policies/participation/
+      - paragraph [ref=e1149]:
+        - text: Visit
+        - link "Mozilla Corporation’s" [ref=e1150] [cursor=pointer]:
+          - /url: https://www.mozilla.org/
+        - text: not-for-profit parent, the
+        - link "Mozilla Foundation" [ref=e1151] [cursor=pointer]:
+          - /url: https://foundation.mozilla.org/
+        - text: .
+        - text: Portions of this content are ©1998–2026 by individual mozilla.org contributors. Content available under
+        - link "a Creative Commons license" [ref=e1152] [cursor=pointer]:
+          - /url: /docs/MDN/Writing_guidelines/Attrib_copyright_license
+        - text: .

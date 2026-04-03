@@ -1,0 +1,1023 @@
+- generic [active] [ref=e1]:
+  - list:
+    - listitem:
+      - link "Skip to main content" [ref=e2] [cursor=pointer]:
+        - /url: "#content"
+    - listitem:
+      - link "Skip to search" [ref=e3] [cursor=pointer]:
+        - /url: "#search"
+  - banner [ref=e7]:
+    - navigation [ref=e8]:
+      - link "MDN" [ref=e10] [cursor=pointer]:
+        - /url: /en-US/
+        - img "MDN" [ref=e11]
+      - generic [ref=e15]:
+        - navigation [ref=e17]:
+          - button "HTML" [ref=e20] [cursor=pointer]:
+            - generic [ref=e21]: HTML
+          - button "CSS" [ref=e24] [cursor=pointer]:
+            - generic [ref=e25]: CSS
+          - button "JavaScript" [ref=e28] [cursor=pointer]:
+            - generic [ref=e29]: JavaScript
+          - button "Web APIs" [ref=e32] [cursor=pointer]:
+            - generic [ref=e33]: Web APIs
+          - button "All" [ref=e36] [cursor=pointer]:
+            - generic [ref=e37]: All
+          - generic [ref=e39]:
+            - button "Learn" [ref=e40] [cursor=pointer]:
+              - generic [ref=e41]: Learn
+            - text: (external)
+          - button "Tools" [ref=e44] [cursor=pointer]:
+            - generic [ref=e45]: Tools
+          - generic [ref=e47]:
+            - button "About" [ref=e48] [cursor=pointer]:
+              - generic [ref=e49]: About
+            - text: (external)
+          - link "Blog" [ref=e51] [cursor=pointer]:
+            - /url: /en-US/blog/
+        - button "Search the site" [ref=e54] [cursor=pointer]:
+          - img [ref=e55]
+    - generic [ref=e59]:
+      - list [ref=e60]:
+        - listitem [ref=e61]:
+          - link "Web" [ref=e62] [cursor=pointer]:
+            - /url: /en-US/docs/Web
+        - listitem [ref=e63]:
+          - link "CSS" [ref=e64] [cursor=pointer]:
+            - /url: /en-US/docs/Web/CSS
+        - listitem [ref=e65]:
+          - link "Guides" [ref=e66] [cursor=pointer]:
+            - /url: /en-US/docs/Web/CSS/Guides
+        - listitem [ref=e67]:
+          - link "Transitions" [ref=e68] [cursor=pointer]:
+            - /url: /en-US/docs/Web/CSS/Guides/Transitions
+      - button "Switch color theme" [ref=e72] [cursor=pointer]:
+        - generic [ref=e73]: Theme
+      - generic [ref=e76]:
+        - button "English (US)" [ref=e77] [cursor=pointer]:
+          - generic [ref=e78]: English (US)
+        - generic: Remember language
+  - generic [ref=e80]:
+    - main [ref=e81]:
+      - generic [ref=e82]:
+        - heading "CSS transitions" [level=1] [ref=e83]
+        - generic [ref=e84]:
+          - paragraph [ref=e85]:
+            - text: The
+            - strong [ref=e86]: CSS transitions
+            - text: module specifies functionality for creating gradual transitions between different CSS property values. The behavior of these transitions can be controlled by specifying their easing function, duration, and other values.
+          - paragraph [ref=e87]: Normally, when the value of a CSS property changes, the result of the change from the old value to the new value is immediate. The CSS transitions module enables controlling a progression from the old property state to the new state over a specified period of time. It also provides event handlers to allow code to be run in response to different stages of a transition being reached.
+          - paragraph [ref=e88]:
+            - text: In certain cases, there is no originating "from" value for a transition. For example, if an element gets added to the DOM, the styles defined are for the "to" state. This module provides the
+            - link "@starting-style" [ref=e89] [cursor=pointer]:
+              - /url: /en-US/docs/Web/CSS/Reference/At-rules/@starting-style
+              - code [ref=e90]: "@starting-style"
+            - text: at-rule, which enables defining starting styles for such cases. The module also defines how discrete property values should be transitioned, such as transitioning the discretely animated
+            - link "display" [ref=e91] [cursor=pointer]:
+              - /url: /en-US/docs/Web/CSS/Reference/Properties/display
+              - code [ref=e92]: display
+            - text: property from the
+            - code [ref=e93]: none
+            - text: value to a displayed value.
+      - complementary [ref=e94]:
+        - navigation [ref=e95]:
+          - heading "In this article" [level=2] [ref=e96]
+          - list [ref=e97]:
+            - listitem [ref=e98]:
+              - link "Reference" [ref=e99] [cursor=pointer]:
+                - /url: "#reference"
+            - listitem [ref=e100]:
+              - link "Guides" [ref=e101] [cursor=pointer]:
+                - /url: "#guides"
+            - listitem [ref=e102]:
+              - link "Related concepts" [ref=e103] [cursor=pointer]:
+                - /url: "#related_concepts"
+            - listitem [ref=e104]:
+              - link "Specifications" [ref=e105] [cursor=pointer]:
+                - /url: "#specifications"
+            - listitem [ref=e106]:
+              - link "See also" [ref=e107] [cursor=pointer]:
+                - /url: "#see_also"
+      - generic [ref=e108]:
+        - region "Reference" [ref=e109]:
+          - heading "Reference" [level=2] [ref=e110]:
+            - link "Reference" [ref=e111] [cursor=pointer]:
+              - /url: "#reference"
+        - region "Properties" [ref=e112]:
+          - heading "Properties" [level=3] [ref=e113]:
+            - link "Properties" [ref=e114] [cursor=pointer]:
+              - /url: "#properties"
+          - list [ref=e115]:
+            - listitem [ref=e116]:
+              - link "transition" [ref=e117] [cursor=pointer]:
+                - /url: /en-US/docs/Web/CSS/Reference/Properties/transition
+                - code [ref=e118]: transition
+            - listitem [ref=e119]:
+              - link "transition-behavior" [ref=e120] [cursor=pointer]:
+                - /url: /en-US/docs/Web/CSS/Reference/Properties/transition-behavior
+                - code [ref=e121]: transition-behavior
+            - listitem [ref=e122]:
+              - link "transition-delay" [ref=e123] [cursor=pointer]:
+                - /url: /en-US/docs/Web/CSS/Reference/Properties/transition-delay
+                - code [ref=e124]: transition-delay
+            - listitem [ref=e125]:
+              - link "transition-duration" [ref=e126] [cursor=pointer]:
+                - /url: /en-US/docs/Web/CSS/Reference/Properties/transition-duration
+                - code [ref=e127]: transition-duration
+            - listitem [ref=e128]:
+              - link "transition-property" [ref=e129] [cursor=pointer]:
+                - /url: /en-US/docs/Web/CSS/Reference/Properties/transition-property
+                - code [ref=e130]: transition-property
+            - listitem [ref=e131]:
+              - link "transition-timing-function" [ref=e132] [cursor=pointer]:
+                - /url: /en-US/docs/Web/CSS/Reference/Properties/transition-timing-function
+                - code [ref=e133]: transition-timing-function
+        - region "At rules" [ref=e134]:
+          - heading "At rules" [level=3] [ref=e135]:
+            - link "At rules" [ref=e136] [cursor=pointer]:
+              - /url: "#at_rules"
+          - list [ref=e137]:
+            - listitem [ref=e138]:
+              - link "@starting-style" [ref=e139] [cursor=pointer]:
+                - /url: /en-US/docs/Web/CSS/Reference/At-rules/@starting-style
+                - code [ref=e140]: "@starting-style"
+        - region "Interfaces" [ref=e141]:
+          - heading "Interfaces" [level=3] [ref=e142]:
+            - link "Interfaces" [ref=e143] [cursor=pointer]:
+              - /url: "#interfaces"
+          - list [ref=e144]:
+            - listitem [ref=e145]:
+              - link "CSSStartingStyleRule" [ref=e146] [cursor=pointer]:
+                - /url: /en-US/docs/Web/API/CSSStartingStyleRule
+                - code [ref=e147]: CSSStartingStyleRule
+            - listitem [ref=e148]:
+              - link "CSSTransition" [ref=e149] [cursor=pointer]:
+                - /url: /en-US/docs/Web/API/CSSTransition
+                - code [ref=e150]: CSSTransition
+              - list [ref=e151]:
+                - listitem [ref=e152]:
+                  - link "transitionProperty" [ref=e153] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/API/CSSTransition/transitionProperty
+                    - code [ref=e154]: transitionProperty
+                  - text: property
+            - listitem [ref=e155]:
+              - link "TransitionEvent" [ref=e156] [cursor=pointer]:
+                - /url: /en-US/docs/Web/API/TransitionEvent
+                - code [ref=e157]: TransitionEvent
+              - list [ref=e158]:
+                - listitem [ref=e159]:
+                  - link "TransitionEvent()" [ref=e160] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/API/TransitionEvent/TransitionEvent
+                    - code [ref=e161]: TransitionEvent()
+                  - text: constructor
+                - listitem [ref=e162]:
+                  - link "TransitionEvent.propertyName" [ref=e163] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/API/TransitionEvent/propertyName
+                    - code [ref=e164]: TransitionEvent.propertyName
+                  - text: property
+                - listitem [ref=e165]:
+                  - link "TransitionEvent.elapsedTime" [ref=e166] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/API/TransitionEvent/elapsedTime
+                    - code [ref=e167]: TransitionEvent.elapsedTime
+                  - text: property
+                - listitem [ref=e168]:
+                  - link "TransitionEvent.pseudoElement" [ref=e169] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/API/TransitionEvent/pseudoElement
+                    - code [ref=e170]: TransitionEvent.pseudoElement
+                  - text: property
+                - listitem [ref=e171]:
+                  - link "transitioncancel" [ref=e172] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/API/Element/transitioncancel_event
+                    - code [ref=e173]: transitioncancel
+                  - text: event
+                - listitem [ref=e174]:
+                  - link "transitionend" [ref=e175] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/API/Element/transitionend_event
+                    - code [ref=e176]: transitionend
+                  - text: event
+                - listitem [ref=e177]:
+                  - link "transitionrun" [ref=e178] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/API/Element/transitionrun_event
+                    - code [ref=e179]: transitionrun
+                  - text: event
+                - listitem [ref=e180]:
+                  - link "transitionstart" [ref=e181] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/API/Element/transitionstart_event
+                    - code [ref=e182]: transitionstart
+                  - text: event
+        - region "Guides" [ref=e183]:
+          - heading "Guides" [level=2] [ref=e184]:
+            - link "Guides" [ref=e185] [cursor=pointer]:
+              - /url: "#guides"
+          - generic [ref=e186]:
+            - term [ref=e187]:
+              - link "Using CSS transitions" [ref=e188] [cursor=pointer]:
+                - /url: /en-US/docs/Web/CSS/Guides/Transitions/Using
+            - definition [ref=e189]:
+              - paragraph [ref=e190]: Step-by-step tutorial explaining how to create transitions using CSS. This article describes each relevant CSS property and explains how they interact with each other.
+            - term [ref=e191]:
+              - link "Animating display" [ref=e192] [cursor=pointer]:
+                - /url: /en-US/docs/Web/CSS/Reference/Properties/display#animating_display
+                - text: Animating
+                - code [ref=e193]: display
+            - definition [ref=e194]:
+              - paragraph [ref=e195]:
+                - text: Transitioning to and from the
+                - code [ref=e196]: none
+                - text: value of the discretely animated
+                - link "display" [ref=e197] [cursor=pointer]:
+                  - /url: /en-US/docs/Web/CSS/Reference/Properties/display
+                  - code [ref=e198]: display
+                - text: property.
+            - term [ref=e199]:
+              - link "Transitioning a popover" [ref=e200] [cursor=pointer]:
+                - /url: /en-US/docs/Web/CSS/Reference/Properties/overlay#transitioning_a_popover
+              - text: and
+              - link "transitioning a <dialog>" [ref=e201] [cursor=pointer]:
+                - /url: /en-US/docs/Web/HTML/Reference/Elements/dialog#transitioning_dialog_elements
+                - text: transitioning a
+                - code [ref=e202]: <dialog>
+            - definition [ref=e203]:
+              - paragraph [ref=e204]:
+                - text: Examples of transitioning from
+                - link "@starting-style" [ref=e205] [cursor=pointer]:
+                  - /url: /en-US/docs/Web/CSS/Reference/At-rules/@starting-style
+                  - code [ref=e206]: "@starting-style"
+                - text: to final
+                - link ":popover-open" [ref=e207] [cursor=pointer]:
+                  - /url: /en-US/docs/Web/CSS/Reference/Selectors/:popover-open
+                  - code [ref=e208]: :popover-open
+                - text: and
+                - link ":open" [ref=e209] [cursor=pointer]:
+                  - /url: /en-US/docs/Web/CSS/Reference/Selectors/:open
+                  - code [ref=e210]: :open
+                - text: pseudo-class styles.
+        - region "Related concepts" [ref=e211]:
+          - heading "Related concepts" [level=2] [ref=e212]:
+            - link "Related concepts" [ref=e213] [cursor=pointer]:
+              - /url: "#related_concepts"
+          - list [ref=e214]:
+            - listitem [ref=e215]:
+              - paragraph [ref=e216]:
+                - link "interpolate-size" [ref=e217] [cursor=pointer]:
+                  - /url: /en-US/docs/Web/CSS/Reference/Properties/interpolate-size
+                  - code [ref=e218]: interpolate-size
+                - text: property
+            - listitem [ref=e219]:
+              - paragraph [ref=e220]:
+                - link "calc-size()" [ref=e221] [cursor=pointer]:
+                  - /url: /en-US/docs/Web/CSS/Reference/Values/calc-size
+                  - code [ref=e222]: calc-size()
+                - text: function
+            - listitem [ref=e223]:
+              - paragraph [ref=e224]:
+                - link "Intrinsic size" [ref=e225] [cursor=pointer]:
+                  - /url: /en-US/docs/Glossary/Intrinsic_Size
+                - text: glossary term
+            - listitem [ref=e226]:
+              - paragraph [ref=e227]:
+                - link "CSS easing functions" [ref=e228] [cursor=pointer]:
+                  - /url: /en-US/docs/Web/CSS/Guides/Easing_functions
+                - text: "module:"
+              - list [ref=e229]:
+                - listitem [ref=e230]:
+                  - link "<easing-function>" [ref=e231] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Reference/Values/easing-function
+                    - code [ref=e232]: <easing-function>
+                  - text: data-type
+            - listitem [ref=e233]:
+              - paragraph [ref=e234]:
+                - link "CSS animations" [ref=e235] [cursor=pointer]:
+                  - /url: /en-US/docs/Web/CSS/Guides/Animations
+                - text: "module:"
+              - list [ref=e236]:
+                - listitem [ref=e237]:
+                  - link "animation" [ref=e238] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Reference/Properties/animation
+                    - code [ref=e239]: animation
+                  - text: shorthand
+                - listitem [ref=e240]:
+                  - link "animation-delay" [ref=e241] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Reference/Properties/animation-delay
+                    - code [ref=e242]: animation-delay
+                - listitem [ref=e243]:
+                  - link "animation-direction" [ref=e244] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Reference/Properties/animation-direction
+                    - code [ref=e245]: animation-direction
+                - listitem [ref=e246]:
+                  - link "animation-duration" [ref=e247] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Reference/Properties/animation-duration
+                    - code [ref=e248]: animation-duration
+                - listitem [ref=e249]:
+                  - link "animation-fill-mode" [ref=e250] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Reference/Properties/animation-fill-mode
+                    - code [ref=e251]: animation-fill-mode
+                - listitem [ref=e252]:
+                  - link "animation-iteration-count" [ref=e253] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Reference/Properties/animation-iteration-count
+                    - code [ref=e254]: animation-iteration-count
+                - listitem [ref=e255]:
+                  - link "animation-name" [ref=e256] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Reference/Properties/animation-name
+                    - code [ref=e257]: animation-name
+                - listitem [ref=e258]:
+                  - link "animation-play-state" [ref=e259] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Reference/Properties/animation-play-state
+                    - code [ref=e260]: animation-play-state
+                - listitem [ref=e261]:
+                  - link "animation-timing-function" [ref=e262] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Reference/Properties/animation-timing-function
+                    - code [ref=e263]: animation-timing-function
+            - listitem [ref=e264]:
+              - paragraph [ref=e265]:
+                - link "CSS transforms" [ref=e266] [cursor=pointer]:
+                  - /url: /en-US/docs/Web/CSS/Guides/Transforms
+                - text: "module:"
+              - list [ref=e267]:
+                - listitem [ref=e268]:
+                  - link "transform" [ref=e269] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Reference/Properties/transform
+                    - code [ref=e270]: transform
+                - listitem [ref=e271]:
+                  - link "transform-box" [ref=e272] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Reference/Properties/transform-box
+                    - code [ref=e273]: transform-box
+                - listitem [ref=e274]:
+                  - link "transform-origin" [ref=e275] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Reference/Properties/transform-origin
+                    - code [ref=e276]: transform-origin
+                - listitem [ref=e277]:
+                  - link "transform-style" [ref=e278] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Reference/Properties/transform-style
+                    - code [ref=e279]: transform-style
+            - listitem [ref=e280]:
+              - paragraph [ref=e281]:
+                - link "CSS scroll snap" [ref=e282] [cursor=pointer]:
+                  - /url: /en-US/docs/Web/CSS/Guides/Scroll_snap
+                - text: "module:"
+              - list [ref=e283]:
+                - listitem [ref=e284]:
+                  - link "scroll-snap-type" [ref=e285] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Reference/Properties/scroll-snap-type
+                    - code [ref=e286]: scroll-snap-type
+                - listitem [ref=e287]:
+                  - link "scroll-padding" [ref=e288] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Reference/Properties/scroll-padding
+                    - code [ref=e289]: scroll-padding
+                - listitem [ref=e290]:
+                  - link "scroll-snap-align" [ref=e291] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Reference/Properties/scroll-snap-align
+                    - code [ref=e292]: scroll-snap-align
+                - listitem [ref=e293]:
+                  - link "scroll-margin" [ref=e294] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Reference/Properties/scroll-margin
+                    - code [ref=e295]: scroll-margin
+                - listitem [ref=e296]:
+                  - link "scroll-snap-stop" [ref=e297] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Reference/Properties/scroll-snap-stop
+                    - code [ref=e298]: scroll-snap-stop
+        - region "Specifications" [ref=e299]:
+          - heading "Specifications" [level=2] [ref=e300]:
+            - link "Specifications" [ref=e301] [cursor=pointer]:
+              - /url: "#specifications"
+          - table [ref=e302]:
+            - rowgroup [ref=e303]:
+              - row "Specification" [ref=e304]:
+                - columnheader "Specification" [ref=e305]
+            - rowgroup [ref=e306]:
+              - row "CSS Transitions Module Level 1 (external)" [ref=e307]:
+                - cell "CSS Transitions Module Level 1 (external)" [ref=e308]:
+                  - link "CSS Transitions Module Level 1 (external)" [ref=e309] [cursor=pointer]:
+                    - /url: https://drafts.csswg.org/css-transitions-1/
+              - row "CSS Transitions Module Level 2 (external)" [ref=e310]:
+                - cell "CSS Transitions Module Level 2 (external)" [ref=e311]:
+                  - link "CSS Transitions Module Level 2 (external)" [ref=e312] [cursor=pointer]:
+                    - /url: https://drafts.csswg.org/css-transitions-2/
+        - region "See also" [ref=e313]:
+          - heading "See also" [level=2] [ref=e314]:
+            - link "See also" [ref=e315] [cursor=pointer]:
+              - /url: "#see_also"
+          - list [ref=e316]:
+            - listitem [ref=e317]:
+              - link "opacity" [ref=e318] [cursor=pointer]:
+                - /url: /en-US/docs/Web/CSS/Reference/Properties/opacity
+                - code [ref=e319]: opacity
+            - listitem [ref=e320]:
+              - link "visibility" [ref=e321] [cursor=pointer]:
+                - /url: /en-US/docs/Web/CSS/Reference/Properties/visibility
+                - code [ref=e322]: visibility
+            - listitem [ref=e323]:
+              - link "ViewTransition" [ref=e324] [cursor=pointer]:
+                - /url: /en-US/docs/Web/API/ViewTransition
+                - code [ref=e325]: ViewTransition
+              - text: interface
+            - listitem [ref=e326]:
+              - link "PageTransitionEvent" [ref=e327] [cursor=pointer]:
+                - /url: /en-US/docs/Web/API/PageTransitionEvent
+                - code [ref=e328]: PageTransitionEvent
+              - text: interface
+        - region "Help improve MDN" [ref=e329]:
+          - generic [ref=e330]:
+            - img [ref=e331]
+            - heading "Help improve MDN" [level=2] [ref=e338]
+            - group [ref=e340]:
+              - generic [ref=e341]: Was this page helpful to you?
+              - generic [ref=e342]:
+                - button "Yes" [ref=e344] [cursor=pointer]:
+                  - img [ref=e346]
+                  - generic [ref=e348]:
+                    - generic: "Yes"
+                - button "No" [ref=e350] [cursor=pointer]:
+                  - img [ref=e352]
+                  - generic [ref=e354]:
+                    - generic: "No"
+            - link "Learn how to contribute" [ref=e355] [cursor=pointer]:
+              - /url: /en-US/docs/MDN/Community/Getting_started
+            - paragraph [ref=e356]:
+              - text: This page was last modified on
+              - time [ref=e357]: Dec 16, 2025
+              - text: by
+              - link "MDN contributors" [ref=e358] [cursor=pointer]:
+                - /url: /en-US/docs/Web/CSS/Guides/Transitions/contributors.txt
+              - text: .
+            - generic [ref=e359]:
+              - link "View this page on GitHub (external)" [ref=e360] [cursor=pointer]:
+                - /url: https://github.com/mdn/content/blob/main/files/en-us/web/css/guides/transitions/index.md?plain=1
+              - text: •
+              - link "Report a problem with this content (external)" [ref=e361] [cursor=pointer]:
+                - /url: https://github.com/mdn/content/issues/new?template=page-report.yml&mdn-url=https%3A%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FWeb%2FCSS%2FGuides%2FTransitions&metadata=%3C%21--+Do+not+make+changes+below+this+line+--%3E%0A%3Cdetails%3E%0A%3Csummary%3EPage+report+details%3C%2Fsummary%3E%0A%0A*+Folder%3A+%60en-us%2Fweb%2Fcss%2Fguides%2Ftransitions%60%0A*+MDN+URL%3A+https%3A%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FWeb%2FCSS%2FGuides%2FTransitions%0A*+GitHub+URL%3A+https%3A%2F%2Fgithub.com%2Fmdn%2Fcontent%2Fblob%2Fmain%2Ffiles%2Fen-us%2Fweb%2Fcss%2Fguides%2Ftransitions%2Findex.md%0A*+Last+commit%3A+https%3A%2F%2Fgithub.com%2Fmdn%2Fcontent%2Fcommit%2F33094d735e90b4dcae5733331b79c51fee997410%0A*+Document+last+modified%3A+2025-12-16T15%3A14%3A26.000Z%0A%0A%3C%2Fdetails%3E
+    - complementary [ref=e362]:
+      - navigation [ref=e363]:
+        - generic [ref=e365]:
+          - generic [ref=e367]: Filter sidebar
+          - textbox "Filter sidebar" [ref=e368]:
+            - /placeholder: Filter
+        - list [ref=e370]:
+          - listitem [ref=e371]:
+            - link "CSS" [ref=e372] [cursor=pointer]:
+              - /url: /en-US/docs/Web/CSS
+          - listitem [ref=e373]:
+            - link "Guides" [ref=e374] [cursor=pointer]:
+              - /url: /en-US/docs/Web/CSS/Guides
+          - listitem [ref=e375]:
+            - group [ref=e376]:
+              - generic "Modules" [ref=e377] [cursor=pointer]:
+                - generic [ref=e378]: Modules
+              - list [ref=e379]:
+                - listitem [ref=e380]:
+                  - link "Anchor positioning" [ref=e381] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Guides/Anchor_positioning
+                - listitem [ref=e382]:
+                  - link "Animations" [ref=e383] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Guides/Animations
+                - listitem [ref=e384]:
+                  - link "Backgrounds and borders" [ref=e385] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Guides/Backgrounds_and_borders
+                - listitem [ref=e386]:
+                  - link "Basic user interface" [ref=e387] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Guides/Basic_user_interface
+                - listitem [ref=e388]:
+                  - link "Borders and box decorations" [ref=e389] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Guides/Borders_and_box_decorations
+                - listitem [ref=e390]:
+                  - link "Box alignment" [ref=e391] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Guides/Box_alignment
+                - listitem [ref=e392]:
+                  - link "Box model" [ref=e393] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Guides/Box_model
+                - listitem [ref=e394]:
+                  - link "Box sizing" [ref=e395] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Guides/Box_sizing
+                - listitem [ref=e396]:
+                  - link "Cascading and inheritance" [ref=e397] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Guides/Cascade
+                - listitem [ref=e398]:
+                  - link "Color adjustment" [ref=e399] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Guides/Color_adjustment
+                - listitem [ref=e400]:
+                  - link "Colors" [ref=e401] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Guides/Colors
+                - listitem [ref=e402]:
+                  - link "Compositing and blending" [ref=e403] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Guides/Compositing_and_blending
+                - listitem [ref=e404]:
+                  - link "Conditional rules" [ref=e405] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Guides/Conditional_rules
+                - listitem [ref=e406]:
+                  - link "Containment" [ref=e407] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Guides/Containment
+                - listitem [ref=e408]:
+                  - link "Counter styles" [ref=e409] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Guides/Counter_styles
+                - listitem [ref=e410]:
+                  - link "CSSOM view" [ref=e411] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Guides/CSSOM_view
+                - listitem [ref=e412]:
+                  - link "Custom functions and mixins" [ref=e413] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Guides/Custom_functions_and_mixins
+                - listitem [ref=e414]:
+                  - link "Custom highlight API" [ref=e415] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Guides/Custom_highlight_API
+                - listitem [ref=e416]:
+                  - link "Custom properties for cascading variables" [ref=e417] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Guides/Cascading_variables
+                - listitem [ref=e418]:
+                  - link "Display" [ref=e419] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Guides/Display
+                - listitem [ref=e420]:
+                  - link "Easing functions" [ref=e421] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Guides/Easing_functions
+                - listitem [ref=e422]:
+                  - link "Environment variables" [ref=e423] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Guides/Environment_variables
+                - listitem [ref=e424]:
+                  - link "Filter effects" [ref=e425] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Guides/Filter_effects
+                - listitem [ref=e426]:
+                  - link "Flexible box layout" [ref=e427] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Guides/Flexible_box_layout
+                - listitem [ref=e428]:
+                  - link "Font loading" [ref=e429] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Guides/Font_loading
+                - listitem [ref=e430]:
+                  - link "Fonts" [ref=e431] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Guides/Fonts
+                - listitem [ref=e432]:
+                  - link "Fragmentation" [ref=e433] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Guides/Fragmentation
+                - listitem [ref=e434]:
+                  - link "Generated content" [ref=e435] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Guides/Generated_content
+                - listitem [ref=e436]:
+                  - link "Grid layout" [ref=e437] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Guides/Grid_layout
+                - listitem [ref=e438]:
+                  - link "Images" [ref=e439] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Guides/Images
+                - listitem [ref=e440]:
+                  - link "Inline layout" [ref=e441] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Guides/Inline_layout
+                - listitem [ref=e442]:
+                  - link "Lists and counters" [ref=e443] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Guides/Lists
+                - listitem [ref=e444]:
+                  - link "Logical properties and values" [ref=e445] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Guides/Logical_properties_and_values
+                - listitem [ref=e446]:
+                  - link "Masking" [ref=e447] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Guides/Masking
+                - listitem [ref=e448]:
+                  - link "Media queries" [ref=e449] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Guides/Media_queries
+                - listitem [ref=e450]:
+                  - link "Motion path" [ref=e451] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Guides/Motion_path
+                - listitem [ref=e452]:
+                  - link "Multi-column layout" [ref=e453] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Guides/Multicol_layout
+                - listitem [ref=e454]:
+                  - link "Namespaces" [ref=e455] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Guides/Namespaces
+                - listitem [ref=e456]:
+                  - link "Nesting" [ref=e457] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Guides/Nesting
+                - listitem [ref=e458]:
+                  - link "Overflow" [ref=e459] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Guides/Overflow
+                - listitem [ref=e460]:
+                  - link "Overscroll behavior" [ref=e461] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Guides/Overscroll_behavior
+                - listitem [ref=e462]:
+                  - link "Paged media" [ref=e463] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Guides/Paged_media
+                - listitem [ref=e464]:
+                  - link "Positioned layout" [ref=e465] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Guides/Positioned_layout
+                - listitem [ref=e466]:
+                  - link "Properties and values API" [ref=e467] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Guides/Properties_and_values_API
+                - listitem [ref=e468]:
+                  - link "Pseudo-elements" [ref=e469] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Guides/Pseudo-elements
+                - listitem [ref=e470]:
+                  - link "Round display" [ref=e471] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Guides/Round_display
+                - listitem [ref=e472]:
+                  - link "Ruby layout" [ref=e473] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Guides/Ruby_layout
+                - listitem [ref=e474]:
+                  - link "Scoping" [ref=e475] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Guides/Scoping
+                - listitem [ref=e476]:
+                  - link "Scroll anchoring" [ref=e477] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Guides/Scroll_anchoring
+                - listitem [ref=e478]:
+                  - link "Scroll snap" [ref=e479] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Guides/Scroll_snap
+                - listitem [ref=e480]:
+                  - link "Scroll-driven animations" [ref=e481] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Guides/Scroll-driven_animations
+                - listitem [ref=e482]:
+                  - link "Scrollbars styling" [ref=e483] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Guides/Scrollbars_styling
+                - listitem [ref=e484]:
+                  - link "Selectors" [ref=e485] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Guides/Selectors
+                - listitem [ref=e486]:
+                  - link "Shadow parts" [ref=e487] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Guides/Shadow_parts
+                - listitem [ref=e488]:
+                  - link "Shapes" [ref=e489] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Guides/Shapes
+                - listitem [ref=e490]:
+                  - link "Syntax" [ref=e491] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Guides/Syntax
+                - listitem [ref=e492]:
+                  - link "Table" [ref=e493] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Guides/Table
+                - listitem [ref=e494]:
+                  - link "Text" [ref=e495] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Guides/Text
+                - listitem [ref=e496]:
+                  - link "Text decoration" [ref=e497] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Guides/Text_decoration
+                - listitem [ref=e498]:
+                  - link "Transforms" [ref=e499] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Guides/Transforms
+                - listitem [ref=e500]:
+                  - emphasis [ref=e501]:
+                    - link "Transitions" [ref=e502] [cursor=pointer]:
+                      - /url: /en-US/docs/Web/CSS/Guides/Transitions
+                - listitem [ref=e503]:
+                  - link "Values and units" [ref=e504] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Guides/Values_and_units
+                - listitem [ref=e505]:
+                  - link "View transitions" [ref=e506] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Guides/View_transitions
+                - listitem [ref=e507]:
+                  - link "Viewport" [ref=e508] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Guides/Viewport
+                - listitem [ref=e509]:
+                  - link "Writing modes" [ref=e510] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Guides/Writing_modes
+          - listitem [ref=e511]:
+            - group [ref=e512]:
+              - generic "Anchor positioning" [ref=e513] [cursor=pointer]:
+                - generic [ref=e514]: Anchor positioning
+          - listitem [ref=e515]:
+            - group [ref=e516]:
+              - generic "Animations" [ref=e517] [cursor=pointer]:
+                - generic [ref=e518]: Animations
+          - listitem [ref=e519]:
+            - group [ref=e520]:
+              - generic "Backgrounds and borders" [ref=e521] [cursor=pointer]:
+                - generic [ref=e522]: Backgrounds and borders
+          - listitem [ref=e523]:
+            - group [ref=e524]:
+              - generic "Box alignment" [ref=e525] [cursor=pointer]:
+                - generic [ref=e526]: Box alignment
+          - listitem [ref=e527]:
+            - group [ref=e528]:
+              - generic "Box model" [ref=e529] [cursor=pointer]:
+                - generic [ref=e530]: Box model
+          - listitem [ref=e531]:
+            - group [ref=e532]:
+              - generic "Box sizing" [ref=e533] [cursor=pointer]:
+                - generic [ref=e534]: Box sizing
+          - listitem [ref=e535]:
+            - group [ref=e536]:
+              - generic "Cascade" [ref=e537] [cursor=pointer]:
+                - generic [ref=e538]: Cascade
+          - listitem [ref=e539]:
+            - group [ref=e540]:
+              - generic "Cascading variables" [ref=e541] [cursor=pointer]:
+                - generic [ref=e542]: Cascading variables
+          - listitem [ref=e543]:
+            - group [ref=e544]:
+              - generic "Colors" [ref=e545] [cursor=pointer]:
+                - generic [ref=e546]: Colors
+          - listitem [ref=e547]:
+            - group [ref=e548]:
+              - generic "Columns" [ref=e549] [cursor=pointer]:
+                - generic [ref=e550]: Columns
+          - listitem [ref=e551]:
+            - group [ref=e552]:
+              - generic "Conditional rules" [ref=e553] [cursor=pointer]:
+                - generic [ref=e554]: Conditional rules
+          - listitem [ref=e555]:
+            - group [ref=e556]:
+              - generic "Containment" [ref=e557] [cursor=pointer]:
+                - generic [ref=e558]: Containment
+          - listitem [ref=e559]:
+            - group [ref=e560]:
+              - generic "Counters" [ref=e561] [cursor=pointer]:
+                - generic [ref=e562]: Counters
+          - listitem [ref=e563]:
+            - group [ref=e564]:
+              - generic "CSSOM view" [ref=e565] [cursor=pointer]:
+                - generic [ref=e566]: CSSOM view
+          - listitem [ref=e567]:
+            - group [ref=e568]:
+              - generic "Custom functions and mixins" [ref=e569] [cursor=pointer]:
+                - generic [ref=e570]: Custom functions and mixins
+          - listitem [ref=e571]:
+            - group [ref=e572]:
+              - generic "Display" [ref=e573] [cursor=pointer]:
+                - generic [ref=e574]: Display
+          - listitem [ref=e575]:
+            - group [ref=e576]:
+              - generic "Environment variables" [ref=e577] [cursor=pointer]:
+                - generic [ref=e578]: Environment variables
+          - listitem [ref=e579]:
+            - group [ref=e580]:
+              - generic "Filter effects" [ref=e581] [cursor=pointer]:
+                - generic [ref=e582]: Filter effects
+          - listitem [ref=e583]:
+            - group [ref=e584]:
+              - generic "Flexbox" [ref=e585] [cursor=pointer]:
+                - generic [ref=e586]: Flexbox
+          - listitem [ref=e587]:
+            - group [ref=e588]:
+              - generic "Fonts" [ref=e589] [cursor=pointer]:
+                - generic [ref=e590]: Fonts
+          - listitem [ref=e591]:
+            - group [ref=e592]:
+              - generic "Grid" [ref=e593] [cursor=pointer]:
+                - generic [ref=e594]: Grid
+          - listitem [ref=e595]:
+            - group [ref=e596]:
+              - generic "Images" [ref=e597] [cursor=pointer]:
+                - generic [ref=e598]: Images
+          - listitem [ref=e599]:
+            - group [ref=e600]:
+              - generic "Lists" [ref=e601] [cursor=pointer]:
+                - generic [ref=e602]: Lists
+          - listitem [ref=e603]:
+            - group [ref=e604]:
+              - generic "Logical properties" [ref=e605] [cursor=pointer]:
+                - generic [ref=e606]: Logical properties
+          - listitem [ref=e607]:
+            - group [ref=e608]:
+              - generic "Masking" [ref=e609] [cursor=pointer]:
+                - generic [ref=e610]: Masking
+          - listitem [ref=e611]:
+            - group [ref=e612]:
+              - generic "Media queries" [ref=e613] [cursor=pointer]:
+                - generic [ref=e614]: Media queries
+          - listitem [ref=e615]:
+            - group [ref=e616]:
+              - generic "Nesting" [ref=e617] [cursor=pointer]:
+                - generic [ref=e618]: Nesting
+          - listitem [ref=e619]:
+            - group [ref=e620]:
+              - generic "Overflow" [ref=e621] [cursor=pointer]:
+                - generic [ref=e622]: Overflow
+          - listitem [ref=e623]:
+            - group [ref=e624]:
+              - generic "Positioning" [ref=e625] [cursor=pointer]:
+                - generic [ref=e626]: Positioning
+          - listitem [ref=e627]:
+            - group [ref=e628]:
+              - generic "Properties and Values API" [ref=e629] [cursor=pointer]:
+                - generic [ref=e630]: Properties and Values API
+          - listitem [ref=e631]:
+            - group [ref=e632]:
+              - generic "Scroll anchoring" [ref=e633] [cursor=pointer]:
+                - generic [ref=e634]: Scroll anchoring
+          - listitem [ref=e635]:
+            - group [ref=e636]:
+              - generic "Scroll-driven animations" [ref=e637] [cursor=pointer]:
+                - generic [ref=e638]: Scroll-driven animations
+          - listitem [ref=e639]:
+            - group [ref=e640]:
+              - generic "Scroll snap" [ref=e641] [cursor=pointer]:
+                - generic [ref=e642]: Scroll snap
+          - listitem [ref=e643]:
+            - group [ref=e644]:
+              - generic "Selectors" [ref=e645] [cursor=pointer]:
+                - generic [ref=e646]: Selectors
+          - listitem [ref=e647]:
+            - group [ref=e648]:
+              - generic "Shapes" [ref=e649] [cursor=pointer]:
+                - generic [ref=e650]: Shapes
+          - listitem [ref=e651]:
+            - group [ref=e652]:
+              - generic "Syntax" [ref=e653] [cursor=pointer]:
+                - generic [ref=e654]: Syntax
+          - listitem [ref=e655]:
+            - group [ref=e656]:
+              - generic "Text" [ref=e657] [cursor=pointer]:
+                - generic [ref=e658]: Text
+          - listitem [ref=e659]:
+            - group [ref=e660]:
+              - generic "Text decoration" [ref=e661] [cursor=pointer]:
+                - generic [ref=e662]: Text decoration
+          - listitem [ref=e663]:
+            - group [ref=e664]:
+              - generic "Transforms" [ref=e665] [cursor=pointer]:
+                - generic [ref=e666]: Transforms
+          - listitem [ref=e667]:
+            - group [ref=e668]:
+              - generic "Transitions" [ref=e669] [cursor=pointer]:
+                - generic [ref=e670]: Transitions
+          - listitem [ref=e671]:
+            - group [ref=e672]:
+              - generic "Values and units" [ref=e673] [cursor=pointer]:
+                - generic [ref=e674]: Values and units
+          - listitem [ref=e675]:
+            - group [ref=e676]:
+              - generic "Writing modes" [ref=e677] [cursor=pointer]:
+                - generic [ref=e678]: Writing modes
+          - listitem [ref=e679]:
+            - link "How to" [ref=e680] [cursor=pointer]:
+              - /url: /en-US/docs/Web/CSS/How_to
+          - listitem [ref=e681]:
+            - group [ref=e682]:
+              - generic "Layout cookbook" [ref=e683] [cursor=pointer]:
+                - link "Layout cookbook" [ref=e684]:
+                  - /url: /en-US/docs/Web/CSS/How_to/Layout_cookbook
+          - listitem [ref=e685]:
+            - generic [ref=e686]: Tools
+          - listitem [ref=e687]:
+            - list [ref=e688]:
+              - listitem [ref=e689]:
+                - link "Border-image generator" [ref=e690] [cursor=pointer]:
+                  - /url: /en-US/docs/Web/CSS/Guides/Backgrounds_and_borders/Border-image_generator
+              - listitem [ref=e691]:
+                - link "Border-radius generator" [ref=e692] [cursor=pointer]:
+                  - /url: /en-US/docs/Web/CSS/Guides/Backgrounds_and_borders/Border-radius_generator
+              - listitem [ref=e693]:
+                - link "Box-shadow generator" [ref=e694] [cursor=pointer]:
+                  - /url: /en-US/docs/Web/CSS/Guides/Backgrounds_and_borders/Box-shadow_generator
+              - listitem [ref=e695]:
+                - link "Color format converter" [ref=e696] [cursor=pointer]:
+                  - /url: /en-US/docs/Web/CSS/Guides/Colors/Color_format_converter
+              - listitem [ref=e697]:
+                - link "Color mixer" [ref=e698] [cursor=pointer]:
+                  - /url: /en-US/docs/Web/CSS/Guides/Colors/Color_mixer
+              - listitem [ref=e699]:
+                - link "Shape generator" [ref=e700] [cursor=pointer]:
+                  - /url: /en-US/docs/Web/CSS/Guides/Shapes/Shape_generator
+          - listitem [ref=e701]:
+            - link "Reference" [ref=e702] [cursor=pointer]:
+              - /url: /en-US/docs/Web/CSS/Reference
+          - listitem [ref=e703]:
+            - group [ref=e704]:
+              - generic "Properties" [ref=e705] [cursor=pointer]:
+                - link "Properties" [ref=e706]:
+                  - /url: /en-US/docs/Web/CSS/Reference/Properties
+          - listitem [ref=e707]:
+            - group [ref=e708]:
+              - generic "Selectors" [ref=e709] [cursor=pointer]:
+                - link "Selectors" [ref=e710]:
+                  - /url: /en-US/docs/Web/CSS/Reference/Selectors
+          - listitem [ref=e711]:
+            - group [ref=e712]:
+              - generic "Combinators" [ref=e713] [cursor=pointer]:
+                - link "Combinators" [ref=e714]:
+                  - /url: /en-US/docs/Web/CSS/Reference/Selectors/Combinators
+          - listitem [ref=e715]:
+            - group [ref=e716]:
+              - generic "Pseudo-classes" [ref=e717] [cursor=pointer]:
+                - link "Pseudo-classes" [ref=e718]:
+                  - /url: /en-US/docs/Web/CSS/Reference/Selectors/Pseudo-classes
+          - listitem [ref=e719]:
+            - group [ref=e720]:
+              - generic "Pseudo-elements" [ref=e721] [cursor=pointer]:
+                - link "Pseudo-elements" [ref=e722]:
+                  - /url: /en-US/docs/Web/CSS/Reference/Selectors/Pseudo-elements
+          - listitem [ref=e723]:
+            - group [ref=e724]:
+              - generic "At-rules" [ref=e725] [cursor=pointer]:
+                - link "At-rules" [ref=e726]:
+                  - /url: /en-US/docs/Web/CSS/Reference/At-rules
+          - listitem [ref=e727]:
+            - group [ref=e728]:
+              - generic "Values" [ref=e729] [cursor=pointer]:
+                - link "Values" [ref=e730]:
+                  - /url: /en-US/docs/Web/CSS/Reference/Values
+          - listitem [ref=e731]:
+            - group [ref=e732]:
+              - generic "Types" [ref=e733] [cursor=pointer]:
+                - link "Types" [ref=e734]:
+                  - /url: /en-US/docs/Web/CSS/Reference/Values/Data_types
+          - listitem [ref=e735]:
+            - group [ref=e736]:
+              - generic "Functions" [ref=e737] [cursor=pointer]:
+                - link "Functions" [ref=e738]:
+                  - /url: /en-US/docs/Web/CSS/Reference/Values/Functions
+  - contentinfo [ref=e740]:
+    - generic [ref=e741]:
+      - generic [ref=e742]:
+        - link "MDN logo" [ref=e743] [cursor=pointer]:
+          - /url: /
+          - img "MDN" [ref=e744]
+        - paragraph [ref=e746]: Your blueprint for a better internet.
+      - list [ref=e747]:
+        - listitem [ref=e748]:
+          - link "MDN on GitHub" [ref=e749] [cursor=pointer]:
+            - /url: https://github.com/mdn/
+        - listitem [ref=e750]:
+          - link "MDN on Bluesky" [ref=e751] [cursor=pointer]:
+            - /url: https://bsky.app/profile/developer.mozilla.org
+        - listitem [ref=e752]:
+          - link "MDN on X" [ref=e753] [cursor=pointer]:
+            - /url: https://x.com/mozdevnet
+        - listitem [ref=e754]:
+          - link "MDN on Mastodon" [ref=e755] [cursor=pointer]:
+            - /url: https://mastodon.social/@mdn
+        - listitem [ref=e756]:
+          - link "MDN blog RSS feed" [ref=e757] [cursor=pointer]:
+            - /url: /en-US/blog/rss.xml
+      - generic [ref=e758]:
+        - term [ref=e759]: MDN
+        - definition [ref=e760]:
+          - list [ref=e761]:
+            - listitem [ref=e762]:
+              - link "About" [ref=e763] [cursor=pointer]:
+                - /url: /en-US/about
+            - listitem [ref=e764]:
+              - link "Blog" [ref=e765] [cursor=pointer]:
+                - /url: /en-US/blog/
+            - listitem [ref=e766]:
+              - link "Mozilla careers (external)" [ref=e767] [cursor=pointer]:
+                - /url: https://www.mozilla.org/en-US/careers/listings/
+            - listitem [ref=e768]:
+              - link "Advertise with us" [ref=e769] [cursor=pointer]:
+                - /url: /en-US/advertising
+            - listitem [ref=e770]:
+              - link "MDN Plus" [ref=e771] [cursor=pointer]:
+                - /url: /en-US/plus
+            - listitem [ref=e772]:
+              - link "Product help (external)" [ref=e773] [cursor=pointer]:
+                - /url: https://support.mozilla.org/products/mdn-plus
+      - generic [ref=e774]:
+        - term [ref=e775]: Contribute
+        - definition [ref=e776]:
+          - list [ref=e777]:
+            - listitem [ref=e778]:
+              - link "MDN Community" [ref=e779] [cursor=pointer]:
+                - /url: /en-US/community
+            - listitem [ref=e780]:
+              - link "Community resources" [ref=e781] [cursor=pointer]:
+                - /url: /en-US/docs/MDN/Community
+            - listitem [ref=e782]:
+              - link "Writing guidelines" [ref=e783] [cursor=pointer]:
+                - /url: /en-US/docs/MDN/Writing_guidelines
+            - listitem [ref=e784]:
+              - link "MDN Discord (external)" [ref=e785] [cursor=pointer]:
+                - /url: /discord
+            - listitem [ref=e786]:
+              - link "MDN on GitHub (external)" [ref=e787] [cursor=pointer]:
+                - /url: https://github.com/mdn
+      - generic [ref=e788]:
+        - term [ref=e789]: Developers
+        - definition [ref=e790]:
+          - list [ref=e791]:
+            - listitem [ref=e792]:
+              - link "Web technologies" [ref=e793] [cursor=pointer]:
+                - /url: /en-US/docs/Web
+            - listitem [ref=e794]:
+              - link "Learn web development" [ref=e795] [cursor=pointer]:
+                - /url: /en-US/docs/Learn_web_development
+            - listitem [ref=e796]:
+              - link "Guides" [ref=e797] [cursor=pointer]:
+                - /url: /en-US/docs/MDN/Guides
+            - listitem [ref=e798]:
+              - link "Tutorials" [ref=e799] [cursor=pointer]:
+                - /url: /en-US/docs/MDN/Tutorials
+            - listitem [ref=e800]:
+              - link "Glossary" [ref=e801] [cursor=pointer]:
+                - /url: /en-US/docs/Glossary
+            - listitem [ref=e802]:
+              - link "Hacks blog (external)" [ref=e803] [cursor=pointer]:
+                - /url: https://hacks.mozilla.org/
+    - generic [ref=e804]:
+      - link "Mozilla logo" [ref=e805] [cursor=pointer]:
+        - /url: https://www.mozilla.org/
+        - img "Mozilla" [ref=e806]
+      - list [ref=e808]:
+        - listitem [ref=e809]:
+          - link "Website Privacy Notice (external)" [ref=e810] [cursor=pointer]:
+            - /url: https://www.mozilla.org/privacy/websites/
+        - listitem [ref=e811]:
+          - link "Telemetry Settings (external)" [ref=e812] [cursor=pointer]:
+            - /url: https://www.mozilla.org/en-US/privacy/websites/data-preferences/
+        - listitem [ref=e813]:
+          - link "Legal (external)" [ref=e814] [cursor=pointer]:
+            - /url: https://www.mozilla.org/about/legal/terms/mozilla
+        - listitem [ref=e815]:
+          - link "Community Participation Guidelines (external)" [ref=e816] [cursor=pointer]:
+            - /url: https://www.mozilla.org/about/governance/policies/participation/
+      - paragraph [ref=e817]:
+        - text: Visit
+        - link "Mozilla Corporation’s" [ref=e818] [cursor=pointer]:
+          - /url: https://www.mozilla.org/
+        - text: not-for-profit parent, the
+        - link "Mozilla Foundation" [ref=e819] [cursor=pointer]:
+          - /url: https://foundation.mozilla.org/
+        - text: .
+        - text: Portions of this content are ©1998–2026 by individual mozilla.org contributors. Content available under
+        - link "a Creative Commons license" [ref=e820] [cursor=pointer]:
+          - /url: /docs/MDN/Writing_guidelines/Attrib_copyright_license
+        - text: .

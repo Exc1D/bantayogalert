@@ -1,0 +1,2343 @@
+- generic [active] [ref=e1]:
+  - list:
+    - listitem:
+      - link "Skip to main content" [ref=e2] [cursor=pointer]:
+        - /url: "#content"
+    - listitem:
+      - link "Skip to search" [ref=e3] [cursor=pointer]:
+        - /url: "#search"
+  - banner [ref=e7]:
+    - navigation [ref=e8]:
+      - link "MDN" [ref=e10] [cursor=pointer]:
+        - /url: /en-US/
+        - img "MDN" [ref=e11]
+      - generic [ref=e15]:
+        - navigation [ref=e17]:
+          - button "HTML" [ref=e20] [cursor=pointer]:
+            - generic [ref=e21]: HTML
+          - button "CSS" [ref=e24] [cursor=pointer]:
+            - generic [ref=e25]: CSS
+          - button "JavaScript" [ref=e28] [cursor=pointer]:
+            - generic [ref=e29]: JavaScript
+          - button "Web APIs" [ref=e32] [cursor=pointer]:
+            - generic [ref=e33]: Web APIs
+          - button "All" [ref=e36] [cursor=pointer]:
+            - generic [ref=e37]: All
+          - generic [ref=e39]:
+            - button "Learn" [ref=e40] [cursor=pointer]:
+              - generic [ref=e41]: Learn
+            - text: (external)
+          - button "Tools" [ref=e44] [cursor=pointer]:
+            - generic [ref=e45]: Tools
+          - generic [ref=e47]:
+            - button "About" [ref=e48] [cursor=pointer]:
+              - generic [ref=e49]: About
+            - text: (external)
+          - link "Blog" [ref=e51] [cursor=pointer]:
+            - /url: /en-US/blog/
+        - button "Search the site" [ref=e54] [cursor=pointer]:
+          - img [ref=e55]
+        - link "Log in" [ref=e60] [cursor=pointer]:
+          - /url: https://developer.mozilla.org/users/fxa/login/authenticate/?next=%2Fen-US%2Fdocs%2FWeb%2FCSS%2FReference%2FProperties%2Fanimation-timing-function
+          - img [ref=e62]
+          - generic [ref=e64]:
+            - generic: Log in
+    - generic [ref=e65]:
+      - list [ref=e66]:
+        - listitem [ref=e67]:
+          - link "Web" [ref=e68] [cursor=pointer]:
+            - /url: /en-US/docs/Web
+        - listitem [ref=e69]:
+          - link "CSS" [ref=e70] [cursor=pointer]:
+            - /url: /en-US/docs/Web/CSS
+        - listitem [ref=e71]:
+          - link "Reference" [ref=e72] [cursor=pointer]:
+            - /url: /en-US/docs/Web/CSS/Reference
+        - listitem [ref=e73]:
+          - link "Properties" [ref=e74] [cursor=pointer]:
+            - /url: /en-US/docs/Web/CSS/Reference/Properties
+        - listitem [ref=e75]:
+          - link "animation-timing-function" [ref=e76] [cursor=pointer]:
+            - /url: /en-US/docs/Web/CSS/Reference/Properties/animation-timing-function
+      - button "Switch color theme" [ref=e80] [cursor=pointer]:
+        - generic [ref=e81]: Theme
+      - generic [ref=e84]:
+        - button "English (US)" [ref=e85] [cursor=pointer]:
+          - generic [ref=e86]: English (US)
+        - generic: Remember language
+  - generic [ref=e88]:
+    - main [ref=e89]:
+      - generic [ref=e90]:
+        - heading "animation-timing-function" [level=1] [ref=e91]
+        - group [ref=e92]:
+          - generic "Baseline Check Baseline Widely available Chrome check Edge check Firefox check Safari check" [ref=e93] [cursor=pointer]:
+            - img "Baseline Check" [ref=e94]
+            - generic [ref=e95]: Baseline Widely available
+            - generic [ref=e96]:
+              - generic "Supported in Chrome and Edge" [ref=e97]:
+                - img "Chrome check" [ref=e98]
+                - img "Edge check" [ref=e99]
+              - generic "Supported in Firefox" [ref=e100]:
+                - img "Firefox check" [ref=e101]
+              - generic "Supported in Safari" [ref=e102]:
+                - img "Safari check" [ref=e103]
+        - generic [ref=e105]:
+          - paragraph [ref=e106]:
+            - text: The
+            - strong [ref=e107]:
+              - code [ref=e108]: animation-timing-function
+            - link "CSS" [ref=e109] [cursor=pointer]:
+              - /url: /en-US/docs/Web/CSS
+            - text: property sets how an animation progresses through the duration of each cycle.
+          - paragraph [ref=e110]:
+            - text: It is often convenient to use the shorthand property
+            - link "animation" [ref=e111] [cursor=pointer]:
+              - /url: /en-US/docs/Web/CSS/Reference/Properties/animation
+              - code [ref=e112]: animation
+            - text: to set all animation properties at once.
+      - complementary [ref=e113]:
+        - navigation [ref=e114]:
+          - heading "In this article" [level=2] [ref=e115]
+          - list [ref=e116]:
+            - listitem [ref=e117]:
+              - link "Try it" [ref=e118] [cursor=pointer]:
+                - /url: "#try_it"
+            - listitem [ref=e119]:
+              - link "Syntax" [ref=e120] [cursor=pointer]:
+                - /url: "#syntax"
+            - listitem [ref=e121]:
+              - link "Description" [ref=e122] [cursor=pointer]:
+                - /url: "#description"
+            - listitem [ref=e123]:
+              - link "Formal definition" [ref=e124] [cursor=pointer]:
+                - /url: "#formal_definition"
+            - listitem [ref=e125]:
+              - link "Formal syntax" [ref=e126] [cursor=pointer]:
+                - /url: "#formal_syntax"
+            - listitem [ref=e127]:
+              - link "Examples" [ref=e128] [cursor=pointer]:
+                - /url: "#examples"
+            - listitem [ref=e129]:
+              - link "Specifications" [ref=e130] [cursor=pointer]:
+                - /url: "#specifications"
+            - listitem [ref=e131]:
+              - link "Browser compatibility" [ref=e132] [cursor=pointer]:
+                - /url: "#browser_compatibility"
+            - listitem [ref=e133]:
+              - link "See also" [ref=e134] [cursor=pointer]:
+                - /url: "#see_also"
+      - generic [ref=e135]:
+        - region "Try it" [ref=e136]:
+          - heading "Try it" [level=2] [ref=e137]:
+            - link "Try it" [ref=e138] [cursor=pointer]:
+              - /url: "#try_it"
+          - 'generic "CSS Demo: animation-timing-function" [ref=e140]':
+            - generic [ref=e141]:
+              - 'heading "CSS Demo: animation-timing-function" [level=4] [ref=e142]'
+              - button "Reset" [disabled] [ref=e144]:
+                - generic [ref=e145]:
+                  - generic: Reset
+            - list "Value select" [ref=e146]:
+              - listitem [ref=e147]:
+                - textbox [ref=e152]:
+                  - generic [ref=e153]: "animation-timing-function: linear;"
+              - listitem [ref=e154]:
+                - textbox [ref=e159] [cursor=pointer]:
+                  - generic [ref=e160]: "animation-timing-function: ease-in-out;"
+              - listitem [ref=e161]:
+                - textbox [ref=e166] [cursor=pointer]:
+                  - generic [ref=e167]: "animation-timing-function: steps(5, end);"
+              - listitem [ref=e168]:
+                - textbox [ref=e173] [cursor=pointer]:
+                  - generic [ref=e174]: "animation-timing-function: cubic-bezier(0.1, -0.6, 0.2, 0);"
+            - iframe [ref=e178]:
+              - button "Play" [ref=f67e4]
+        - region "Syntax" [ref=e179]:
+          - heading "Syntax" [level=2] [ref=e180]:
+            - link "Syntax" [ref=e181] [cursor=pointer]:
+              - /url: "#syntax"
+          - generic [ref=e183]:
+            - generic [ref=e184]:
+              - generic [ref=e185]: css
+              - button "Copy" [ref=e188] [cursor=pointer]:
+                - generic [ref=e189]:
+                  - generic: Copy
+            - code [ref=e191]: "/* Keyword values */ animation-timing-function: ease; animation-timing-function: ease-in; animation-timing-function: ease-out; animation-timing-function: ease-in-out; animation-timing-function: linear; animation-timing-function: step-start; animation-timing-function: step-end; /* cubic-bezier() function values */ animation-timing-function: cubic-bezier(0.42, 0, 1, 1); /* ease-in */ animation-timing-function: cubic-bezier(0, 0, 0.58, 1); /* ease-out */ animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1); /* ease-in-out */ /* linear() function values */ animation-timing-function: linear(0, 0.25, 1); animation-timing-function: linear(0 0%, 0.25 50%, 1 100%); animation-timing-function: linear(0, 0.25 50% 75%, 1); animation-timing-function: linear(0, 0.25 50%, 0.25 75%, 1); /* steps() function values */ animation-timing-function: steps(4, jump-start); animation-timing-function: steps(10, jump-end); animation-timing-function: steps(20, jump-none); animation-timing-function: steps(5, jump-both); animation-timing-function: steps(6, start); animation-timing-function: steps(8, end); /* Multiple animations */ animation-timing-function: ease, step-start, cubic-bezier(0.1, 0.7, 1, 0.1); /* Global values */ animation-timing-function: inherit; animation-timing-function: initial; animation-timing-function: revert; animation-timing-function: revert-layer; animation-timing-function: unset;"
+        - region "Values" [ref=e192]:
+          - heading "Values" [level=3] [ref=e193]:
+            - link "Values" [ref=e194] [cursor=pointer]:
+              - /url: "#values"
+          - generic [ref=e195]:
+            - term [ref=e196]:
+              - link "<easing-function>" [ref=e197] [cursor=pointer]:
+                - /url: /en-US/docs/Web/CSS/Reference/Values/easing-function
+                - code [ref=e198]: <easing-function>
+            - definition [ref=e199]:
+              - paragraph [ref=e200]:
+                - text: The easing function that corresponds to a given animation, as determined by
+                - link "animation-name" [ref=e201] [cursor=pointer]:
+                  - /url: /en-US/docs/Web/CSS/Reference/Properties/animation-name
+                  - code [ref=e202]: animation-name
+                - text: .
+              - paragraph [ref=e203]:
+                - text: The non-step keyword values (
+                - code [ref=e204]: ease
+                - text: ","
+                - code [ref=e205]: linear
+                - text: ","
+                - code [ref=e206]: ease-in-out
+                - text: ", etc.) each represent cubic Bézier curves with fixed four-point values, while the"
+                - code [ref=e207]: cubic-bezier()
+                - text: function value allows non-predefined values to be specified. The
+                - code [ref=e208]: steps()
+                - text: easing function divides the input time into a specified number of equal-length intervals. Its parameters include a number of steps and a step position.
+              - generic [ref=e209]:
+                - term [ref=e210]:
+                  - link "linear" [ref=e211] [cursor=pointer]:
+                    - /url: "#linear"
+                    - code [ref=e212]: linear
+                - definition [ref=e213]:
+                  - paragraph [ref=e214]:
+                    - text: Equal to
+                    - code [ref=e215]: cubic-bezier(0.0, 0.0, 1.0, 1.0)
+                    - text: ", animates at an even speed."
+                - term [ref=e216]:
+                  - link "ease" [ref=e217] [cursor=pointer]:
+                    - /url: "#ease"
+                    - code [ref=e218]: ease
+                - definition [ref=e219]:
+                  - paragraph [ref=e220]:
+                    - text: Equal to
+                    - code [ref=e221]: cubic-bezier(0.25, 0.1, 0.25, 1.0)
+                    - text: ", the default value, increases in velocity towards the middle of the animation, slowing back down at the end."
+                - term [ref=e222]:
+                  - link "ease-in" [ref=e223] [cursor=pointer]:
+                    - /url: "#ease-in"
+                    - code [ref=e224]: ease-in
+                - definition [ref=e225]:
+                  - paragraph [ref=e226]:
+                    - text: Equal to
+                    - code [ref=e227]: cubic-bezier(0.42, 0, 1.0, 1.0)
+                    - text: ", starts off slowly, with the speed of the transition of the animating property increasing until complete."
+                - term [ref=e228]:
+                  - link "ease-out" [ref=e229] [cursor=pointer]:
+                    - /url: "#ease-out"
+                    - code [ref=e230]: ease-out
+                - definition [ref=e231]:
+                  - paragraph [ref=e232]:
+                    - text: Equal to
+                    - code [ref=e233]: cubic-bezier(0, 0, 0.58, 1.0)
+                    - text: ", starts quickly, slowing down the animation continues."
+                - term [ref=e234]:
+                  - link "ease-in-out" [ref=e235] [cursor=pointer]:
+                    - /url: "#ease-in-out"
+                    - code [ref=e236]: ease-in-out
+                - definition [ref=e237]:
+                  - paragraph [ref=e238]:
+                    - text: Equal to
+                    - code [ref=e239]: cubic-bezier(0.42, 0, 0.58, 1.0)
+                    - text: ", with the animating properties slowly transitioning, speeding up, and then slowing down again."
+                - term [ref=e240]:
+                  - link "cubic-bezier(<number [0,1]> , <number> , <number [0,1]> , <number>)" [ref=e241] [cursor=pointer]:
+                    - /url: "#cubic-beziernumber_01_number_number_01_number"
+                    - code [ref=e242]: cubic-bezier(<number [0,1]> , <number> , <number [0,1]> , <number>)
+                - definition [ref=e243]:
+                  - paragraph [ref=e244]: An author defined cubic-bezier curve, where the first and third values must be in the range of 0 to 1.
+                - term [ref=e245]:
+                  - 'link "linear(<number> <percentage>{1,2}, …)" [ref=e246] [cursor=pointer]':
+                    - /url: "#linearnumber_percentage12_…"
+                    - code [ref=e247]: "linear(<number> <percentage>{1,2}, …)"
+                - definition [ref=e248]:
+                  - paragraph [ref=e249]:
+                    - text: The function interpolates linearly between the provided easing stop points. A stop point is a pair of an output progress and an input percentage. The input percentage is optional and is inferred if not specified. If an input percentage is not provided then the first and last stop points are set to
+                    - code [ref=e250]: 0%
+                    - text: and
+                    - code [ref=e251]: 100%
+                    - text: respectively, and the stop points in the middle receive percentage values derived by linearly interpolating between the closest previous and next points that have a percentage value.
+                - term [ref=e252]:
+                  - link "steps(<integer>, <step-position>)" [ref=e253] [cursor=pointer]:
+                    - /url: "#stepsinteger_step-position"
+                    - code [ref=e254]: steps(<integer>, <step-position>)
+                - definition [ref=e255]:
+                  - paragraph [ref=e256]:
+                    - text: Displays an animation iteration along
+                    - emphasis [ref=e257]: "n"
+                    - text: stops along the transition, displaying each stop for equal lengths of time. For example, if
+                    - emphasis [ref=e258]: "n"
+                    - text: "is 5, there are 5 steps. Whether the animation holds temporarily at 0%, 20%, 40%, 60% and 80%, on the 20%, 40%, 60%, 80% and 100%, or makes 5 stops between the 0% and 100% along the animation, or makes 5 stops including the 0% and 100% marks (on the 0%, 25%, 50%, 75%, and 100%) depends on which of the following step position is used:"
+                  - generic [ref=e259]:
+                    - term [ref=e260]:
+                      - link "jump-start" [ref=e261] [cursor=pointer]:
+                        - /url: "#jump-start"
+                        - code [ref=e262]: jump-start
+                    - definition [ref=e263]:
+                      - paragraph [ref=e264]: Denotes a left-continuous function, so that the first jump happens when the animation begins.
+                    - term [ref=e265]:
+                      - link "jump-end" [ref=e266] [cursor=pointer]:
+                        - /url: "#jump-end"
+                        - code [ref=e267]: jump-end
+                    - definition [ref=e268]:
+                      - paragraph [ref=e269]: Denotes a right-continuous function, so that the last jump happens when the animation ends. This is the default.
+                    - term [ref=e270]:
+                      - link "jump-none" [ref=e271] [cursor=pointer]:
+                        - /url: "#jump-none"
+                        - code [ref=e272]: jump-none
+                    - definition [ref=e273]:
+                      - paragraph [ref=e274]: There is no jump on either end, effectively removing a step during the interpolation iteration. Instead, it holds at both the 0% mark and the 100% mark, each for 1/n of the duration.
+                    - term [ref=e275]:
+                      - link "jump-both" [ref=e276] [cursor=pointer]:
+                        - /url: "#jump-both"
+                        - code [ref=e277]: jump-both
+                    - definition [ref=e278]:
+                      - paragraph [ref=e279]: Includes pauses at both the 0% and 100% marks, effectively adding a step during the animation iteration.
+                    - term [ref=e280]:
+                      - link "start" [ref=e281] [cursor=pointer]:
+                        - /url: "#start"
+                        - code [ref=e282]: start
+                    - definition [ref=e283]:
+                      - paragraph [ref=e284]:
+                        - text: Same as
+                        - code [ref=e285]: jump-start
+                        - text: .
+                    - term [ref=e286]:
+                      - link "end" [ref=e287] [cursor=pointer]:
+                        - /url: "#end"
+                        - code [ref=e288]: end
+                    - definition [ref=e289]:
+                      - paragraph [ref=e290]:
+                        - text: Same as
+                        - code [ref=e291]: jump-end
+                        - text: .
+                - term [ref=e292]:
+                  - link "step-start" [ref=e293] [cursor=pointer]:
+                    - /url: "#step-start"
+                    - code [ref=e294]: step-start
+                - definition [ref=e295]:
+                  - paragraph [ref=e296]:
+                    - text: Equal to
+                    - code [ref=e297]: steps(1, jump-start)
+                - term [ref=e298]:
+                  - link "step-end" [ref=e299] [cursor=pointer]:
+                    - /url: "#step-end"
+                    - code [ref=e300]: step-end
+                - definition [ref=e301]:
+                  - paragraph [ref=e302]:
+                    - text: Equal to
+                    - code [ref=e303]: steps(1, jump-end)
+          - paragraph [ref=e305]:
+            - strong [ref=e306]: "Note:"
+            - text: When you specify multiple comma-separated values on an
+            - code [ref=e307]: animation-*
+            - text: property, they are applied to the animations in the order in which the
+            - link "animation-name" [ref=e308] [cursor=pointer]:
+              - /url: /en-US/docs/Web/CSS/Reference/Properties/animation-name
+              - code [ref=e309]: animation-name
+            - text: s appear. For situations where the number of animations and
+            - code [ref=e310]: animation-*
+            - text: property values do not match, see
+            - link "Setting multiple animation property values" [ref=e311] [cursor=pointer]:
+              - /url: /en-US/docs/Web/CSS/Guides/Animations/Using#setting_multiple_animation_property_values
+            - text: .
+          - paragraph [ref=e313]:
+            - strong [ref=e314]: "Note:"
+            - code [ref=e315]: animation-timing-function
+            - text: has the same effect when creating
+            - link "CSS scroll-driven animations" [ref=e316] [cursor=pointer]:
+              - /url: /en-US/docs/Web/CSS/Guides/Scroll-driven_animations
+            - text: as it does for regular time-based animations.
+        - region "Description" [ref=e317]:
+          - heading "Description" [level=2] [ref=e318]:
+            - link "Description" [ref=e319] [cursor=pointer]:
+              - /url: "#description"
+          - paragraph [ref=e320]:
+            - text: Easing functions may be specified on individual keyframes in a
+            - link "@keyframes" [ref=e321] [cursor=pointer]:
+              - /url: /en-US/docs/Web/CSS/Reference/At-rules/@keyframes
+              - code [ref=e322]: "@keyframes"
+            - text: rule. If no
+            - strong [ref=e323]:
+              - code [ref=e324]: animation-timing-function
+            - text: is specified on a keyframe, the corresponding value of
+            - strong [ref=e325]:
+              - code [ref=e326]: animation-timing-function
+            - text: from the element to which the animation is applied is used for that keyframe.
+          - paragraph [ref=e327]:
+            - text: Within a keyframe,
+            - code [ref=e328]: animation-timing-function
+            - text: is an at-rule-specific descriptor, not the property of the same name. The timing is not being animated. Rather, a keyframe's easing function is applied on a property-by-property basis from the keyframe on which it is specified until the next keyframe specifying that property, or until the end of the animation if there is no subsequent keyframe specifying that property. As a result, an
+            - strong [ref=e329]:
+              - code [ref=e330]: animation-timing-function
+            - text: specified on the
+            - strong [ref=e331]:
+              - code [ref=e332]: 100%
+            - text: or
+            - strong [ref=e333]:
+              - code [ref=e334]: to
+            - text: keyframe will never be used.
+        - region "Formal definition" [ref=e335]:
+          - heading "Formal definition" [level=2] [ref=e336]:
+            - link "Formal definition" [ref=e337] [cursor=pointer]:
+              - /url: "#formal_definition"
+          - figure [ref=e338]:
+            - table [ref=e339]:
+              - rowgroup [ref=e340]:
+                - row "Initial value ease" [ref=e341]:
+                  - rowheader "Initial value" [ref=e342]:
+                    - link "Initial value" [ref=e343] [cursor=pointer]:
+                      - /url: /en-US/docs/Web/CSS/Guides/Cascade/Property_value_processing#initial_value
+                  - cell "ease" [ref=e344]:
+                    - code [ref=e345]: ease
+                - row "Applies to all elements, ::before and ::after pseudo-elements" [ref=e346]:
+                  - rowheader "Applies to" [ref=e347]
+                  - cell "all elements, ::before and ::after pseudo-elements" [ref=e348]:
+                    - text: all elements,
+                    - link "::before" [ref=e349] [cursor=pointer]:
+                      - /url: /en-US/docs/Web/CSS/Reference/Selectors/::before
+                      - code [ref=e350]: ::before
+                    - text: and
+                    - link "::after" [ref=e351] [cursor=pointer]:
+                      - /url: /en-US/docs/Web/CSS/Reference/Selectors/::after
+                      - code [ref=e352]: ::after
+                    - link "pseudo-elements" [ref=e353] [cursor=pointer]:
+                      - /url: /en-US/docs/Web/CSS/Reference/Selectors/Pseudo-elements
+                - row "Inherited no" [ref=e354]:
+                  - rowheader "Inherited" [ref=e355]:
+                    - link "Inherited" [ref=e356] [cursor=pointer]:
+                      - /url: /en-US/docs/Web/CSS/Guides/Cascade/Inheritance
+                  - cell "no" [ref=e357]
+                - row "Computed value as specified" [ref=e358]:
+                  - rowheader "Computed value" [ref=e359]:
+                    - link "Computed value" [ref=e360] [cursor=pointer]:
+                      - /url: /en-US/docs/Web/CSS/Guides/Cascade/Property_value_processing#computed_value
+                  - cell "as specified" [ref=e361]
+                - row "Animation type Not animatable" [ref=e362]:
+                  - rowheader "Animation type" [ref=e363]:
+                    - link "Animation type" [ref=e364] [cursor=pointer]:
+                      - /url: /en-US/docs/Web/CSS/Guides/Animations/Animatable_properties
+                  - cell "Not animatable" [ref=e365]
+        - region "Formal syntax" [ref=e366]:
+          - heading "Formal syntax" [level=2] [ref=e367]:
+            - link "Formal syntax" [ref=e368] [cursor=pointer]:
+              - /url: "#formal_syntax"
+          - generic [ref=e369]:
+            - text: animation-timing-function =
+            - text: <easing-function>
+            - link "#" [ref=e370] [cursor=pointer]:
+              - /url: /en-US/docs/Web/CSS/Guides/Values_and_units/Value_definition_syntax#hash_mark
+            - text: <easing-function> =
+            - text: <linear-easing-function>
+            - link "|" [ref=e371] [cursor=pointer]:
+              - /url: /en-US/docs/Web/CSS/Guides/Values_and_units/Value_definition_syntax#single_bar
+            - text: <cubic-bezier-easing-function>
+            - link "|" [ref=e372] [cursor=pointer]:
+              - /url: /en-US/docs/Web/CSS/Guides/Values_and_units/Value_definition_syntax#single_bar
+            - text: <step-easing-function>
+            - text: <linear-easing-function> =
+            - text: linear
+            - link "|" [ref=e373] [cursor=pointer]:
+              - /url: /en-US/docs/Web/CSS/Guides/Values_and_units/Value_definition_syntax#single_bar
+            - text: <linear()>
+            - text: <cubic-bezier-easing-function> =
+            - text: ease
+            - link "|" [ref=e374] [cursor=pointer]:
+              - /url: /en-US/docs/Web/CSS/Guides/Values_and_units/Value_definition_syntax#single_bar
+            - text: ease-in
+            - link "|" [ref=e375] [cursor=pointer]:
+              - /url: /en-US/docs/Web/CSS/Guides/Values_and_units/Value_definition_syntax#single_bar
+            - text: ease-out
+            - link "|" [ref=e376] [cursor=pointer]:
+              - /url: /en-US/docs/Web/CSS/Guides/Values_and_units/Value_definition_syntax#single_bar
+            - text: ease-in-out
+            - link "|" [ref=e377] [cursor=pointer]:
+              - /url: /en-US/docs/Web/CSS/Guides/Values_and_units/Value_definition_syntax#single_bar
+            - text: <cubic-bezier()>
+            - text: <step-easing-function> =
+            - text: step-start
+            - link "|" [ref=e378] [cursor=pointer]:
+              - /url: /en-US/docs/Web/CSS/Guides/Values_and_units/Value_definition_syntax#single_bar
+            - text: step-end
+            - link "|" [ref=e379] [cursor=pointer]:
+              - /url: /en-US/docs/Web/CSS/Guides/Values_and_units/Value_definition_syntax#single_bar
+            - text: <steps()>
+            - text: <linear()> =
+            - text: linear(
+            - link "[" [ref=e380] [cursor=pointer]:
+              - /url: /en-US/docs/Web/CSS/Guides/Values_and_units/Value_definition_syntax#brackets
+            - link "<number>" [ref=e381] [cursor=pointer]:
+              - /url: /en-US/docs/Web/CSS/Reference/Values/number
+            - link "&&" [ref=e382] [cursor=pointer]:
+              - /url: /en-US/docs/Web/CSS/Guides/Values_and_units/Value_definition_syntax#double_ampersand
+            - link "<percentage>" [ref=e383] [cursor=pointer]:
+              - /url: /en-US/docs/Web/CSS/Reference/Values/percentage
+            - 'link "{0,2}" [ref=e384] [cursor=pointer]':
+              - /url: /en-US/docs/Web/CSS/Guides/Values_and_units/Value_definition_syntax#curly_braces
+            - link "]" [ref=e385] [cursor=pointer]:
+              - /url: /en-US/docs/Web/CSS/Guides/Values_and_units/Value_definition_syntax#brackets
+            - link "#" [ref=e386] [cursor=pointer]:
+              - /url: /en-US/docs/Web/CSS/Guides/Values_and_units/Value_definition_syntax#hash_mark
+            - text: )
+            - text: <cubic-bezier()> =
+            - text: cubic-bezier(
+            - link "[" [ref=e387] [cursor=pointer]:
+              - /url: /en-US/docs/Web/CSS/Guides/Values_and_units/Value_definition_syntax#brackets
+            - link "<number [0,1]>" [ref=e388] [cursor=pointer]:
+              - /url: /en-US/docs/Web/CSS/Reference/Values/number
+            - text: ","
+            - link "<number>" [ref=e389] [cursor=pointer]:
+              - /url: /en-US/docs/Web/CSS/Reference/Values/number
+            - link "]" [ref=e390] [cursor=pointer]:
+              - /url: /en-US/docs/Web/CSS/Guides/Values_and_units/Value_definition_syntax#brackets
+            - link "#" [ref=e391] [cursor=pointer]:
+              - /url: /en-US/docs/Web/CSS/Guides/Values_and_units/Value_definition_syntax#hash_mark
+            - 'link "{2}" [ref=e392] [cursor=pointer]':
+              - /url: /en-US/docs/Web/CSS/Guides/Values_and_units/Value_definition_syntax#curly_braces
+            - text: )
+            - text: <steps()> =
+            - text: steps( <integer> , <step-position>
+            - link "?" [ref=e393] [cursor=pointer]:
+              - /url: /en-US/docs/Web/CSS/Guides/Values_and_units/Value_definition_syntax#question_mark
+            - text: )
+            - text: <integer> =
+            - generic "The documentation about this has not yet been written; please consider contributing!" [ref=e394]: <number-token>
+            - text: <step-position> =
+            - text: jump-start
+            - link "|" [ref=e395] [cursor=pointer]:
+              - /url: /en-US/docs/Web/CSS/Guides/Values_and_units/Value_definition_syntax#single_bar
+            - text: jump-end
+            - link "|" [ref=e396] [cursor=pointer]:
+              - /url: /en-US/docs/Web/CSS/Guides/Values_and_units/Value_definition_syntax#single_bar
+            - text: jump-none
+            - link "|" [ref=e397] [cursor=pointer]:
+              - /url: /en-US/docs/Web/CSS/Guides/Values_and_units/Value_definition_syntax#single_bar
+            - text: jump-both
+            - link "|" [ref=e398] [cursor=pointer]:
+              - /url: /en-US/docs/Web/CSS/Guides/Values_and_units/Value_definition_syntax#single_bar
+            - text: start
+            - link "|" [ref=e399] [cursor=pointer]:
+              - /url: /en-US/docs/Web/CSS/Guides/Values_and_units/Value_definition_syntax#single_bar
+            - text: end
+          - generic [ref=e400]:
+            - text: This syntax reflects the latest standard as per
+            - link "CSS Animations Level 1 (external)" [ref=e401] [cursor=pointer]:
+              - /url: https://drafts.csswg.org/css-animations-1/
+            - text: ","
+            - link "CSS Easing Functions Level 2 (external)" [ref=e402] [cursor=pointer]:
+              - /url: https://drafts.csswg.org/css-easing-2/
+            - text: ","
+            - link "CSS Values and Units Module Level 4 (external)" [ref=e403] [cursor=pointer]:
+              - /url: https://drafts.csswg.org/css-values-4/
+            - text: . Not all browsers may have implemented every part. See
+            - link "Browser compatibility" [ref=e404] [cursor=pointer]:
+              - /url: "#browser_compatibility"
+            - text: for support information.
+        - region "Examples" [ref=e405]:
+          - heading "Examples" [level=2] [ref=e406]:
+            - link "Examples" [ref=e407] [cursor=pointer]:
+              - /url: "#examples"
+          - paragraph [ref=e408]:
+            - text: All the examples in this section animate the
+            - code [ref=e409]: width
+            - text: and
+            - code [ref=e410]: background-color
+            - text: properties of several
+            - code [ref=e411]: <div>
+            - text: elements with different
+            - code [ref=e412]: animation-timing-function
+            - text: values. The width is being animated from
+            - code [ref=e413]: "0"
+            - text: to
+            - code [ref=e414]: 100%
+            - text: ", and the background color is being animated from lime to magenta."
+        - region "Linear function examples" [ref=e415]:
+          - heading "Linear function examples" [level=3] [ref=e416]:
+            - link "Linear function examples" [ref=e417] [cursor=pointer]:
+              - /url: "#linear_function_examples"
+          - paragraph [ref=e418]:
+            - text: The example demonstrates the effects of various
+            - code [ref=e419]: linear()
+            - text: easing function values.
+          - generic [ref=e421]:
+            - generic "Run example in MDN Playground (opens in new tab)" [ref=e423]:
+              - link "Play" [ref=e424] [cursor=pointer]:
+                - /url: https://developer.mozilla.org/en-US/play?uuid=fa74122cfadd7a35695abd630b0997752fac32bc&state=lVVNj%2BM2DP0rhIBgM0DscbzxZtbJBN1Dbz0UaIEe6h5ki060I0teSXaSLua%2FF7LyaWfQ5GJLFN8jH01TP8nGVoKkZMl4C4WgxrxmpKYapc3IKpMAVyeCS6Q6I6tPfvUJWioaXD4z3n7kHZRympGV34yjCURhAkk0msD06f%2BAcQ8YJzBP7kJ%2B7iHnCcT3IWeDZONkdG%2FYZJjwzCG7BBK%2FSmB%2Bn%2FovV2TTMPZl67he7qOYD8R4ITCNo9EJfXpfcuwCuuMmI6ulqalcxclo%2Bdyt%2FD6Jrvfz8%2FmRLW%2BsVXL1u6B7oJJX1HIll88HcybJhBTGkJSEPhb8dEIYN7Wg%2BxRKgbuFs3xvjOXlPiiUtChtCqamBQbYohT7zmPLmd2k8BK1225fUb3mMhBY2hRmtaN5z2QmQ9%2FaPlBOi7e1Vo1kKRwKttaUcZR27M4BrALN1xs78dvthluEeBa%2BjA6Wtcb9DUMSxqNrzMAy%2B9oDDQxJ1McMLfN%2B6KFhELmzOMPTzdKVStqgpBUX%2BxQqJVVX7PPRFl1FUsiVYJ01V5qhTiGud2CU4KwLfKq4%2F%2FDoS37qgkDSClMoNlSuscL%2B91kB4%2B3fXSf%2B00eWXIigUgxTKJXeUs3M4tqDNbpbpDCN3NmFzOiyPXJlraqODQJQU8a4XKeQ1LuDZ652geH%2FdlYvNMiV97a4s8FW0zoFqdx7cd1UQaGE0q61zvp%2BecN9qWmF5iTdy4tG%2Fn1OFKuO7909ptHg3JkW3jIMqbTjPuJ9ZX2H94tpecXlOigbWfiKeTefb3ge4HfieuO9TxM%2FRHMe9n2ezw%2FxnEd%2Fn2f2oKyLi6BPlTwq7eNroU%2F95QHqm5dEn3D%2BoOzLK8NzkQn57gZ3oaSxkFsJr8BU0VQobfijQb3%2FAwUWVulxRvy8z4jDegDjrfkQ8U2IcUZuTQJPkcncypAy9muL0v7GjUWJLk4hePGWkQmMn%2BB1dZjxVoYG7TdrNc8bi%2BOMMG5oLpA5z4xY3aDndfNNw%2FiUIaiyS%2FTp%2BOcx3oZdIi5mqLFSreM7DLgjCUCrOOucVVkatH%2B5H3Zxi4IyNsR3P7xB%2ByevUDV2fCHGy%2FGBbys6UExgOo2iqPtY7kEmxG6wQpIS4aY3ef8P&srcPrefix=%2Fen-US%2Fdocs%2FWeb%2FCSS%2FReference%2FProperties%2Fanimation-timing-function%2F
+                - generic [ref=e425]:
+                  - generic: Play
+            - iframe [ref=e427]:
+              - generic [active] [ref=f68e1]:
+                - generic [ref=f68e2]:
+                  - generic: "'linear' value"
+                  - generic: linear(0, 0.5 50%, 1)
+                  - generic: linear(0, 0.25 75%, 1)
+                  - generic: linear(0, 0.75 25%, 1)
+                  - generic: linear(0, 0.5 25% 75%, 1)
+                  - generic: linear(0, 0.25 45%, 0.75 55%, 0.5 70%, 1)
+                  - generic: linear(0, 1.2 50%, 0.75 80%, 1)
+                  - generic: linear(0, 0.5 75%, 1 120%)
+                - generic [ref=f68e3]:
+                  - generic [ref=f68e4]: 25%
+                  - generic [ref=f68e5]: 50%
+                  - generic [ref=f68e6]: 75%
+                - button "Play animation" [ref=f68e7]
+          - paragraph [ref=e428]:
+            - text: The following image shows graphs of all the
+            - code [ref=e429]: linear()
+            - text: function values used in this example. Input progress (time) is plotted on the x-axis and output progress is plotted on the y-axis. As per the syntax, the input progress ranges from 0 to 100%, and the output ranges from 0 to 1.
+          - paragraph [ref=e430]:
+            - img "An image showing 'linear' function graphs" [ref=e431]
+          - paragraph [ref=e432]: Note that the output can go forward or backward.
+        - region "Cubic-Bézier examples" [ref=e433]:
+          - heading "Cubic-Bézier examples" [level=3] [ref=e434]:
+            - link "Cubic-Bézier examples" [ref=e435] [cursor=pointer]:
+              - /url: "#cubic-bézier_examples"
+          - paragraph [ref=e436]: The example demonstrates the effects of various bézier curve easing functions.
+          - generic [ref=e438]:
+            - generic "Run example in MDN Playground (opens in new tab)" [ref=e440]:
+              - link "Play" [ref=e441] [cursor=pointer]:
+                - /url: https://developer.mozilla.org/en-US/play?uuid=9365e5f540d5f00a8238a6286b176b6554759282&state=jVRNb9s4EP0rAwIBHMBU5KIGurIjtIe97aFAC%2FSw2gMljmw21NAlR7LdIv99QdF27DhNc%2BHH8L03XyR%2FiTV3VhRiqc0AjVUh3FdiozwSV6KsCODixBpC5StRpsXyTpvhGoUqYCXKOL2CkIYOIGnoNZzr%2BQh0Pb%2BueA5Ou9%2Fgm7oSZdPXppE1%2FjToJ9l8CjKP42wKs2x%2Be2Se5nP%2BTqqdCZUol2GjqJznN8u7cXVC1z2zo%2FKzVXtQZDrFxtHy7mCuSExFE4IoRJa04FcMUpuwsWpfQGtxt4iW731g0%2B5l44iRuICwUQ1KHJDsfkRsjeZ1AR%2FyYTvuO%2BVXhqTFlgt4v4kyjxVVlKXGJke1ah5W3vWkC0jdlCuvtEHiSTwHYAferNY8Tdvt2jDC%2B7%2ByDzcHy8rj%2Ftowz7N3Nxec0RINty%2BG2zpi2arO2H0BnSM3Jvh0tMUYRQG1s3q01s5r9AW82%2BwgOGv06PiUZSo2pjRPlZekOiygWStaYYfPa1KCNsO%2FY3f%2Fe85sjbWycxoLaJ3fKq%2FD4hKhez8uCpjl8ewszfy8JbVjdt2xKQAbpbWhVQHzze6ArN1OBvNztKZEZe0SmnHHcuvVpgBycV5cNlI2zjof2%2FmU38cH3LdedRhOqaf08ps0PwWK3aj3GIdZfnUeTYtkuXbpfNQ%2B8lNl0616Xkw2naGVbHtqUsUSLMWbxYf7R0YEneGloTdRpKFzluv5bTTX86W3t1MT9sBu6j%2BSLj6k%2FOpHSkJiKr7Hf6NxFBhqJrgH7Zq%2BQ%2BLsR49%2B%2FwUtNuz8pBLpu6lE5CaCNkP4LeOTtZNKvPQokkRFNVOmtP57QOJ%2FTGAkjH4aa5qHSkxhcgv35eGLYcoC8idmb%2BqecVIJbYKqLeqIrAT7HpNufOoeJqcIwbVjoLfHS6jNkI2BRJ%2BZx84NUe%2Fw1o8iAIMzegS7tg3I3%2BLdXbwkobS%2B5o93PyB%2FNR26nidnyaR0kuOXMzpITGE2y%2FN8bFYcxFTwGjsUhbDxIxOP%2FwM%3D&srcPrefix=%2Fen-US%2Fdocs%2FWeb%2FCSS%2FReference%2FProperties%2Fanimation-timing-function%2F
+                - generic [ref=e442]:
+                  - generic: Play
+            - iframe [ref=e444]:
+              - generic [active] [ref=f69e1]:
+                - generic [ref=f69e2]:
+                  - generic: linear
+                  - generic: ease
+                  - generic: ease-in
+                  - generic: ease-out
+                  - generic: ease-in-out
+                  - generic: cubic-bezier(.5, -0.5, 1, 1.5)
+                - generic [ref=f69e4]: 50%
+                - button "Play animation" [ref=f69e5]
+          - paragraph [ref=e445]: The following image shows graphs of all the cubic bézier function values used in this example. The input progress (time) ranges from 0 to 1 and the output progress ranges from 0 to 1.
+          - paragraph [ref=e446]:
+            - img "An image showing 'cubic-bezier' function graphs" [ref=e447]
+        - region "Step examples" [ref=e448]:
+          - heading "Step examples" [level=3] [ref=e449]:
+            - link "Step examples" [ref=e450] [cursor=pointer]:
+              - /url: "#step_examples"
+          - paragraph [ref=e451]: This example demonstrates the effects of several step easing function values.
+          - generic [ref=e453]:
+            - generic "Run example in MDN Playground (opens in new tab)" [ref=e455]:
+              - link "Play" [ref=e456] [cursor=pointer]:
+                - /url: https://developer.mozilla.org/en-US/play?uuid=35f03cdd299004cf5b8d412f92d73b7413b4c788&state=lVRNb%2BM2EP0rBIEADmApShBjt7JjdA9766FAC%2FRQ9UCJI5sJNdSSI9nuIv%2B9IOkP2XLS5CKJj%2FPecEbD95OvqdE85wupelZp4dxTwVthAangywIZO9vRCkHYgi%2Fjx%2BJOqn4c5UhYT3cErZs8TlkAbt%2BIfu6aNhlRTuhbPEA5JADKdzNchB%2BwdzmlofWI5MF3WWgQRiwPvsXykWcdiIv3ok%2FV%2BM9D5PE9jN8mYqtcwZcL1wpcPsxuFnfhK65n2fn6y2n%2FoFZ2RAaXv2uxYwJVI0gZXNzt4QL5lFfO8ZynMRf76Q8tlWu12OWs1rCde%2BS5c6TqXVIZJEDKmWtFBQn0gHoXIjZK0jpnX7N%2BE9aNsCuFiYaacvbYepnXAgtM44jGRKWoXlbWdChzFucyWVkhFSBN%2FD5jZJhVqzVN43KzVgTs4TH9erNHVhZ2V4BZ%2BnBzzhkhj79ckEbALLvkjJEvl6nHwChzQDxwe7V1tUFKatEovctZY9CEZp%2B2NuA7krPSaBnQ0lgJNmcP7ZY5o5UMiY8djz8eYsuPU5CgaCBn1VrgChq4%2FD9LJlX%2Fd5jEfy6ZtdI6aYyEnNXGboSVbn4eITsbPnJ2n%2Fm9QZnZcDxKQ2Saw4Aw1gopFa5yNmu3%2B8jSbBOn%2Fg1oLDQpTYwm2FKysaLNGRr%2Fnp8PVVIZbawfrVN9v77ArraiAXcsPZaX3cT36aDQBL1X%2F7jPRvsemkdknNJYr33gvxaYxvm%2BbCWpRuEqqTusYr9i2PFvBDv5X9KFXUd2ejLijwsMzHuvAig%2FTve2PMz%2BKfLR2IcK3rM%2FKRFsfqjhHfyTGsH09xonX%2F%2BQSAwdcj%2FaBR8YeXzKn70tVwYdsZKQPTFpqq4BpPRHB3b3B2ioyNhJwaObF9yfNxKk6t2bjG9aTwp%2B7Z5HiQJLwlRI%2Bb0HpN%2BUI0DweSqtqpeCT9nklj0t9w5OmDqgb0RWlR3BpOBSOVFqkD6y4GQ7iLrevSybHE%2FITB0Oenu4V1L1aTiIz5laaEzv9fb2dRBhrDdKhmBT1w7oL38d59ckhJRjfrjODuhP1YDpaDIoJpYTE1%2BvaC8xZff3WZaFAfEPPuW0hgZ4zrX3Zv76Hw%3D%3D&srcPrefix=%2Fen-US%2Fdocs%2FWeb%2FCSS%2FReference%2FProperties%2Fanimation-timing-function%2F
+                - generic [ref=e457]:
+                  - generic: Play
+            - iframe [ref=e459]:
+              - generic [active] [ref=f70e1]:
+                - generic [ref=f70e2]:
+                  - generic: linear
+                  - generic: steps(4, start)
+                  - generic: steps(4, jump-start)
+                  - generic: steps(4, end)
+                  - generic: steps(4, jump-end)
+                  - generic: steps(4, jump-both)
+                  - generic: steps(4, jump-none)
+                  - generic: step-start
+                  - generic: step-end
+                - generic [ref=f70e3]:
+                  - generic [ref=f70e4]: 25%
+                  - generic [ref=f70e5]: 50%
+                  - generic [ref=f70e6]: 75%
+                - button "Play animation" [ref=f70e7]
+          - paragraph [ref=e460]:
+            - text: The following image shows graphs of all the
+            - code [ref=e461]: step()
+            - text: function values used in this example. The input progress (time) and output progress range from 0 to 1.
+          - paragraph [ref=e462]:
+            - img "image showing 'steps' function graphs" [ref=e463]
+        - region "Specifications" [ref=e464]:
+          - heading "Specifications" [level=2] [ref=e465]:
+            - link "Specifications" [ref=e466] [cursor=pointer]:
+              - /url: "#specifications"
+          - table [ref=e467]:
+            - rowgroup [ref=e468]:
+              - row "Specification" [ref=e469]:
+                - columnheader "Specification" [ref=e470]
+            - rowgroup [ref=e471]:
+              - 'row "CSS Animations Level 1 # animation-timing-function (external)" [ref=e472]':
+                - 'cell "CSS Animations Level 1 # animation-timing-function (external)" [ref=e473]':
+                  - 'link "CSS Animations Level 1 # animation-timing-function (external)" [ref=e474] [cursor=pointer]':
+                    - /url: https://drafts.csswg.org/css-animations/#animation-timing-function
+                    - text: CSS Animations Level 1
+                    - text: "# animation-timing-function (external)"
+        - region "Browser compatibility" [ref=e475]:
+          - heading "Browser compatibility" [level=2] [ref=e476]:
+            - link "Browser compatibility" [ref=e477] [cursor=pointer]:
+              - /url: "#browser_compatibility"
+          - generic [ref=e479]:
+            - figure [ref=e480]:
+              - figure [ref=e481]:
+                - generic [ref=e482]:
+                  - link "Report problems with this compatibility data (external)" [ref=e483] [cursor=pointer]:
+                    - /url: "#"
+                  - text: •
+                  - link "View data on GitHub (external)" [ref=e484] [cursor=pointer]:
+                    - /url: https://github.com/mdn/browser-compat-data/tree/main/css/properties/animation-timing-function.json
+                - table [ref=e485]:
+                  - rowgroup [ref=e486]:
+                    - row "desktop mobile" [ref=e487]:
+                      - cell [ref=e488]
+                      - columnheader "desktop" [ref=e489]:
+                        - generic [ref=e491]: desktop
+                      - columnheader "mobile" [ref=e492]:
+                        - generic [ref=e494]: mobile
+                    - row "Chrome Edge Firefox Opera Safari Chrome Android Firefox for Android Opera Android Safari on iOS Samsung Internet WebView Android WebView on iOS" [ref=e495]:
+                      - cell [ref=e496]
+                      - columnheader "Chrome" [ref=e497]:
+                        - generic [ref=e498]: Chrome
+                      - columnheader "Edge" [ref=e500]:
+                        - generic [ref=e501]: Edge
+                      - columnheader "Firefox" [ref=e503]:
+                        - generic [ref=e504]: Firefox
+                      - columnheader "Opera" [ref=e506]:
+                        - generic [ref=e507]: Opera
+                      - columnheader "Safari" [ref=e509]:
+                        - generic [ref=e510]: Safari
+                      - columnheader "Chrome Android" [ref=e512]:
+                        - generic [ref=e513]: Chrome Android
+                      - columnheader "Firefox for Android" [ref=e515]:
+                        - generic [ref=e516]: Firefox for Android
+                      - columnheader "Opera Android" [ref=e518]:
+                        - generic [ref=e519]: Opera Android
+                      - columnheader "Safari on iOS" [ref=e521]:
+                        - generic [ref=e522]: Safari on iOS
+                      - columnheader "Samsung Internet" [ref=e524]:
+                        - generic [ref=e525]: Samsung Internet
+                      - columnheader "WebView Android" [ref=e527]:
+                        - generic [ref=e528]: WebView Android
+                      - columnheader "WebView on iOS" [ref=e530]:
+                        - generic [ref=e531]: WebView on iOS
+                  - rowgroup [ref=e533]:
+                    - row "animation-timing-function 43 more 12 more 16 more 30 more 9 more 43 more 16 more 30 more 9 more 4 more 43 more 9 more" [ref=e534]:
+                      - rowheader "animation-timing-function" [ref=e535]:
+                        - code [ref=e537]: animation-timing-function
+                      - cell "43 more" [ref=e538]:
+                        - button "43 more" [ref=e539] [cursor=pointer]:
+                          - generic [ref=e540]:
+                            - generic "Chrome – Full support" [ref=e543]
+                            - 'generic "Chrome 43 – Release date: 2015-05-19" [ref=e545]': "43"
+                            - generic "Has more compatibility info." [ref=e548]:
+                              - generic [ref=e549]: more
+                      - cell "12 more" [ref=e551]:
+                        - button "12 more" [ref=e552] [cursor=pointer]:
+                          - generic [ref=e553]:
+                            - generic "Edge – Full support" [ref=e556]
+                            - 'generic "Edge 12 – Release date: 2015-07-29" [ref=e558]': "12"
+                            - generic "Has more compatibility info." [ref=e561]:
+                              - generic [ref=e562]: more
+                      - cell "16 more" [ref=e564]:
+                        - button "16 more" [ref=e565] [cursor=pointer]:
+                          - generic [ref=e566]:
+                            - generic "Firefox – Full support" [ref=e569]
+                            - 'generic "Firefox 16 – Release date: 2012-10-09" [ref=e571]': "16"
+                            - generic "Has more compatibility info." [ref=e574]:
+                              - generic [ref=e575]: more
+                      - cell "30 more" [ref=e577]:
+                        - button "30 more" [ref=e578] [cursor=pointer]:
+                          - generic [ref=e579]:
+                            - generic "Opera – Full support" [ref=e582]
+                            - 'generic "Opera 30 – Release date: 2015-06-09" [ref=e584]': "30"
+                            - generic "Has more compatibility info." [ref=e587]:
+                              - generic [ref=e588]: more
+                      - cell "9 more" [ref=e590]:
+                        - button "9 more" [ref=e591] [cursor=pointer]:
+                          - generic [ref=e592]:
+                            - generic "Safari – Full support" [ref=e595]
+                            - 'generic "Safari 9 – Release date: 2015-09-30" [ref=e597]': "9"
+                            - generic "Has more compatibility info." [ref=e600]:
+                              - generic [ref=e601]: more
+                      - cell "43 more" [ref=e603]:
+                        - button "43 more" [ref=e604] [cursor=pointer]:
+                          - generic [ref=e605]:
+                            - generic "Chrome Android – Full support" [ref=e608]
+                            - 'generic "Chrome Android 43 – Release date: 2015-05-27" [ref=e610]': "43"
+                            - generic "Has more compatibility info." [ref=e613]:
+                              - generic [ref=e614]: more
+                      - cell "16 more" [ref=e616]:
+                        - button "16 more" [ref=e617] [cursor=pointer]:
+                          - generic [ref=e618]:
+                            - generic "Firefox for Android – Full support" [ref=e621]
+                            - 'generic "Firefox for Android 16 – Release date: 2012-10-09" [ref=e623]': "16"
+                            - generic "Has more compatibility info." [ref=e626]:
+                              - generic [ref=e627]: more
+                      - cell "30 more" [ref=e629]:
+                        - button "30 more" [ref=e630] [cursor=pointer]:
+                          - generic [ref=e631]:
+                            - generic "Opera Android – Full support" [ref=e634]
+                            - 'generic "Opera Android 30 – Release date: 2015-06-10" [ref=e636]': "30"
+                            - generic "Has more compatibility info." [ref=e639]:
+                              - generic [ref=e640]: more
+                      - cell "9 more" [ref=e642]:
+                        - button "9 more" [ref=e643] [cursor=pointer]:
+                          - generic [ref=e644]:
+                            - generic "Safari on iOS – Full support" [ref=e647]
+                            - 'generic "Safari on iOS 9 – Release date: 2015-09-16" [ref=e649]': "9"
+                            - generic "Has more compatibility info." [ref=e652]:
+                              - generic [ref=e653]: more
+                      - cell "4 more" [ref=e655]:
+                        - button "4 more" [ref=e656] [cursor=pointer]:
+                          - generic [ref=e657]:
+                            - generic "Samsung Internet – Full support" [ref=e660]
+                            - 'generic "Samsung Internet 4.0 – Release date: 2016-03-11" [ref=e662]': "4"
+                            - generic "Has more compatibility info." [ref=e665]:
+                              - generic [ref=e666]: more
+                      - cell "43 more" [ref=e668]:
+                        - button "43 more" [ref=e669] [cursor=pointer]:
+                          - generic [ref=e670]:
+                            - generic "WebView Android – Full support" [ref=e673]
+                            - 'generic "WebView Android 43 – Release date: 2015-05-27" [ref=e675]': "43"
+                            - generic "Has more compatibility info." [ref=e678]:
+                              - generic [ref=e679]: more
+                      - cell "9 more" [ref=e681]:
+                        - button "9 more" [ref=e682] [cursor=pointer]:
+                          - generic [ref=e683]:
+                            - generic "WebView on iOS – Full support" [ref=e686]
+                            - 'generic "WebView on iOS 9 – Release date: 2015-09-16" [ref=e688]': "9"
+                            - generic "Has more compatibility info." [ref=e691]:
+                              - generic [ref=e692]: more
+                    - row "ease 3 12 5 15 4 18 5 14 3.2 1 4.4 3.2" [ref=e694]:
+                      - rowheader "ease" [ref=e695]:
+                        - code [ref=e697]: ease
+                      - cell "3" [ref=e698]:
+                        - button "3" [ref=e699] [cursor=pointer]:
+                          - generic [ref=e700]:
+                            - generic "Chrome – Full support" [ref=e703]
+                            - 'generic "Chrome 3 – Release date: 2009-09-15" [ref=e705]': "3"
+                      - cell "12" [ref=e706]:
+                        - button "12" [ref=e707] [cursor=pointer]:
+                          - generic [ref=e708]:
+                            - generic "Edge – Full support" [ref=e711]
+                            - 'generic "Edge 12 – Release date: 2015-07-29" [ref=e713]': "12"
+                      - cell "5" [ref=e714]:
+                        - button "5" [ref=e715] [cursor=pointer]:
+                          - generic [ref=e716]:
+                            - generic "Firefox – Full support" [ref=e719]
+                            - 'generic "Firefox 5 – Release date: 2011-06-21" [ref=e721]': "5"
+                      - cell "15" [ref=e722]:
+                        - button "15" [ref=e723] [cursor=pointer]:
+                          - generic [ref=e724]:
+                            - generic "Opera – Full support" [ref=e727]
+                            - 'generic "Opera 15 – Release date: 2013-07-02" [ref=e729]': "15"
+                      - cell "4" [ref=e730]:
+                        - button "4" [ref=e731] [cursor=pointer]:
+                          - generic [ref=e732]:
+                            - generic "Safari – Full support" [ref=e735]
+                            - 'generic "Safari 4 – Release date: 2009-06-08" [ref=e737]': "4"
+                      - cell "18" [ref=e738]:
+                        - button "18" [ref=e739] [cursor=pointer]:
+                          - generic [ref=e740]:
+                            - generic "Chrome Android – Full support" [ref=e743]
+                            - 'generic "Chrome Android 18 – Release date: 2012-06-27" [ref=e745]': "18"
+                      - cell "5" [ref=e746]:
+                        - button "5" [ref=e747] [cursor=pointer]:
+                          - generic [ref=e748]:
+                            - generic "Firefox for Android – Full support" [ref=e751]
+                            - 'generic "Firefox for Android 5 – Release date: 2011-06-21" [ref=e753]': "5"
+                      - cell "14" [ref=e754]:
+                        - button "14" [ref=e755] [cursor=pointer]:
+                          - generic [ref=e756]:
+                            - generic "Opera Android – Full support" [ref=e759]
+                            - 'generic "Opera Android 14 – Release date: 2013-05-21" [ref=e761]': "14"
+                      - cell "3.2" [ref=e762]:
+                        - button "3.2" [ref=e763] [cursor=pointer]:
+                          - generic [ref=e764]:
+                            - generic "Safari on iOS – Full support" [ref=e767]
+                            - 'generic "Safari on iOS 3.2 – Release date: 2010-04-03" [ref=e769]': "3.2"
+                      - cell "1" [ref=e770]:
+                        - button "1" [ref=e771] [cursor=pointer]:
+                          - generic [ref=e772]:
+                            - generic "Samsung Internet – Full support" [ref=e775]
+                            - 'generic "Samsung Internet 1.0 – Release date: 2013-04-27" [ref=e777]': "1"
+                      - cell "4.4" [ref=e778]:
+                        - button "4.4" [ref=e779] [cursor=pointer]:
+                          - generic [ref=e780]:
+                            - generic "WebView Android – Full support" [ref=e783]
+                            - 'generic "WebView Android 4.4 – Release date: 2013-12-09" [ref=e785]': "4.4"
+                      - cell "3.2" [ref=e786]:
+                        - button "3.2" [ref=e787] [cursor=pointer]:
+                          - generic [ref=e788]:
+                            - generic "WebView on iOS – Full support" [ref=e791]
+                            - 'generic "WebView on iOS 3.2 – Release date: 2010-04-03" [ref=e793]': "3.2"
+                    - row "ease-in 3 12 5 15 4 18 5 14 3.2 1 4.4 3.2" [ref=e794]:
+                      - rowheader "ease-in" [ref=e795]:
+                        - code [ref=e797]: ease-in
+                      - cell "3" [ref=e798]:
+                        - button "3" [ref=e799] [cursor=pointer]:
+                          - generic [ref=e800]:
+                            - generic "Chrome – Full support" [ref=e803]
+                            - 'generic "Chrome 3 – Release date: 2009-09-15" [ref=e805]': "3"
+                      - cell "12" [ref=e806]:
+                        - button "12" [ref=e807] [cursor=pointer]:
+                          - generic [ref=e808]:
+                            - generic "Edge – Full support" [ref=e811]
+                            - 'generic "Edge 12 – Release date: 2015-07-29" [ref=e813]': "12"
+                      - cell "5" [ref=e814]:
+                        - button "5" [ref=e815] [cursor=pointer]:
+                          - generic [ref=e816]:
+                            - generic "Firefox – Full support" [ref=e819]
+                            - 'generic "Firefox 5 – Release date: 2011-06-21" [ref=e821]': "5"
+                      - cell "15" [ref=e822]:
+                        - button "15" [ref=e823] [cursor=pointer]:
+                          - generic [ref=e824]:
+                            - generic "Opera – Full support" [ref=e827]
+                            - 'generic "Opera 15 – Release date: 2013-07-02" [ref=e829]': "15"
+                      - cell "4" [ref=e830]:
+                        - button "4" [ref=e831] [cursor=pointer]:
+                          - generic [ref=e832]:
+                            - generic "Safari – Full support" [ref=e835]
+                            - 'generic "Safari 4 – Release date: 2009-06-08" [ref=e837]': "4"
+                      - cell "18" [ref=e838]:
+                        - button "18" [ref=e839] [cursor=pointer]:
+                          - generic [ref=e840]:
+                            - generic "Chrome Android – Full support" [ref=e843]
+                            - 'generic "Chrome Android 18 – Release date: 2012-06-27" [ref=e845]': "18"
+                      - cell "5" [ref=e846]:
+                        - button "5" [ref=e847] [cursor=pointer]:
+                          - generic [ref=e848]:
+                            - generic "Firefox for Android – Full support" [ref=e851]
+                            - 'generic "Firefox for Android 5 – Release date: 2011-06-21" [ref=e853]': "5"
+                      - cell "14" [ref=e854]:
+                        - button "14" [ref=e855] [cursor=pointer]:
+                          - generic [ref=e856]:
+                            - generic "Opera Android – Full support" [ref=e859]
+                            - 'generic "Opera Android 14 – Release date: 2013-05-21" [ref=e861]': "14"
+                      - cell "3.2" [ref=e862]:
+                        - button "3.2" [ref=e863] [cursor=pointer]:
+                          - generic [ref=e864]:
+                            - generic "Safari on iOS – Full support" [ref=e867]
+                            - 'generic "Safari on iOS 3.2 – Release date: 2010-04-03" [ref=e869]': "3.2"
+                      - cell "1" [ref=e870]:
+                        - button "1" [ref=e871] [cursor=pointer]:
+                          - generic [ref=e872]:
+                            - generic "Samsung Internet – Full support" [ref=e875]
+                            - 'generic "Samsung Internet 1.0 – Release date: 2013-04-27" [ref=e877]': "1"
+                      - cell "4.4" [ref=e878]:
+                        - button "4.4" [ref=e879] [cursor=pointer]:
+                          - generic [ref=e880]:
+                            - generic "WebView Android – Full support" [ref=e883]
+                            - 'generic "WebView Android 4.4 – Release date: 2013-12-09" [ref=e885]': "4.4"
+                      - cell "3.2" [ref=e886]:
+                        - button "3.2" [ref=e887] [cursor=pointer]:
+                          - generic [ref=e888]:
+                            - generic "WebView on iOS – Full support" [ref=e891]
+                            - 'generic "WebView on iOS 3.2 – Release date: 2010-04-03" [ref=e893]': "3.2"
+                    - row "ease-in-out 3 12 5 15 4 18 5 14 3.2 1 4.4 3.2" [ref=e894]:
+                      - rowheader "ease-in-out" [ref=e895]:
+                        - code [ref=e897]: ease-in-out
+                      - cell "3" [ref=e898]:
+                        - button "3" [ref=e899] [cursor=pointer]:
+                          - generic [ref=e900]:
+                            - generic "Chrome – Full support" [ref=e903]
+                            - 'generic "Chrome 3 – Release date: 2009-09-15" [ref=e905]': "3"
+                      - cell "12" [ref=e906]:
+                        - button "12" [ref=e907] [cursor=pointer]:
+                          - generic [ref=e908]:
+                            - generic "Edge – Full support" [ref=e911]
+                            - 'generic "Edge 12 – Release date: 2015-07-29" [ref=e913]': "12"
+                      - cell "5" [ref=e914]:
+                        - button "5" [ref=e915] [cursor=pointer]:
+                          - generic [ref=e916]:
+                            - generic "Firefox – Full support" [ref=e919]
+                            - 'generic "Firefox 5 – Release date: 2011-06-21" [ref=e921]': "5"
+                      - cell "15" [ref=e922]:
+                        - button "15" [ref=e923] [cursor=pointer]:
+                          - generic [ref=e924]:
+                            - generic "Opera – Full support" [ref=e927]
+                            - 'generic "Opera 15 – Release date: 2013-07-02" [ref=e929]': "15"
+                      - cell "4" [ref=e930]:
+                        - button "4" [ref=e931] [cursor=pointer]:
+                          - generic [ref=e932]:
+                            - generic "Safari – Full support" [ref=e935]
+                            - 'generic "Safari 4 – Release date: 2009-06-08" [ref=e937]': "4"
+                      - cell "18" [ref=e938]:
+                        - button "18" [ref=e939] [cursor=pointer]:
+                          - generic [ref=e940]:
+                            - generic "Chrome Android – Full support" [ref=e943]
+                            - 'generic "Chrome Android 18 – Release date: 2012-06-27" [ref=e945]': "18"
+                      - cell "5" [ref=e946]:
+                        - button "5" [ref=e947] [cursor=pointer]:
+                          - generic [ref=e948]:
+                            - generic "Firefox for Android – Full support" [ref=e951]
+                            - 'generic "Firefox for Android 5 – Release date: 2011-06-21" [ref=e953]': "5"
+                      - cell "14" [ref=e954]:
+                        - button "14" [ref=e955] [cursor=pointer]:
+                          - generic [ref=e956]:
+                            - generic "Opera Android – Full support" [ref=e959]
+                            - 'generic "Opera Android 14 – Release date: 2013-05-21" [ref=e961]': "14"
+                      - cell "3.2" [ref=e962]:
+                        - button "3.2" [ref=e963] [cursor=pointer]:
+                          - generic [ref=e964]:
+                            - generic "Safari on iOS – Full support" [ref=e967]
+                            - 'generic "Safari on iOS 3.2 – Release date: 2010-04-03" [ref=e969]': "3.2"
+                      - cell "1" [ref=e970]:
+                        - button "1" [ref=e971] [cursor=pointer]:
+                          - generic [ref=e972]:
+                            - generic "Samsung Internet – Full support" [ref=e975]
+                            - 'generic "Samsung Internet 1.0 – Release date: 2013-04-27" [ref=e977]': "1"
+                      - cell "4.4" [ref=e978]:
+                        - button "4.4" [ref=e979] [cursor=pointer]:
+                          - generic [ref=e980]:
+                            - generic "WebView Android – Full support" [ref=e983]
+                            - 'generic "WebView Android 4.4 – Release date: 2013-12-09" [ref=e985]': "4.4"
+                      - cell "3.2" [ref=e986]:
+                        - button "3.2" [ref=e987] [cursor=pointer]:
+                          - generic [ref=e988]:
+                            - generic "WebView on iOS – Full support" [ref=e991]
+                            - 'generic "WebView on iOS 3.2 – Release date: 2010-04-03" [ref=e993]': "3.2"
+                    - row "ease-out 3 12 5 15 4 18 5 14 3.2 1 4.4 3.2" [ref=e994]:
+                      - rowheader "ease-out" [ref=e995]:
+                        - code [ref=e997]: ease-out
+                      - cell "3" [ref=e998]:
+                        - button "3" [ref=e999] [cursor=pointer]:
+                          - generic [ref=e1000]:
+                            - generic "Chrome – Full support" [ref=e1003]
+                            - 'generic "Chrome 3 – Release date: 2009-09-15" [ref=e1005]': "3"
+                      - cell "12" [ref=e1006]:
+                        - button "12" [ref=e1007] [cursor=pointer]:
+                          - generic [ref=e1008]:
+                            - generic "Edge – Full support" [ref=e1011]
+                            - 'generic "Edge 12 – Release date: 2015-07-29" [ref=e1013]': "12"
+                      - cell "5" [ref=e1014]:
+                        - button "5" [ref=e1015] [cursor=pointer]:
+                          - generic [ref=e1016]:
+                            - generic "Firefox – Full support" [ref=e1019]
+                            - 'generic "Firefox 5 – Release date: 2011-06-21" [ref=e1021]': "5"
+                      - cell "15" [ref=e1022]:
+                        - button "15" [ref=e1023] [cursor=pointer]:
+                          - generic [ref=e1024]:
+                            - generic "Opera – Full support" [ref=e1027]
+                            - 'generic "Opera 15 – Release date: 2013-07-02" [ref=e1029]': "15"
+                      - cell "4" [ref=e1030]:
+                        - button "4" [ref=e1031] [cursor=pointer]:
+                          - generic [ref=e1032]:
+                            - generic "Safari – Full support" [ref=e1035]
+                            - 'generic "Safari 4 – Release date: 2009-06-08" [ref=e1037]': "4"
+                      - cell "18" [ref=e1038]:
+                        - button "18" [ref=e1039] [cursor=pointer]:
+                          - generic [ref=e1040]:
+                            - generic "Chrome Android – Full support" [ref=e1043]
+                            - 'generic "Chrome Android 18 – Release date: 2012-06-27" [ref=e1045]': "18"
+                      - cell "5" [ref=e1046]:
+                        - button "5" [ref=e1047] [cursor=pointer]:
+                          - generic [ref=e1048]:
+                            - generic "Firefox for Android – Full support" [ref=e1051]
+                            - 'generic "Firefox for Android 5 – Release date: 2011-06-21" [ref=e1053]': "5"
+                      - cell "14" [ref=e1054]:
+                        - button "14" [ref=e1055] [cursor=pointer]:
+                          - generic [ref=e1056]:
+                            - generic "Opera Android – Full support" [ref=e1059]
+                            - 'generic "Opera Android 14 – Release date: 2013-05-21" [ref=e1061]': "14"
+                      - cell "3.2" [ref=e1062]:
+                        - button "3.2" [ref=e1063] [cursor=pointer]:
+                          - generic [ref=e1064]:
+                            - generic "Safari on iOS – Full support" [ref=e1067]
+                            - 'generic "Safari on iOS 3.2 – Release date: 2010-04-03" [ref=e1069]': "3.2"
+                      - cell "1" [ref=e1070]:
+                        - button "1" [ref=e1071] [cursor=pointer]:
+                          - generic [ref=e1072]:
+                            - generic "Samsung Internet – Full support" [ref=e1075]
+                            - 'generic "Samsung Internet 1.0 – Release date: 2013-04-27" [ref=e1077]': "1"
+                      - cell "4.4" [ref=e1078]:
+                        - button "4.4" [ref=e1079] [cursor=pointer]:
+                          - generic [ref=e1080]:
+                            - generic "WebView Android – Full support" [ref=e1083]
+                            - 'generic "WebView Android 4.4 – Release date: 2013-12-09" [ref=e1085]': "4.4"
+                      - cell "3.2" [ref=e1086]:
+                        - button "3.2" [ref=e1087] [cursor=pointer]:
+                          - generic [ref=e1088]:
+                            - generic "WebView on iOS – Full support" [ref=e1091]
+                            - 'generic "WebView on iOS 3.2 – Release date: 2010-04-03" [ref=e1093]': "3.2"
+                    - row "jump- keywords for steps() 77 79 65 64 14 77 65 55 14 12 77 14" [ref=e1094]:
+                      - rowheader "jump- keywords for steps()" [ref=e1095]:
+                        - generic [ref=e1097]:
+                          - code [ref=e1098]: jump-
+                          - text: keywords for
+                          - code [ref=e1099]: steps()
+                      - cell "77" [ref=e1100]:
+                        - button "77" [ref=e1101] [cursor=pointer]:
+                          - generic [ref=e1102]:
+                            - generic "Chrome – Full support" [ref=e1105]
+                            - 'generic "Chrome 77 – Release date: 2019-09-10" [ref=e1107]': "77"
+                      - cell "79" [ref=e1108]:
+                        - button "79" [ref=e1109] [cursor=pointer]:
+                          - generic [ref=e1110]:
+                            - generic "Edge – Full support" [ref=e1113]
+                            - 'generic "Edge 79 – Release date: 2020-01-15" [ref=e1115]': "79"
+                      - cell "65" [ref=e1116]:
+                        - button "65" [ref=e1117] [cursor=pointer]:
+                          - generic [ref=e1118]:
+                            - generic "Firefox – Full support" [ref=e1121]
+                            - 'generic "Firefox 65 – Release date: 2019-01-29" [ref=e1123]': "65"
+                      - cell "64" [ref=e1124]:
+                        - button "64" [ref=e1125] [cursor=pointer]:
+                          - generic [ref=e1126]:
+                            - generic "Opera – Full support" [ref=e1129]
+                            - 'generic "Opera 64 – Release date: 2019-10-07" [ref=e1131]': "64"
+                      - cell "14" [ref=e1132]:
+                        - button "14" [ref=e1133] [cursor=pointer]:
+                          - generic [ref=e1134]:
+                            - generic "Safari – Full support" [ref=e1137]
+                            - 'generic "Safari 14 – Release date: 2020-09-16" [ref=e1139]': "14"
+                      - cell "77" [ref=e1140]:
+                        - button "77" [ref=e1141] [cursor=pointer]:
+                          - generic [ref=e1142]:
+                            - generic "Chrome Android – Full support" [ref=e1145]
+                            - 'generic "Chrome Android 77 – Release date: 2019-09-10" [ref=e1147]': "77"
+                      - cell "65" [ref=e1148]:
+                        - button "65" [ref=e1149] [cursor=pointer]:
+                          - generic [ref=e1150]:
+                            - generic "Firefox for Android – Full support" [ref=e1153]
+                            - 'generic "Firefox for Android 65 – Release date: 2019-01-29" [ref=e1155]': "65"
+                      - cell "55" [ref=e1156]:
+                        - button "55" [ref=e1157] [cursor=pointer]:
+                          - generic [ref=e1158]:
+                            - generic "Opera Android – Full support" [ref=e1161]
+                            - 'generic "Opera Android 55 – Release date: 2019-12-03" [ref=e1163]': "55"
+                      - cell "14" [ref=e1164]:
+                        - button "14" [ref=e1165] [cursor=pointer]:
+                          - generic [ref=e1166]:
+                            - generic "Safari on iOS – Full support" [ref=e1169]
+                            - 'generic "Safari on iOS 14 – Release date: 2020-09-16" [ref=e1171]': "14"
+                      - cell "12" [ref=e1172]:
+                        - button "12" [ref=e1173] [cursor=pointer]:
+                          - generic [ref=e1174]:
+                            - generic "Samsung Internet – Full support" [ref=e1177]
+                            - 'generic "Samsung Internet 12.0 – Release date: 2020-06-19" [ref=e1179]': "12"
+                      - cell "77" [ref=e1180]:
+                        - button "77" [ref=e1181] [cursor=pointer]:
+                          - generic [ref=e1182]:
+                            - generic "WebView Android – Full support" [ref=e1185]
+                            - 'generic "WebView Android 77 – Release date: 2019-09-10" [ref=e1187]': "77"
+                      - cell "14" [ref=e1188]:
+                        - button "14" [ref=e1189] [cursor=pointer]:
+                          - generic [ref=e1190]:
+                            - generic "WebView on iOS – Full support" [ref=e1193]
+                            - 'generic "WebView on iOS 14 – Release date: 2020-09-16" [ref=e1195]': "14"
+                    - row "linear 3 12 5 15 4 18 5 14 3.2 1 4.4 3.2" [ref=e1196]:
+                      - rowheader "linear" [ref=e1197]:
+                        - code [ref=e1199]: linear
+                      - cell "3" [ref=e1200]:
+                        - button "3" [ref=e1201] [cursor=pointer]:
+                          - generic [ref=e1202]:
+                            - generic "Chrome – Full support" [ref=e1205]
+                            - 'generic "Chrome 3 – Release date: 2009-09-15" [ref=e1207]': "3"
+                      - cell "12" [ref=e1208]:
+                        - button "12" [ref=e1209] [cursor=pointer]:
+                          - generic [ref=e1210]:
+                            - generic "Edge – Full support" [ref=e1213]
+                            - 'generic "Edge 12 – Release date: 2015-07-29" [ref=e1215]': "12"
+                      - cell "5" [ref=e1216]:
+                        - button "5" [ref=e1217] [cursor=pointer]:
+                          - generic [ref=e1218]:
+                            - generic "Firefox – Full support" [ref=e1221]
+                            - 'generic "Firefox 5 – Release date: 2011-06-21" [ref=e1223]': "5"
+                      - cell "15" [ref=e1224]:
+                        - button "15" [ref=e1225] [cursor=pointer]:
+                          - generic [ref=e1226]:
+                            - generic "Opera – Full support" [ref=e1229]
+                            - 'generic "Opera 15 – Release date: 2013-07-02" [ref=e1231]': "15"
+                      - cell "4" [ref=e1232]:
+                        - button "4" [ref=e1233] [cursor=pointer]:
+                          - generic [ref=e1234]:
+                            - generic "Safari – Full support" [ref=e1237]
+                            - 'generic "Safari 4 – Release date: 2009-06-08" [ref=e1239]': "4"
+                      - cell "18" [ref=e1240]:
+                        - button "18" [ref=e1241] [cursor=pointer]:
+                          - generic [ref=e1242]:
+                            - generic "Chrome Android – Full support" [ref=e1245]
+                            - 'generic "Chrome Android 18 – Release date: 2012-06-27" [ref=e1247]': "18"
+                      - cell "5" [ref=e1248]:
+                        - button "5" [ref=e1249] [cursor=pointer]:
+                          - generic [ref=e1250]:
+                            - generic "Firefox for Android – Full support" [ref=e1253]
+                            - 'generic "Firefox for Android 5 – Release date: 2011-06-21" [ref=e1255]': "5"
+                      - cell "14" [ref=e1256]:
+                        - button "14" [ref=e1257] [cursor=pointer]:
+                          - generic [ref=e1258]:
+                            - generic "Opera Android – Full support" [ref=e1261]
+                            - 'generic "Opera Android 14 – Release date: 2013-05-21" [ref=e1263]': "14"
+                      - cell "3.2" [ref=e1264]:
+                        - button "3.2" [ref=e1265] [cursor=pointer]:
+                          - generic [ref=e1266]:
+                            - generic "Safari on iOS – Full support" [ref=e1269]
+                            - 'generic "Safari on iOS 3.2 – Release date: 2010-04-03" [ref=e1271]': "3.2"
+                      - cell "1" [ref=e1272]:
+                        - button "1" [ref=e1273] [cursor=pointer]:
+                          - generic [ref=e1274]:
+                            - generic "Samsung Internet – Full support" [ref=e1277]
+                            - 'generic "Samsung Internet 1.0 – Release date: 2013-04-27" [ref=e1279]': "1"
+                      - cell "4.4" [ref=e1280]:
+                        - button "4.4" [ref=e1281] [cursor=pointer]:
+                          - generic [ref=e1282]:
+                            - generic "WebView Android – Full support" [ref=e1285]
+                            - 'generic "WebView Android 4.4 – Release date: 2013-12-09" [ref=e1287]': "4.4"
+                      - cell "3.2" [ref=e1288]:
+                        - button "3.2" [ref=e1289] [cursor=pointer]:
+                          - generic [ref=e1290]:
+                            - generic "WebView on iOS – Full support" [ref=e1293]
+                            - 'generic "WebView on iOS 3.2 – Release date: 2010-04-03" [ref=e1295]': "3.2"
+                    - row "step-end 3 12 5 15 4 18 5 14 3.2 1 4.4 3.2" [ref=e1296]:
+                      - rowheader "step-end" [ref=e1297]:
+                        - code [ref=e1299]: step-end
+                      - cell "3" [ref=e1300]:
+                        - button "3" [ref=e1301] [cursor=pointer]:
+                          - generic [ref=e1302]:
+                            - generic "Chrome – Full support" [ref=e1305]
+                            - 'generic "Chrome 3 – Release date: 2009-09-15" [ref=e1307]': "3"
+                      - cell "12" [ref=e1308]:
+                        - button "12" [ref=e1309] [cursor=pointer]:
+                          - generic [ref=e1310]:
+                            - generic "Edge – Full support" [ref=e1313]
+                            - 'generic "Edge 12 – Release date: 2015-07-29" [ref=e1315]': "12"
+                      - cell "5" [ref=e1316]:
+                        - button "5" [ref=e1317] [cursor=pointer]:
+                          - generic [ref=e1318]:
+                            - generic "Firefox – Full support" [ref=e1321]
+                            - 'generic "Firefox 5 – Release date: 2011-06-21" [ref=e1323]': "5"
+                      - cell "15" [ref=e1324]:
+                        - button "15" [ref=e1325] [cursor=pointer]:
+                          - generic [ref=e1326]:
+                            - generic "Opera – Full support" [ref=e1329]
+                            - 'generic "Opera 15 – Release date: 2013-07-02" [ref=e1331]': "15"
+                      - cell "4" [ref=e1332]:
+                        - button "4" [ref=e1333] [cursor=pointer]:
+                          - generic [ref=e1334]:
+                            - generic "Safari – Full support" [ref=e1337]
+                            - 'generic "Safari 4 – Release date: 2009-06-08" [ref=e1339]': "4"
+                      - cell "18" [ref=e1340]:
+                        - button "18" [ref=e1341] [cursor=pointer]:
+                          - generic [ref=e1342]:
+                            - generic "Chrome Android – Full support" [ref=e1345]
+                            - 'generic "Chrome Android 18 – Release date: 2012-06-27" [ref=e1347]': "18"
+                      - cell "5" [ref=e1348]:
+                        - button "5" [ref=e1349] [cursor=pointer]:
+                          - generic [ref=e1350]:
+                            - generic "Firefox for Android – Full support" [ref=e1353]
+                            - 'generic "Firefox for Android 5 – Release date: 2011-06-21" [ref=e1355]': "5"
+                      - cell "14" [ref=e1356]:
+                        - button "14" [ref=e1357] [cursor=pointer]:
+                          - generic [ref=e1358]:
+                            - generic "Opera Android – Full support" [ref=e1361]
+                            - 'generic "Opera Android 14 – Release date: 2013-05-21" [ref=e1363]': "14"
+                      - cell "3.2" [ref=e1364]:
+                        - button "3.2" [ref=e1365] [cursor=pointer]:
+                          - generic [ref=e1366]:
+                            - generic "Safari on iOS – Full support" [ref=e1369]
+                            - 'generic "Safari on iOS 3.2 – Release date: 2010-04-03" [ref=e1371]': "3.2"
+                      - cell "1" [ref=e1372]:
+                        - button "1" [ref=e1373] [cursor=pointer]:
+                          - generic [ref=e1374]:
+                            - generic "Samsung Internet – Full support" [ref=e1377]
+                            - 'generic "Samsung Internet 1.0 – Release date: 2013-04-27" [ref=e1379]': "1"
+                      - cell "4.4" [ref=e1380]:
+                        - button "4.4" [ref=e1381] [cursor=pointer]:
+                          - generic [ref=e1382]:
+                            - generic "WebView Android – Full support" [ref=e1385]
+                            - 'generic "WebView Android 4.4 – Release date: 2013-12-09" [ref=e1387]': "4.4"
+                      - cell "3.2" [ref=e1388]:
+                        - button "3.2" [ref=e1389] [cursor=pointer]:
+                          - generic [ref=e1390]:
+                            - generic "WebView on iOS – Full support" [ref=e1393]
+                            - 'generic "WebView on iOS 3.2 – Release date: 2010-04-03" [ref=e1395]': "3.2"
+                    - row "step-start 3 12 5 15 4 18 5 14 3.2 1 4.4 3.2" [ref=e1396]:
+                      - rowheader "step-start" [ref=e1397]:
+                        - code [ref=e1399]: step-start
+                      - cell "3" [ref=e1400]:
+                        - button "3" [ref=e1401] [cursor=pointer]:
+                          - generic [ref=e1402]:
+                            - generic "Chrome – Full support" [ref=e1405]
+                            - 'generic "Chrome 3 – Release date: 2009-09-15" [ref=e1407]': "3"
+                      - cell "12" [ref=e1408]:
+                        - button "12" [ref=e1409] [cursor=pointer]:
+                          - generic [ref=e1410]:
+                            - generic "Edge – Full support" [ref=e1413]
+                            - 'generic "Edge 12 – Release date: 2015-07-29" [ref=e1415]': "12"
+                      - cell "5" [ref=e1416]:
+                        - button "5" [ref=e1417] [cursor=pointer]:
+                          - generic [ref=e1418]:
+                            - generic "Firefox – Full support" [ref=e1421]
+                            - 'generic "Firefox 5 – Release date: 2011-06-21" [ref=e1423]': "5"
+                      - cell "15" [ref=e1424]:
+                        - button "15" [ref=e1425] [cursor=pointer]:
+                          - generic [ref=e1426]:
+                            - generic "Opera – Full support" [ref=e1429]
+                            - 'generic "Opera 15 – Release date: 2013-07-02" [ref=e1431]': "15"
+                      - cell "4" [ref=e1432]:
+                        - button "4" [ref=e1433] [cursor=pointer]:
+                          - generic [ref=e1434]:
+                            - generic "Safari – Full support" [ref=e1437]
+                            - 'generic "Safari 4 – Release date: 2009-06-08" [ref=e1439]': "4"
+                      - cell "18" [ref=e1440]:
+                        - button "18" [ref=e1441] [cursor=pointer]:
+                          - generic [ref=e1442]:
+                            - generic "Chrome Android – Full support" [ref=e1445]
+                            - 'generic "Chrome Android 18 – Release date: 2012-06-27" [ref=e1447]': "18"
+                      - cell "5" [ref=e1448]:
+                        - button "5" [ref=e1449] [cursor=pointer]:
+                          - generic [ref=e1450]:
+                            - generic "Firefox for Android – Full support" [ref=e1453]
+                            - 'generic "Firefox for Android 5 – Release date: 2011-06-21" [ref=e1455]': "5"
+                      - cell "14" [ref=e1456]:
+                        - button "14" [ref=e1457] [cursor=pointer]:
+                          - generic [ref=e1458]:
+                            - generic "Opera Android – Full support" [ref=e1461]
+                            - 'generic "Opera Android 14 – Release date: 2013-05-21" [ref=e1463]': "14"
+                      - cell "3.2" [ref=e1464]:
+                        - button "3.2" [ref=e1465] [cursor=pointer]:
+                          - generic [ref=e1466]:
+                            - generic "Safari on iOS – Full support" [ref=e1469]
+                            - 'generic "Safari on iOS 3.2 – Release date: 2010-04-03" [ref=e1471]': "3.2"
+                      - cell "1" [ref=e1472]:
+                        - button "1" [ref=e1473] [cursor=pointer]:
+                          - generic [ref=e1474]:
+                            - generic "Samsung Internet – Full support" [ref=e1477]
+                            - 'generic "Samsung Internet 1.0 – Release date: 2013-04-27" [ref=e1479]': "1"
+                      - cell "4.4" [ref=e1480]:
+                        - button "4.4" [ref=e1481] [cursor=pointer]:
+                          - generic [ref=e1482]:
+                            - generic "WebView Android – Full support" [ref=e1485]
+                            - 'generic "WebView Android 4.4 – Release date: 2013-12-09" [ref=e1487]': "4.4"
+                      - cell "3.2" [ref=e1488]:
+                        - button "3.2" [ref=e1489] [cursor=pointer]:
+                          - generic [ref=e1490]:
+                            - generic "WebView on iOS – Full support" [ref=e1493]
+                            - 'generic "WebView on iOS 3.2 – Release date: 2010-04-03" [ref=e1495]': "3.2"
+            - generic [ref=e1496]:
+              - heading "Legend" [level=3] [ref=e1497]
+              - paragraph [ref=e1498]: "Tip: you can click/tap on a cell for more information."
+              - generic [ref=e1499]:
+                - generic [ref=e1500]:
+                  - term [ref=e1501]:
+                    - generic "Full support" [ref=e1503]:
+                      - generic [ref=e1504]: Full support
+                  - definition [ref=e1505]: Full support
+                - generic [ref=e1506]:
+                  - term [ref=e1507]:
+                    - generic "Requires a vendor prefix or different name for use." [ref=e1508]
+                  - definition [ref=e1509]: Requires a vendor prefix or different name for use.
+                - generic [ref=e1510]:
+                  - term [ref=e1511]:
+                    - generic "Has more compatibility info." [ref=e1512]
+                  - definition [ref=e1513]: Has more compatibility info.
+        - region "See also" [ref=e1514]:
+          - heading "See also" [level=2] [ref=e1515]:
+            - link "See also" [ref=e1516] [cursor=pointer]:
+              - /url: "#see_also"
+          - list [ref=e1517]:
+            - listitem [ref=e1518]:
+              - link "Using CSS animations" [ref=e1519] [cursor=pointer]:
+                - /url: /en-US/docs/Web/CSS/Guides/Animations/Using
+            - listitem [ref=e1520]:
+              - link "<easing-function>" [ref=e1521] [cursor=pointer]:
+                - /url: /en-US/docs/Web/CSS/Reference/Values/easing-function
+                - code [ref=e1522]: <easing-function>
+            - listitem [ref=e1523]:
+              - link "CSS easing functions" [ref=e1524] [cursor=pointer]:
+                - /url: /en-US/docs/Web/CSS/Guides/Easing_functions
+              - text: module
+            - listitem [ref=e1525]:
+              - text: JavaScript
+              - link "AnimationEvent" [ref=e1526] [cursor=pointer]:
+                - /url: /en-US/docs/Web/API/AnimationEvent
+                - code [ref=e1527]: AnimationEvent
+              - text: API
+            - listitem [ref=e1528]:
+              - link "Cubic bézier generation tool (external)" [ref=e1529] [cursor=pointer]:
+                - /url: https://cubic-bezier.com/
+            - listitem [ref=e1530]:
+              - text: "Other related animation properties:"
+              - link "animation" [ref=e1531] [cursor=pointer]:
+                - /url: /en-US/docs/Web/CSS/Reference/Properties/animation
+                - code [ref=e1532]: animation
+              - text: ","
+              - link "animation-composition" [ref=e1533] [cursor=pointer]:
+                - /url: /en-US/docs/Web/CSS/Reference/Properties/animation-composition
+                - code [ref=e1534]: animation-composition
+              - text: ","
+              - link "animation-delay" [ref=e1535] [cursor=pointer]:
+                - /url: /en-US/docs/Web/CSS/Reference/Properties/animation-delay
+                - code [ref=e1536]: animation-delay
+              - text: ","
+              - link "animation-direction" [ref=e1537] [cursor=pointer]:
+                - /url: /en-US/docs/Web/CSS/Reference/Properties/animation-direction
+                - code [ref=e1538]: animation-direction
+              - text: ","
+              - link "animation-duration" [ref=e1539] [cursor=pointer]:
+                - /url: /en-US/docs/Web/CSS/Reference/Properties/animation-duration
+                - code [ref=e1540]: animation-duration
+              - text: ","
+              - link "animation-fill-mode" [ref=e1541] [cursor=pointer]:
+                - /url: /en-US/docs/Web/CSS/Reference/Properties/animation-fill-mode
+                - code [ref=e1542]: animation-fill-mode
+              - text: ","
+              - link "animation-iteration-count" [ref=e1543] [cursor=pointer]:
+                - /url: /en-US/docs/Web/CSS/Reference/Properties/animation-iteration-count
+                - code [ref=e1544]: animation-iteration-count
+              - text: ","
+              - link "animation-name" [ref=e1545] [cursor=pointer]:
+                - /url: /en-US/docs/Web/CSS/Reference/Properties/animation-name
+                - code [ref=e1546]: animation-name
+              - text: ","
+              - link "animation-play-state" [ref=e1547] [cursor=pointer]:
+                - /url: /en-US/docs/Web/CSS/Reference/Properties/animation-play-state
+                - code [ref=e1548]: animation-play-state
+              - text: ","
+              - link "animation-timeline" [ref=e1549] [cursor=pointer]:
+                - /url: /en-US/docs/Web/CSS/Reference/Properties/animation-timeline
+                - code [ref=e1550]: animation-timeline
+        - region "Help improve MDN" [ref=e1551]:
+          - generic [ref=e1552]:
+            - img [ref=e1553]
+            - heading "Help improve MDN" [level=2] [ref=e1560]
+            - group [ref=e1562]:
+              - generic [ref=e1563]: Was this page helpful to you?
+              - generic [ref=e1564]:
+                - button "Yes" [ref=e1566] [cursor=pointer]:
+                  - img [ref=e1568]
+                  - generic [ref=e1570]:
+                    - generic: "Yes"
+                - button "No" [ref=e1572] [cursor=pointer]:
+                  - img [ref=e1574]
+                  - generic [ref=e1576]:
+                    - generic: "No"
+            - link "Learn how to contribute" [ref=e1577] [cursor=pointer]:
+              - /url: /en-US/docs/MDN/Community/Getting_started
+            - paragraph [ref=e1578]:
+              - text: This page was last modified on
+              - time [ref=e1579]: Dec 16, 2025
+              - text: by
+              - link "MDN contributors" [ref=e1580] [cursor=pointer]:
+                - /url: /en-US/docs/Web/CSS/Reference/Properties/animation-timing-function/contributors.txt
+              - text: .
+            - generic [ref=e1581]:
+              - link "View this page on GitHub (external)" [ref=e1582] [cursor=pointer]:
+                - /url: https://github.com/mdn/content/blob/main/files/en-us/web/css/reference/properties/animation-timing-function/index.md?plain=1
+              - text: •
+              - link "Report a problem with this content (external)" [ref=e1583] [cursor=pointer]:
+                - /url: https://github.com/mdn/content/issues/new?template=page-report.yml&mdn-url=https%3A%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FWeb%2FCSS%2FReference%2FProperties%2Fanimation-timing-function&metadata=%3C%21--+Do+not+make+changes+below+this+line+--%3E%0A%3Cdetails%3E%0A%3Csummary%3EPage+report+details%3C%2Fsummary%3E%0A%0A*+Folder%3A+%60en-us%2Fweb%2Fcss%2Freference%2Fproperties%2Fanimation-timing-function%60%0A*+MDN+URL%3A+https%3A%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FWeb%2FCSS%2FReference%2FProperties%2Fanimation-timing-function%0A*+GitHub+URL%3A+https%3A%2F%2Fgithub.com%2Fmdn%2Fcontent%2Fblob%2Fmain%2Ffiles%2Fen-us%2Fweb%2Fcss%2Freference%2Fproperties%2Fanimation-timing-function%2Findex.md%0A*+Last+commit%3A+https%3A%2F%2Fgithub.com%2Fmdn%2Fcontent%2Fcommit%2F33094d735e90b4dcae5733331b79c51fee997410%0A*+Document+last+modified%3A+2025-12-16T15%3A14%3A26.000Z%0A%0A%3C%2Fdetails%3E
+    - complementary [ref=e1584]:
+      - navigation [ref=e1585]:
+        - generic [ref=e1587]:
+          - generic [ref=e1589]: Filter sidebar
+          - textbox "Filter sidebar" [ref=e1590]:
+            - /placeholder: Filter
+        - list [ref=e1592]:
+          - listitem [ref=e1593]:
+            - link "CSS" [ref=e1594] [cursor=pointer]:
+              - /url: /en-US/docs/Web/CSS
+          - listitem [ref=e1595]:
+            - link "Guides" [ref=e1596] [cursor=pointer]:
+              - /url: /en-US/docs/Web/CSS/Guides
+          - listitem [ref=e1597]:
+            - group [ref=e1598]:
+              - generic "Modules" [ref=e1599] [cursor=pointer]:
+                - generic [ref=e1600]: Modules
+          - listitem [ref=e1601]:
+            - group [ref=e1602]:
+              - generic "Anchor positioning" [ref=e1603] [cursor=pointer]:
+                - generic [ref=e1604]: Anchor positioning
+          - listitem [ref=e1605]:
+            - group [ref=e1606]:
+              - generic "Animations" [ref=e1607] [cursor=pointer]:
+                - generic [ref=e1608]: Animations
+          - listitem [ref=e1609]:
+            - group [ref=e1610]:
+              - generic "Backgrounds and borders" [ref=e1611] [cursor=pointer]:
+                - generic [ref=e1612]: Backgrounds and borders
+          - listitem [ref=e1613]:
+            - group [ref=e1614]:
+              - generic "Box alignment" [ref=e1615] [cursor=pointer]:
+                - generic [ref=e1616]: Box alignment
+          - listitem [ref=e1617]:
+            - group [ref=e1618]:
+              - generic "Box model" [ref=e1619] [cursor=pointer]:
+                - generic [ref=e1620]: Box model
+          - listitem [ref=e1621]:
+            - group [ref=e1622]:
+              - generic "Box sizing" [ref=e1623] [cursor=pointer]:
+                - generic [ref=e1624]: Box sizing
+          - listitem [ref=e1625]:
+            - group [ref=e1626]:
+              - generic "Cascade" [ref=e1627] [cursor=pointer]:
+                - generic [ref=e1628]: Cascade
+          - listitem [ref=e1629]:
+            - group [ref=e1630]:
+              - generic "Cascading variables" [ref=e1631] [cursor=pointer]:
+                - generic [ref=e1632]: Cascading variables
+          - listitem [ref=e1633]:
+            - group [ref=e1634]:
+              - generic "Colors" [ref=e1635] [cursor=pointer]:
+                - generic [ref=e1636]: Colors
+          - listitem [ref=e1637]:
+            - group [ref=e1638]:
+              - generic "Columns" [ref=e1639] [cursor=pointer]:
+                - generic [ref=e1640]: Columns
+          - listitem [ref=e1641]:
+            - group [ref=e1642]:
+              - generic "Conditional rules" [ref=e1643] [cursor=pointer]:
+                - generic [ref=e1644]: Conditional rules
+          - listitem [ref=e1645]:
+            - group [ref=e1646]:
+              - generic "Containment" [ref=e1647] [cursor=pointer]:
+                - generic [ref=e1648]: Containment
+          - listitem [ref=e1649]:
+            - group [ref=e1650]:
+              - generic "Counters" [ref=e1651] [cursor=pointer]:
+                - generic [ref=e1652]: Counters
+          - listitem [ref=e1653]:
+            - group [ref=e1654]:
+              - generic "CSSOM view" [ref=e1655] [cursor=pointer]:
+                - generic [ref=e1656]: CSSOM view
+          - listitem [ref=e1657]:
+            - group [ref=e1658]:
+              - generic "Custom functions and mixins" [ref=e1659] [cursor=pointer]:
+                - generic [ref=e1660]: Custom functions and mixins
+          - listitem [ref=e1661]:
+            - group [ref=e1662]:
+              - generic "Display" [ref=e1663] [cursor=pointer]:
+                - generic [ref=e1664]: Display
+          - listitem [ref=e1665]:
+            - group [ref=e1666]:
+              - generic "Environment variables" [ref=e1667] [cursor=pointer]:
+                - generic [ref=e1668]: Environment variables
+          - listitem [ref=e1669]:
+            - group [ref=e1670]:
+              - generic "Filter effects" [ref=e1671] [cursor=pointer]:
+                - generic [ref=e1672]: Filter effects
+          - listitem [ref=e1673]:
+            - group [ref=e1674]:
+              - generic "Flexbox" [ref=e1675] [cursor=pointer]:
+                - generic [ref=e1676]: Flexbox
+          - listitem [ref=e1677]:
+            - group [ref=e1678]:
+              - generic "Fonts" [ref=e1679] [cursor=pointer]:
+                - generic [ref=e1680]: Fonts
+          - listitem [ref=e1681]:
+            - group [ref=e1682]:
+              - generic "Grid" [ref=e1683] [cursor=pointer]:
+                - generic [ref=e1684]: Grid
+          - listitem [ref=e1685]:
+            - group [ref=e1686]:
+              - generic "Images" [ref=e1687] [cursor=pointer]:
+                - generic [ref=e1688]: Images
+          - listitem [ref=e1689]:
+            - group [ref=e1690]:
+              - generic "Lists" [ref=e1691] [cursor=pointer]:
+                - generic [ref=e1692]: Lists
+          - listitem [ref=e1693]:
+            - group [ref=e1694]:
+              - generic "Logical properties" [ref=e1695] [cursor=pointer]:
+                - generic [ref=e1696]: Logical properties
+          - listitem [ref=e1697]:
+            - group [ref=e1698]:
+              - generic "Masking" [ref=e1699] [cursor=pointer]:
+                - generic [ref=e1700]: Masking
+          - listitem [ref=e1701]:
+            - group [ref=e1702]:
+              - generic "Media queries" [ref=e1703] [cursor=pointer]:
+                - generic [ref=e1704]: Media queries
+          - listitem [ref=e1705]:
+            - group [ref=e1706]:
+              - generic "Nesting" [ref=e1707] [cursor=pointer]:
+                - generic [ref=e1708]: Nesting
+          - listitem [ref=e1709]:
+            - group [ref=e1710]:
+              - generic "Overflow" [ref=e1711] [cursor=pointer]:
+                - generic [ref=e1712]: Overflow
+          - listitem [ref=e1713]:
+            - group [ref=e1714]:
+              - generic "Positioning" [ref=e1715] [cursor=pointer]:
+                - generic [ref=e1716]: Positioning
+          - listitem [ref=e1717]:
+            - group [ref=e1718]:
+              - generic "Properties and Values API" [ref=e1719] [cursor=pointer]:
+                - generic [ref=e1720]: Properties and Values API
+          - listitem [ref=e1721]:
+            - group [ref=e1722]:
+              - generic "Scroll anchoring" [ref=e1723] [cursor=pointer]:
+                - generic [ref=e1724]: Scroll anchoring
+          - listitem [ref=e1725]:
+            - group [ref=e1726]:
+              - generic "Scroll-driven animations" [ref=e1727] [cursor=pointer]:
+                - generic [ref=e1728]: Scroll-driven animations
+          - listitem [ref=e1729]:
+            - group [ref=e1730]:
+              - generic "Scroll snap" [ref=e1731] [cursor=pointer]:
+                - generic [ref=e1732]: Scroll snap
+          - listitem [ref=e1733]:
+            - group [ref=e1734]:
+              - generic "Selectors" [ref=e1735] [cursor=pointer]:
+                - generic [ref=e1736]: Selectors
+          - listitem [ref=e1737]:
+            - group [ref=e1738]:
+              - generic "Shapes" [ref=e1739] [cursor=pointer]:
+                - generic [ref=e1740]: Shapes
+          - listitem [ref=e1741]:
+            - group [ref=e1742]:
+              - generic "Syntax" [ref=e1743] [cursor=pointer]:
+                - generic [ref=e1744]: Syntax
+          - listitem [ref=e1745]:
+            - group [ref=e1746]:
+              - generic "Text" [ref=e1747] [cursor=pointer]:
+                - generic [ref=e1748]: Text
+          - listitem [ref=e1749]:
+            - group [ref=e1750]:
+              - generic "Text decoration" [ref=e1751] [cursor=pointer]:
+                - generic [ref=e1752]: Text decoration
+          - listitem [ref=e1753]:
+            - group [ref=e1754]:
+              - generic "Transforms" [ref=e1755] [cursor=pointer]:
+                - generic [ref=e1756]: Transforms
+          - listitem [ref=e1757]:
+            - group [ref=e1758]:
+              - generic "Transitions" [ref=e1759] [cursor=pointer]:
+                - generic [ref=e1760]: Transitions
+          - listitem [ref=e1761]:
+            - group [ref=e1762]:
+              - generic "Values and units" [ref=e1763] [cursor=pointer]:
+                - generic [ref=e1764]: Values and units
+          - listitem [ref=e1765]:
+            - group [ref=e1766]:
+              - generic "Writing modes" [ref=e1767] [cursor=pointer]:
+                - generic [ref=e1768]: Writing modes
+          - listitem [ref=e1769]:
+            - link "How to" [ref=e1770] [cursor=pointer]:
+              - /url: /en-US/docs/Web/CSS/How_to
+          - listitem [ref=e1771]:
+            - group [ref=e1772]:
+              - generic "Layout cookbook" [ref=e1773] [cursor=pointer]:
+                - link "Layout cookbook" [ref=e1774]:
+                  - /url: /en-US/docs/Web/CSS/How_to/Layout_cookbook
+          - listitem [ref=e1775]:
+            - generic [ref=e1776]: Tools
+          - listitem [ref=e1777]:
+            - list [ref=e1778]:
+              - listitem [ref=e1779]:
+                - link "Border-image generator" [ref=e1780] [cursor=pointer]:
+                  - /url: /en-US/docs/Web/CSS/Guides/Backgrounds_and_borders/Border-image_generator
+              - listitem [ref=e1781]:
+                - link "Border-radius generator" [ref=e1782] [cursor=pointer]:
+                  - /url: /en-US/docs/Web/CSS/Guides/Backgrounds_and_borders/Border-radius_generator
+              - listitem [ref=e1783]:
+                - link "Box-shadow generator" [ref=e1784] [cursor=pointer]:
+                  - /url: /en-US/docs/Web/CSS/Guides/Backgrounds_and_borders/Box-shadow_generator
+              - listitem [ref=e1785]:
+                - link "Color format converter" [ref=e1786] [cursor=pointer]:
+                  - /url: /en-US/docs/Web/CSS/Guides/Colors/Color_format_converter
+              - listitem [ref=e1787]:
+                - link "Color mixer" [ref=e1788] [cursor=pointer]:
+                  - /url: /en-US/docs/Web/CSS/Guides/Colors/Color_mixer
+              - listitem [ref=e1789]:
+                - link "Shape generator" [ref=e1790] [cursor=pointer]:
+                  - /url: /en-US/docs/Web/CSS/Guides/Shapes/Shape_generator
+          - listitem [ref=e1791]:
+            - link "Reference" [ref=e1792] [cursor=pointer]:
+              - /url: /en-US/docs/Web/CSS/Reference
+          - listitem [ref=e1793]:
+            - group [ref=e1794]:
+              - generic "Properties" [ref=e1795] [cursor=pointer]:
+                - link "Properties" [ref=e1796]:
+                  - /url: /en-US/docs/Web/CSS/Reference/Properties
+              - list [ref=e1797]:
+                - listitem [ref=e1798]:
+                  - group [ref=e1799]:
+                    - generic "-moz-*" [ref=e1800] [cursor=pointer]:
+                      - generic [ref=e1801]: "-moz-*"
+                - listitem [ref=e1802]:
+                  - group [ref=e1803]:
+                    - generic "-webkit-*" [ref=e1804] [cursor=pointer]:
+                      - generic [ref=e1805]: "-webkit-*"
+                - listitem [ref=e1806]:
+                  - 'link "Custom properties (--*): CSS variables" [ref=e1807] [cursor=pointer]':
+                    - /url: /en-US/docs/Web/CSS/Reference/Properties/--*
+                - listitem [ref=e1808]:
+                  - link "accent-color" [ref=e1809] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Reference/Properties/accent-color
+                - listitem [ref=e1810]:
+                  - group [ref=e1811]:
+                    - generic "align-*" [ref=e1812] [cursor=pointer]:
+                      - generic [ref=e1813]: align-*
+                - listitem [ref=e1814]:
+                  - link "alignment-baseline" [ref=e1815] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Reference/Properties/alignment-baseline
+                - listitem [ref=e1816]:
+                  - link "all" [ref=e1817] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Reference/Properties/all
+                - listitem [ref=e1818]:
+                  - link "anchor-name" [ref=e1819] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Reference/Properties/anchor-name
+                - listitem [ref=e1820]:
+                  - link "anchor-scope" [ref=e1821] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Reference/Properties/anchor-scope
+                - listitem [ref=e1822]:
+                  - group [ref=e1823]:
+                    - generic "animation-*" [ref=e1824] [cursor=pointer]:
+                      - generic [ref=e1825]: animation-*
+                    - list [ref=e1826]:
+                      - listitem [ref=e1827]:
+                        - link "animation" [ref=e1828] [cursor=pointer]:
+                          - /url: /en-US/docs/Web/CSS/Reference/Properties/animation
+                      - listitem [ref=e1829]:
+                        - link "animation-composition" [ref=e1830] [cursor=pointer]:
+                          - /url: /en-US/docs/Web/CSS/Reference/Properties/animation-composition
+                      - listitem [ref=e1831]:
+                        - link "animation-delay" [ref=e1832] [cursor=pointer]:
+                          - /url: /en-US/docs/Web/CSS/Reference/Properties/animation-delay
+                      - listitem [ref=e1833]:
+                        - link "animation-direction" [ref=e1834] [cursor=pointer]:
+                          - /url: /en-US/docs/Web/CSS/Reference/Properties/animation-direction
+                      - listitem [ref=e1835]:
+                        - link "animation-duration" [ref=e1836] [cursor=pointer]:
+                          - /url: /en-US/docs/Web/CSS/Reference/Properties/animation-duration
+                      - listitem [ref=e1837]:
+                        - link "animation-fill-mode" [ref=e1838] [cursor=pointer]:
+                          - /url: /en-US/docs/Web/CSS/Reference/Properties/animation-fill-mode
+                      - listitem [ref=e1839]:
+                        - link "animation-iteration-count" [ref=e1840] [cursor=pointer]:
+                          - /url: /en-US/docs/Web/CSS/Reference/Properties/animation-iteration-count
+                      - listitem [ref=e1841]:
+                        - link "animation-name" [ref=e1842] [cursor=pointer]:
+                          - /url: /en-US/docs/Web/CSS/Reference/Properties/animation-name
+                      - listitem [ref=e1843]:
+                        - link "animation-play-state" [ref=e1844] [cursor=pointer]:
+                          - /url: /en-US/docs/Web/CSS/Reference/Properties/animation-play-state
+                      - listitem [ref=e1845]:
+                        - link "animation-range" [ref=e1846] [cursor=pointer]:
+                          - /url: /en-US/docs/Web/CSS/Reference/Properties/animation-range
+                      - listitem [ref=e1847]:
+                        - link "animation-range-end" [ref=e1848] [cursor=pointer]:
+                          - /url: /en-US/docs/Web/CSS/Reference/Properties/animation-range-end
+                      - listitem [ref=e1849]:
+                        - link "animation-range-start" [ref=e1850] [cursor=pointer]:
+                          - /url: /en-US/docs/Web/CSS/Reference/Properties/animation-range-start
+                      - listitem [ref=e1851]:
+                        - link "animation-timeline" [ref=e1852] [cursor=pointer]:
+                          - /url: /en-US/docs/Web/CSS/Reference/Properties/animation-timeline
+                      - listitem [ref=e1853]:
+                        - emphasis [ref=e1854]:
+                          - link "animation-timing-function" [ref=e1855] [cursor=pointer]:
+                            - /url: /en-US/docs/Web/CSS/Reference/Properties/animation-timing-function
+                - listitem [ref=e1856]:
+                  - link "appearance" [ref=e1857] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Reference/Properties/appearance
+                - listitem [ref=e1858]:
+                  - link "aspect-ratio" [ref=e1859] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Reference/Properties/aspect-ratio
+                - listitem [ref=e1860]:
+                  - link "backdrop-filter" [ref=e1861] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Reference/Properties/backdrop-filter
+                - listitem [ref=e1862]:
+                  - link "backface-visibility" [ref=e1863] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Reference/Properties/backface-visibility
+                - listitem [ref=e1864]:
+                  - group [ref=e1865]:
+                    - generic "background-*" [ref=e1866] [cursor=pointer]:
+                      - generic [ref=e1867]: background-*
+                - listitem [ref=e1868]:
+                  - link "baseline-shift" [ref=e1869] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Reference/Properties/baseline-shift
+                - listitem [ref=e1870]:
+                  - link "baseline-source" [ref=e1871] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Reference/Properties/baseline-source
+                - listitem [ref=e1872]:
+                  - link "block-size" [ref=e1873] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Reference/Properties/block-size
+                - listitem [ref=e1874]:
+                  - group [ref=e1875]:
+                    - generic "border-*" [ref=e1876] [cursor=pointer]:
+                      - generic [ref=e1877]: border-*
+                - listitem [ref=e1878]:
+                  - link "bottom" [ref=e1879] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Reference/Properties/bottom
+                - listitem [ref=e1880]:
+                  - group [ref=e1881]:
+                    - generic "box-*" [ref=e1882] [cursor=pointer]:
+                      - generic [ref=e1883]: box-*
+                - listitem [ref=e1884]:
+                  - group [ref=e1885]:
+                    - generic "break-*" [ref=e1886] [cursor=pointer]:
+                      - generic [ref=e1887]: break-*
+                - listitem [ref=e1888]:
+                  - link "caption-side" [ref=e1889] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Reference/Properties/caption-side
+                - listitem [ref=e1890]:
+                  - group [ref=e1891]:
+                    - generic "caret-*" [ref=e1892] [cursor=pointer]:
+                      - generic [ref=e1893]: caret-*
+                - listitem [ref=e1894]:
+                  - link "clear" [ref=e1895] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Reference/Properties/clear
+                - listitem [ref=e1896]:
+                  - group [ref=e1897]:
+                    - generic "clip-*" [ref=e1898] [cursor=pointer]:
+                      - generic [ref=e1899]: clip-*
+                - listitem [ref=e1900]:
+                  - group [ref=e1901]:
+                    - generic "color-*" [ref=e1902] [cursor=pointer]:
+                      - generic [ref=e1903]: color-*
+                - listitem [ref=e1904]:
+                  - group [ref=e1905]:
+                    - generic "column-*" [ref=e1906] [cursor=pointer]:
+                      - generic [ref=e1907]: column-*
+                - listitem [ref=e1908]:
+                  - link "columns" [ref=e1909] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Reference/Properties/columns
+                - listitem [ref=e1910]:
+                  - group [ref=e1911]:
+                    - generic "contain-*" [ref=e1912] [cursor=pointer]:
+                      - generic [ref=e1913]: contain-*
+                - listitem [ref=e1914]:
+                  - group [ref=e1915]:
+                    - generic "container-*" [ref=e1916] [cursor=pointer]:
+                      - generic [ref=e1917]: container-*
+                - listitem [ref=e1918]:
+                  - link "content" [ref=e1919] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Reference/Properties/content
+                - listitem [ref=e1920]:
+                  - link "content-visibility" [ref=e1921] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Reference/Properties/content-visibility
+                - listitem [ref=e1922]:
+                  - group [ref=e1923]:
+                    - generic "corner-*" [ref=e1924] [cursor=pointer]:
+                      - generic [ref=e1925]: corner-*
+                - listitem [ref=e1926]:
+                  - group [ref=e1927]:
+                    - generic "counter-*" [ref=e1928] [cursor=pointer]:
+                      - generic [ref=e1929]: counter-*
+                - listitem [ref=e1930]:
+                  - link "cursor" [ref=e1931] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Reference/Properties/cursor
+                - listitem [ref=e1932]:
+                  - link "cx" [ref=e1933] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Reference/Properties/cx
+                - listitem [ref=e1934]:
+                  - link "cy" [ref=e1935] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Reference/Properties/cy
+                - listitem [ref=e1936]:
+                  - link "d" [ref=e1937] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Reference/Properties/d
+                - listitem [ref=e1938]:
+                  - link "direction" [ref=e1939] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Reference/Properties/direction
+                - listitem [ref=e1940]:
+                  - link "display" [ref=e1941] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Reference/Properties/display
+                - listitem [ref=e1942]:
+                  - link "dominant-baseline" [ref=e1943] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Reference/Properties/dominant-baseline
+                - listitem [ref=e1944]:
+                  - link "dynamic-range-limit" [ref=e1945] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Reference/Properties/dynamic-range-limit
+                - listitem [ref=e1946]:
+                  - link "empty-cells" [ref=e1947] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Reference/Properties/empty-cells
+                - listitem [ref=e1948]:
+                  - link "field-sizing" [ref=e1949] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Reference/Properties/field-sizing
+                - listitem [ref=e1950]:
+                  - group [ref=e1951]:
+                    - generic "fill-*" [ref=e1952] [cursor=pointer]:
+                      - generic [ref=e1953]: fill-*
+                - listitem [ref=e1954]:
+                  - link "filter" [ref=e1955] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Reference/Properties/filter
+                - listitem [ref=e1956]:
+                  - group [ref=e1957]:
+                    - generic "flex-*" [ref=e1958] [cursor=pointer]:
+                      - generic [ref=e1959]: flex-*
+                - listitem [ref=e1960]:
+                  - link "float" [ref=e1961] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Reference/Properties/float
+                - listitem [ref=e1962]:
+                  - link "flood-color" [ref=e1963] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Reference/Properties/flood-color
+                - listitem [ref=e1964]:
+                  - link "flood-opacity" [ref=e1965] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Reference/Properties/flood-opacity
+                - listitem [ref=e1966]:
+                  - group [ref=e1967]:
+                    - generic "font-*" [ref=e1968] [cursor=pointer]:
+                      - generic [ref=e1969]: font-*
+                - listitem [ref=e1970]:
+                  - link "forced-color-adjust" [ref=e1971] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Reference/Properties/forced-color-adjust
+                - listitem [ref=e1972]:
+                  - link "gap" [ref=e1973] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Reference/Properties/gap
+                - listitem [ref=e1974]:
+                  - group [ref=e1975]:
+                    - generic "grid-*" [ref=e1976] [cursor=pointer]:
+                      - generic [ref=e1977]: grid-*
+                - listitem [ref=e1978]:
+                  - link "hanging-punctuation" [ref=e1979] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Reference/Properties/hanging-punctuation
+                - listitem [ref=e1980]:
+                  - link "height" [ref=e1981] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Reference/Properties/height
+                - listitem [ref=e1982]:
+                  - link "hyphenate-character" [ref=e1983] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Reference/Properties/hyphenate-character
+                - listitem [ref=e1984]:
+                  - link "hyphenate-limit-chars" [ref=e1985] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Reference/Properties/hyphenate-limit-chars
+                - listitem [ref=e1986]:
+                  - link "hyphens" [ref=e1987] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Reference/Properties/hyphens
+                - listitem [ref=e1988]:
+                  - group [ref=e1989]:
+                    - generic "image-*" [ref=e1990] [cursor=pointer]:
+                      - generic [ref=e1991]: image-*
+                - listitem [ref=e1992]:
+                  - link "initial-letter" [ref=e1993] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Reference/Properties/initial-letter
+                - listitem [ref=e1994]:
+                  - link "inline-size" [ref=e1995] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Reference/Properties/inline-size
+                - listitem [ref=e1996]:
+                  - group [ref=e1997]:
+                    - generic "inset-*" [ref=e1998] [cursor=pointer]:
+                      - generic [ref=e1999]: inset-*
+                - listitem [ref=e2000]:
+                  - link "interactivity" [ref=e2001] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Reference/Properties/interactivity
+                  - generic "Experimental. Expect behavior to change in the future." [ref=e2002]:
+                    - generic [ref=e2003]: Experimental
+                - listitem [ref=e2004]:
+                  - group [ref=e2005]:
+                    - generic "interest-*" [ref=e2006] [cursor=pointer]:
+                      - generic [ref=e2007]: interest-*
+                - listitem [ref=e2008]:
+                  - link "interpolate-size" [ref=e2009] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Reference/Properties/interpolate-size
+                  - generic "Experimental. Expect behavior to change in the future." [ref=e2010]:
+                    - generic [ref=e2011]: Experimental
+                - listitem [ref=e2012]:
+                  - link "isolation" [ref=e2013] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Reference/Properties/isolation
+                - listitem [ref=e2014]:
+                  - group [ref=e2015]:
+                    - generic "justify-*" [ref=e2016] [cursor=pointer]:
+                      - generic [ref=e2017]: justify-*
+                - listitem [ref=e2018]:
+                  - link "left" [ref=e2019] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Reference/Properties/left
+                - listitem [ref=e2020]:
+                  - link "letter-spacing" [ref=e2021] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Reference/Properties/letter-spacing
+                - listitem [ref=e2022]:
+                  - link "lighting-color" [ref=e2023] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Reference/Properties/lighting-color
+                - listitem [ref=e2024]:
+                  - group [ref=e2025]:
+                    - generic "line-*" [ref=e2026] [cursor=pointer]:
+                      - generic [ref=e2027]: line-*
+                - listitem [ref=e2028]:
+                  - group [ref=e2029]:
+                    - generic "list-*" [ref=e2030] [cursor=pointer]:
+                      - generic [ref=e2031]: list-*
+                - listitem [ref=e2032]:
+                  - group [ref=e2033]:
+                    - generic "margin-*" [ref=e2034] [cursor=pointer]:
+                      - generic [ref=e2035]: margin-*
+                - listitem [ref=e2036]:
+                  - group [ref=e2037]:
+                    - generic "marker-*" [ref=e2038] [cursor=pointer]:
+                      - generic [ref=e2039]: marker-*
+                - listitem [ref=e2040]:
+                  - group [ref=e2041]:
+                    - generic "mask-*" [ref=e2042] [cursor=pointer]:
+                      - generic [ref=e2043]: mask-*
+                - listitem [ref=e2044]:
+                  - group [ref=e2045]:
+                    - generic "math-*" [ref=e2046] [cursor=pointer]:
+                      - generic [ref=e2047]: math-*
+                - listitem [ref=e2048]:
+                  - group [ref=e2049]:
+                    - generic "max-*" [ref=e2050] [cursor=pointer]:
+                      - generic [ref=e2051]: max-*
+                - listitem [ref=e2052]:
+                  - group [ref=e2053]:
+                    - generic "min-*" [ref=e2054] [cursor=pointer]:
+                      - generic [ref=e2055]: min-*
+                - listitem [ref=e2056]:
+                  - link "mix-blend-mode" [ref=e2057] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Reference/Properties/mix-blend-mode
+                - listitem [ref=e2058]:
+                  - group [ref=e2059]:
+                    - generic "object-*" [ref=e2060] [cursor=pointer]:
+                      - generic [ref=e2061]: object-*
+                - listitem [ref=e2062]:
+                  - group [ref=e2063]:
+                    - generic "offset-*" [ref=e2064] [cursor=pointer]:
+                      - generic [ref=e2065]: offset-*
+                - listitem [ref=e2066]:
+                  - link "opacity" [ref=e2067] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Reference/Properties/opacity
+                - listitem [ref=e2068]:
+                  - link "order" [ref=e2069] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Reference/Properties/order
+                - listitem [ref=e2070]:
+                  - link "orphans" [ref=e2071] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Reference/Properties/orphans
+                - listitem [ref=e2072]:
+                  - group [ref=e2073]:
+                    - generic "outline-*" [ref=e2074] [cursor=pointer]:
+                      - generic [ref=e2075]: outline-*
+                - listitem [ref=e2076]:
+                  - group [ref=e2077]:
+                    - generic "overflow-*" [ref=e2078] [cursor=pointer]:
+                      - generic [ref=e2079]: overflow-*
+                - listitem [ref=e2080]:
+                  - link "overlay" [ref=e2081] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Reference/Properties/overlay
+                  - generic "Experimental. Expect behavior to change in the future." [ref=e2082]:
+                    - generic [ref=e2083]: Experimental
+                - listitem [ref=e2084]:
+                  - group [ref=e2085]:
+                    - generic "overscroll-*" [ref=e2086] [cursor=pointer]:
+                      - generic [ref=e2087]: overscroll-*
+                - listitem [ref=e2088]:
+                  - group [ref=e2089]:
+                    - generic "padding-*" [ref=e2090] [cursor=pointer]:
+                      - generic [ref=e2091]: padding-*
+                - listitem [ref=e2092]:
+                  - group [ref=e2093]:
+                    - generic "page-*" [ref=e2094] [cursor=pointer]:
+                      - generic [ref=e2095]: page-*
+                - listitem [ref=e2096]:
+                  - link "paint-order" [ref=e2097] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Reference/Properties/paint-order
+                - listitem [ref=e2098]:
+                  - link "perspective" [ref=e2099] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Reference/Properties/perspective
+                - listitem [ref=e2100]:
+                  - link "perspective-origin" [ref=e2101] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Reference/Properties/perspective-origin
+                - listitem [ref=e2102]:
+                  - group [ref=e2103]:
+                    - generic "place-*" [ref=e2104] [cursor=pointer]:
+                      - generic [ref=e2105]: place-*
+                - listitem [ref=e2106]:
+                  - link "pointer-events" [ref=e2107] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Reference/Properties/pointer-events
+                - listitem [ref=e2108]:
+                  - group [ref=e2109]:
+                    - generic "position-*" [ref=e2110] [cursor=pointer]:
+                      - generic [ref=e2111]: position-*
+                - listitem [ref=e2112]:
+                  - link "print-color-adjust" [ref=e2113] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Reference/Properties/print-color-adjust
+                - listitem [ref=e2114]:
+                  - link "quotes" [ref=e2115] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Reference/Properties/quotes
+                - listitem [ref=e2116]:
+                  - link "r" [ref=e2117] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Reference/Properties/r
+                - listitem [ref=e2118]:
+                  - link "reading-flow" [ref=e2119] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Reference/Properties/reading-flow
+                  - generic "Experimental. Expect behavior to change in the future." [ref=e2120]:
+                    - generic [ref=e2121]: Experimental
+                - listitem [ref=e2122]:
+                  - link "reading-order" [ref=e2123] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Reference/Properties/reading-order
+                  - generic "Experimental. Expect behavior to change in the future." [ref=e2124]:
+                    - generic [ref=e2125]: Experimental
+                - listitem [ref=e2126]:
+                  - link "resize" [ref=e2127] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Reference/Properties/resize
+                - listitem [ref=e2128]:
+                  - link "right" [ref=e2129] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Reference/Properties/right
+                - listitem [ref=e2130]:
+                  - link "rotate" [ref=e2131] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Reference/Properties/rotate
+                - listitem [ref=e2132]:
+                  - link "row-gap" [ref=e2133] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Reference/Properties/row-gap
+                - listitem [ref=e2134]:
+                  - group [ref=e2135]:
+                    - generic "ruby-*" [ref=e2136] [cursor=pointer]:
+                      - generic [ref=e2137]: ruby-*
+                - listitem [ref=e2138]:
+                  - link "rx" [ref=e2139] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Reference/Properties/rx
+                - listitem [ref=e2140]:
+                  - link "ry" [ref=e2141] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Reference/Properties/ry
+                - listitem [ref=e2142]:
+                  - link "scale" [ref=e2143] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Reference/Properties/scale
+                - listitem [ref=e2144]:
+                  - group [ref=e2145]:
+                    - generic "scroll-*" [ref=e2146] [cursor=pointer]:
+                      - generic [ref=e2147]: scroll-*
+                - listitem [ref=e2148]:
+                  - group [ref=e2149]:
+                    - generic "scrollbar-*" [ref=e2150] [cursor=pointer]:
+                      - generic [ref=e2151]: scrollbar-*
+                - listitem [ref=e2152]:
+                  - group [ref=e2153]:
+                    - generic "shape-*" [ref=e2154] [cursor=pointer]:
+                      - generic [ref=e2155]: shape-*
+                - listitem [ref=e2156]:
+                  - link "speak-as" [ref=e2157] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Reference/Properties/speak-as
+                  - generic "Experimental. Expect behavior to change in the future." [ref=e2158]:
+                    - generic [ref=e2159]: Experimental
+                - listitem [ref=e2160]:
+                  - link "stop-color" [ref=e2161] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Reference/Properties/stop-color
+                - listitem [ref=e2162]:
+                  - link "stop-opacity" [ref=e2163] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Reference/Properties/stop-opacity
+                - listitem [ref=e2164]:
+                  - group [ref=e2165]:
+                    - generic "stroke-*" [ref=e2166] [cursor=pointer]:
+                      - generic [ref=e2167]: stroke-*
+                - listitem [ref=e2168]:
+                  - link "tab-size" [ref=e2169] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Reference/Properties/tab-size
+                - listitem [ref=e2170]:
+                  - link "table-layout" [ref=e2171] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Reference/Properties/table-layout
+                - listitem [ref=e2172]:
+                  - group [ref=e2173]:
+                    - generic "text-*" [ref=e2174] [cursor=pointer]:
+                      - generic [ref=e2175]: text-*
+                - listitem [ref=e2176]:
+                  - link "timeline-scope" [ref=e2177] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Reference/Properties/timeline-scope
+                - listitem [ref=e2178]:
+                  - link "top" [ref=e2179] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Reference/Properties/top
+                - listitem [ref=e2180]:
+                  - link "touch-action" [ref=e2181] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Reference/Properties/touch-action
+                - listitem [ref=e2182]:
+                  - group [ref=e2183]:
+                    - generic "transform-*" [ref=e2184] [cursor=pointer]:
+                      - generic [ref=e2185]: transform-*
+                - listitem [ref=e2186]:
+                  - group [ref=e2187]:
+                    - generic "transition-*" [ref=e2188] [cursor=pointer]:
+                      - generic [ref=e2189]: transition-*
+                - listitem [ref=e2190]:
+                  - link "translate" [ref=e2191] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Reference/Properties/translate
+                - listitem [ref=e2192]:
+                  - link "unicode-bidi" [ref=e2193] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Reference/Properties/unicode-bidi
+                - listitem [ref=e2194]:
+                  - link "user-modify" [ref=e2195] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Reference/Properties/user-modify
+                  - generic "Non-standard. Check cross-browser support before using." [ref=e2196]:
+                    - generic [ref=e2197]: Non-standard
+                  - generic "Deprecated. Not for use in new websites." [ref=e2198]:
+                    - generic [ref=e2199]: Deprecated
+                - listitem [ref=e2200]:
+                  - link "user-select" [ref=e2201] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Reference/Properties/user-select
+                - listitem [ref=e2202]:
+                  - link "vector-effect" [ref=e2203] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Reference/Properties/vector-effect
+                - listitem [ref=e2204]:
+                  - link "vertical-align" [ref=e2205] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Reference/Properties/vertical-align
+                - listitem [ref=e2206]:
+                  - group [ref=e2207]:
+                    - generic "view-*" [ref=e2208] [cursor=pointer]:
+                      - generic [ref=e2209]: view-*
+                - listitem [ref=e2210]:
+                  - link "visibility" [ref=e2211] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Reference/Properties/visibility
+                - listitem [ref=e2212]:
+                  - link "white-space" [ref=e2213] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Reference/Properties/white-space
+                - listitem [ref=e2214]:
+                  - link "white-space-collapse" [ref=e2215] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Reference/Properties/white-space-collapse
+                - listitem [ref=e2216]:
+                  - link "widows" [ref=e2217] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Reference/Properties/widows
+                - listitem [ref=e2218]:
+                  - link "width" [ref=e2219] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Reference/Properties/width
+                - listitem [ref=e2220]:
+                  - link "will-change" [ref=e2221] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Reference/Properties/will-change
+                - listitem [ref=e2222]:
+                  - link "word-break" [ref=e2223] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Reference/Properties/word-break
+                - listitem [ref=e2224]:
+                  - link "word-spacing" [ref=e2225] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Reference/Properties/word-spacing
+                - listitem [ref=e2226]:
+                  - link "writing-mode" [ref=e2227] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Reference/Properties/writing-mode
+                - listitem [ref=e2228]:
+                  - link "x" [ref=e2229] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Reference/Properties/x
+                - listitem [ref=e2230]:
+                  - link "y" [ref=e2231] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Reference/Properties/y
+                - listitem [ref=e2232]:
+                  - link "z-index" [ref=e2233] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Reference/Properties/z-index
+                - listitem [ref=e2234]:
+                  - link "zoom" [ref=e2235] [cursor=pointer]:
+                    - /url: /en-US/docs/Web/CSS/Reference/Properties/zoom
+          - listitem [ref=e2236]:
+            - group [ref=e2237]:
+              - generic "Selectors" [ref=e2238] [cursor=pointer]:
+                - link "Selectors" [ref=e2239]:
+                  - /url: /en-US/docs/Web/CSS/Reference/Selectors
+          - listitem [ref=e2240]:
+            - group [ref=e2241]:
+              - generic "Combinators" [ref=e2242] [cursor=pointer]:
+                - link "Combinators" [ref=e2243]:
+                  - /url: /en-US/docs/Web/CSS/Reference/Selectors/Combinators
+          - listitem [ref=e2244]:
+            - group [ref=e2245]:
+              - generic "Pseudo-classes" [ref=e2246] [cursor=pointer]:
+                - link "Pseudo-classes" [ref=e2247]:
+                  - /url: /en-US/docs/Web/CSS/Reference/Selectors/Pseudo-classes
+          - listitem [ref=e2248]:
+            - group [ref=e2249]:
+              - generic "Pseudo-elements" [ref=e2250] [cursor=pointer]:
+                - link "Pseudo-elements" [ref=e2251]:
+                  - /url: /en-US/docs/Web/CSS/Reference/Selectors/Pseudo-elements
+          - listitem [ref=e2252]:
+            - group [ref=e2253]:
+              - generic "At-rules" [ref=e2254] [cursor=pointer]:
+                - link "At-rules" [ref=e2255]:
+                  - /url: /en-US/docs/Web/CSS/Reference/At-rules
+          - listitem [ref=e2256]:
+            - group [ref=e2257]:
+              - generic "Values" [ref=e2258] [cursor=pointer]:
+                - link "Values" [ref=e2259]:
+                  - /url: /en-US/docs/Web/CSS/Reference/Values
+          - listitem [ref=e2260]:
+            - group [ref=e2261]:
+              - generic "Types" [ref=e2262] [cursor=pointer]:
+                - link "Types" [ref=e2263]:
+                  - /url: /en-US/docs/Web/CSS/Reference/Values/Data_types
+          - listitem [ref=e2264]:
+            - group [ref=e2265]:
+              - generic "Functions" [ref=e2266] [cursor=pointer]:
+                - link "Functions" [ref=e2267]:
+                  - /url: /en-US/docs/Web/CSS/Reference/Values/Functions
+  - contentinfo [ref=e2269]:
+    - generic [ref=e2270]:
+      - generic [ref=e2271]:
+        - link "MDN logo" [ref=e2272] [cursor=pointer]:
+          - /url: /
+          - img "MDN" [ref=e2273]
+        - paragraph [ref=e2275]: Your blueprint for a better internet.
+      - list [ref=e2276]:
+        - listitem [ref=e2277]:
+          - link "MDN on GitHub" [ref=e2278] [cursor=pointer]:
+            - /url: https://github.com/mdn/
+        - listitem [ref=e2279]:
+          - link "MDN on Bluesky" [ref=e2280] [cursor=pointer]:
+            - /url: https://bsky.app/profile/developer.mozilla.org
+        - listitem [ref=e2281]:
+          - link "MDN on X" [ref=e2282] [cursor=pointer]:
+            - /url: https://x.com/mozdevnet
+        - listitem [ref=e2283]:
+          - link "MDN on Mastodon" [ref=e2284] [cursor=pointer]:
+            - /url: https://mastodon.social/@mdn
+        - listitem [ref=e2285]:
+          - link "MDN blog RSS feed" [ref=e2286] [cursor=pointer]:
+            - /url: /en-US/blog/rss.xml
+      - generic [ref=e2287]:
+        - term [ref=e2288]: MDN
+        - definition [ref=e2289]:
+          - list [ref=e2290]:
+            - listitem [ref=e2291]:
+              - link "About" [ref=e2292] [cursor=pointer]:
+                - /url: /en-US/about
+            - listitem [ref=e2293]:
+              - link "Blog" [ref=e2294] [cursor=pointer]:
+                - /url: /en-US/blog/
+            - listitem [ref=e2295]:
+              - link "Mozilla careers (external)" [ref=e2296] [cursor=pointer]:
+                - /url: https://www.mozilla.org/en-US/careers/listings/
+            - listitem [ref=e2297]:
+              - link "Advertise with us" [ref=e2298] [cursor=pointer]:
+                - /url: /en-US/advertising
+            - listitem [ref=e2299]:
+              - link "MDN Plus" [ref=e2300] [cursor=pointer]:
+                - /url: /en-US/plus
+            - listitem [ref=e2301]:
+              - link "Product help (external)" [ref=e2302] [cursor=pointer]:
+                - /url: https://support.mozilla.org/products/mdn-plus
+      - generic [ref=e2303]:
+        - term [ref=e2304]: Contribute
+        - definition [ref=e2305]:
+          - list [ref=e2306]:
+            - listitem [ref=e2307]:
+              - link "MDN Community" [ref=e2308] [cursor=pointer]:
+                - /url: /en-US/community
+            - listitem [ref=e2309]:
+              - link "Community resources" [ref=e2310] [cursor=pointer]:
+                - /url: /en-US/docs/MDN/Community
+            - listitem [ref=e2311]:
+              - link "Writing guidelines" [ref=e2312] [cursor=pointer]:
+                - /url: /en-US/docs/MDN/Writing_guidelines
+            - listitem [ref=e2313]:
+              - link "MDN Discord (external)" [ref=e2314] [cursor=pointer]:
+                - /url: /discord
+            - listitem [ref=e2315]:
+              - link "MDN on GitHub (external)" [ref=e2316] [cursor=pointer]:
+                - /url: https://github.com/mdn
+      - generic [ref=e2317]:
+        - term [ref=e2318]: Developers
+        - definition [ref=e2319]:
+          - list [ref=e2320]:
+            - listitem [ref=e2321]:
+              - link "Web technologies" [ref=e2322] [cursor=pointer]:
+                - /url: /en-US/docs/Web
+            - listitem [ref=e2323]:
+              - link "Learn web development" [ref=e2324] [cursor=pointer]:
+                - /url: /en-US/docs/Learn_web_development
+            - listitem [ref=e2325]:
+              - link "Guides" [ref=e2326] [cursor=pointer]:
+                - /url: /en-US/docs/MDN/Guides
+            - listitem [ref=e2327]:
+              - link "Tutorials" [ref=e2328] [cursor=pointer]:
+                - /url: /en-US/docs/MDN/Tutorials
+            - listitem [ref=e2329]:
+              - link "Glossary" [ref=e2330] [cursor=pointer]:
+                - /url: /en-US/docs/Glossary
+            - listitem [ref=e2331]:
+              - link "Hacks blog (external)" [ref=e2332] [cursor=pointer]:
+                - /url: https://hacks.mozilla.org/
+    - generic [ref=e2333]:
+      - link "Mozilla logo" [ref=e2334] [cursor=pointer]:
+        - /url: https://www.mozilla.org/
+        - img "Mozilla" [ref=e2335]
+      - list [ref=e2337]:
+        - listitem [ref=e2338]:
+          - link "Website Privacy Notice (external)" [ref=e2339] [cursor=pointer]:
+            - /url: https://www.mozilla.org/privacy/websites/
+        - listitem [ref=e2340]:
+          - link "Telemetry Settings (external)" [ref=e2341] [cursor=pointer]:
+            - /url: https://www.mozilla.org/en-US/privacy/websites/data-preferences/
+        - listitem [ref=e2342]:
+          - link "Legal (external)" [ref=e2343] [cursor=pointer]:
+            - /url: https://www.mozilla.org/about/legal/terms/mozilla
+        - listitem [ref=e2344]:
+          - link "Community Participation Guidelines (external)" [ref=e2345] [cursor=pointer]:
+            - /url: https://www.mozilla.org/about/governance/policies/participation/
+      - paragraph [ref=e2346]:
+        - text: Visit
+        - link "Mozilla Corporation’s" [ref=e2347] [cursor=pointer]:
+          - /url: https://www.mozilla.org/
+        - text: not-for-profit parent, the
+        - link "Mozilla Foundation" [ref=e2348] [cursor=pointer]:
+          - /url: https://foundation.mozilla.org/
+        - text: .
+        - text: Portions of this content are ©1998–2026 by individual mozilla.org contributors. Content available under
+        - link "a Creative Commons license" [ref=e2349] [cursor=pointer]:
+          - /url: /docs/MDN/Writing_guidelines/Attrib_copyright_license
+        - text: .

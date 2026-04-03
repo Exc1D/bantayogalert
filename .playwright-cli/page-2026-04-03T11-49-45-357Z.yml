@@ -1,0 +1,598 @@
+- generic [ref=e2]:
+  - region
+  - generic [ref=e3]:
+    - link "Skip to content" [ref=e4] [cursor=pointer]:
+      - /url: "#start-of-content"
+    - banner [ref=e6]:
+      - heading "Navigation Menu" [level=2] [ref=e7]
+      - generic [ref=e8]:
+        - link "Homepage" [ref=e10] [cursor=pointer]:
+          - /url: /
+          - img [ref=e11]
+        - generic [ref=e13]:
+          - navigation "Global" [ref=e16]:
+            - list [ref=e17]:
+              - listitem [ref=e18]:
+                - button "Platform" [ref=e20] [cursor=pointer]:
+                  - text: Platform
+                  - img [ref=e21]
+              - listitem [ref=e23]:
+                - button "Solutions" [ref=e25] [cursor=pointer]:
+                  - text: Solutions
+                  - img [ref=e26]
+              - listitem [ref=e28]:
+                - button "Resources" [ref=e30] [cursor=pointer]:
+                  - text: Resources
+                  - img [ref=e31]
+              - listitem [ref=e33]:
+                - button "Open Source" [ref=e35] [cursor=pointer]:
+                  - text: Open Source
+                  - img [ref=e36]
+              - listitem [ref=e38]:
+                - button "Enterprise" [ref=e40] [cursor=pointer]:
+                  - text: Enterprise
+                  - img [ref=e41]
+              - listitem [ref=e43]:
+                - link "Pricing" [ref=e44] [cursor=pointer]:
+                  - /url: https://github.com/pricing
+                  - generic [ref=e45]: Pricing
+          - generic [ref=e46]:
+            - button "Search or jump to…" [ref=e49] [cursor=pointer]:
+              - img [ref=e51]
+            - link "Sign in" [ref=e54] [cursor=pointer]:
+              - /url: /login?return_to=https%3A%2F%2Fgithub.com%2FLeonxlnx%2Ftaste-skill
+            - link "Sign up" [ref=e55] [cursor=pointer]:
+              - /url: /signup?ref_cta=Sign+up&ref_loc=header+logged+out&ref_page=%2F%3Cuser-name%3E%2F%3Crepo-name%3E&source=header-repo&source_repo=Leonxlnx%2Ftaste-skill
+            - button "Appearance settings" [ref=e58] [cursor=pointer]:
+              - img
+  - main [ref=e62]:
+    - generic [ref=e63]:
+      - generic [ref=e64]:
+        - generic [ref=e66]:
+          - img [ref=e67]
+          - link "Leonxlnx" [ref=e70] [cursor=pointer]:
+            - /url: /Leonxlnx
+          - generic [ref=e71]: /
+          - strong [ref=e72]:
+            - link "taste-skill" [ref=e73] [cursor=pointer]:
+              - /url: /Leonxlnx/taste-skill
+          - generic [ref=e74]: Public
+        - generic [ref=e75]:
+          - list:
+            - listitem [ref=e76]:
+              - link "Sponsor @Leonxlnx" [ref=e77] [cursor=pointer]:
+                - /url: /sponsors/Leonxlnx
+                - generic [ref=e79]:
+                  - img [ref=e80]
+                  - text: Sponsor
+            - listitem [ref=e82]:
+              - link "You must be signed in to change notification settings" [ref=e83] [cursor=pointer]:
+                - /url: /login?return_to=%2FLeonxlnx%2Ftaste-skill
+                - img [ref=e84]
+                - text: Notifications
+            - listitem [ref=e86]:
+              - link "Fork 688" [ref=e87] [cursor=pointer]:
+                - /url: /login?return_to=%2FLeonxlnx%2Ftaste-skill
+                - img [ref=e88]
+                - text: Fork
+                - generic "688" [ref=e90]
+            - listitem [ref=e91]:
+              - link "You must be signed in to star a repository" [ref=e93] [cursor=pointer]:
+                - /url: /login?return_to=%2FLeonxlnx%2Ftaste-skill
+                - img [ref=e94]
+                - text: Star
+                - generic "6899 users starred this repository" [ref=e96]: 6.9k
+      - navigation "Repository" [ref=e97]:
+        - list [ref=e98]:
+          - listitem [ref=e99]:
+            - link "Code" [ref=e100] [cursor=pointer]:
+              - /url: /Leonxlnx/taste-skill
+              - img [ref=e101]
+              - generic [ref=e103]: Code
+          - listitem [ref=e104]:
+            - link "Issues" [ref=e105] [cursor=pointer]:
+              - /url: /Leonxlnx/taste-skill/issues
+              - img [ref=e106]
+              - generic [ref=e109]: Issues
+          - listitem [ref=e110]:
+            - link "Pull requests 2" [ref=e111] [cursor=pointer]:
+              - /url: /Leonxlnx/taste-skill/pulls
+              - img [ref=e112]
+              - generic [ref=e114]: Pull requests
+              - generic "2" [ref=e115]
+          - listitem [ref=e116]:
+            - link "Discussions" [ref=e117] [cursor=pointer]:
+              - /url: /Leonxlnx/taste-skill/discussions
+              - img [ref=e118]
+              - generic [ref=e120]: Discussions
+          - listitem [ref=e121]:
+            - link "Actions" [ref=e122] [cursor=pointer]:
+              - /url: /Leonxlnx/taste-skill/actions
+              - img [ref=e123]
+              - generic [ref=e125]: Actions
+          - listitem [ref=e126]:
+            - link "Projects" [ref=e127] [cursor=pointer]:
+              - /url: /Leonxlnx/taste-skill/projects
+              - img [ref=e128]
+              - generic [ref=e130]: Projects
+          - listitem [ref=e131]:
+            - link "Security and quality" [ref=e132] [cursor=pointer]:
+              - /url: /Leonxlnx/taste-skill/security
+              - img [ref=e133]
+              - generic [ref=e135]: Security and quality
+          - listitem [ref=e136]:
+            - link "Insights" [ref=e137] [cursor=pointer]:
+              - /url: /Leonxlnx/taste-skill/pulse
+              - img [ref=e138]
+              - generic [ref=e140]: Insights
+    - generic [ref=e153]:
+      - heading "Leonxlnx/taste-skill" [level=1] [ref=e155]
+      - generic [ref=e156]:
+        - generic [ref=e159]:
+          - generic [ref=e160]:
+            - generic [ref=e161]:
+              - button "main branch" [ref=e163] [cursor=pointer]:
+                - generic [ref=e164]:
+                  - generic [ref=e166]:
+                    - img [ref=e168]
+                    - generic [ref=e171]: main
+                  - generic:
+                    - img
+              - generic [ref=e172]:
+                - link "1 Branch" [ref=e173] [cursor=pointer]:
+                  - /url: /Leonxlnx/taste-skill/branches
+                  - generic [ref=e174]:
+                    - generic:
+                      - img
+                    - generic [ref=e176]:
+                      - strong [ref=e177]: "1"
+                      - text: Branch
+                - link "0 Tags" [ref=e178] [cursor=pointer]:
+                  - /url: /Leonxlnx/taste-skill/tags
+                  - generic [ref=e179]:
+                    - generic:
+                      - img
+                    - generic [ref=e181]:
+                      - strong [ref=e182]: "0"
+                      - text: Tags
+            - generic [ref=e183]:
+              - generic [ref=e187]:
+                - img [ref=e189]
+                - combobox "Go to file" [ref=e191]
+              - button "Code" [ref=e192] [cursor=pointer]:
+                - generic [ref=e193]:
+                  - generic:
+                    - img
+                  - generic [ref=e194]: Code
+                  - generic:
+                    - img
+          - generic [ref=e195]:
+            - generic [ref=e196]:
+              - heading "Folders and files" [level=2] [ref=e197]
+              - table "Folders and files" [ref=e198]:
+                - rowgroup:
+                  - row "Name Last commit message Last commit date":
+                    - columnheader "Name"
+                    - columnheader "Last commit message":
+                      - generic "Last commit message"
+                    - columnheader "Last commit date":
+                      - generic "Last commit date"
+                - rowgroup [ref=e199]:
+                  - 'row "Latest commit Leonxlnx commits by Leonxlnx docs: add Common Questions section to README Commit f05a85b · Mar 29, 20265 days ago History 53 Commits" [ref=e200]':
+                    - 'cell "Latest commit Leonxlnx commits by Leonxlnx docs: add Common Questions section to README Commit f05a85b · Mar 29, 20265 days ago History 53 Commits" [ref=e201]':
+                      - generic [ref=e202]:
+                        - heading "Latest commit" [level=2] [ref=e203]
+                        - generic [ref=e204]:
+                          - generic [ref=e206]:
+                            - link "Leonxlnx" [ref=e207] [cursor=pointer]:
+                              - /url: /Leonxlnx
+                              - img "Leonxlnx" [ref=e208]
+                            - link "commits by Leonxlnx" [ref=e209] [cursor=pointer]:
+                              - /url: /Leonxlnx/taste-skill/commits?author=Leonxlnx
+                              - text: Leonxlnx
+                          - 'link "docs: add Common Questions section to README" [ref=e213] [cursor=pointer]':
+                            - /url: /Leonxlnx/taste-skill/commit/f05a85b29ed46f2f20b2024b1d3e97a065e5ced5
+                        - generic [ref=e214]:
+                          - generic [ref=e216]:
+                            - link "Commit f05a85b" [ref=e217] [cursor=pointer]:
+                              - /url: /Leonxlnx/taste-skill/commit/f05a85b29ed46f2f20b2024b1d3e97a065e5ced5
+                              - text: f05a85b
+                            - text: ·
+                            - generic "Mar 29, 2026, 8:23 PM GMT+8" [ref=e218]: Mar 29, 20265 days ago
+                          - generic [ref=e219]:
+                            - heading "History" [level=2] [ref=e220]
+                            - link "53 Commits" [ref=e221] [cursor=pointer]:
+                              - /url: /Leonxlnx/taste-skill/commits/main/
+                              - generic [ref=e222]:
+                                - generic:
+                                  - img
+                                - generic [ref=e223]: 53 Commits
+                  - 'row ".github, (Directory) feat: migrate to npx skills standard, add llms.txt, restructure to /s… Mar 21, 20262 weeks ago" [ref=e224]':
+                    - cell ".github, (Directory)" [ref=e225]:
+                      - generic [ref=e226]:
+                        - img [ref=e227]
+                        - link ".github, (Directory)" [ref=e232] [cursor=pointer]:
+                          - /url: /Leonxlnx/taste-skill/tree/main/.github
+                          - text: .github
+                    - 'cell "feat: migrate to npx skills standard, add llms.txt, restructure to /s…" [ref=e233]':
+                      - 'link "feat: migrate to npx skills standard, add llms.txt, restructure to /s…" [ref=e236] [cursor=pointer]':
+                        - /url: /Leonxlnx/taste-skill/commit/3206dd44fce91412cbfd5b2dbead29fb29a91bb9
+                    - cell "Mar 21, 20262 weeks ago" [ref=e237]:
+                      - generic [ref=e238]: Mar 21, 20262 weeks ago
+                  - 'row "examples, (Directory) restructure: split into 3 independent skills, professional research d… Mar 1, 20262 months ago" [ref=e239]':
+                    - cell "examples, (Directory)" [ref=e240]:
+                      - generic [ref=e241]:
+                        - img [ref=e242]
+                        - link "examples, (Directory)" [ref=e247] [cursor=pointer]:
+                          - /url: /Leonxlnx/taste-skill/tree/main/examples
+                          - text: examples
+                    - 'cell "restructure: split into 3 independent skills, professional research d…" [ref=e248]':
+                      - 'link "restructure: split into 3 independent skills, professional research d…" [ref=e251] [cursor=pointer]':
+                        - /url: /Leonxlnx/taste-skill/commit/4e2cf5afda4d347946e4fc8bd1fe3bd5c316e333
+                    - cell "Mar 1, 20262 months ago" [ref=e252]:
+                      - generic [ref=e253]: Mar 1, 20262 months ago
+                  - 'row "research, (Directory) restructure: split into 3 independent skills, professional research d… Mar 1, 20262 months ago" [ref=e254]':
+                    - cell "research, (Directory)" [ref=e255]:
+                      - generic [ref=e256]:
+                        - img [ref=e257]
+                        - link "research, (Directory)" [ref=e262] [cursor=pointer]:
+                          - /url: /Leonxlnx/taste-skill/tree/main/research
+                          - text: research
+                    - 'cell "restructure: split into 3 independent skills, professional research d…" [ref=e263]':
+                      - 'link "restructure: split into 3 independent skills, professional research d…" [ref=e266] [cursor=pointer]':
+                        - /url: /Leonxlnx/taste-skill/commit/4e2cf5afda4d347946e4fc8bd1fe3bd5c316e333
+                    - cell "Mar 1, 20262 months ago" [ref=e267]:
+                      - generic [ref=e268]: Mar 1, 20262 months ago
+                  - 'row "skills, (Directory) feat: migrate to npx skills standard, add llms.txt, restructure to /s… Mar 21, 20262 weeks ago" [ref=e269]':
+                    - cell "skills, (Directory)" [ref=e270]:
+                      - generic [ref=e271]:
+                        - img [ref=e272]
+                        - link "skills, (Directory)" [ref=e277] [cursor=pointer]:
+                          - /url: /Leonxlnx/taste-skill/tree/main/skills
+                          - text: skills
+                    - 'cell "feat: migrate to npx skills standard, add llms.txt, restructure to /s…" [ref=e278]':
+                      - 'link "feat: migrate to npx skills standard, add llms.txt, restructure to /s…" [ref=e281] [cursor=pointer]':
+                        - /url: /Leonxlnx/taste-skill/commit/3206dd44fce91412cbfd5b2dbead29fb29a91bb9
+                    - cell "Mar 21, 20262 weeks ago" [ref=e282]:
+                      - generic [ref=e283]: Mar 21, 20262 weeks ago
+                  - 'row "README.md, (File) docs: add Common Questions section to README Mar 29, 20265 days ago" [ref=e284]':
+                    - cell "README.md, (File)" [ref=e285]:
+                      - generic [ref=e286]:
+                        - img [ref=e287]
+                        - link "README.md, (File)" [ref=e292] [cursor=pointer]:
+                          - /url: /Leonxlnx/taste-skill/blob/main/README.md
+                          - text: README.md
+                    - 'cell "docs: add Common Questions section to README" [ref=e293]':
+                      - 'link "docs: add Common Questions section to README" [ref=e296] [cursor=pointer]':
+                        - /url: /Leonxlnx/taste-skill/commit/f05a85b29ed46f2f20b2024b1d3e97a065e5ced5
+                    - cell "Mar 29, 20265 days ago" [ref=e297]:
+                      - generic [ref=e298]: Mar 29, 20265 days ago
+            - generic [ref=e300]:
+              - generic [ref=e301]:
+                - heading "Repository files navigation" [level=2] [ref=e302]
+                - navigation "Repository files" [ref=e303]:
+                  - list [ref=e304]:
+                    - listitem [ref=e305]:
+                      - link "README" [ref=e306] [cursor=pointer]:
+                        - /url: "#"
+                        - img [ref=e308]
+                        - generic [ref=e310]: README
+                - button "Outline" [ref=e311] [cursor=pointer]:
+                  - img [ref=e312]
+              - article [ref=e315]:
+                - generic [ref=e316]:
+                  - heading "Taste Skill" [level=1] [ref=e317]
+                  - 'link "Permalink: Taste Skill" [ref=e318] [cursor=pointer]':
+                    - /url: "#taste-skill"
+                    - img [ref=e319]
+                - paragraph [ref=e321]:
+                  - link "Official Website" [ref=e322] [cursor=pointer]:
+                    - /url: https://tasteskill.dev
+                    - img "Official Website" [ref=e323]
+                - paragraph [ref=e324]: A collection of skills that improve how AI tools write frontend code. Instead of generating generic, boring interfaces, the AI builds modern, premium designs with proper animations, spacing, and visual quality.
+                - paragraph [ref=e325]:
+                  - link "Agent Skills" [ref=e326] [cursor=pointer]:
+                    - /url: https://github.com/vercel-labs/agent-skills
+                    - img "Agent Skills" [ref=e327]
+                  - link "GitHub stars" [ref=e328] [cursor=pointer]:
+                    - /url: https://github.com/Leonxlnx/taste-skill/stargazers
+                    - img "GitHub stars" [ref=e329]
+                  - link "AI Supported" [ref=e330] [cursor=pointer]:
+                    - /url: "#"
+                    - img "AI Supported" [ref=e331]
+                  - link "Premium UI" [ref=e332] [cursor=pointer]:
+                    - /url: "#"
+                    - img "Premium UI" [ref=e333]
+                - generic [ref=e334]:
+                  - heading "Taste Skill v2 Beta" [level=2] [ref=e335]
+                  - 'link "Permalink: Taste Skill v2 Beta" [ref=e336] [cursor=pointer]':
+                    - /url: "#taste-skill-v2-beta"
+                    - img [ref=e337]
+                - paragraph [ref=e339]: "A major update is in progress. If you want early access, sign up for the beta:"
+                - paragraph [ref=e340]:
+                  - link "Join the Waitlist" [ref=e341] [cursor=pointer]:
+                    - /url: https://tasteskillv2.vercel.app/
+                - generic [ref=e342]:
+                  - heading "Feedback & Contributions" [level=2] [ref=e343]
+                  - 'link "Permalink: Feedback & Contributions" [ref=e344] [cursor=pointer]':
+                    - /url: "#feedback--contributions"
+                    - img [ref=e345]
+                - paragraph [ref=e347]: "I'd love to hear your thoughts! If you have suggestions or find any bugs:"
+                - list [ref=e348]:
+                  - listitem [ref=e349]: Open a Pull Request or Issue right here on GitHub
+                  - listitem [ref=e350]:
+                    - text: DM me on
+                    - link "x.com/lexnlin" [ref=e351] [cursor=pointer]:
+                      - /url: https://x.com/lexnlin
+                  - listitem [ref=e352]:
+                    - text: Email me at
+                    - link "hello@learn2vibecode.dev" [ref=e353] [cursor=pointer]:
+                      - /url: mailto:hello@learn2vibecode.dev
+                - generic [ref=e354]:
+                  - heading "Installing" [level=2] [ref=e355]
+                  - 'link "Permalink: Installing" [ref=e356] [cursor=pointer]':
+                    - /url: "#installing"
+                    - img [ref=e357]
+                - paragraph [ref=e359]: "Works via CLI for all major AI coding agents (Cursor, Antigravity, Claude Code, Codex, Windsurf, Copilot, etc.):"
+                - generic [ref=e360]:
+                  - generic [ref=e361]: npx skills add https://github.com/Leonxlnx/taste-skill
+                  - button "Copy" [ref=e363] [cursor=pointer]:
+                    - img [ref=e364]
+                - generic [ref=e367]:
+                  - heading "Skills" [level=2] [ref=e368]
+                  - 'link "Permalink: Skills" [ref=e369] [cursor=pointer]':
+                    - /url: "#skills"
+                    - img [ref=e370]
+                - table [ref=e373]:
+                  - rowgroup [ref=e374]:
+                    - row "Skill Description" [ref=e375]:
+                      - columnheader "Skill" [ref=e376]
+                      - columnheader "Description" [ref=e377]
+                  - rowgroup [ref=e378]:
+                    - row "taste-skill The main design skill for premium frontend code. Covers layout, typography, colors, spacing, and motion." [ref=e379]:
+                      - cell "taste-skill" [ref=e380]:
+                        - strong [ref=e381]: taste-skill
+                      - cell "The main design skill for premium frontend code. Covers layout, typography, colors, spacing, and motion." [ref=e382]
+                    - row "redesign-skill For upgrading existing projects by auditing and fixing design problems first." [ref=e383]:
+                      - cell "redesign-skill" [ref=e384]:
+                        - strong [ref=e385]: redesign-skill
+                      - cell "For upgrading existing projects by auditing and fixing design problems first." [ref=e386]
+                    - row "soft-skill Focuses on an expensive, soft UI look with premium fonts, whitespace, depth, and smooth spring animations." [ref=e387]:
+                      - cell "soft-skill" [ref=e388]:
+                        - strong [ref=e389]: soft-skill
+                      - cell "Focuses on an expensive, soft UI look with premium fonts, whitespace, depth, and smooth spring animations." [ref=e390]
+                    - row "output-skill Stops the AI from being lazy. Prevents placeholder comments, skipped code blocks, and half-finished outputs." [ref=e391]:
+                      - cell "output-skill" [ref=e392]:
+                        - strong [ref=e393]: output-skill
+                      - cell "Stops the AI from being lazy. Prevents placeholder comments, skipped code blocks, and half-finished outputs." [ref=e394]
+                    - row "minimalist-skill For clean, editorial-style interfaces inspired by tools like Notion and Linear. Monochrome, crisp borders." [ref=e395]:
+                      - cell "minimalist-skill" [ref=e396]:
+                        - strong [ref=e397]: minimalist-skill
+                      - cell "For clean, editorial-style interfaces inspired by tools like Notion and Linear. Monochrome, crisp borders." [ref=e398]
+                    - row "brutalist-skill ⚠️ BETA Raw mechanical interfaces fusing Swiss typographic print with CRT terminal aesthetics." [ref=e399]:
+                      - cell "brutalist-skill" [ref=e400]:
+                        - strong [ref=e401]: brutalist-skill
+                      - cell "⚠️ BETA Raw mechanical interfaces fusing Swiss typographic print with CRT terminal aesthetics." [ref=e402]:
+                        - generic [ref=e403]: ⚠️
+                        - code [ref=e404]: BETA
+                        - text: Raw mechanical interfaces fusing Swiss typographic print with CRT terminal aesthetics.
+                    - row "stitch-skill Google Stitch-compatible semantic design rules for premium AI UI generation. Includes DESIGN.md for export." [ref=e405]:
+                      - cell "stitch-skill" [ref=e406]:
+                        - strong [ref=e407]: stitch-skill
+                      - cell "Google Stitch-compatible semantic design rules for premium AI UI generation. Includes DESIGN.md for export." [ref=e408]
+                - generic [ref=e409]:
+                  - heading "Settings (taste-skill only)" [level=2] [ref=e410]
+                  - 'link "Permalink: Settings (taste-skill only)" [ref=e411] [cursor=pointer]':
+                    - /url: "#settings-taste-skill-only"
+                    - img [ref=e412]
+                - paragraph [ref=e414]: "The taste skill has three settings at the top of the file. Change these numbers (1-10) depending on what you're building:"
+                - list [ref=e415]:
+                  - listitem [ref=e416]:
+                    - strong [ref=e417]: DESIGN_VARIANCE
+                    - text: "— How experimental the layout is. (1-3: Clean/centered | 8-10: Asymmetric/modern)"
+                  - listitem [ref=e418]:
+                    - strong [ref=e419]: MOTION_INTENSITY
+                    - text: "— How much animation there is. (1-3: Simple hover | 8-10: Magnetic/scroll-triggered)"
+                  - listitem [ref=e420]:
+                    - strong [ref=e421]: VISUAL_DENSITY
+                    - text: "— How much content fits on one screen. (1-3: Spacious/luxury | 8-10: Dense dashboards)"
+                - generic [ref=e422]:
+                  - heading "Examples" [level=2] [ref=e423]
+                  - 'link "Permalink: Examples" [ref=e424] [cursor=pointer]':
+                    - /url: "#examples"
+                    - img [ref=e425]
+                - paragraph [ref=e427]: "Created with taste-skill:"
+                - paragraph [ref=e428]:
+                  - link [ref=e429] [cursor=pointer]:
+                    - /url: /Leonxlnx/taste-skill/blob/main/examples/floria-top.webp
+                    - img [ref=e430]
+                  - link [ref=e431] [cursor=pointer]:
+                    - /url: /Leonxlnx/taste-skill/blob/main/examples/floria-bottom.webp
+                    - img [ref=e432]
+                - generic [ref=e433]:
+                  - heading "Support the project" [level=2] [ref=e434]
+                  - 'link "Permalink: Support the project" [ref=e435] [cursor=pointer]':
+                    - /url: "#support-the-project"
+                    - img [ref=e436]
+                - paragraph [ref=e438]:
+                  - text: If you find
+                  - strong [ref=e439]: taste-skill
+                  - text: useful, consider sponsoring the development.
+                - paragraph [ref=e440]:
+                  - link "Sponsor on GitHub" [ref=e441] [cursor=pointer]:
+                    - /url: https://github.com/sponsors/Leonxlnx
+                - generic [ref=e442]:
+                  - heading "Current Sponsors" [level=3] [ref=e443]
+                  - 'link "Permalink: Current Sponsors" [ref=e444] [cursor=pointer]':
+                    - /url: "#current-sponsors"
+                    - img [ref=e445]
+                - paragraph [ref=e447]:
+                  - link "mccun934" [ref=e448] [cursor=pointer]:
+                    - /url: https://github.com/mccun934
+                    - img "mccun934" [ref=e449]
+                  - link "supply-guy" [ref=e450] [cursor=pointer]:
+                    - /url: https://github.com/supply-guy
+                    - img "supply-guy" [ref=e451]
+                  - link "ghughes7" [ref=e452] [cursor=pointer]:
+                    - /url: https://github.com/ghughes7
+                    - img "ghughes7" [ref=e453]
+                  - link "AtharvaJaiswal005" [ref=e454] [cursor=pointer]:
+                    - /url: https://github.com/AtharvaJaiswal005
+                    - img "AtharvaJaiswal005" [ref=e455]
+                - generic [ref=e456]:
+                  - heading "Research" [level=2] [ref=e457]
+                  - 'link "Permalink: Research" [ref=e458] [cursor=pointer]':
+                    - /url: "#research"
+                    - img [ref=e459]
+                - paragraph [ref=e461]:
+                  - text: Background research that informed how these skills were built. See the
+                  - link "research" [ref=e462] [cursor=pointer]:
+                    - /url: /Leonxlnx/taste-skill/blob/main/research
+                  - text: folder.
+                - generic [ref=e463]:
+                  - heading "Common Questions" [level=2] [ref=e464]
+                  - 'link "Permalink: Common Questions" [ref=e465] [cursor=pointer]':
+                    - /url: "#common-questions"
+                    - img [ref=e466]
+                - paragraph [ref=e468]:
+                  - strong [ref=e469]: How is this different from other AI design skills?
+                  - text: Taste Skill includes 7 specialized variants instead of a single file, a 3-dial parameterization system for adjustable output, and anti-repetition rules backed by original research. It is framework-agnostic and works across all major agents.
+                - paragraph [ref=e470]:
+                  - strong [ref=e471]: Does it work with React, Vue, Svelte, etc.?
+                  - text: Yes. Taste Skill is framework-agnostic. The rules focus on design decisions, not framework-specific code patterns.
+                - paragraph [ref=e472]:
+                  - strong [ref=e473]: What is a SKILL.md file?
+                  - text: A portable instruction file that AI coding agents detect and follow automatically. No configuration is needed, just install it and your agent reads it.
+        - generic [ref=e477]:
+          - generic [ref=e480]:
+            - heading "About" [level=2] [ref=e481]
+            - paragraph [ref=e482]: Taste-Skill (High-Agency Frontend) - gives your AI good taste. stops the AI from generating boring, generic, "slop"
+            - generic [ref=e483]:
+              - img [ref=e484]
+              - link "tasteskill.dev" [ref=e487] [cursor=pointer]:
+                - /url: https://tasteskill.dev
+            - heading "Topics" [level=3] [ref=e488]
+            - generic [ref=e490]:
+              - link "agent" [ref=e491] [cursor=pointer]:
+                - /url: /topics/agent
+              - link "ai" [ref=e492] [cursor=pointer]:
+                - /url: /topics/ai
+              - link "skills" [ref=e493] [cursor=pointer]:
+                - /url: /topics/skills
+              - link "skill" [ref=e494] [cursor=pointer]:
+                - /url: /topics/skill
+              - link "coding" [ref=e495] [cursor=pointer]:
+                - /url: /topics/coding
+              - link "nocode" [ref=e496] [cursor=pointer]:
+                - /url: /topics/nocode
+              - link "lowcode" [ref=e497] [cursor=pointer]:
+                - /url: /topics/lowcode
+              - link "vibecoding" [ref=e498] [cursor=pointer]:
+                - /url: /topics/vibecoding
+            - heading "Resources" [level=3] [ref=e499]
+            - link "Readme" [ref=e501] [cursor=pointer]:
+              - /url: "#readme-ov-file"
+              - img [ref=e502]
+              - text: Readme
+            - link "Activity" [ref=e505] [cursor=pointer]:
+              - /url: /Leonxlnx/taste-skill/activity
+              - img [ref=e506]
+              - text: Activity
+            - heading "Stars" [level=3] [ref=e508]
+            - link "6.9k stars" [ref=e510] [cursor=pointer]:
+              - /url: /Leonxlnx/taste-skill/stargazers
+              - img [ref=e511]
+              - strong [ref=e513]: 6.9k
+              - text: stars
+            - heading "Watchers" [level=3] [ref=e514]
+            - link "48 watching" [ref=e516] [cursor=pointer]:
+              - /url: /Leonxlnx/taste-skill/watchers
+              - img [ref=e517]
+              - strong [ref=e519]: "48"
+              - text: watching
+            - heading "Forks" [level=3] [ref=e520]
+            - link "688 forks" [ref=e522] [cursor=pointer]:
+              - /url: /Leonxlnx/taste-skill/forks
+              - img [ref=e523]
+              - strong [ref=e525]: "688"
+              - text: forks
+            - link "Report repository" [ref=e527] [cursor=pointer]:
+              - /url: /contact/report-content?content_url=https%3A%2F%2Fgithub.com%2FLeonxlnx%2Ftaste-skill&report=Leonxlnx+%28user%29
+          - generic [ref=e529]:
+            - heading "Releases" [level=2] [ref=e530]:
+              - link "Releases" [ref=e531] [cursor=pointer]:
+                - /url: /Leonxlnx/taste-skill/releases
+            - generic [ref=e532]: No releases published
+          - generic [ref=e534]:
+            - heading "Sponsor this project" [level=2] [ref=e535]
+            - generic [ref=e536]:
+              - link "@Leonxlnx" [ref=e537] [cursor=pointer]:
+                - /url: /Leonxlnx
+                - img "@Leonxlnx" [ref=e538]
+              - link "Leonxlnx Leon Lin" [ref=e540] [cursor=pointer]:
+                - /url: /Leonxlnx
+                - strong [ref=e541]: Leonxlnx
+                - text: Leon Lin
+            - link "Sponsor @Leonxlnx" [ref=e542] [cursor=pointer]:
+              - /url: /sponsors/Leonxlnx
+              - generic [ref=e544]:
+                - img [ref=e545]
+                - text: Sponsor
+            - link "Learn more about GitHub Sponsors" [ref=e548] [cursor=pointer]:
+              - /url: /sponsors
+          - generic [ref=e550]:
+            - heading "Packages" [level=2] [ref=e551]:
+              - link "Packages" [ref=e552] [cursor=pointer]:
+                - /url: /users/Leonxlnx/packages?repo_name=taste-skill
+            - generic [ref=e553]: No packages published
+          - generic [ref=e555]:
+            - heading "Contributors 1" [level=2] [ref=e556]:
+              - link "Contributors 1" [ref=e557] [cursor=pointer]:
+                - /url: /Leonxlnx/taste-skill/graphs/contributors
+                - text: Contributors
+                - generic "1" [ref=e558]
+            - list [ref=e559]:
+              - listitem [ref=e560]:
+                - link "@Leonxlnx" [ref=e561] [cursor=pointer]:
+                  - /url: https://github.com/Leonxlnx
+                  - img "@Leonxlnx" [ref=e562]
+                - link "Leonxlnx Leon Lin" [ref=e564] [cursor=pointer]:
+                  - /url: https://github.com/Leonxlnx
+                  - strong [ref=e565]: Leonxlnx
+                  - text: Leon Lin
+  - contentinfo [ref=e567]:
+    - heading "Footer" [level=2] [ref=e568]
+    - generic [ref=e569]:
+      - generic [ref=e570]:
+        - link "GitHub Homepage" [ref=e571] [cursor=pointer]:
+          - /url: https://github.com
+          - img [ref=e572]
+        - generic [ref=e574]: © 2026 GitHub, Inc.
+      - navigation "Footer" [ref=e575]:
+        - heading "Footer navigation" [level=3] [ref=e576]
+        - list "Footer navigation" [ref=e577]:
+          - listitem [ref=e578]:
+            - link "Terms" [ref=e579] [cursor=pointer]:
+              - /url: https://docs.github.com/site-policy/github-terms/github-terms-of-service
+          - listitem [ref=e580]:
+            - link "Privacy" [ref=e581] [cursor=pointer]:
+              - /url: https://docs.github.com/site-policy/privacy-policies/github-privacy-statement
+          - listitem [ref=e582]:
+            - link "Security" [ref=e583] [cursor=pointer]:
+              - /url: https://github.com/security
+          - listitem [ref=e584]:
+            - link "Status" [ref=e585] [cursor=pointer]:
+              - /url: https://www.githubstatus.com/
+          - listitem [ref=e586]:
+            - link "Community" [ref=e587] [cursor=pointer]:
+              - /url: https://github.community/
+          - listitem [ref=e588]:
+            - link "Docs" [ref=e589] [cursor=pointer]:
+              - /url: https://docs.github.com/
+          - listitem [ref=e590]:
+            - link "Contact" [ref=e591] [cursor=pointer]:
+              - /url: https://support.github.com?tags=dotcom-footer
+          - listitem [ref=e592]:
+            - button "Manage cookies" [ref=e594] [cursor=pointer]
+          - listitem [ref=e595]:
+            - button "Do not share my personal information" [ref=e597] [cursor=pointer]

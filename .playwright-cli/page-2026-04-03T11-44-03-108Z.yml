@@ -1,0 +1,161 @@
+- generic [ref=e1]:
+  - banner [ref=e2]:
+    - navigation [ref=e3]:
+      - generic [ref=e5]:
+        - link "Atlassian" [ref=e6] [cursor=pointer]:
+          - /url: /
+          - img "Atlassian" [ref=e7]
+        - generic [ref=e10]:
+          - list [ref=e11]:
+            - listitem
+            - listitem [ref=e12] [cursor=pointer]:
+              - button "Products" [ref=e13]:
+                - text: Products
+                - img [ref=e14]
+            - listitem [ref=e16] [cursor=pointer]:
+              - button "Solutions" [ref=e17]:
+                - text: Solutions
+                - img [ref=e18]
+            - listitem [ref=e20] [cursor=pointer]:
+              - button "Why Atlassian" [ref=e21]:
+                - text: Why Atlassian
+                - img [ref=e22]
+            - listitem [ref=e24] [cursor=pointer]:
+              - button "Resources" [ref=e25]:
+                - text: Resources
+                - img [ref=e26]
+            - listitem [ref=e28] [cursor=pointer]:
+              - link "Enterprise" [ref=e29]:
+                - /url: /enterprise
+            - listitem [ref=e30] [cursor=pointer]
+          - list [ref=e31]:
+            - listitem [ref=e32] [cursor=pointer]:
+              - button "Get it free" [ref=e33]:
+                - text: Get it free
+                - img [ref=e34]
+            - listitem [ref=e36] [cursor=pointer]:
+              - button [ref=e37]:
+                - img [ref=e38]
+            - listitem [ref=e40] [cursor=pointer]:
+              - button "Sign in" [ref=e41]
+            - listitem
+  - main [ref=e42]:
+    - generic [ref=e46]:
+      - heading "404" [level=1] [ref=e47]
+      - paragraph [ref=e48]: Sorry, the page you're looking for cannot be found
+      - paragraph [ref=e49]:
+        - text: Visit our
+        - link "homepage" [ref=e50] [cursor=pointer]:
+          - /url: https://www.atlassian.com
+        - text: ", get"
+        - link "help" [ref=e51] [cursor=pointer]:
+          - /url: https://www.atlassian.com/resources/support/
+        - text: ", or try searching"
+      - generic [ref=e52]:
+        - textbox [active] [ref=e53]
+        - button "Search" [ref=e54] [cursor=pointer]
+  - contentinfo [ref=e55]:
+    - generic [ref=e58]:
+      - generic [ref=e60]:
+        - generic [ref=e61]:
+          - link "Company" [ref=e64] [cursor=pointer]:
+            - /url: /company
+          - link "Careers" [ref=e66] [cursor=pointer]:
+            - /url: /company/careers
+          - link "Events" [ref=e68] [cursor=pointer]:
+            - /url: /company/events
+          - link "Blogs" [ref=e70] [cursor=pointer]:
+            - /url: https://atlassian.com/blog
+          - link "Investor Relations" [ref=e72] [cursor=pointer]:
+            - /url: https://investors.atlassian.com/
+          - link "Atlassian Foundation" [ref=e74] [cursor=pointer]:
+            - /url: https://www.atlassianfoundation.org/
+          - link "Press kit" [ref=e76] [cursor=pointer]:
+            - /url: /company/news/press-kit
+          - link "Contact us" [ref=e78] [cursor=pointer]:
+            - /url: /company/contact
+        - generic [ref=e79]:
+          - heading "products" [level=5] [ref=e82]
+          - link "Rovo" [ref=e84] [cursor=pointer]:
+            - /url: /software/rovo
+          - link "Jira" [ref=e86] [cursor=pointer]:
+            - /url: /software/jira
+          - link "Jira Align" [ref=e88] [cursor=pointer]:
+            - /url: /software/jira-align
+          - link "Jira Service Management" [ref=e90] [cursor=pointer]:
+            - /url: /software/jira/service-management
+          - link "Confluence" [ref=e92] [cursor=pointer]:
+            - /url: /software/confluence
+          - link "Loom" [ref=e94] [cursor=pointer]:
+            - /url: /software/loom
+          - link "Trello" [ref=e96] [cursor=pointer]:
+            - /url: /software/trello
+          - link "Bitbucket" [ref=e98] [cursor=pointer]:
+            - /url: https://bitbucket.org/product
+          - link "See all products" [ref=e100] [cursor=pointer]:
+            - /url: /software
+            - text: See all products
+            - img
+        - generic [ref=e101]:
+          - heading "Resources" [level=5] [ref=e104]
+          - link "Technical support" [ref=e106] [cursor=pointer]:
+            - /url: https://support.atlassian.com/
+          - link "Purchasing & licensing" [ref=e108] [cursor=pointer]:
+            - /url: /licensing/purchase-licensing
+          - link "Atlassian Community" [ref=e110] [cursor=pointer]:
+            - /url: https://community.atlassian.com/
+          - link "Knowledge base" [ref=e112] [cursor=pointer]:
+            - /url: https://confluence.atlassian.com/kb
+          - link "Marketplace" [ref=e114] [cursor=pointer]:
+            - /url: https://marketplace.atlassian.com/
+          - link "My account" [ref=e116] [cursor=pointer]:
+            - /url: https://my.atlassian.com/products/index
+          - link "Create support ticket" [ref=e118] [cursor=pointer]:
+            - /url: https://support.atlassian.com/contact/
+            - text: Create support ticket
+            - img
+        - generic [ref=e119]:
+          - heading "Learn" [level=5] [ref=e122]
+          - link "Partners" [ref=e124] [cursor=pointer]:
+            - /url: /partners
+          - link "Training & certification" [ref=e126] [cursor=pointer]:
+            - /url: https://community.atlassian.com/learning
+          - link "Documentation" [ref=e128] [cursor=pointer]:
+            - /url: https://confluence.atlassian.com/display/ALLDOC/Atlassian+Documentation
+          - link "Developer resources" [ref=e130] [cursor=pointer]:
+            - /url: /developers
+          - link "Enterprise services" [ref=e132] [cursor=pointer]:
+            - /url: /enterprise/success
+          - link "See all resources" [ref=e134] [cursor=pointer]:
+            - /url: /resources
+            - text: See all resources
+            - img
+      - generic [ref=e136]:
+        - paragraph [ref=e139]: Copyright © 2025 Atlassian
+        - generic [ref=e140]:
+          - link "Privacy Policy" [ref=e142] [cursor=pointer]:
+            - /url: /legal/privacy-policy#what-this-policy-covers
+          - link "Terms" [ref=e144] [cursor=pointer]:
+            - /url: /trust
+          - link "Impressum" [ref=e146] [cursor=pointer]:
+            - /url: /legal/impressum
+          - generic [ref=e148]:
+            - generic "Choose language"
+            - combobox "Choose language" [ref=e149] [cursor=pointer]:
+              - option "Choose language" [disabled]
+              - option "Deutsch"
+              - option "English" [selected]
+              - option "Español"
+              - option "Français"
+              - option "Italiano"
+              - option "한국어"
+              - option "Nederlands"
+              - option "日本語"
+              - option "Polski"
+              - option "Português"
+              - option "русский"
+              - option "中文"
+  - iframe [ref=e152]:
+    - generic [ref=f111e6]:
+      - text: protected by
+      - strong [ref=f111e7]: reCAPTCHA

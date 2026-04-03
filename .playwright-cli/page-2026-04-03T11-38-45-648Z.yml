@@ -1,0 +1,292 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e6]:
+      - generic:
+        - navigation "Skip to content":
+          - link "Skip to content" [ref=e7] [cursor=pointer]:
+            - /url: "#main-content"
+            - generic [ref=e8]: Skip to content
+        - link "IBM logo" [ref=e10] [cursor=pointer]:
+          - /url: https://www.ibm.com/
+          - img [ref=e12]
+      - generic [ref=e16]:
+        - navigation "Primary navigation" [ref=e20]:
+          - generic [ref=e22]:
+            - generic:
+              - button "AI" [ref=e24] [cursor=pointer]:
+                - text: AI
+                - img [ref=e25]
+              - button "Hybrid Cloud" [ref=e28] [cursor=pointer]:
+                - text: Hybrid Cloud
+                - img [ref=e29]
+              - button "Products" [ref=e32] [cursor=pointer]:
+                - text: Products
+                - img [ref=e33]
+              - generic "Consulting" [ref=e35]:
+                - link "Consulting" [ref=e36] [cursor=pointer]:
+                  - /url: https://www.ibm.com/consulting?lnk=L0G
+                  - generic [ref=e38]: Consulting
+              - button "Support" [ref=e40] [cursor=pointer]:
+                - text: Support
+                - img [ref=e41]
+              - generic "Think" [ref=e43]:
+                - link "Think" [ref=e44] [cursor=pointer]:
+                  - /url: https://www.ibm.com/think?lnk=L0G
+                  - generic [ref=e46]: Think
+        - button "Open IBM search field" [ref=e49] [cursor=pointer]:
+          - img [ref=e50]
+      - generic [ref=e52]:
+        - generic:
+          - generic:
+            - link "Contact" [ref=e54] [cursor=pointer]:
+              - /url: javascript:void 0
+              - img [ref=e55]
+            - button "page translations" [ref=e59] [cursor=pointer]:
+              - img [ref=e60]
+            - generic [ref=e62]:
+              - button "User profile" [ref=e63] [cursor=pointer]:
+                - img [ref=e64]
+              - generic: My IBM
+              - generic: Log in
+  - generic [ref=e66]:
+    - generic [ref=e67]: "404"
+    - generic [ref=e69]:
+      - heading "We’re sorry! We’re sorry!" [level=2] [ref=e70]
+      - generic [ref=e73]:
+        - generic: The page you’re looking for may have been moved or deleted. Start a new search on ibm.com or visit one of the popular sites shown below.
+    - generic [ref=e75]:
+      - generic [ref=e76]:
+        - img
+        - search [ref=e77]:
+          - combobox "IBM search field" [expanded] [ref=e78]:
+            - textbox "IBM search field" [ref=e79]:
+              - /placeholder: Search all of IBM
+      - generic:
+        - listbox
+  - generic [ref=e80]:
+    - heading "Continue exploring" [level=3] [ref=e81]
+    - generic [ref=e82]:
+      - link "IBM Homepage" [ref=e86] [cursor=pointer]:
+        - /url: https://www.ibm.com/
+        - generic [ref=e87]:
+          - generic: IBM Homepage
+        - img [ref=e88]
+      - link "Our products" [ref=e97] [cursor=pointer]:
+        - /url: https://www.ibm.com/products
+        - generic [ref=e98]:
+          - generic: Our products
+        - img [ref=e99]
+      - link "Careers" [ref=e104] [cursor=pointer]:
+        - /url: https://www.ibm.com/careers
+        - generic [ref=e105]:
+          - generic: Careers
+        - img [ref=e106]
+      - link "Contact us" [ref=e113] [cursor=pointer]:
+        - /url: https://www.ibm.com/contact
+        - generic [ref=e114]:
+          - generic: Contact us
+        - img [ref=e115]
+  - contentinfo [ref=e117]:
+    - contentinfo "footer" [ref=e119]:
+      - generic [ref=e123]:
+        - link "IBM logo" [ref=e125] [cursor=pointer]:
+          - /url: https://www.ibm.com/
+          - img [ref=e126]
+        - navigation "Footer navigation" [ref=e128]:
+          - list [ref=e129]:
+            - generic:
+              - listitem [ref=e130]:
+                - heading "About IBM" [level=2] [ref=e131]:
+                  - generic [ref=e132]: About IBM
+                - list [ref=e134]:
+                  - generic:
+                    - listitem [ref=e135]:
+                      - link "Overview" [ref=e136] [cursor=pointer]:
+                        - /url: https://www.ibm.com/about/?lnk=flatitem
+                        - generic: Overview
+                    - listitem [ref=e137]:
+                      - link "Annual report" [ref=e138] [cursor=pointer]:
+                        - /url: https://www.ibm.com/annualreport/?lnk=flatitem
+                        - generic: Annual report
+                    - listitem [ref=e139]:
+                      - link "Corporate social responsibility" [ref=e140] [cursor=pointer]:
+                        - /url: https://www.ibm.com/impact?lnk=flatitem
+                        - generic: Corporate social responsibility
+                    - listitem [ref=e141]:
+                      - link "Inclusion@IBM" [ref=e142] [cursor=pointer]:
+                        - /url: https://www.ibm.com/impact/be-equal/?lnk=flatitem
+                        - generic: Inclusion@IBM
+                    - listitem [ref=e143]:
+                      - link "Financing" [ref=e144] [cursor=pointer]:
+                        - /url: https://www.ibm.com/financing?lnk=flatitem
+                        - generic: Financing
+                    - listitem [ref=e145]:
+                      - link "Investor" [ref=e146] [cursor=pointer]:
+                        - /url: https://www.ibm.com/investor?lnk=flatitem
+                        - generic: Investor
+                    - listitem [ref=e147]:
+                      - link "Newsroom" [ref=e148] [cursor=pointer]:
+                        - /url: https://newsroom.ibm.com/?lnk=flatitem
+                        - generic: Newsroom
+                    - listitem [ref=e149]:
+                      - link "Security, privacy & trust" [ref=e150] [cursor=pointer]:
+                        - /url: https://www.ibm.com/trust?lnk=flatitem
+                        - generic: Security, privacy & trust
+                    - listitem [ref=e151]:
+                      - link "Senior leadership" [ref=e152] [cursor=pointer]:
+                        - /url: https://newsroom.ibm.com/executive-bios
+                        - generic: Senior leadership
+                    - listitem [ref=e153]:
+                      - link "Careers with IBM" [ref=e154] [cursor=pointer]:
+                        - /url: https://www.ibm.com/careers/us-en?lnk=flathl
+                        - generic: Careers with IBM
+              - listitem [ref=e155]:
+                - heading "IBM Research" [level=2] [ref=e156]:
+                  - generic [ref=e157]: IBM Research
+                - list [ref=e159]:
+                  - generic:
+                    - listitem [ref=e160]:
+                      - link "Website" [ref=e161] [cursor=pointer]:
+                        - /url: https://research.ibm.com/?lnk=flatitem
+                        - generic: Website
+                    - listitem [ref=e162]:
+                      - link "Blog" [ref=e163] [cursor=pointer]:
+                        - /url: https://research.ibm.com/blog?lnk=flatitem
+                        - generic: Blog
+                    - listitem [ref=e164]:
+                      - link "Publications" [ref=e165] [cursor=pointer]:
+                        - /url: https://research.ibm.com/publications?lnk=flatitem
+                        - generic: Publications
+              - listitem [ref=e166]:
+                - heading "Industry" [level=2] [ref=e167]:
+                  - generic [ref=e168]: Industry
+                - list [ref=e170]:
+                  - generic:
+                    - listitem [ref=e171]:
+                      - link "Automotive" [ref=e172] [cursor=pointer]:
+                        - /url: https://www.ibm.com/industries/automotive
+                        - generic: Automotive
+                    - listitem [ref=e173]:
+                      - link "Banking" [ref=e174] [cursor=pointer]:
+                        - /url: https://www.ibm.com/industries/banking-financial-markets
+                        - generic: Banking
+                    - listitem [ref=e175]:
+                      - link "Consumer Goods" [ref=e176] [cursor=pointer]:
+                        - /url: https://www.ibm.com/industries/consumer-goods
+                        - generic: Consumer Goods
+                    - listitem [ref=e177]:
+                      - link "Energy" [ref=e178] [cursor=pointer]:
+                        - /url: https://www.ibm.com/industries/energy
+                        - generic: Energy
+                    - listitem [ref=e179]:
+                      - link "Government" [ref=e180] [cursor=pointer]:
+                        - /url: https://www.ibm.com/industries/government
+                        - generic: Government
+                    - listitem [ref=e181]:
+                      - link "Healthcare" [ref=e182] [cursor=pointer]:
+                        - /url: https://www.ibm.com/industries/healthcare
+                        - generic: Healthcare
+                    - listitem [ref=e183]:
+                      - link "Insurance" [ref=e184] [cursor=pointer]:
+                        - /url: https://www.ibm.com/industries/insurance
+                        - generic: Insurance
+                    - listitem [ref=e185]:
+                      - link "Life Sciences" [ref=e186] [cursor=pointer]:
+                        - /url: https://www.ibm.com/industries/life-sciences
+                        - generic: Life Sciences
+                    - listitem [ref=e187]:
+                      - link "Manufacturing" [ref=e188] [cursor=pointer]:
+                        - /url: https://www.ibm.com/industries/manufacturing
+                        - generic: Manufacturing
+                    - listitem [ref=e189]:
+                      - link "Retail" [ref=e190] [cursor=pointer]:
+                        - /url: https://www.ibm.com/industries/retail
+                        - generic: Retail
+                    - listitem [ref=e191]:
+                      - link "Telecommunications" [ref=e192] [cursor=pointer]:
+                        - /url: https://www.ibm.com/industries/telecommunications
+                        - generic: Telecommunications
+                    - listitem [ref=e193]:
+                      - link "Travel" [ref=e194] [cursor=pointer]:
+                        - /url: https://www.ibm.com/industries/travel-transportation
+                        - generic: Travel
+              - listitem [ref=e195]:
+                - heading "Partners" [level=2] [ref=e196]:
+                  - generic [ref=e197]: Partners
+                - list [ref=e199]:
+                  - generic:
+                    - listitem [ref=e200]:
+                      - link "Our strategic partners" [ref=e201] [cursor=pointer]:
+                        - /url: https://www.ibm.com/strategic-partnerships?lnk=flatitem
+                        - generic: Our strategic partners
+                    - listitem [ref=e202]:
+                      - link "Find a partner" [ref=e203] [cursor=pointer]:
+                        - /url: https://www.ibm.com/partnerplus/directory/companies
+                        - generic: Find a partner
+                    - listitem [ref=e204]:
+                      - link "Become a partner - Partner Plus" [ref=e205] [cursor=pointer]:
+                        - /url: https://www.ibm.com/partnerplus?lnk=flatitem
+                        - generic: Become a partner - Partner Plus
+                    - listitem [ref=e206]:
+                      - link "Partner Plus log in" [ref=e207] [cursor=pointer]:
+                        - /url: https://www.ibm.com/partnerplus/member
+                        - generic: Partner Plus log in
+              - listitem [ref=e208]:
+                - heading "Engage with IBM" [level=2] [ref=e209]:
+                  - generic [ref=e210]: Engage with IBM
+                - list [ref=e212]:
+                  - generic:
+                    - listitem [ref=e213]:
+                      - link "IBM TechXChange Community" [ref=e214] [cursor=pointer]:
+                        - /url: https://community.ibm.com/community/user/home?lnk=fpo
+                        - generic: IBM TechXChange Community
+                    - listitem [ref=e215]:
+                      - link "LinkedIn" [ref=e216] [cursor=pointer]:
+                        - /url: https://www.linkedin.com/company/ibm
+                        - generic: LinkedIn
+                    - listitem [ref=e217]:
+                      - link "X" [ref=e218] [cursor=pointer]:
+                        - /url: https://www.twitter.com/ibm
+                        - generic: X
+                    - listitem [ref=e219]:
+                      - link "Instagram" [ref=e220] [cursor=pointer]:
+                        - /url: https://www.instagram.com/ibm
+                        - generic: Instagram
+                    - listitem [ref=e221]:
+                      - link "YouTube" [ref=e222] [cursor=pointer]:
+                        - /url: https://www.youtube.com/@IBM
+                        - generic: YouTube
+                    - listitem [ref=e223]:
+                      - link "Subscription Center" [ref=e224] [cursor=pointer]:
+                        - /url: https://www.ibm.com/subscribe/
+                        - generic: Subscription Center
+                    - listitem [ref=e225]:
+                      - link "Participate in user experience research" [ref=e226] [cursor=pointer]:
+                        - /url: https://www.ibm.com/products/feedback/user-experience-program/?lnk=fab
+                        - generic: Participate in user experience research
+                    - listitem [ref=e227]:
+                      - link "Podcasts" [ref=e228] [cursor=pointer]:
+                        - /url: https://www.ibm.com/think/podcasts
+                        - generic: Podcasts
+            - button "Select geographic area" [ref=e230] [cursor=pointer]:
+              - generic: United States — English
+              - img [ref=e231]
+      - navigation "Legal Navigation" [ref=e234]:
+        - list [ref=e236]:
+          - generic:
+            - listitem [ref=e237]:
+              - link "Contact IBM" [ref=e238] [cursor=pointer]:
+                - /url: https://www.ibm.com/contact?lnk=flg-cont-usen
+                - generic: Contact IBM
+            - listitem [ref=e239]:
+              - link "Privacy" [ref=e240] [cursor=pointer]:
+                - /url: https://www.ibm.com/us-en/privacy
+                - generic: Privacy
+            - listitem [ref=e241]:
+              - link "Terms of use" [ref=e242] [cursor=pointer]:
+                - /url: https://www.ibm.com/legal?lnk=flg-tous-usen
+                - generic: Terms of use
+            - listitem [ref=e243]:
+              - link "Accessibility" [ref=e244] [cursor=pointer]:
+                - /url: https://www.ibm.com/able/?lnk=flg-acce-usen
+                - generic: Accessibility

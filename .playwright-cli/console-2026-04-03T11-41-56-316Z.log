@@ -1,0 +1,6 @@
+[      85ms] [WARNING] %cairgap.js%c Report-only mode enabled font-size:larger;font-weight:bold;border-radius:0.25em;padding:0.08em 0.25em;;color:amber;background-color:#6e3e00  @ https://transcend-cdn.com/cm/d556c3a1-e57c-4bdf-a490-390a1aebf6dd/airgap.js:5
+[     133ms] [INFO] (Glean.core.Upload.PingUploadManager) Ping 82db7d3b-76c3-4b6c-82ad-1ac48821e02f successfully sent 200. @ https://developer.mozilla.org/static/client/8903.f870aafb338b203a.js:0
+[    1052ms] [INFO] (Glean.core.Upload.PingUploadManager) Ping 5eea340f-2215-4aac-abcb-1c11fdb6f910 successfully sent 200. @ https://developer.mozilla.org/static/client/8903.f870aafb338b203a.js:0
+[    1053ms] [INFO] (Glean.core.Upload.PingUploadManager) Ping d53f6b42-2049-4b24-8d98-8c99bb77ab48 successfully sent 200. @ https://developer.mozilla.org/static/client/8903.f870aafb338b203a.js:0
+[    2062ms] [INFO] (Glean.core.Upload.PingUploadManager) Ping b242ff2c-4cdf-4bfc-9f42-462114257dcc successfully sent 200. @ https://developer.mozilla.org/static/client/8903.f870aafb338b203a.js:0
+[    2063ms] [INFO] (Glean.core.Upload.PingUploadManager) Ping 5ae6295c-6c39-4eff-9505-097f2f4b723c successfully sent 200. @ https://developer.mozilla.org/static/client/8903.f870aafb338b203a.js:0

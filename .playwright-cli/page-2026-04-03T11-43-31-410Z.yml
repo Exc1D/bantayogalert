@@ -1,0 +1,150 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - generic [ref=e3]:
+      - link "Introducing Polaris Web Components Now Released" [ref=e6] [cursor=pointer]:
+        - /url: https://shopify.dev/docs/api/app-home/polaris-web-components
+        - img [ref=e7]
+        - strong [ref=e9]: Introducing Polaris Web Components
+        - generic [ref=e10]: Now Released
+        - img [ref=e11]
+      - generic [ref=e13]:
+        - link "Shopify logo Polaris React" [ref=e14] [cursor=pointer]:
+          - /url: /
+          - img "Shopify logo" [ref=e15]
+          - text: Polaris React
+        - button "🌙" [ref=e16] [cursor=pointer]:
+          - generic [ref=e17]: 🌙
+        - button "Search" [ref=e18] [cursor=pointer]:
+          - img [ref=e19]
+          - text: Search
+          - generic [ref=e21]: /
+      - generic [ref=e22]:
+        - navigation [ref=e23]:
+          - list [ref=e24]:
+            - listitem [ref=e25]:
+              - generic [ref=e26]:
+                - link "Getting started" [ref=e27] [cursor=pointer]:
+                  - /url: /getting-started
+                - button "Toggle section" [ref=e28] [cursor=pointer]
+            - listitem [ref=e29]:
+              - generic [ref=e30]:
+                - link "Foundations" [ref=e31] [cursor=pointer]:
+                  - /url: /foundations
+                - button "Toggle section" [ref=e32] [cursor=pointer]
+            - listitem [ref=e33]:
+              - generic [ref=e34]:
+                - link "Design" [ref=e35] [cursor=pointer]:
+                  - /url: /design
+                - button "Toggle section" [expanded] [ref=e36] [cursor=pointer]
+              - list [ref=e37]:
+                - listitem [ref=e38]:
+                  - link "Pro design language" [ref=e40] [cursor=pointer]:
+                    - /url: /design/pro-design-language
+                - listitem [ref=e41]:
+                  - link "Color" [ref=e43] [cursor=pointer]:
+                    - /url: /design/colors
+                - listitem [ref=e44]:
+                  - link "Depth" [ref=e46] [cursor=pointer]:
+                    - /url: /design/depth
+                - listitem [ref=e47]:
+                  - link "Icons" [ref=e49] [cursor=pointer]:
+                    - /url: /design/icons
+                - listitem [ref=e50]:
+                  - link "Layout" [ref=e52] [cursor=pointer]:
+                    - /url: /design/layout
+                - listitem [ref=e53]:
+                  - link "Motion" [ref=e55] [cursor=pointer]:
+                    - /url: /design/motion
+                - listitem [ref=e56]:
+                  - link "Typography" [ref=e58] [cursor=pointer]:
+                    - /url: /design/typography
+                - listitem [ref=e59]:
+                  - link "Data visualizations" [ref=e61] [cursor=pointer]:
+                    - /url: /design/data-visualizations
+                - listitem [ref=e62]:
+                  - link "Illustrations" [ref=e64] [cursor=pointer]:
+                    - /url: /design/illustrations
+                - listitem [ref=e65]:
+                  - link "Interaction states" [ref=e67] [cursor=pointer]:
+                    - /url: /design/interaction-states
+                - listitem [ref=e68]:
+                  - link "Sounds" [ref=e70] [cursor=pointer]:
+                    - /url: /design/sounds
+            - listitem [ref=e71]:
+              - generic [ref=e72]:
+                - link "Content" [ref=e73] [cursor=pointer]:
+                  - /url: /content
+                - button "Toggle section" [ref=e74] [cursor=pointer]
+            - listitem [ref=e75]:
+              - generic [ref=e76]:
+                - link "Patterns" [ref=e77] [cursor=pointer]:
+                  - /url: /patterns
+                - button "Toggle section" [ref=e78] [cursor=pointer]
+            - listitem [ref=e79]:
+              - generic [ref=e80]:
+                - link "Components" [ref=e81] [cursor=pointer]:
+                  - /url: /components
+                - button "Toggle section" [ref=e82] [cursor=pointer]
+            - listitem [ref=e83]:
+              - generic [ref=e84]:
+                - link "Tokens" [ref=e85] [cursor=pointer]:
+                  - /url: /tokens
+                - button "Toggle section" [ref=e86] [cursor=pointer]
+            - listitem [ref=e87]:
+              - link "Icons" [ref=e89] [cursor=pointer]:
+                - /url: /icons
+            - listitem [ref=e90]:
+              - generic [ref=e91]:
+                - link "Contributing" [ref=e92] [cursor=pointer]:
+                  - /url: /contributing
+                - button "Toggle section" [ref=e93] [cursor=pointer]
+            - listitem [ref=e94]:
+              - generic [ref=e95]:
+                - link "Tools" [ref=e96] [cursor=pointer]:
+                  - /url: /tools
+                - button "Toggle section" [ref=e97] [cursor=pointer]
+            - listitem [ref=e98]:
+              - generic [ref=e99]:
+                - link "Version guides" [ref=e100] [cursor=pointer]:
+                  - /url: /version-guides
+                - button "Toggle section" [ref=e101] [cursor=pointer]
+            - listitem [ref=e102]:
+              - link "Previous releases" [ref=e104] [cursor=pointer]:
+                - /url: /previous-releases
+        - generic [ref=e110]:
+          - img [ref=e112]
+          - heading "There’s no page at this address" [level=1] [ref=e116]
+          - paragraph [ref=e117]: Check the URL and try again, or use the search field to find what you need.
+          - paragraph [ref=e118]:
+            - text: If there should be something here
+            - link "let us know" [ref=e119] [cursor=pointer]:
+              - /url: https://github.com/shopify/polaris/issues/new?title=[polaris.shopify.com] 404 not found at /design/visual-customization&amp;labels=polaris.shopify.com
+            - text: .
+    - dialog "Polaris for React is deprecated." [ref=e120]:
+      - img
+      - generic [ref=e122]:
+        - generic [ref=e123]:
+          - img [ref=e125]
+          - img [ref=e128]
+          - img [ref=e131]
+        - heading "Polaris for React is deprecated." [level=1] [ref=e133]
+        - paragraph [ref=e134]: Polaris Web Components are now the default way to build Shopify apps. Built on web standards, they work with React, Vue, vanilla JavaScript, or no framework at all.
+        - generic [ref=e135]:
+          - button "Go to Polaris Web Components" [ref=e136] [cursor=pointer]
+          - button "Continue to Polaris React" [ref=e137] [cursor=pointer]
+  - alert [ref=e138]
+  - generic [ref=e139]:
+    - generic [ref=e140]:
+      - button "Toggle Consent Management Menu" [ref=e141] [cursor=pointer]:
+        - button [ref=e142]
+      - generic [ref=e153]:
+        - generic [ref=e154]:
+          - button "Reject all" [ref=e155] [cursor=pointer]
+          - button "Accept cookies" [ref=e156] [cursor=pointer]
+        - button [ref=e157] [cursor=pointer]:
+          - button [ref=e158]
+    - paragraph [ref=e163]:
+      - text: We and our partners use cookies and other technologies to personalize your experience, show you ads, and perform analytics. See Our
+      - link "Cookie Policy" [ref=e164] [cursor=pointer]:
+        - /url: https://www.shopify.com/legal/cookies
+      - text: .

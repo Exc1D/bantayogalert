@@ -1,0 +1,1383 @@
+- generic [active] [ref=e1]:
+  - link "Jump to content" [ref=e2] [cursor=pointer]:
+    - /url: "#bodyContent"
+  - banner [ref=e4]:
+    - generic [ref=e5]:
+      - navigation "Site" [ref=e6]:
+        - generic "Main menu" [ref=e7]:
+          - button "Main menu" [ref=e8] [cursor=pointer]
+          - generic [ref=e11]: Main menu
+      - link "Wikipedia The Free Encyclopedia" [ref=e12] [cursor=pointer]:
+        - /url: /wiki/Main_Page
+        - generic [ref=e13]:
+          - img "Wikipedia" [ref=e14]
+          - img "The Free Encyclopedia" [ref=e15]
+    - generic [ref=e16]:
+      - search [ref=e17]:
+        - generic [ref=e20]:
+          - searchbox "Search Wikipedia" [ref=e23]
+          - button "Search" [ref=e25]
+      - navigation "Personal tools" [ref=e26]:
+        - list [ref=e30]:
+          - listitem [ref=e31]:
+            - link "Donate" [ref=e32] [cursor=pointer]:
+              - /url: https://donate.wikimedia.org/?wmf_source=donate&wmf_medium=sidebar&wmf_campaign=en.wikipedia.org&uselang=en
+          - listitem [ref=e33]:
+            - link "Create account" [ref=e34] [cursor=pointer]:
+              - /url: /w/index.php?title=Special:CreateAccount&returnto=Responsive+web+design
+          - listitem [ref=e35]:
+            - link "Log in" [ref=e36] [cursor=pointer]:
+              - /url: /w/index.php?title=Special:UserLogin&returnto=Responsive+web+design
+  - generic [ref=e38]:
+    - navigation "Contents" [ref=e42]:
+      - generic [ref=e44]:
+        - generic [ref=e45]:
+          - heading "Contents" [level=2] [ref=e46]
+          - button "hide" [ref=e47] [cursor=pointer]
+        - list [ref=e48]:
+          - listitem [ref=e49]:
+            - link "(Top)" [ref=e50] [cursor=pointer]:
+              - /url: "#"
+              - generic [ref=e51]: (Top)
+          - listitem [ref=e52]:
+            - link "Challenges, and other approaches" [ref=e53] [cursor=pointer]:
+              - /url: "#Challenges,_and_other_approaches"
+              - generic [ref=e54]: Challenges, and other approaches
+            - list
+          - listitem [ref=e55]:
+            - link "History" [ref=e56] [cursor=pointer]:
+              - /url: "#History"
+              - generic [ref=e57]: History
+            - list
+          - listitem [ref=e58]:
+            - link "Related concepts" [ref=e59] [cursor=pointer]:
+              - /url: "#Related_concepts"
+              - generic [ref=e60]: Related concepts
+            - list
+          - listitem [ref=e61]:
+            - link "See also" [ref=e62] [cursor=pointer]:
+              - /url: "#See_also"
+              - generic [ref=e63]: See also
+            - list
+          - listitem [ref=e64]:
+            - link "References" [ref=e65] [cursor=pointer]:
+              - /url: "#References"
+              - generic [ref=e66]: References
+            - list
+    - main [ref=e68]:
+      - generic [ref=e69]:
+        - heading "Responsive web design" [level=1] [ref=e70]
+        - generic [ref=e71]:
+          - button "Go to an article in another language. Available in 28 languages" [ref=e72] [cursor=pointer]
+          - generic [ref=e75]: 28 languages
+      - generic [ref=e77]:
+        - navigation "Namespaces" [ref=e79]:
+          - generic [ref=e80]:
+            - generic:
+              - list:
+                - listitem [ref=e81]:
+                  - link "Article" [ref=e82] [cursor=pointer]:
+                    - /url: /wiki/Responsive_web_design
+                    - generic [ref=e83]: Article
+                - listitem [ref=e84]:
+                  - link "Talk" [ref=e85] [cursor=pointer]:
+                    - /url: /wiki/Talk:Responsive_web_design
+                    - generic [ref=e86]: Talk
+        - generic [ref=e87]:
+          - navigation "Views" [ref=e88]:
+            - generic [ref=e89]:
+              - generic:
+                - list:
+                  - listitem [ref=e90]:
+                    - link "Read" [ref=e91] [cursor=pointer]:
+                      - /url: /wiki/Responsive_web_design
+                      - generic [ref=e92]: Read
+                  - listitem [ref=e93]:
+                    - link "Edit" [ref=e94] [cursor=pointer]:
+                      - /url: /w/index.php?title=Responsive_web_design&action=edit
+                      - generic [ref=e95]: Edit
+                  - listitem [ref=e96]:
+                    - link "View history" [ref=e97] [cursor=pointer]:
+                      - /url: /w/index.php?title=Responsive_web_design&action=history
+                      - generic [ref=e98]: View history
+          - navigation "Page tools" [ref=e99]:
+            - generic [ref=e100]:
+              - button "Tools" [ref=e101] [cursor=pointer]
+              - generic [ref=e103] [cursor=pointer]: Tools
+      - navigation "Appearance" [ref=e106]:
+        - generic [ref=e108]:
+          - generic [ref=e109]:
+            - generic [ref=e110]: Appearance
+            - button "hide" [ref=e111] [cursor=pointer]
+          - generic [ref=e112]:
+            - generic [ref=e113]: Birthday mode (Baby Globe)
+            - list [ref=e115]:
+              - listitem [ref=e116]:
+                - generic [ref=e117]:
+                  - generic [ref=e118]:
+                    - generic [ref=e119]:
+                      - radio "Disabled" [ref=e120]
+                      - generic [ref=e123]: Disabled
+                    - generic [ref=e124]:
+                      - radio "Enabled" [checked] [ref=e125]
+                      - generic [ref=e128]: Enabled
+                  - link "Learn more about Birthday mode" [ref=e130] [cursor=pointer]:
+                    - /url: https://wikimediafoundation.org/wikipedia25/wikipedia-mascot/?utm_campaign=wpam&utm_source=wpam&utm_medium=wpamen
+          - generic [ref=e131]:
+            - generic [ref=e132]: Text
+            - list [ref=e134]:
+              - listitem [ref=e135]:
+                - generic [ref=e137]:
+                  - generic [ref=e138]:
+                    - radio "Small" [ref=e139]
+                    - generic [ref=e142]: Small
+                  - generic [ref=e143]:
+                    - radio "Standard" [checked] [ref=e144]
+                    - generic [ref=e147]: Standard
+                  - generic [ref=e148]:
+                    - radio "Large" [ref=e149]
+                    - generic [ref=e152]: Large
+          - generic [ref=e153]:
+            - generic [ref=e154]: Width
+            - list [ref=e156]:
+              - listitem [ref=e157]:
+                - generic [ref=e159]:
+                  - generic [ref=e160]:
+                    - radio "Standard" [checked] [ref=e161]
+                    - generic [ref=e164]: Standard
+                  - generic [ref=e165]:
+                    - radio "Wide" [ref=e166]
+                    - generic [ref=e169]: Wide
+          - generic [ref=e170]:
+            - generic [ref=e171]:
+              - text: Color
+              - generic [ref=e172]: (beta)
+            - list [ref=e174]:
+              - listitem [ref=e175]:
+                - generic [ref=e177]:
+                  - generic [ref=e178]:
+                    - radio "Automatic" [ref=e179]
+                    - generic [ref=e182]: Automatic
+                  - generic [ref=e183]:
+                    - radio "Light" [checked] [ref=e184]
+                    - generic [ref=e187]: Light
+                  - generic [ref=e188]:
+                    - radio "Dark" [ref=e189]
+                    - generic [ref=e192]: Dark
+      - generic "Responsive web design" [ref=e193]:
+        - generic [ref=e195]: From Wikipedia, the free encyclopedia
+        - generic [ref=e197]:
+          - note [ref=e198]:
+            - text: "\"Responsive design\" redirects here. For the computer-aided design approach, see"
+            - link "Responsive computer-aided design" [ref=e199] [cursor=pointer]:
+              - /url: /wiki/Responsive_computer-aided_design
+            - text: .
+          - note [ref=e200]:
+            - text: Not to be confused with
+            - link "Responsiveness" [ref=e201] [cursor=pointer]:
+              - /url: /wiki/Responsiveness
+            - text: .
+          - generic [ref=e203]:
+            - generic [ref=e204]:
+              - link "A screenshot of Wikipedia on a computer screen" [ref=e208] [cursor=pointer]:
+                - /url: /wiki/File:Wikipedia_Vector_2022_skin_(desktop_view).png
+                - img "A screenshot of Wikipedia on a computer screen" [ref=e209]
+              - link "A screenshot of Wikipedia on a mobile phone screen" [ref=e213] [cursor=pointer]:
+                - /url: /wiki/File:Wikipedia_Vector_2022_skin_(mobile_view).png
+                - img "A screenshot of Wikipedia on a mobile phone screen" [ref=e214]
+            - generic [ref=e216]:
+              - text: A screenshot of
+              - link "Wikipedia" [ref=e217] [cursor=pointer]:
+                - /url: /wiki/Wikipedia
+              - text: with the responsive skin
+              - link "Vector 2022" [ref=e218] [cursor=pointer]:
+                - /url: https://www.mediawiki.org/wiki/Skin:Vector/2022
+              - text: ", on a computer screen (left) and on a mobile phone screen (right). The elements rearrange themselves into a more mobile friendly layout."
+          - figure "Content is like water, a saying that illustrates the principles of RWD" [ref=e219]:
+            - link [ref=e220] [cursor=pointer]:
+              - /url: /wiki/File:Content-is-like-water.svg
+              - img [ref=e221]
+            - generic [ref=e222]: Content is like water, a saying that illustrates the principles of RWD
+          - navigation [ref=e223]:
+            - rowgroup [ref=e224]:
+              - row "Cascading Style Sheets" [ref=e225]:
+                - columnheader "Cascading Style Sheets" [ref=e226]:
+                  - link "Cascading Style Sheets" [ref=e227] [cursor=pointer]:
+                    - /url: /wiki/Cascading_Style_Sheets
+              - row "Style sheet · CSS Zen Garden" [ref=e228]:
+                - cell "Style sheet · CSS Zen Garden" [ref=e229]:
+                  - list [ref=e230]:
+                    - listitem [ref=e231]:
+                      - link "Style sheet" [ref=e232] [cursor=pointer]:
+                        - /url: /wiki/Style_sheet_(web_development)
+                      - text: ·
+                    - listitem [ref=e233]:
+                      - link "CSS Zen Garden" [ref=e234] [cursor=pointer]:
+                        - /url: /wiki/CSS_Zen_Garden
+              - row "Concepts" [ref=e235]:
+                - columnheader "Concepts" [ref=e236]
+              - row "Animations · Box model · Flexbox · Grid · Image replacement" [ref=e237]:
+                - cell "Animations · Box model · Flexbox · Grid · Image replacement" [ref=e238]:
+                  - list [ref=e239]:
+                    - listitem [ref=e240]:
+                      - link "Animations" [ref=e241] [cursor=pointer]:
+                        - /url: /wiki/CSS_animations
+                      - text: ·
+                    - listitem [ref=e242]:
+                      - link "Box model" [ref=e243] [cursor=pointer]:
+                        - /url: /wiki/CSS_box_model
+                      - text: ·
+                    - listitem [ref=e244]:
+                      - link "Flexbox" [ref=e245] [cursor=pointer]:
+                        - /url: /wiki/Flexbox
+                      - text: ·
+                    - listitem [ref=e246]:
+                      - link "Grid" [ref=e247] [cursor=pointer]:
+                        - /url: /wiki/CSS_grid_layout
+                      - text: ·
+                    - listitem [ref=e248]:
+                      - link "Image replacement" [ref=e249] [cursor=pointer]:
+                        - /url: /wiki/CSS_image_replacement
+              - row "Philosophies" [ref=e250]:
+                - columnheader "Philosophies" [ref=e251]
+              - row "Tableless · Responsive · \"Holy grail\"" [ref=e252]:
+                - cell "Tableless · Responsive · \"Holy grail\"" [ref=e253]:
+                  - list [ref=e254]:
+                    - listitem [ref=e255]:
+                      - link "Tableless" [ref=e256] [cursor=pointer]:
+                        - /url: /wiki/Tableless_web_design
+                      - text: ·
+                    - listitem [ref=e257]: Responsive ·
+                    - listitem [ref=e258]:
+                      - link "\"Holy grail\"" [ref=e259] [cursor=pointer]:
+                        - /url: /wiki/Holy_grail_(web_design)
+              - row "Tools" [ref=e260]:
+                - columnheader "Tools" [ref=e261]
+              - row "Sass · Less · Stylus" [ref=e262]:
+                - cell "Sass · Less · Stylus" [ref=e263]:
+                  - list [ref=e264]:
+                    - listitem [ref=e265]:
+                      - link "Sass" [ref=e266] [cursor=pointer]:
+                        - /url: /wiki/Sass_(stylesheet_language)
+                      - text: ·
+                    - listitem [ref=e267]:
+                      - link "Less" [ref=e268] [cursor=pointer]:
+                        - /url: /wiki/Less_(stylesheet_language)
+                      - text: ·
+                    - listitem [ref=e269]:
+                      - link "Stylus" [ref=e270] [cursor=pointer]:
+                        - /url: /wiki/Stylus_(stylesheet_language)
+              - row "Comparisons" [ref=e271]:
+                - columnheader "Comparisons" [ref=e272]
+              - row "Stylesheet languages" [ref=e273]:
+                - cell "Stylesheet languages" [ref=e274]:
+                  - list [ref=e275]:
+                    - listitem [ref=e276]:
+                      - link "Stylesheet languages" [ref=e277] [cursor=pointer]:
+                        - /url: /wiki/Comparison_of_stylesheet_languages
+              - row "Wikibooks page Cascading Style Sheets" [ref=e278]:
+                - cell "Wikibooks page Cascading Style Sheets" [ref=e279]:
+                  - list [ref=e280]:
+                    - listitem [ref=e281]:
+                      - link "Wikibooks page" [ref=e283] [cursor=pointer]:
+                        - /url: /wiki/File:Wikibooks-logo.svg
+                      - link "Cascading Style Sheets" [ref=e284] [cursor=pointer]:
+                        - /url: https://en.wikibooks.org/wiki/Cascading_Style_Sheets
+              - row "v · t · e" [ref=e285]:
+                - cell "v · t · e" [ref=e286]:
+                  - list [ref=e288]:
+                    - listitem [ref=e289]:
+                      - link "v" [ref=e290] [cursor=pointer]:
+                        - /url: /wiki/Template:CSS
+                      - text: ·
+                    - listitem [ref=e291]:
+                      - link "t" [ref=e292] [cursor=pointer]:
+                        - /url: /wiki/Template_talk:CSS
+                      - text: ·
+                    - listitem [ref=e293]:
+                      - link "e" [ref=e294] [cursor=pointer]:
+                        - /url: /wiki/Special:EditPage/Template:CSS
+          - paragraph [ref=e295]:
+            - text: Responsive web design (RWD) or responsive design is an approach to
+            - link "web design" [ref=e296] [cursor=pointer]:
+              - /url: /wiki/Web_design
+            - text: that aims to make web pages render well on a variety of devices and window or screen sizes from minimum to maximum display size to ensure usability and satisfaction.
+            - superscript [ref=e297]:
+              - link "[1]" [ref=e298] [cursor=pointer]:
+                - /url: "#cite_note-fluid_grid-1"
+            - superscript [ref=e299]:
+              - link "[2]" [ref=e300] [cursor=pointer]:
+                - /url: "#cite_note-Schade_2014-2"
+          - paragraph [ref=e301]:
+            - text: A responsive design adapts the web-page layout to the viewing environment
+            - superscript [ref=e302]:
+              - link "[1]" [ref=e303] [cursor=pointer]:
+                - /url: "#cite_note-fluid_grid-1"
+            - text: by using techniques such as fluid proportion-based grids,
+            - superscript [ref=e304]:
+              - link "[3]" [ref=e305] [cursor=pointer]:
+                - /url: "#cite_note-3"
+            - superscript [ref=e306]:
+              - link "[4]" [ref=e307] [cursor=pointer]:
+                - /url: "#cite_note-EM_FG-4"
+            - text: flexible images,
+            - superscript [ref=e308]:
+              - link "[5]" [ref=e309] [cursor=pointer]:
+                - /url: "#cite_note-EM_FI-5"
+            - superscript [ref=e310]:
+              - link "[6]" [ref=e311] [cursor=pointer]:
+                - /url: "#cite_note-6"
+            - text: and
+            - link "CSS3" [ref=e312] [cursor=pointer]:
+              - /url: /wiki/Cascading_Style_Sheets#CSS_3
+            - link "media queries" [ref=e313] [cursor=pointer]:
+              - /url: /wiki/Media_queries
+            - text: ","
+            - superscript [ref=e314]:
+              - link "[7]" [ref=e315] [cursor=pointer]:
+                - /url: "#cite_note-ZMGflexEx-7"
+            - superscript [ref=e316]:
+              - link "[8]" [ref=e317] [cursor=pointer]:
+                - /url: "#cite_note-ZMGmediaQ-8"
+            - superscript [ref=e318]:
+              - link "[9]" [ref=e319] [cursor=pointer]:
+                - /url: "#cite_note-9"
+            - text: an extension of the
+            - code [ref=e320]: "@media"
+            - text: rule,
+            - superscript [ref=e321]:
+              - link "[10]" [ref=e322] [cursor=pointer]:
+                - /url: "#cite_note-10"
+            - text: "in the following ways:"
+          - list [ref=e323]:
+            - listitem [ref=e324]:
+              - text: The fluid
+              - link "grid" [ref=e325] [cursor=pointer]:
+                - /url: /wiki/Grid_(page_layout)#Grid_use_in_web_design
+              - text: concept calls for page element sizing to be in relative units like percentages, rather than absolute units like
+              - link "pixels" [ref=e326] [cursor=pointer]:
+                - /url: /wiki/Pixel
+              - text: or
+              - link "points" [ref=e327] [cursor=pointer]:
+                - /url: /wiki/Point_(typography)
+              - text: .
+              - superscript [ref=e328]:
+                - link "[4]" [ref=e329] [cursor=pointer]:
+                  - /url: "#cite_note-EM_FG-4"
+            - listitem [ref=e330]:
+              - text: Flexible images are also sized in relative units, so as to prevent them from displaying outside their containing
+              - link "element" [ref=e331] [cursor=pointer]:
+                - /url: /wiki/HTML_element
+              - text: .
+              - superscript [ref=e332]:
+                - link "[5]" [ref=e333] [cursor=pointer]:
+                  - /url: "#cite_note-EM_FI-5"
+            - listitem [ref=e334]: Media queries allow the page to use different CSS style rules based on characteristics of the device the site is being displayed on, e.g. width of the rendering surface (browser window width or physical display size).
+            - listitem [ref=e335]: Responsive layouts automatically adjust and adapt to any device screen size, whether it is a desktop, a laptop, a tablet, or a mobile phone.
+          - paragraph [ref=e336]:
+            - text: Responsive web design became more important as users of mobile devices came to account for the majority of website visitors.
+            - superscript [ref=e337]:
+              - link "[11]" [ref=e338] [cursor=pointer]:
+                - /url: "#cite_note-11"
+            - superscript [ref=e339]:
+              - link "[12]" [ref=e340] [cursor=pointer]:
+                - /url: "#cite_note-12"
+            - text: In 2015, for instance, Google announced
+            - link "Mobilegeddon" [ref=e341] [cursor=pointer]:
+              - /url: /wiki/Mobilegeddon
+            - text: and started to boost the page ranking of mobile-friendly sites when searching from a mobile device.
+            - superscript [ref=e342]:
+              - link "[13]" [ref=e343] [cursor=pointer]:
+                - /url: "#cite_note-13"
+            - text: As mobile usage grew, optimization practices such as improved load speed, touch-friendly navigation, and mobile-focused SEO became essential for ensuring usability and maintaining search visibility.
+            - superscript [ref=e344]:
+              - link "[14]" [ref=e345] [cursor=pointer]:
+                - /url: "#cite_note-14"
+          - paragraph [ref=e346]:
+            - text: Responsive web design is an example of
+            - link "user interface plasticity" [ref=e347] [cursor=pointer]:
+              - /url: /wiki/User_interface_plasticity
+            - text: .
+            - superscript [ref=e348]:
+              - link "[15]" [ref=e349] [cursor=pointer]:
+                - /url: "#cite_note-15"
+          - generic [ref=e350]:
+            - heading "Challenges, and other approaches" [level=2] [ref=e351]: Challenges, and other approaches
+            - generic [ref=e352]:
+              - text: "["
+              - link "edit" [ref=e353] [cursor=pointer]:
+                - /url: /w/index.php?title=Responsive_web_design&action=edit&section=1
+              - text: "]"
+          - paragraph [ref=e354]:
+            - text: Luke Wroblewski has summarized some of the responsive and mobile design challenges and created a catalog of multi-device layout patterns.
+            - superscript [ref=e355]:
+              - link "[16]" [ref=e356] [cursor=pointer]:
+                - /url: "#cite_note-16"
+            - superscript [ref=e357]:
+              - link "[17]" [ref=e358] [cursor=pointer]:
+                - /url: "#cite_note-RWD-17"
+            - superscript [ref=e359]:
+              - link "[18]" [ref=e360] [cursor=pointer]:
+                - /url: "#cite_note-18"
+            - text: He suggested that, compared with a simple responsive web design approach, device experience or RESS (responsive web design with server-side components) approaches can provide a user experience that is better optimized for mobile devices.
+            - superscript [ref=e361]:
+              - link "[19]" [ref=e362] [cursor=pointer]:
+                - /url: "#cite_note-RESS-19"
+            - superscript [ref=e363]:
+              - link "[20]" [ref=e364] [cursor=pointer]:
+                - /url: "#cite_note-20"
+            - superscript [ref=e365]:
+              - link "[21]" [ref=e366] [cursor=pointer]:
+                - /url: "#cite_note-21"
+            - text: Server-side CSS generator implementation of stylesheet languages like
+            - link "Sass" [ref=e367] [cursor=pointer]:
+              - /url: /wiki/Sass_(stylesheet_language)
+            - text: can be part of such an approach. Google has recommended responsive design for smartphone websites over other approaches.
+            - superscript [ref=e368]:
+              - link "[22]" [ref=e369] [cursor=pointer]:
+                - /url: "#cite_note-22"
+          - paragraph [ref=e370]:
+            - text: Although many publishers have implemented responsive designs, one challenge for responsive design adoption was that some
+            - link "banner advertisements" [ref=e371] [cursor=pointer]:
+              - /url: /wiki/Web_banner
+            - text: and videos were not fluid.
+            - superscript [ref=e372]:
+              - link "[23]" [ref=e373] [cursor=pointer]:
+                - /url: "#cite_note-23"
+            - text: However,
+            - link "search advertising" [ref=e374] [cursor=pointer]:
+              - /url: /wiki/Search_advertising
+            - text: and (banner)
+            - link "display advertising" [ref=e375] [cursor=pointer]:
+              - /url: /wiki/Display_advertising
+            - text: came to support specific device platform targeting and different advertisement size formats for desktop, smartphone, and basic mobile devices. Different
+            - link "landing page" [ref=e376] [cursor=pointer]:
+              - /url: /wiki/Landing_page
+            - link "URLs" [ref=e377] [cursor=pointer]:
+              - /url: /wiki/URL
+            - text: have been used for different platforms,
+            - superscript [ref=e378]:
+              - link "[24]" [ref=e379] [cursor=pointer]:
+                - /url: "#cite_note-24"
+            - text: or
+            - link "Ajax" [ref=e380] [cursor=pointer]:
+              - /url: /wiki/Ajax_(programming)
+            - text: has been used to display different advertisement variants on a page.
+            - superscript [ref=e381]:
+              - link "[25]" [ref=e382] [cursor=pointer]:
+                - /url: "#cite_note-SSDD-25"
+            - superscript [ref=e383]:
+              - link "[17]" [ref=e384] [cursor=pointer]:
+                - /url: "#cite_note-RWD-17"
+            - superscript [ref=e385]:
+              - link "[26]" [ref=e386] [cursor=pointer]:
+                - /url: "#cite_note-26"
+            - text: CSS tables permitted hybrid fixed and fluid layouts.
+            - superscript [ref=e387]:
+              - link "[27]" [ref=e388] [cursor=pointer]:
+                - /url: "#cite_note-27"
+          - paragraph [ref=e389]:
+            - text: There have been many ways of validating and testing responsive web designs,
+            - superscript [ref=e390]:
+              - link "[28]" [ref=e391] [cursor=pointer]:
+                - /url: "#cite_note-28"
+            - text: ranging from mobile site validators and mobile emulators to simultaneous testing tools like
+            - link "Adobe Edge Inspect" [ref=e392] [cursor=pointer]:
+              - /url: /wiki/Adobe_Edge_Inspect
+            - text: .
+            - superscript [ref=e393]:
+              - link "[29]" [ref=e394] [cursor=pointer]:
+                - /url: "#cite_note-29"
+            - text: The Chrome, Firefox and Safari browsers and developer tools have offered responsive design viewport resizing tools, as do third parties.
+            - superscript [ref=e395]:
+              - link "[30]" [ref=e396] [cursor=pointer]:
+                - /url: "#cite_note-30"
+            - superscript [ref=e397]:
+              - link "[31]" [ref=e398] [cursor=pointer]:
+                - /url: "#cite_note-31"
+          - generic [ref=e399]:
+            - heading "History" [level=2] [ref=e400]
+            - generic [ref=e401]:
+              - text: "["
+              - link "edit" [ref=e402] [cursor=pointer]:
+                - /url: /w/index.php?title=Responsive_web_design&action=edit&section=2
+              - text: "]"
+          - note [ref=e403]:
+            - text: "Further information:"
+            - link "History of the World Wide Web" [ref=e404] [cursor=pointer]:
+              - /url: /wiki/History_of_the_World_Wide_Web
+            - text: and
+            - link "Web 2.0" [ref=e405] [cursor=pointer]:
+              - /url: /wiki/Web_2.0
+          - paragraph [ref=e406]:
+            - text: The W3C specification of HTML+ stated that websites have to be rendered according to the user preferences.
+            - superscript [ref=e407]:
+              - link "[32]" [ref=e408] [cursor=pointer]:
+                - /url: "#cite_note-32"
+            - text: The customization of web page layout was lacking however. Many web developers resorted to ordinary HTML tables as a way to customize the layout and bring some basic responsiveness to their websites at the same time.
+          - paragraph [ref=e409]:
+            - text: First major site to feature a layout that adapts in a non-trivial manner to browser viewport width was
+            - generic [ref=e410]:
+              - link "Audi" [ref=e411] [cursor=pointer]:
+                - /url: /wiki/Audi
+              - text: .com
+            - text: launched in late 2001,
+            - superscript [ref=e412]:
+              - link "[33]" [ref=e413] [cursor=pointer]:
+                - /url: "#cite_note-33"
+            - text: created by a team at
+            - link "Razorfish" [ref=e414] [cursor=pointer]:
+              - /url: /wiki/Razorfish_(company)
+            - text: consisting of Jürgen Spangl and
+            - link "Jim Kalbach" [ref=e415] [cursor=pointer]:
+              - /url: /w/index.php?title=Jim_Kalbach&action=edit&redlink=1
+            - text: (information architecture), Ken Olling (design), and Jan Hoffmann (interface development). Limited browser capabilities meant that for Internet Explorer, the layout could adapt dynamically in the browser whereas, for Netscape, the page had to be reloaded from the server when resized.
+          - paragraph [ref=e416]:
+            - text: Cameron Adams created a demonstration in 2004.
+            - superscript [ref=e417]:
+              - link "[34]" [ref=e418] [cursor=pointer]:
+                - /url: "#cite_note-34"
+            - text: By 2008, a number of related terms such as "flexible", "liquid",
+            - superscript [ref=e419]:
+              - link "[35]" [ref=e420] [cursor=pointer]:
+                - /url: "#cite_note-35"
+            - text: "\"fluid\", and \"elastic\" were being used to describe layouts. CSS3 media queries were almost ready for prime time in late 2008/early 2009."
+            - superscript [ref=e421]:
+              - link "[36]" [ref=e422] [cursor=pointer]:
+                - /url: "#cite_note-36"
+            - text: Ethan Marcotte coined the term responsive web design
+            - superscript [ref=e423]:
+              - link "[37]" [ref=e424] [cursor=pointer]:
+                - /url: "#cite_note-37"
+            - text: —and defined it to mean fluid grid / flexible images / media queries—in a May 2010 article in
+            - link "A List Apart" [ref=e426] [cursor=pointer]:
+              - /url: /wiki/A_List_Apart
+            - text: .
+            - superscript [ref=e427]:
+              - link "[1]" [ref=e428] [cursor=pointer]:
+                - /url: "#cite_note-fluid_grid-1"
+            - text: "He described the theory and practice of responsive web design in his brief 2011 book titled Responsive Web Design. Responsive design was listed as #2 in Top Web Design Trends for 2012 by"
+            - link ".net magazine" [ref=e429] [cursor=pointer]:
+              - /url: /wiki/.net_(magazine)
+            - text: after
+            - link "progressive enhancement" [ref=e430] [cursor=pointer]:
+              - /url: /wiki/Progressive_enhancement
+            - text: "at #1."
+            - superscript [ref=e431]:
+              - link "[38]" [ref=e432] [cursor=pointer]:
+                - /url: "#cite_note-38"
+          - paragraph [ref=e433]:
+            - link "Mashable" [ref=e434] [cursor=pointer]:
+              - /url: /wiki/Mashable
+            - text: called 2013 the Year of Responsive Web Design.
+            - superscript [ref=e435]:
+              - link "[39]" [ref=e436] [cursor=pointer]:
+                - /url: "#cite_note-mashable_2013-39"
+          - generic [ref=e437]:
+            - heading "Related concepts" [level=2] [ref=e438]
+            - generic [ref=e439]:
+              - text: "["
+              - link "edit" [ref=e440] [cursor=pointer]:
+                - /url: /w/index.php?title=Responsive_web_design&action=edit&section=3
+              - text: "]"
+          - note [ref=e441]:
+            - text: "See also:"
+            - link "Unobtrusive JavaScript" [ref=e442] [cursor=pointer]:
+              - /url: /wiki/Unobtrusive_JavaScript
+            - text: and
+            - link "Progressive enhancement" [ref=e443] [cursor=pointer]:
+              - /url: /wiki/Progressive_enhancement
+          - paragraph [ref=e444]:
+            - text: Mobile-first design and
+            - link "progressive enhancement" [ref=e445] [cursor=pointer]:
+              - /url: /wiki/Progressive_enhancement
+            - text: are related concepts that predate responsive web design.
+            - superscript [ref=e446]:
+              - link "[40]" [ref=e447] [cursor=pointer]:
+                - /url: "#cite_note-40"
+            - text: Browsers of basic mobile phones do not understand JavaScript or
+            - link "media queries" [ref=e448] [cursor=pointer]:
+              - /url: /wiki/Media_queries
+            - text: ", so a recommended practice was to create a basic web site and enhance it for"
+            - link "smartphones" [ref=e449] [cursor=pointer]:
+              - /url: /wiki/Smartphone
+            - text: and
+            - link "personal computers" [ref=e450] [cursor=pointer]:
+              - /url: /wiki/Personal_computer
+            - text: ", rather than rely on"
+            - link "graceful degradation" [ref=e451] [cursor=pointer]:
+              - /url: /wiki/Graceful_degradation
+            - text: to make a complex, image-heavy site work on mobile phones.
+            - superscript [ref=e452]:
+              - link "[41]" [ref=e453] [cursor=pointer]:
+                - /url: "#cite_note-41"
+            - superscript [ref=e454]:
+              - link "[42]" [ref=e455] [cursor=pointer]:
+                - /url: "#cite_note-Firtman-42"
+            - superscript [ref=e456]:
+              - link "[43]" [ref=e457] [cursor=pointer]:
+                - /url: "#cite_note-43"
+            - superscript [ref=e458]:
+              - link "[44]" [ref=e459] [cursor=pointer]:
+                - /url: "#cite_note-44"
+          - paragraph [ref=e460]:
+            - link "User interface plasticity" [ref=e461] [cursor=pointer]:
+              - /url: /wiki/User_interface_plasticity
+            - text: is the capacity of a
+            - link "user interface" [ref=e462] [cursor=pointer]:
+              - /url: /wiki/User_interface
+            - text: to withstand variations of both the system's physical characteristics and the environment while preserving
+            - link "usability" [ref=e463] [cursor=pointer]:
+              - /url: /wiki/Usability
+            - text: .
+            - superscript [ref=e464]:
+              - link "[45]" [ref=e465] [cursor=pointer]:
+                - /url: "#cite_note-45"
+          - generic [ref=e466]:
+            - heading "See also" [level=2] [ref=e467]
+            - generic [ref=e468]:
+              - text: "["
+              - link "edit" [ref=e469] [cursor=pointer]:
+                - /url: /w/index.php?title=Responsive_web_design&action=edit&section=4
+              - text: "]"
+          - navigation "Portals" [ref=e470]:
+            - listitem [ref=e471]:
+              - link "icon" [ref=e474] [cursor=pointer]:
+                - /url: /wiki/File:Crystal_Clear_app_linneighborhood.svg
+                - img "icon" [ref=e475]
+              - link "Internet portal" [ref=e477] [cursor=pointer]:
+                - /url: /wiki/Portal:Internet
+          - list [ref=e479]:
+            - listitem [ref=e480]:
+              - link "Adaptive web design" [ref=e481] [cursor=pointer]:
+                - /url: /wiki/Adaptive_web_design
+            - listitem [ref=e482]:
+              - link "Bootstrap (front-end framework)" [ref=e483] [cursor=pointer]:
+                - /url: /wiki/Bootstrap_(front-end_framework)
+            - listitem [ref=e484]:
+              - link "CSS framework" [ref=e485] [cursor=pointer]:
+                - /url: /wiki/CSS_framework
+            - listitem [ref=e486]:
+              - link "Em (typography) § CSS" [ref=e487] [cursor=pointer]:
+                - /url: /wiki/Em_(typography)#CSS
+            - listitem [ref=e488]:
+              - link "Foundation (framework)" [ref=e489] [cursor=pointer]:
+                - /url: /wiki/Foundation_(framework)
+            - listitem [ref=e490]:
+              - link "Tableless web design" [ref=e491] [cursor=pointer]:
+                - /url: /wiki/Tableless_web_design
+            - listitem [ref=e492]:
+              - link "T Layout" [ref=e493] [cursor=pointer]:
+                - /url: /wiki/T_Layout
+          - generic [ref=e494]:
+            - heading "References" [level=2] [ref=e495]
+            - generic [ref=e496]:
+              - text: "["
+              - link "edit" [ref=e497] [cursor=pointer]:
+                - /url: /w/index.php?title=Responsive_web_design&action=edit&section=5
+              - text: "]"
+          - list [ref=e500]:
+            - listitem [ref=e501]:
+              - generic [ref=e502]:
+                - text: ^
+                - 'link "Jump up to: a" [ref=e503] [cursor=pointer]':
+                  - /url: "#cite_ref-fluid_grid_1-0"
+                  - generic [ref=e504]: "Jump up to:"
+                  - superscript [ref=e505]:
+                    - generic [ref=e506]: a
+                - link "b" [ref=e507] [cursor=pointer]:
+                  - /url: "#cite_ref-fluid_grid_1-1"
+                  - superscript [ref=e508]:
+                    - generic [ref=e509]: b
+                - link "c" [ref=e510] [cursor=pointer]:
+                  - /url: "#cite_ref-fluid_grid_1-2"
+                  - superscript [ref=e511]:
+                    - generic [ref=e512]: c
+              - generic [ref=e513]:
+                - generic [ref=e514]:
+                  - text: Marcotte, Ethan (May 25, 2010).
+                  - link "\"Responsive Web design\"" [ref=e515] [cursor=pointer]:
+                    - /url: http://www.alistapart.com/articles/responsive-web-design/
+                  - text: . A List Apart.
+                - generic "ctx_ver=Z39.88-2004&rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Ajournal&rft.genre=unknown&rft.jtitle=A+List+Apart&rft.atitle=Responsive+Web+design&rft.date=2010-05-25&rft.aulast=Marcotte&rft.aufirst=Ethan&rft_id=http%3A%2F%2Fwww.alistapart.com%2Farticles%2Fresponsive-web-design%2F&rfr_id=info%3Asid%2Fen.wikipedia.org%3AResponsive+web+design"
+            - listitem [ref=e516]:
+              - link "Jump up" [ref=e519] [cursor=pointer]:
+                - /url: "#cite_ref-Schade_2014_2-0"
+                - text: ^
+              - generic [ref=e520]:
+                - generic [ref=e521]:
+                  - text: Schade, Amy (May 4, 2014).
+                  - link "\"Responsive Web Design (RWD) and User Experience\"" [ref=e522] [cursor=pointer]:
+                    - /url: https://www.nngroup.com/articles/responsive-web-design-definition/
+                  - text: . Nielsen Norman Group
+                  - generic [ref=e523]: . Retrieved October 19, 2017
+                  - text: .
+                - generic "ctx_ver=Z39.88-2004&rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Ajournal&rft.genre=unknown&rft.jtitle=Nielsen+Norman+Group&rft.atitle=Responsive+Web+Design+%28RWD%29+and+User+Experience&rft.date=2014-05-04&rft.aulast=Schade&rft.aufirst=Amy&rft_id=https%3A%2F%2Fwww.nngroup.com%2Farticles%2Fresponsive-web-design-definition%2F&rfr_id=info%3Asid%2Fen.wikipedia.org%3AResponsive+web+design"
+            - listitem [ref=e524]:
+              - link "Jump up" [ref=e527] [cursor=pointer]:
+                - /url: "#cite_ref-3"
+                - text: ^
+              - generic [ref=e528]:
+                - generic [ref=e529]:
+                  - link "\"Core concepts of Responsive Web design\"" [ref=e530] [cursor=pointer]:
+                    - /url: http://msdn.microsoft.com/en-us/magazine/hh653584.aspx
+                  - text: . September 8, 2014.
+                - generic "ctx_ver=Z39.88-2004&rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Abook&rft.genre=unknown&rft.btitle=Core+concepts+of+Responsive+Web+design&rft.date=2014-09-08&rft_id=http%3A%2F%2Fmsdn.microsoft.com%2Fen-us%2Fmagazine%2Fhh653584.aspx&rfr_id=info%3Asid%2Fen.wikipedia.org%3AResponsive+web+design"
+            - listitem [ref=e531]:
+              - generic [ref=e532]:
+                - text: ^
+                - 'link "Jump up to: a" [ref=e533] [cursor=pointer]':
+                  - /url: "#cite_ref-EM_FG_4-0"
+                  - generic [ref=e534]: "Jump up to:"
+                  - superscript [ref=e535]:
+                    - generic [ref=e536]: a
+                - link "b" [ref=e537] [cursor=pointer]:
+                  - /url: "#cite_ref-EM_FG_4-1"
+                  - superscript [ref=e538]:
+                    - generic [ref=e539]: b
+              - generic [ref=e540]:
+                - generic [ref=e541]:
+                  - text: Marcotte, Ethan (March 3, 2009).
+                  - link "\"Fluid Grids\"" [ref=e542] [cursor=pointer]:
+                    - /url: http://www.alistapart.com/articles/fluidgrids/
+                  - text: . A List Apart.
+                - generic "ctx_ver=Z39.88-2004&rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Abook&rft.genre=unknown&rft.btitle=Fluid+Grids&rft.pub=A+List+Apart&rft.date=2009-03-03&rft.aulast=Marcotte&rft.aufirst=Ethan&rft_id=http%3A%2F%2Fwww.alistapart.com%2Farticles%2Ffluidgrids%2F&rfr_id=info%3Asid%2Fen.wikipedia.org%3AResponsive+web+design"
+            - listitem [ref=e543]:
+              - generic [ref=e544]:
+                - text: ^
+                - 'link "Jump up to: a" [ref=e545] [cursor=pointer]':
+                  - /url: "#cite_ref-EM_FI_5-0"
+                  - generic [ref=e546]: "Jump up to:"
+                  - superscript [ref=e547]:
+                    - generic [ref=e548]: a
+                - link "b" [ref=e549] [cursor=pointer]:
+                  - /url: "#cite_ref-EM_FI_5-1"
+                  - superscript [ref=e550]:
+                    - generic [ref=e551]: b
+              - generic [ref=e552]:
+                - generic [ref=e553]:
+                  - text: Marcotte, Ethan (June 7, 2011).
+                  - link "\"Fluid images\"" [ref=e554] [cursor=pointer]:
+                    - /url: http://www.alistapart.com/articles/fluid-images/
+                  - text: . A List Apart.
+                - generic "ctx_ver=Z39.88-2004&rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Abook&rft.genre=unknown&rft.btitle=Fluid+images&rft.pub=A+List+Apart&rft.date=2011-06-07&rft.aulast=Marcotte&rft.aufirst=Ethan&rft_id=http%3A%2F%2Fwww.alistapart.com%2Farticles%2Ffluid-images%2F&rfr_id=info%3Asid%2Fen.wikipedia.org%3AResponsive+web+design"
+            - listitem [ref=e555]:
+              - link "Jump up" [ref=e558] [cursor=pointer]:
+                - /url: "#cite_ref-6"
+                - text: ^
+              - generic [ref=e559]:
+                - generic [ref=e560]:
+                  - text: Hannemann, Anselm (September 7, 2012).
+                  - link "\"The road to responsive images\"" [ref=e561] [cursor=pointer]:
+                    - /url: http://www.creativebloq.com/html5/road-responsive-images-9126108
+                  - text: . net Magazine.
+                - generic "ctx_ver=Z39.88-2004&rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Abook&rft.genre=unknown&rft.btitle=The+road+to+responsive+images&rft.pub=net+Magazine&rft.date=2012-09-07&rft.aulast=Hannemann&rft.aufirst=Anselm&rft_id=http%3A%2F%2Fwww.creativebloq.com%2Fhtml5%2Froad-responsive-images-9126108&rfr_id=info%3Asid%2Fen.wikipedia.org%3AResponsive+web+design"
+            - listitem [ref=e562]:
+              - link "Jump up" [ref=e565] [cursor=pointer]:
+                - /url: "#cite_ref-ZMGflexEx_7-0"
+                - text: ^
+              - generic [ref=e566]:
+                - generic [ref=e567]:
+                  - text: Gillenwater, Zoe Mickley (December 15, 2010).
+                  - link "Examples of flexible layouts with CSS3 media queries" [ref=e568] [cursor=pointer]:
+                    - /url: http://zomigi.com/blog/examples-of-flexible-layouts-with-css3-media-queries/
+                  - text: . Stunning CSS3. p. 320.
+                  - link "ISBN" [ref=e569] [cursor=pointer]:
+                    - /url: /wiki/ISBN_(identifier)
+                  - link "978-0-321-722133" [ref=e570] [cursor=pointer]:
+                    - /url: /wiki/Special:BookSources/978-0-321-722133
+                  - text: .
+                - generic "ctx_ver=Z39.88-2004&rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Abook&rft.genre=book&rft.btitle=Examples+of+flexible+layouts+with+CSS3+media+queries&rft.series=Stunning+CSS3&rft.pages=320&rft.date=2010-12-15&rft.isbn=978-0-321-722133&rft.aulast=Gillenwater&rft.aufirst=Zoe+Mickley&rft_id=http%3A%2F%2Fzomigi.com%2Fblog%2Fexamples-of-flexible-layouts-with-css3-media-queries%2F&rfr_id=info%3Asid%2Fen.wikipedia.org%3AResponsive+web+design"
+            - listitem [ref=e571]:
+              - link "Jump up" [ref=e574] [cursor=pointer]:
+                - /url: "#cite_ref-ZMGmediaQ_8-0"
+                - text: ^
+              - generic [ref=e575]:
+                - generic [ref=e576]:
+                  - text: Gillenwater, Zoe Mickley (October 21, 2011).
+                  - link "\"Crafting quality media queries\"" [ref=e577] [cursor=pointer]:
+                    - /url: http://zomigi.com/blog/essential-considerations-for-crafting-quality-media-queries/
+                  - text: .
+                - generic "ctx_ver=Z39.88-2004&rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Abook&rft.genre=unknown&rft.btitle=Crafting+quality+media+queries&rft.date=2011-10-21&rft.aulast=Gillenwater&rft.aufirst=Zoe+Mickley&rft_id=http%3A%2F%2Fzomigi.com%2Fblog%2Fessential-considerations-for-crafting-quality-media-queries%2F&rfr_id=info%3Asid%2Fen.wikipedia.org%3AResponsive+web+design"
+            - listitem [ref=e578]:
+              - link "Jump up" [ref=e581] [cursor=pointer]:
+                - /url: "#cite_ref-9"
+                - text: ^
+              - generic [ref=e582]:
+                - generic [ref=e583]:
+                  - link "\"Responsive design—harnessing the power of media queries\"" [ref=e584] [cursor=pointer]:
+                    - /url: http://googlewebmastercentral.blogspot.jp/2012/04/responsive-design-harnessing-power-of.html
+                  - text: . Google Webmaster Central. April 30, 2012.
+                - generic "ctx_ver=Z39.88-2004&rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Abook&rft.genre=unknown&rft.btitle=Responsive+design%E2%80%94harnessing+the+power+of+media+queries&rft.pub=Google+Webmaster+Central&rft.date=2012-04-30&rft_id=http%3A%2F%2Fgooglewebmastercentral.blogspot.jp%2F2012%2F04%2Fresponsive-design-harnessing-power-of.html&rfr_id=info%3Asid%2Fen.wikipedia.org%3AResponsive+web+design"
+            - listitem [ref=e585]:
+              - link "Jump up" [ref=e588] [cursor=pointer]:
+                - /url: "#cite_ref-10"
+                - text: ^
+              - generic [ref=e589]:
+                - generic [ref=e590]:
+                  - link "\"@media rule\"" [ref=e591] [cursor=pointer]:
+                    - /url: https://www.w3.org/TR/CSS2/media.html#at-media-rule
+                  - text: . w3.org.
+                  - link "W3C" [ref=e592] [cursor=pointer]:
+                    - /url: /wiki/W3C
+                  - text: .
+                - generic "ctx_ver=Z39.88-2004&rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Ajournal&rft.genre=unknown&rft.jtitle=w3.org&rft.atitle=%40media+rule&rft_id=https%3A%2F%2Fwww.w3.org%2FTR%2FCSS2%2Fmedia.html%23at-media-rule&rfr_id=info%3Asid%2Fen.wikipedia.org%3AResponsive+web+design"
+            - listitem [ref=e593]:
+              - link "Jump up" [ref=e596] [cursor=pointer]:
+                - /url: "#cite_ref-11"
+                - text: ^
+              - generic [ref=e597]:
+                - generic [ref=e598]:
+                  - 'link "\"Cisco Visual Networking Index: Global Mobile Data Traffic Forecast Update 2014–2019 White Paper\"" [ref=e599] [cursor=pointer]':
+                    - /url: http://www.cisco.com/c/en/us/solutions/collateral/service-provider/visual-networking-index-vni/white_paper_c11-520862.html
+                  - text: . Cisco. January 30, 2015
+                  - generic [ref=e600]: . Retrieved August 4, 2015
+                  - text: .
+                - generic "ctx_ver=Z39.88-2004&rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Ajournal&rft.genre=unknown&rft.jtitle=Cisco&rft.atitle=Cisco+Visual+Networking+Index%3A+Global+Mobile+Data+Traffic+Forecast+Update+2014%E2%80%932019+White+Paper&rft.date=2015-01-30&rft_id=http%3A%2F%2Fwww.cisco.com%2Fc%2Fen%2Fus%2Fsolutions%2Fcollateral%2Fservice-provider%2Fvisual-networking-index-vni%2Fwhite_paper_c11-520862.html&rfr_id=info%3Asid%2Fen.wikipedia.org%3AResponsive+web+design"
+            - listitem [ref=e601]:
+              - link "Jump up" [ref=e604] [cursor=pointer]:
+                - /url: "#cite_ref-12"
+                - text: ^
+              - generic [ref=e605]:
+                - generic [ref=e606]:
+                  - link "\"Mobile share of U.S. organic search engine visits 2021\"" [ref=e607] [cursor=pointer]:
+                    - /url: https://www.statista.com/statistics/297137/mobile-share-of-us-organic-search-engine-visits/
+                  - text: . Statista
+                  - generic [ref=e608]: . Retrieved October 29, 2021
+                  - text: .
+                - generic "ctx_ver=Z39.88-2004&rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Ajournal&rft.genre=article&rft.atitle=Mobile+share+of+U.S.+organic+search+engine+visits+2021&rft_id=https%3A%2F%2Fwww.statista.com%2Fstatistics%2F297137%2Fmobile-share-of-us-organic-search-engine-visits%2F&rfr_id=info%3Asid%2Fen.wikipedia.org%3AResponsive+web+design"
+            - listitem [ref=e609]:
+              - link "Jump up" [ref=e612] [cursor=pointer]:
+                - /url: "#cite_ref-13"
+                - text: ^
+              - generic [ref=e613]:
+                - generic [ref=e614]:
+                  - 'link "\"Official Google Webmaster Central Blog: Rolling out the mobile-friendly update\"" [ref=e615] [cursor=pointer]':
+                    - /url: http://googlewebmastercentral.blogspot.com/2015/04/rolling-out-mobile-friendly-update.html
+                  - text: . Official Google Webmaster Central Blog
+                  - generic [ref=e616]: . Retrieved August 4, 2015
+                  - text: .
+                - generic "ctx_ver=Z39.88-2004&rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Ajournal&rft.genre=unknown&rft.jtitle=Official+Google+Webmaster+Central+Blog&rft.atitle=Official+Google+Webmaster+Central+Blog%3A+Rolling+out+the+mobile-friendly+update&rft_id=http%3A%2F%2Fgooglewebmastercentral.blogspot.com%2F2015%2F04%2Frolling-out-mobile-friendly-update.html&rfr_id=info%3Asid%2Fen.wikipedia.org%3AResponsive+web+design"
+            - listitem [ref=e617]:
+              - link "Jump up" [ref=e620] [cursor=pointer]:
+                - /url: "#cite_ref-14"
+                - text: ^
+              - generic [ref=e621]:
+                - generic [ref=e622]:
+                  - text: Ansary, Ayub (August 18, 2024).
+                  - link "\"How to Optimize Your Website for Mobile\"" [ref=e623] [cursor=pointer]:
+                    - /url: https://ayubansary.com/blog/how-to-optimize-your-website-for-mobile/
+                  - text: . ayubansary.com
+                  - generic [ref=e624]: . Retrieved February 20, 2025
+                  - text: .
+                - generic "ctx_ver=Z39.88-2004&rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Ajournal&rft.genre=unknown&rft.jtitle=ayubansary.com&rft.atitle=How+to+Optimize+Your+Website+for+Mobile&rft.date=2024-08-18&rft.aulast=Ansary&rft.aufirst=Ayub&rft_id=https%3A%2F%2Fayubansary.com%2Fblog%2Fhow-to-optimize-your-website-for-mobile%2F&rfr_id=info%3Asid%2Fen.wikipedia.org%3AResponsive+web+design"
+            - listitem [ref=e625]:
+              - link "Jump up" [ref=e628] [cursor=pointer]:
+                - /url: "#cite_ref-15"
+                - text: ^
+              - generic [ref=e629]:
+                - generic [ref=e630]: "Thevenin, D.; Coutaz, J. (2002). \"Plasticity of User Interfaces: Framework and Research Agenda\". Proc. Interact'99, A. Sasse & C. Johnson Eds, IFIP IOS Press. Edinburgh. pp. 110–117."
+                - generic "ctx_ver=Z39.88-2004&rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Abook&rft.genre=conference&rft.atitle=Plasticity+of+User+Interfaces%3A+Framework+and+Research+Agenda&rft.btitle=Proc.+Interact%2799%2C+A.+Sasse+%26+C.+Johnson+Eds%2C+IFIP+IOS+Press&rft.place=Edinburgh&rft.pages=110-117&rft.date=2002&rft.aulast=Thevenin&rft.aufirst=D.&rft.au=Coutaz%2C+J.&rfr_id=info%3Asid%2Fen.wikipedia.org%3AResponsive+web+design"
+            - listitem [ref=e631]:
+              - link "Jump up" [ref=e634] [cursor=pointer]:
+                - /url: "#cite_ref-16"
+                - text: ^
+              - generic [ref=e635]:
+                - generic [ref=e636]:
+                  - text: Wroblewski, Luke (May 17, 2011).
+                  - 'link "\"Mobilism: jQuery Mobile\"" [ref=e637] [cursor=pointer]':
+                    - /url: http://www.lukew.com/ff/entry.asp?1330
+                  - text: .
+                - generic "ctx_ver=Z39.88-2004&rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Abook&rft.genre=unknown&rft.btitle=Mobilism%3A+jQuery+Mobile&rft.date=2011-05-17&rft.aulast=Wroblewski&rft.aufirst=Luke&rft_id=http%3A%2F%2Fwww.lukew.com%2Fff%2Fentry.asp%3F1330&rfr_id=info%3Asid%2Fen.wikipedia.org%3AResponsive+web+design"
+            - listitem [ref=e638]:
+              - generic [ref=e639]:
+                - text: ^
+                - 'link "Jump up to: a" [ref=e640] [cursor=pointer]':
+                  - /url: "#cite_ref-RWD_17-0"
+                  - generic [ref=e641]: "Jump up to:"
+                  - superscript [ref=e642]:
+                    - generic [ref=e643]: a
+                - link "b" [ref=e644] [cursor=pointer]:
+                  - /url: "#cite_ref-RWD_17-1"
+                  - superscript [ref=e645]:
+                    - generic [ref=e646]: b
+              - generic [ref=e647]:
+                - generic [ref=e648]:
+                  - text: Wroblewski, Luke (February 6, 2012).
+                  - link "\"Rolling Up Our Responsive Sleeves\"" [ref=e649] [cursor=pointer]:
+                    - /url: http://www.lukew.com/ff/entry.asp?1494
+                  - text: .
+                - generic "ctx_ver=Z39.88-2004&rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Abook&rft.genre=unknown&rft.btitle=Rolling+Up+Our+Responsive+Sleeves&rft.date=2012-02-06&rft.aulast=Wroblewski&rft.aufirst=Luke&rft_id=http%3A%2F%2Fwww.lukew.com%2Fff%2Fentry.asp%3F1494&rfr_id=info%3Asid%2Fen.wikipedia.org%3AResponsive+web+design"
+            - listitem [ref=e650]:
+              - link "Jump up" [ref=e653] [cursor=pointer]:
+                - /url: "#cite_ref-18"
+                - text: ^
+              - generic [ref=e654]:
+                - generic [ref=e655]:
+                  - text: Wroblewski, Luke (March 14, 2012).
+                  - link "\"Multi-Device Layout Patterns\"" [ref=e656] [cursor=pointer]:
+                    - /url: http://www.lukew.com/ff/entry.asp?1514
+                  - text: .
+                - generic "ctx_ver=Z39.88-2004&rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Abook&rft.genre=unknown&rft.btitle=Multi-Device+Layout+Patterns&rft.date=2012-03-14&rft.aulast=Wroblewski&rft.aufirst=Luke&rft_id=http%3A%2F%2Fwww.lukew.com%2Fff%2Fentry.asp%3F1514&rfr_id=info%3Asid%2Fen.wikipedia.org%3AResponsive+web+design"
+            - listitem [ref=e657]:
+              - link "Jump up" [ref=e660] [cursor=pointer]:
+                - /url: "#cite_ref-RESS_19-0"
+                - text: ^
+              - generic [ref=e661]:
+                - generic [ref=e662]:
+                  - text: Wroblewski, Luke (February 29, 2012).
+                  - link "\"Responsive Design ... or RESS\"" [ref=e663] [cursor=pointer]:
+                    - /url: http://www.lukew.com/ff/entry.asp?1509
+                  - text: .
+                - generic "ctx_ver=Z39.88-2004&rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Abook&rft.genre=unknown&rft.btitle=Responsive+Design+...+or+RESS&rft.date=2012-02-29&rft.aulast=Wroblewski&rft.aufirst=Luke&rft_id=http%3A%2F%2Fwww.lukew.com%2Fff%2Fentry.asp%3F1509&rfr_id=info%3Asid%2Fen.wikipedia.org%3AResponsive+web+design"
+            - listitem [ref=e664]:
+              - link "Jump up" [ref=e667] [cursor=pointer]:
+                - /url: "#cite_ref-20"
+                - text: ^
+              - generic [ref=e668]:
+                - generic [ref=e669]:
+                  - text: Wroblewski, Luke (September 12, 2011).
+                  - 'link "\"RESS: Responsive Design + Server Side Components\"" [ref=e670] [cursor=pointer]':
+                    - /url: http://www.lukew.com/ff/entry.asp?1392
+                  - text: .
+                - generic "ctx_ver=Z39.88-2004&rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Abook&rft.genre=unknown&rft.btitle=RESS%3A+Responsive+Design+%2B+Server+Side+Components&rft.date=2011-09-12&rft.aulast=Wroblewski&rft.aufirst=Luke&rft_id=http%3A%2F%2Fwww.lukew.com%2Fff%2Fentry.asp%3F1392&rfr_id=info%3Asid%2Fen.wikipedia.org%3AResponsive+web+design"
+            - listitem [ref=e671]:
+              - link "Jump up" [ref=e674] [cursor=pointer]:
+                - /url: "#cite_ref-21"
+                - text: ^
+              - generic [ref=e675]:
+                - generic [ref=e676]:
+                  - text: Andersen, Anders M (May 8, 2012).
+                  - link "\"Getting Started with RESS\"" [ref=e677] [cursor=pointer]:
+                    - /url: https://web.archive.org/web/20120512020218/http://www.netmagazine.com/tutorials/getting-started-ress
+                  - text: . Creative Bloq. Archived from
+                  - link "the original" [ref=e678] [cursor=pointer]:
+                    - /url: http://www.netmagazine.com/tutorials/getting-started-ress
+                  - text: on May 12, 2012.
+                - generic "ctx_ver=Z39.88-2004&rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Ajournal&rft.genre=unknown&rft.jtitle=Creative+Bloq&rft.atitle=Getting+Started+with+RESS&rft.date=2012-05-08&rft.aulast=Andersen&rft.aufirst=Anders+M&rft_id=http%3A%2F%2Fwww.netmagazine.com%2Ftutorials%2Fgetting-started-ress&rfr_id=info%3Asid%2Fen.wikipedia.org%3AResponsive+web+design"
+            - listitem [ref=e679]:
+              - link "Jump up" [ref=e682] [cursor=pointer]:
+                - /url: "#cite_ref-22"
+                - text: ^
+              - generic [ref=e683]:
+                - generic [ref=e684]:
+                  - link "\"Building Smartphone-Optimized Websites\"" [ref=e685] [cursor=pointer]:
+                    - /url: https://developers.google.com/webmasters/smartphone-sites/
+                  - text: .
+                - generic "ctx_ver=Z39.88-2004&rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Abook&rft.genre=unknown&rft.btitle=Building+Smartphone-Optimized+Websites&rft_id=https%3A%2F%2Fdevelopers.google.com%2Fwebmasters%2Fsmartphone-sites%2F&rfr_id=info%3Asid%2Fen.wikipedia.org%3AResponsive+web+design"
+            - listitem [ref=e686]:
+              - link "Jump up" [ref=e689] [cursor=pointer]:
+                - /url: "#cite_ref-23"
+                - text: ^
+              - generic [ref=e690]:
+                - generic [ref=e691]:
+                  - text: Snyder, Matthew; Koren, Etai (April 30, 2012).
+                  - 'link "\"The state of responsive advertising: the publishers'' perspective\"" [ref=e692] [cursor=pointer]':
+                    - /url: http://www.creativebloq.com/netmag/state-responsive-advertising-publishers-perspective-4126330
+                  - text: . .net Magazine.
+                - generic "ctx_ver=Z39.88-2004&rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Abook&rft.genre=unknown&rft.btitle=The+state+of+responsive+advertising%3A+the+publishers%27+perspective&rft.pub=.net+Magazine&rft.date=2012-04-30&rft.aulast=Snyder&rft.aufirst=Matthew&rft.au=Koren%2C+Etai&rft_id=http%3A%2F%2Fwww.creativebloq.com%2Fnetmag%2Fstate-responsive-advertising-publishers-perspective-4126330&rfr_id=info%3Asid%2Fen.wikipedia.org%3AResponsive+web+design"
+            - listitem [ref=e693]:
+              - link "Jump up" [ref=e696] [cursor=pointer]:
+                - /url: "#cite_ref-24"
+                - text: ^
+              - generic [ref=e697]:
+                - generic [ref=e698]:
+                  - link "\"Google Partners Help\"" [ref=e699] [cursor=pointer]:
+                    - /url: https://support.google.com/adwords/certification/bin/static.py?hl=en&page=guide.cs&guide=23292
+                  - text: . google.com
+                  - generic [ref=e700]: . Retrieved May 21, 2015
+                  - text: .
+                - generic "ctx_ver=Z39.88-2004&rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Ajournal&rft.genre=unknown&rft.jtitle=google.com&rft.atitle=Google+Partners+Help&rft_id=https%3A%2F%2Fsupport.google.com%2Fadwords%2Fcertification%2Fbin%2Fstatic.py%3Fhl%3Den%26page%3Dguide.cs%26guide%3D23292&rfr_id=info%3Asid%2Fen.wikipedia.org%3AResponsive+web+design"
+            - listitem [ref=e701]:
+              - link "Jump up" [ref=e704] [cursor=pointer]:
+                - /url: "#cite_ref-SSDD_25-0"
+                - text: ^
+              - generic [ref=e705]:
+                - generic [ref=e706]:
+                  - 'link "\"Server-Side Device Detection: History, Benefits And How-To\"" [ref=e707] [cursor=pointer]':
+                    - /url: https://mobile.smashingmagazine.com/2012/09/24/server-side-device-detection-history-benefits-how-to/
+                  - text: . Smashing magazine. September 24, 2012.
+                - generic "ctx_ver=Z39.88-2004&rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Abook&rft.genre=unknown&rft.btitle=Server-Side+Device+Detection%3A+History%2C+Benefits+And+How-To&rft.pub=Smashing+magazine&rft.date=2012-09-24&rft_id=http%3A%2F%2Fmobile.smashingmagazine.com%2F2012%2F09%2F24%2Fserver-side-device-detection-history-benefits-how-to%2F&rfr_id=info%3Asid%2Fen.wikipedia.org%3AResponsive+web+design"
+            - listitem [ref=e708]:
+              - link "Jump up" [ref=e711] [cursor=pointer]:
+                - /url: "#cite_ref-26"
+                - text: ^
+              - generic [ref=e712]:
+                - link "JavaScript and Responsive Web Design" [ref=e713] [cursor=pointer]:
+                  - /url: https://developers.google.com/webmasters/smartphone-sites/javascript
+                - text: Google Developers
+            - listitem [ref=e714]:
+              - link "Jump up" [ref=e717] [cursor=pointer]:
+                - /url: "#cite_ref-27"
+                - text: ^
+              - generic [ref=e718]:
+                - generic [ref=e719]:
+                  - link "\"The Role of Table Layouts in Responsive Web Design\"" [ref=e720] [cursor=pointer]:
+                    - /url: http://webdesign.tutsplus.com/tutorials/the-role-of-table-layouts-in-responsive-web-design--webdesign-10294
+                  - text: . Web Design Tuts+. January 23, 2013
+                  - generic [ref=e721]: . Retrieved May 21, 2015
+                  - text: .
+                - generic "ctx_ver=Z39.88-2004&rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Ajournal&rft.genre=unknown&rft.jtitle=Web+Design+Tuts%2B&rft.atitle=The+Role+of+Table+Layouts+in+Responsive+Web+Design&rft.date=2013-01-23&rft_id=http%3A%2F%2Fwebdesign.tutsplus.com%2Ftutorials%2Fthe-role-of-table-layouts-in-responsive-web-design--webdesign-10294&rfr_id=info%3Asid%2Fen.wikipedia.org%3AResponsive+web+design"
+            - listitem [ref=e722]:
+              - link "Jump up" [ref=e725] [cursor=pointer]:
+                - /url: "#cite_ref-28"
+                - text: ^
+              - generic [ref=e726]:
+                - generic [ref=e727]:
+                  - text: Young, James (August 13, 2012).
+                  - link "\"Top responsive web design problems... testing\"" [ref=e728] [cursor=pointer]:
+                    - /url: http://www.netmagazine.com/features/top-responsive-web-design-problems-and-how-avoid-them#8
+                  - text: . .net Magazine.
+                - generic "ctx_ver=Z39.88-2004&rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Abook&rft.genre=unknown&rft.btitle=Top+responsive+web+design+problems...+testing&rft.pub=.net+Magazine&rft.date=2012-08-13&rft.aulast=Young&rft.aufirst=James&rft_id=http%3A%2F%2Fwww.netmagazine.com%2Ffeatures%2Ftop-responsive-web-design-problems-and-how-avoid-them%238&rfr_id=info%3Asid%2Fen.wikipedia.org%3AResponsive+web+design"
+            - listitem [ref=e729]:
+              - link "Jump up" [ref=e732] [cursor=pointer]:
+                - /url: "#cite_ref-29"
+                - text: ^
+              - generic [ref=e733]:
+                - generic [ref=e734]:
+                  - text: Rinaldi, Brian (September 26, 2012).
+                  - link "\"Browser testing... with Adobe Edge Inspect\"" [ref=e735] [cursor=pointer]:
+                    - /url: http://www.adobe.com/devnet/edge-inspect/articles/browser-testing-across-devices-with-adobe-edge-inspect.html
+                  - text: .
+                - generic "ctx_ver=Z39.88-2004&rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Abook&rft.genre=unknown&rft.btitle=Browser+testing...+with+Adobe+Edge+Inspect&rft.date=2012-09-26&rft.aulast=Rinaldi&rft.aufirst=Brian&rft_id=http%3A%2F%2Fwww.adobe.com%2Fdevnet%2Fedge-inspect%2Farticles%2Fbrowser-testing-across-devices-with-adobe-edge-inspect.html&rfr_id=info%3Asid%2Fen.wikipedia.org%3AResponsive+web+design"
+            - listitem [ref=e736]:
+              - link "Jump up" [ref=e739] [cursor=pointer]:
+                - /url: "#cite_ref-30"
+                - text: ^
+              - generic [ref=e740]:
+                - generic [ref=e741]:
+                  - link "\"Responsive Design View\"" [ref=e742] [cursor=pointer]:
+                    - /url: https://developer.mozilla.org/en-US/docs/Tools/Responsive_Design_View
+                  - text: . Mozilla Developer Network
+                  - generic [ref=e743]: . Retrieved May 21, 2015
+                  - text: .
+                - generic "ctx_ver=Z39.88-2004&rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Ajournal&rft.genre=unknown&rft.jtitle=Mozilla+Developer+Network&rft.atitle=Responsive+Design+View&rft_id=https%3A%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FTools%2FResponsive_Design_View&rfr_id=info%3Asid%2Fen.wikipedia.org%3AResponsive+web+design"
+            - listitem [ref=e744]:
+              - link "Jump up" [ref=e747] [cursor=pointer]:
+                - /url: "#cite_ref-31"
+                - text: ^
+              - generic [ref=e748]:
+                - generic [ref=e749]:
+                  - text: Malte Wassermann.
+                  - link "\"Responsive design testing tool – Viewport Resizer – Emulate various screen resolutions - Best developer device testing toolbar\"" [ref=e750] [cursor=pointer]:
+                    - /url: http://lab.maltewassermann.com/viewport-resizer/
+                  - text: . maltewassermann.com
+                  - generic [ref=e751]: . Retrieved May 21, 2015
+                  - text: .
+                - generic "ctx_ver=Z39.88-2004&rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Ajournal&rft.genre=unknown&rft.jtitle=maltewassermann.com&rft.atitle=Responsive+design+testing+tool+%E2%80%93+Viewport+Resizer+%E2%80%93+Emulate+various+screen+resolutions+-+Best+developer+device+testing+toolbar&rft.au=Malte+Wassermann&rft_id=http%3A%2F%2Flab.maltewassermann.com%2Fviewport-resizer%2F&rfr_id=info%3Asid%2Fen.wikipedia.org%3AResponsive+web+design"
+            - listitem [ref=e752]:
+              - link "Jump up" [ref=e755] [cursor=pointer]:
+                - /url: "#cite_ref-32"
+                - text: ^
+              - generic [ref=e756]:
+                - generic [ref=e757]:
+                  - link "\"An Overview of HTML+\"" [ref=e758] [cursor=pointer]:
+                    - /url: https://www.w3.org/MarkUp/HTMLPlus/htmlplus_7.html
+                  - text: . w3.org.
+                  - link "W3C" [ref=e759] [cursor=pointer]:
+                    - /url: /wiki/W3C
+                  - text: .
+                - generic "ctx_ver=Z39.88-2004&rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Ajournal&rft.genre=unknown&rft.jtitle=w3.org&rft.atitle=An+Overview+of+HTML%2B&rft_id=https%3A%2F%2Fwww.w3.org%2FMarkUp%2FHTMLPlus%2Fhtmlplus_7.html&rfr_id=info%3Asid%2Fen.wikipedia.org%3AResponsive+web+design"
+            - listitem [ref=e760]:
+              - link "Jump up" [ref=e763] [cursor=pointer]:
+                - /url: "#cite_ref-33"
+                - text: ^
+              - generic [ref=e764]:
+                - text: Kalbach, Jim (July 22, 2012).
+                - 'link "\"The First Responsive Design Website: Audi (circa 2002).\"" [ref=e765] [cursor=pointer]':
+                  - /url: https://experiencinginformation.wordpress.com/2012/07/22/the-first-responsive-design-website-audi-circa-2002/
+                - superscript [ref=e766]:
+                  - text: "["
+                  - link "self-published source?" [ref=e768] [cursor=pointer]:
+                    - /url: /wiki/Wikipedia:Verifiability#Self-published_sources
+                  - text: "]"
+            - listitem [ref=e769]:
+              - link "Jump up" [ref=e772] [cursor=pointer]:
+                - /url: "#cite_ref-34"
+                - text: ^
+              - generic [ref=e773]:
+                - generic [ref=e774]:
+                  - text: Adams, Cameron (September 21, 2004).
+                  - 'link "\"Resolution dependent layout: Varying layout according to browser width\"" [ref=e775] [cursor=pointer]':
+                    - /url: https://web.archive.org/web/20240224215005/http://themaninblue.com/writing/perspective/2004/09/21/
+                  - text: . The Man in Blue. Archived from
+                  - link "the original" [ref=e776] [cursor=pointer]:
+                    - /url: http://www.themaninblue.com/writing/perspective/2004/09/21/
+                  - text: on February 24, 2024
+                  - generic [ref=e777]: . Retrieved August 19, 2014
+                  - text: .
+                - generic "ctx_ver=Z39.88-2004&rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Ajournal&rft.genre=unknown&rft.jtitle=The+Man+in+Blue&rft.atitle=Resolution+dependent+layout%3A+Varying+layout+according+to+browser+width&rft.date=2004-09-21&rft.aulast=Adams&rft.aufirst=Cameron&rft_id=http%3A%2F%2Fwww.themaninblue.com%2Fwriting%2Fperspective%2F2004%2F09%2F21%2F&rfr_id=info%3Asid%2Fen.wikipedia.org%3AResponsive+web+design"
+            - listitem [ref=e778]:
+              - link "Jump up" [ref=e781] [cursor=pointer]:
+                - /url: "#cite_ref-35"
+                - text: ^
+              - generic [ref=e782]:
+                - generic [ref=e783]:
+                  - 'link "\"G146: Using liquid layout\"" [ref=e784] [cursor=pointer]':
+                    - /url: http://www.w3.org/TR/WCAG20-TECHS/G146.html
+                  - text: . w3.org
+                  - generic [ref=e785]: . Retrieved May 21, 2015
+                  - text: .
+                - generic "ctx_ver=Z39.88-2004&rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Ajournal&rft.genre=unknown&rft.jtitle=w3.org&rft.atitle=G146%3A+Using+liquid+layout&rft_id=http%3A%2F%2Fwww.w3.org%2FTR%2FWCAG20-TECHS%2FG146.html&rfr_id=info%3Asid%2Fen.wikipedia.org%3AResponsive+web+design"
+            - listitem [ref=e786]:
+              - link "Jump up" [ref=e789] [cursor=pointer]:
+                - /url: "#cite_ref-36"
+                - text: ^
+              - generic [ref=e790]:
+                - generic [ref=e791]:
+                  - link "\"Media Queries\"" [ref=e792] [cursor=pointer]:
+                    - /url: http://www.w3.org/TR/2009/CR-css3-mediaqueries-20090423/
+                  - text: . w3.org
+                  - generic [ref=e793]: . Retrieved May 21, 2015
+                  - text: .
+                - generic "ctx_ver=Z39.88-2004&rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Ajournal&rft.genre=unknown&rft.jtitle=w3.org&rft.atitle=Media+Queries&rft_id=http%3A%2F%2Fwww.w3.org%2FTR%2F2009%2FCR-css3-mediaqueries-20090423%2F&rfr_id=info%3Asid%2Fen.wikipedia.org%3AResponsive+web+design"
+            - listitem [ref=e794]:
+              - link "Jump up" [ref=e797] [cursor=pointer]:
+                - /url: "#cite_ref-37"
+                - text: ^
+              - generic [ref=e798]:
+                - generic [ref=e799]:
+                  - link "\"OutSeller Group - Organize, Optimize, Maximize\"" [ref=e800] [cursor=pointer]:
+                    - /url: https://web.archive.org/web/20170202191733/http://outseller.net/2015s-professional-responsive-web-design-offer-businesses/
+                  - text: . outseller.net. Archived from
+                  - link "the original" [ref=e801] [cursor=pointer]:
+                    - /url: http://outseller.net/2015s-professional-responsive-web-design-offer-businesses/
+                  - text: on February 2, 2017
+                  - generic [ref=e802]: . Retrieved May 21, 2015
+                  - text: .
+                - generic "ctx_ver=Z39.88-2004&rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Ajournal&rft.genre=unknown&rft.jtitle=outseller.net&rft.atitle=OutSeller+Group+-+Organize%2C+Optimize%2C+Maximize&rft_id=http%3A%2F%2Foutseller.net%2F2015s-professional-responsive-web-design-offer-businesses%2F&rfr_id=info%3Asid%2Fen.wikipedia.org%3AResponsive+web+design"
+            - listitem [ref=e803]:
+              - link "Jump up" [ref=e806] [cursor=pointer]:
+                - /url: "#cite_ref-38"
+                - text: ^
+              - generic [ref=e807]:
+                - generic [ref=e808]:
+                  - text: Grannell, Craig (January 9, 2012).
+                  - link "\"15 top web design and development trends for 2012\"" [ref=e809] [cursor=pointer]:
+                    - /url: https://web.archive.org/web/20130911092457/https://www.netmagazine.com/features/15-top-web-design-and-development-trends-2012
+                  - text: . .net Magazine. Archived from
+                  - link "the original" [ref=e810] [cursor=pointer]:
+                    - /url: https://www.netmagazine.com/features/15-top-web-design-and-development-trends-2012
+                  - text: on September 11, 2013
+                  - generic [ref=e811]: . Retrieved October 29, 2021
+                  - text: .
+                - generic "ctx_ver=Z39.88-2004&rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Abook&rft.genre=unknown&rft.btitle=15+top+web+design+and+development+trends+for+2012&rft.pub=.net+Magazine&rft.date=2012-01-09&rft.aulast=Grannell&rft.aufirst=Craig&rft_id=https%3A%2F%2Fwww.netmagazine.com%2Ffeatures%2F15-top-web-design-and-development-trends-2012&rfr_id=info%3Asid%2Fen.wikipedia.org%3AResponsive+web+design"
+            - listitem [ref=e812]:
+              - link "Jump up" [ref=e815] [cursor=pointer]:
+                - /url: "#cite_ref-mashable_2013_39-0"
+                - text: ^
+              - generic [ref=e816]:
+                - generic [ref=e817]:
+                  - text: Cashmore, Pete (December 11, 2012).
+                  - link "\"Why 2013 Is the Year of Responsive Web Design\"" [ref=e818] [cursor=pointer]:
+                    - /url: http://mashable.com/2012/12/11/responsive-web-design/
+                  - text: .
+                  - link "Mashable" [ref=e820] [cursor=pointer]:
+                    - /url: /wiki/Mashable
+                  - text: .
+                - generic "ctx_ver=Z39.88-2004&rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Ajournal&rft.genre=unknown&rft.jtitle=Mashable&rft.atitle=Why+2013+Is+the+Year+of+Responsive+Web+Design&rft.date=2012-12-11&rft.aulast=Cashmore&rft.aufirst=Pete&rft_id=http%3A%2F%2Fmashable.com%2F2012%2F12%2F11%2Fresponsive-web-design%2F&rfr_id=info%3Asid%2Fen.wikipedia.org%3AResponsive+web+design"
+            - listitem [ref=e821]:
+              - link "Jump up" [ref=e824] [cursor=pointer]:
+                - /url: "#cite_ref-40"
+                - text: ^
+              - generic [ref=e825]:
+                - generic [ref=e826]:
+                  - link "\"What is Responsive Web Design\"" [ref=e827] [cursor=pointer]:
+                    - /url: http://www.webhostdesignpost.com/webdesign/whatisresponsivewebdesign.html
+                  - text: . July 23, 2012.
+                - generic "ctx_ver=Z39.88-2004&rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Abook&rft.genre=unknown&rft.btitle=What+is+Responsive+Web+Design&rft.date=2012-07-23&rft_id=http%3A%2F%2Fwww.webhostdesignpost.com%2Fwebdesign%2Fwhatisresponsivewebdesign.html&rfr_id=info%3Asid%2Fen.wikipedia.org%3AResponsive+web+design"
+            - listitem [ref=e828]:
+              - link "Jump up" [ref=e831] [cursor=pointer]:
+                - /url: "#cite_ref-41"
+                - text: ^
+              - generic [ref=e832]:
+                - generic [ref=e833]:
+                  - text: Wroblewski, Luke (November 3, 2009).
+                  - link "\"Mobile First\"" [ref=e834] [cursor=pointer]:
+                    - /url: http://www.lukew.com/ff/entry.asp?933
+                  - text: .
+                - generic "ctx_ver=Z39.88-2004&rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Abook&rft.genre=unknown&rft.btitle=Mobile+First&rft.date=2009-11-03&rft.aulast=Wroblewski&rft.aufirst=Luke&rft_id=http%3A%2F%2Fwww.lukew.com%2Fff%2Fentry.asp%3F933&rfr_id=info%3Asid%2Fen.wikipedia.org%3AResponsive+web+design"
+            - listitem [ref=e835]:
+              - link "Jump up" [ref=e838] [cursor=pointer]:
+                - /url: "#cite_ref-Firtman_42-0"
+                - text: ^
+              - generic [ref=e839]:
+                - generic [ref=e840]:
+                  - text: Firtman, Maximiliano (July 30, 2011).
+                  - link "Programming the Mobile Web" [ref=e841] [cursor=pointer]:
+                    - /url: https://archive.org/details/programmingmobil0000firt/page/512
+                  - text: . O'Reilly Media. pp.
+                  - link "512" [ref=e842] [cursor=pointer]:
+                    - /url: https://archive.org/details/programmingmobil0000firt/page/512
+                  - text: .
+                  - link "ISBN" [ref=e843] [cursor=pointer]:
+                    - /url: /wiki/ISBN_(identifier)
+                  - link "978-0-596-80778-8" [ref=e844] [cursor=pointer]:
+                    - /url: /wiki/Special:BookSources/978-0-596-80778-8
+                  - text: .
+                - generic "ctx_ver=Z39.88-2004&rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Abook&rft.genre=book&rft.btitle=Programming+the+Mobile+Web&rft.pages=512&rft.pub=O%27Reilly+Media&rft.date=2011-07-30&rft.isbn=978-0-596-80778-8&rft.aulast=Firtman&rft.aufirst=Maximiliano&rft_id=https%3A%2F%2Farchive.org%2Fdetails%2Fprogrammingmobil0000firt%2Fpage%2F512&rfr_id=info%3Asid%2Fen.wikipedia.org%3AResponsive+web+design"
+            - listitem [ref=e845]:
+              - link "Jump up" [ref=e848] [cursor=pointer]:
+                - /url: "#cite_ref-43"
+                - text: ^
+              - generic [ref=e849]:
+                - generic [ref=e850]:
+                  - link "\"Graceful degradation versus progressive enhancement\"" [ref=e851] [cursor=pointer]:
+                    - /url: https://web.archive.org/web/20141113064723/https://docs.webplatform.org/wiki/tutorials/graceful_degradation_versus_progressive_enhancement
+                  - text: . February 3, 2009. Archived from
+                  - link "the original" [ref=e852] [cursor=pointer]:
+                    - /url: http://docs.webplatform.org/wiki/tutorials/graceful_degradation_versus_progressive_enhancement
+                  - text: on November 13, 2014.
+                - generic "ctx_ver=Z39.88-2004&rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Abook&rft.genre=unknown&rft.btitle=Graceful+degradation+versus+progressive+enhancement&rft.date=2009-02-03&rft_id=http%3A%2F%2Fdocs.webplatform.org%2Fwiki%2Ftutorials%2Fgraceful_degradation_versus_progressive_enhancement&rfr_id=info%3Asid%2Fen.wikipedia.org%3AResponsive+web+design"
+            - listitem [ref=e853]:
+              - link "Jump up" [ref=e856] [cursor=pointer]:
+                - /url: "#cite_ref-44"
+                - text: ^
+              - generic [ref=e857]:
+                - generic [ref=e858]:
+                  - text: Parker, Todd; Wachs, Maggie Costello; Jehl, Scott (February 2010).
+                  - link "Designing with Progressive Enhancement" [ref=e859] [cursor=pointer]:
+                    - /url: http://filamentgroup.com/dwpe/
+                  - text: . New Riders. p. 456.
+                  - link "ISBN" [ref=e860] [cursor=pointer]:
+                    - /url: /wiki/ISBN_(identifier)
+                  - link "978-0-321-65888-3" [ref=e861] [cursor=pointer]:
+                    - /url: /wiki/Special:BookSources/978-0-321-65888-3
+                  - generic [ref=e862]: . Retrieved March 1, 2010
+                  - text: .
+                - generic "ctx_ver=Z39.88-2004&rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Abook&rft.genre=book&rft.btitle=Designing+with+Progressive+Enhancement&rft.pages=456&rft.pub=New+Riders&rft.date=2010-02&rft.isbn=978-0-321-65888-3&rft.aulast=Parker&rft.aufirst=Todd&rft.au=Wachs%2C+Maggie+Costello&rft.au=Jehl%2C+Scott&rft_id=http%3A%2F%2Ffilamentgroup.com%2Fdwpe%2F&rfr_id=info%3Asid%2Fen.wikipedia.org%3AResponsive+web+design"
+            - listitem [ref=e863]:
+              - link "Jump up" [ref=e866] [cursor=pointer]:
+                - /url: "#cite_ref-45"
+                - text: ^
+              - generic [ref=e867]:
+                - generic [ref=e868]: "Thevenin, D.; Coutaz, J. (2002). \"Plasticity of User Interfaces: Framework and Research Agenda\". Proc. Interact'99, A. Sasse & C. Johnson Eds, IFIP IOS Press. Edinburgh. pp. 110–117."
+                - generic "ctx_ver=Z39.88-2004&rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Abook&rft.genre=conference&rft.atitle=Plasticity+of+User+Interfaces%3A+Framework+and+Research+Agenda&rft.btitle=Proc.+Interact%2799%2C+A.+Sasse+%26+C.+Johnson+Eds%2C+IFIP+IOS+Press&rft.place=Edinburgh&rft.pages=110-117&rft.date=2002&rft.aulast=Thevenin&rft.aufirst=D.&rft.au=Coutaz%2C+J.&rfr_id=info%3Asid%2Fen.wikipedia.org%3AResponsive+web+design"
+          - navigation "Design" [ref=e869]:
+            - table [ref=e870]:
+              - rowgroup [ref=e871]:
+                - row "[show] v · t · e Design" [ref=e872]:
+                  - columnheader "[show] v · t · e Design" [ref=e873]:
+                    - button "[show]" [ref=e874] [cursor=pointer]
+                    - list [ref=e876]:
+                      - listitem [ref=e877]:
+                        - link "v" [ref=e878] [cursor=pointer]:
+                          - /url: /wiki/Template:Design
+                        - text: ·
+                      - listitem [ref=e879]:
+                        - link "t" [ref=e880] [cursor=pointer]:
+                          - /url: /wiki/Template_talk:Design
+                        - text: ·
+                      - listitem [ref=e881]:
+                        - link "e" [ref=e882] [cursor=pointer]:
+                          - /url: /wiki/Special:EditPage/Template:Design
+                    - link "Design" [ref=e884] [cursor=pointer]:
+                      - /url: /wiki/Design
+                - row: ·
+                - row: "[] · · · · · ( · · ) · · · · · · · · · · · · () · · · () · · · · () · · () · · · · · · · · () · · · · · · · · () · ( · ) · · · · · · · · · · · ( · ) · · · · · · · · · · · · · · · · · ( · · ) · · · · · · · · · · · · · ·"
+                - row: "[] · · · · · · · · · · · · · · · () · · · () · · · · · () · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · ( · ) · · · · · · · · · · () · · · · · · · () · · · () · · · ( · · ) · · · · · · · · · · · · · · · ·"
+                - row: "[] · · · · · · · ( · ) · · · · · · · · · · · · · · · · · · · · () · · · · · · · · · · · ·"
+                - row: "[] · · · · · · · · · · · · · · · · · · · · · · · · · · · ( · ) · · · · · · · · · · · · · · · · · · · ·"
+          - navigation "Authority control databases Edit this at Wikidata" [ref=e885]:
+            - table [ref=e886]:
+              - rowgroup [ref=e887]:
+                - row "Authority control databases Edit this at Wikidata GND" [ref=e888]:
+                  - rowheader "Authority control databases Edit this at Wikidata" [ref=e889]:
+                    - link "Authority control databases" [ref=e890] [cursor=pointer]:
+                      - /url: /wiki/Help:Authority_control
+                    - link "Edit this at Wikidata" [ref=e892] [cursor=pointer]:
+                      - /url: https://www.wikidata.org/wiki/Q420295#identifiers
+                      - img "Edit this at Wikidata" [ref=e893]
+                  - cell "GND" [ref=e894]:
+                    - list [ref=e896]:
+                      - listitem [ref=e897]:
+                        - link "GND" [ref=e899] [cursor=pointer]:
+                          - /url: https://d-nb.info/gnd/1035443651
+        - generic [ref=e901]:
+          - link "Categories" [ref=e902] [cursor=pointer]:
+            - /url: /wiki/Help:Category
+          - text: ":"
+          - list [ref=e903]:
+            - listitem [ref=e904]:
+              - link "Responsive web design" [ref=e905] [cursor=pointer]:
+                - /url: /wiki/Category:Responsive_web_design
+            - listitem [ref=e906]:
+              - link "Internet properties established in 2001" [ref=e907] [cursor=pointer]:
+                - /url: /wiki/Category:Internet_properties_established_in_2001
+            - listitem [ref=e908]:
+              - link "Human–computer interaction" [ref=e909] [cursor=pointer]:
+                - /url: /wiki/Category:Human%E2%80%93computer_interaction
+            - listitem [ref=e910]:
+              - link "Mobile web" [ref=e911] [cursor=pointer]:
+                - /url: /wiki/Category:Mobile_web
+            - listitem [ref=e912]:
+              - link "Usability" [ref=e913] [cursor=pointer]:
+                - /url: /wiki/Category:Usability
+            - listitem [ref=e914]:
+              - link "User interfaces" [ref=e915] [cursor=pointer]:
+                - /url: /wiki/Category:User_interfaces
+            - listitem [ref=e916]:
+              - link "Web design" [ref=e917] [cursor=pointer]:
+                - /url: /wiki/Category:Web_design
+            - listitem [ref=e918]:
+              - link "2010s neologisms" [ref=e919] [cursor=pointer]:
+                - /url: /wiki/Category:2010s_neologisms
+    - contentinfo [ref=e921]:
+      - list [ref=e922]:
+        - listitem [ref=e923]: This page was last edited on 6 March 2026, at 11:35 (UTC).
+        - listitem [ref=e924]:
+          - text: Text is available under the
+          - link "Creative Commons Attribution-ShareAlike 4.0 License" [ref=e925] [cursor=pointer]:
+            - /url: /wiki/Wikipedia:Text_of_the_Creative_Commons_Attribution-ShareAlike_4.0_International_License
+          - text: ; additional terms may apply. By using this site, you agree to the
+          - link "Terms of Use" [ref=e926] [cursor=pointer]:
+            - /url: https://foundation.wikimedia.org/wiki/Special:MyLanguage/Policy:Terms_of_Use
+          - text: and
+          - link "Privacy Policy" [ref=e927] [cursor=pointer]:
+            - /url: https://foundation.wikimedia.org/wiki/Special:MyLanguage/Policy:Privacy_policy
+          - text: . Wikipedia® is a registered trademark of the
+          - link "Wikimedia Foundation, Inc." [ref=e928] [cursor=pointer]:
+            - /url: https://wikimediafoundation.org/
+          - text: ", a non-profit organization."
+      - list:
+        - listitem [ref=e929]:
+          - link "Privacy policy" [ref=e930] [cursor=pointer]:
+            - /url: https://foundation.wikimedia.org/wiki/Special:MyLanguage/Policy:Privacy_policy
+        - listitem [ref=e931]:
+          - link "About Wikipedia" [ref=e932] [cursor=pointer]:
+            - /url: /wiki/Wikipedia:About
+        - listitem [ref=e933]:
+          - link "Disclaimers" [ref=e934] [cursor=pointer]:
+            - /url: /wiki/Wikipedia:General_disclaimer
+        - listitem [ref=e935]:
+          - link "Contact Wikipedia" [ref=e936] [cursor=pointer]:
+            - /url: //en.wikipedia.org/wiki/Wikipedia:Contact_us
+        - listitem [ref=e937]:
+          - link "Legal & safety contacts" [ref=e938] [cursor=pointer]:
+            - /url: https://foundation.wikimedia.org/wiki/Special:MyLanguage/Legal:Wikimedia_Foundation_Legal_and_Safety_Contact_Information
+        - listitem [ref=e939]:
+          - link "Code of Conduct" [ref=e940] [cursor=pointer]:
+            - /url: https://foundation.wikimedia.org/wiki/Special:MyLanguage/Policy:Universal_Code_of_Conduct
+        - listitem [ref=e941]:
+          - link "Developers" [ref=e942] [cursor=pointer]:
+            - /url: https://developer.wikimedia.org
+        - listitem [ref=e943]:
+          - link "Statistics" [ref=e944] [cursor=pointer]:
+            - /url: https://stats.wikimedia.org/#/en.wikipedia.org
+        - listitem [ref=e945]:
+          - link "Cookie statement" [ref=e946] [cursor=pointer]:
+            - /url: https://foundation.wikimedia.org/wiki/Special:MyLanguage/Policy:Cookie_statement
+        - listitem [ref=e947]:
+          - link "Mobile view" [ref=e948] [cursor=pointer]:
+            - /url: //en.wikipedia.org/w/index.php?title=Responsive_web_design&mobileaction=toggle_view_mobile
+      - list [ref=e949]:
+        - listitem [ref=e950]:
+          - link "Wikimedia Foundation" [ref=e951] [cursor=pointer]:
+            - /url: https://www.wikimedia.org/
+            - img "Wikimedia Foundation" [ref=e953]
+        - listitem [ref=e954]:
+          - link "Powered by MediaWiki" [ref=e955] [cursor=pointer]:
+            - /url: https://www.mediawiki.org/
+            - img "Powered by MediaWiki" [ref=e957]
+  - generic [ref=e958]:
+    - list
