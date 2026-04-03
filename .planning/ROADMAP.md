@@ -42,10 +42,10 @@
 8. App manifest is served with correct icons and theme colors for home-screen installation
 
 **Plans**: 8 plans
-- [ ] 01-01-PLAN.md — Base Scaffold (package.json, tsconfig, vite.config, main.tsx, App.tsx)
+- [x] 01-01-PLAN.md — Base Scaffold (package.json, tsconfig, vite.config, main.tsx, App.tsx)
 - [x] 01-02-PLAN.md — Tooling Config (ESLint, Prettier, Tailwind, .env.example)
 - [x] 01-03-PLAN.md — Firebase & Emulators (firebase.json, rules stubs, config.ts)
-- [ ] 01-04-PLAN.md — Feature Structure (providers, router, folder structure)
+- [x] 01-04-PLAN.md — Feature Structure (providers, router, folder structure)
 - [ ] 01-05-PLAN.md — PWA Configuration (vite-plugin-pwa, manifest, icons)
 - [ ] 01-06-PLAN.md — Vitest Setup (test runner, smoke test)
 - [ ] 01-07-PLAN.md — Playwright Setup (e2e smoke tests)
