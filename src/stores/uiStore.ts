@@ -1,0 +1,23 @@
+import { create } from 'zustand'
+
+export type ActivePanel = 'report-detail' | 'contact-detail' | 'announcement-detail' | 'settings' | null
+export type ActiveTab = 'feed' | 'map' | 'report' | 'alerts' | 'profile'
+
+interface UIState {
+  drawerOpen: boolean
+  setDrawerOpen: (open: boolean) => void
+  activePanel: ActivePanel
+  setActivePanel: (panel: ActivePanel) => void
+  activeTab: ActiveTab
+  setActiveTab: (tab: ActiveTab) => void
+}
+
+export const useUIStore = create<UIState>((set) => ({
+  drawerOpen: false,
+  setDrawerOpen: (open) => set({ drawerOpen: open }),
+  activePanel: null,
+  setActivePanel: (panel) =>
+    set({ activePanel: panel, drawerOpen: panel !== null }),
+  activeTab: 'feed',
+  setActiveTab: (tab) => set({ activeTab: tab }),
+}))
