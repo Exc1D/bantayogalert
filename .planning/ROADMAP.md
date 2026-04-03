@@ -168,7 +168,7 @@
 - [x] 05-01-PLAN.md — Infrastructure + Cloud Function (submitReport CF, ReportFormSchema, /app/report route)
 - [x] 05-02-PLAN.md — LocationPickerMap + Draft Hook + Media Upload
 - [x] 05-03-PLAN.md — Multi-step ReportForm Wizard (4 step components)
-- [ ] 05-04-PLAN.md — Desktop/Mobile Shell Integration + Track Page
+- [x] 05-04-PLAN.md — Desktop/Mobile Shell Integration + Track Page
 
 ---
 
