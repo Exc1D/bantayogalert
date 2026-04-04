@@ -11,6 +11,9 @@ import { validateAuthenticated, validateMunicipalAdmin } from '../security'
 import { buildActivityEntry, validateVersion, validateTransition } from './shared'
 import { WORKFLOW_TO_OWNER_STATUS } from '../types/status'
 import { WorkflowState } from '../types/report'
+import { updateAnalyticsForStateChange } from '../analytics/updateAnalyticsForStateChange'
+import { appendAuditEntry } from '../audit/shared'
+import type { AuditActorRole } from '../types/audit'
 
 const InProgressSchema = z.object({
   reportId: z.string(),
@@ -49,11 +52,12 @@ export const triageInProgress = functions.https.onCall(
       validateTransition(currentState, WorkflowState.InProgress, reportId)
 
       const claims = context.auth!.token
+      const now = new Date().toISOString()
       const entry = buildActivityEntry('in_progress', claims.uid as string)
 
       tx.update(db.collection('reports').doc(reportId), {
         workflowState: WorkflowState.InProgress,
-        updatedAt: new Date().toISOString(),
+        updatedAt: now,
       })
 
       tx.update(db.collection('report_private').doc(reportId), {
@@ -64,6 +68,34 @@ export const triageInProgress = functions.https.onCall(
       tx.update(db.collection('report_ops').doc(reportId), {
         version: (opsData.version ?? 1) + 1,
         activity: FieldValue.arrayUnion(entry),
+      })
+
+      await updateAnalyticsForStateChange(tx, db, {
+        reportId,
+        municipalityCode,
+        provinceCode: 'CMN',
+        barangayCode: reportData.barangayCode as string,
+        incidentType: reportData.type,
+        severity: reportData.severity,
+        createdAt: reportData.createdAt as string,
+        previousState: currentState,
+        nextState: WorkflowState.InProgress,
+        eventAt: now,
+      })
+
+      await appendAuditEntry(tx, db, {
+        entityType: 'report',
+        entityId: reportId,
+        action: 'triage_in_progress',
+        actorUid: context.auth!.uid,
+        actorRole: (claims.role as AuditActorRole | undefined) ?? 'citizen',
+        municipalityCode,
+        provinceCode: 'CMN',
+        createdAt: now,
+        details: {
+          fromState: currentState,
+          toState: WorkflowState.InProgress,
+        },
       })
     })
 

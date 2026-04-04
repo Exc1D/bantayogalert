@@ -20,7 +20,6 @@ import { getFirestore } from 'firebase-admin/firestore'
 import { z } from 'zod'
 
 // ngeohash - using require to avoid type declaration issues
-// eslint-disable-next-line @typescript-eslint/no-var-requires
 const ngeohash = require('ngeohash')
 
 import {
@@ -29,6 +28,10 @@ import {
   incrementRateLimit,
   sanitizeReportInput,
 } from '../security'
+import { updateAnalyticsForStateChange } from '../analytics/updateAnalyticsForStateChange'
+import { appendAuditEntry } from '../audit/shared'
+import type { AuditActorRole } from '../types/audit'
+import { IncidentType, Severity, WorkflowState } from '../types/report'
 
 // User role values - matching the const in auth/claims.ts
 const CITIZEN_ROLE = 'citizen'
@@ -171,6 +174,36 @@ export const submitReport = functions.https.onCall(
         id: reportId,
         municipalityCode: sanitizedData.municipalityCode,
         version: 1,
+      })
+
+      await updateAnalyticsForStateChange(tx, db, {
+        reportId,
+        municipalityCode: sanitizedData.municipalityCode,
+        provinceCode: 'CMN',
+        barangayCode: sanitizedData.barangayCode,
+        incidentType: sanitizedData.type as IncidentType,
+        severity: sanitizedData.severity as Severity,
+        createdAt: now,
+        previousState: null,
+        nextState: WorkflowState.Pending,
+        eventAt: now,
+      })
+
+      await appendAuditEntry(tx, db, {
+        entityType: 'report',
+        entityId: reportId,
+        action: 'report_submit',
+        actorUid: userId,
+        actorRole: (role as AuditActorRole | undefined) ?? 'citizen',
+        municipalityCode: sanitizedData.municipalityCode,
+        provinceCode: 'CMN',
+        createdAt: now,
+        details: {
+          type: sanitizedData.type,
+          severity: sanitizedData.severity,
+          barangayCode: sanitizedData.barangayCode,
+          municipalityCode: sanitizedData.municipalityCode,
+        },
       })
     })
 

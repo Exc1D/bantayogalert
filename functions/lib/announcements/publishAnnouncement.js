@@ -41,6 +41,7 @@ const claims_1 = require("../auth/claims");
 const validateAuth_1 = require("../security/validateAuth");
 const announcement_1 = require("../types/announcement");
 const sendAnnouncementPush_1 = require("./sendAnnouncementPush");
+const shared_1 = require("../audit/shared");
 const PublishAnnouncementSchema = zod_1.z.object({
     announcementId: zod_1.z.string().min(1),
 });
@@ -91,6 +92,26 @@ exports.publishAnnouncement = functions.https.onCall(async (data, context) => {
     catch (error) {
         console.error('Announcement push delivery failed after publication', announcementId, error);
     }
+    await (0, shared_1.appendAuditEntry)(null, db, {
+        entityType: 'announcement',
+        entityId: announcementId,
+        action: 'announcement_publish',
+        actorUid: context.auth.uid,
+        actorRole: context.auth.token.role ?? 'citizen',
+        municipalityCode: announcement.targetScope.type === 'province'
+            ? null
+            : announcement.targetScope.municipalityCodes[0] ?? null,
+        provinceCode: 'CMN',
+        createdAt: now,
+        details: {
+            status: announcement_1.AnnouncementStatus.Published,
+            targetScopeType: announcement.targetScope.type,
+            municipalityCodes: 'municipalityCodes' in announcement.targetScope
+                ? announcement.targetScope.municipalityCodes
+                : [],
+            delivery,
+        },
+    });
     return {
         success: true,
         announcementId,

@@ -1,6 +1,6 @@
 import { useEffect, useState, type ReactNode } from 'react'
 import { NavLink, useLocation } from 'react-router-dom'
-import { Bell, LayoutList, Shield, User, Users } from 'lucide-react'
+import { BarChart3, Bell, History, LayoutList, Shield, User, Users } from 'lucide-react'
 import { MapContainerWrapper } from './MapContainerWrapper'
 import { WorkspaceDrawer } from './WorkspaceDrawer'
 import { ReportFeed } from '@/components/report/ReportFeed'
@@ -43,6 +43,18 @@ function NavRail() {
       label: 'Admin',
       href: '/app/admin',
       icon: Shield,
+      visible: isAdmin,
+    },
+    {
+      label: 'Analytics',
+      href: '/app/admin/analytics',
+      icon: BarChart3,
+      visible: isAdmin,
+    },
+    {
+      label: 'Audit',
+      href: '/app/admin/audit',
+      icon: History,
       visible: isAdmin,
     },
     {
@@ -98,6 +110,8 @@ export function DesktopShell({ children }: DesktopShellProps) {
     '/app/contacts',
     '/app/admin',
     '/app/admin/alerts',
+    '/app/admin/analytics',
+    '/app/admin/audit',
   ])
 
   const panelContent =

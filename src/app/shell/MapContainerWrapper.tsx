@@ -3,6 +3,7 @@ import L from 'leaflet'
 import 'leaflet/dist/leaflet.css'
 import { MunicipalityBoundaries } from '@/components/map/MunicipalityBoundaries'
 import { ReportMarkers } from '@/components/map/ReportMarkers'
+import { AnalyticsHeatmapOverlay } from '@/components/map/AnalyticsHeatmapOverlay'
 
 interface MapContextValue {
   mapRef: React.RefObject<L.Map | null>
@@ -49,6 +50,7 @@ export function MapContainerWrapper({ className = '', children }: MapContainerWr
       <div ref={containerRef} className={`h-full w-full ${className}`} />
       <MunicipalityBoundaries />
       <ReportMarkers />
+      <AnalyticsHeatmapOverlay />
       {children}
     </MapRefContext.Provider>
   )

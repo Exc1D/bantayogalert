@@ -18,15 +18,15 @@ Production-grade disaster reporting, official alerting, emergency coordination, 
 - [x] Citizens view their profile, track submitted reports with owner status and activity timeline (Phase 07)
 - [x] Citizens receive municipality-scoped and province-wide official alerts inside the app and through browser push wiring (Phase 10)
 - [x] Municipal Admins create municipality-scoped announcements with draft, publish, and cancel flows (Phase 10)
+- [x] Municipal Admins view scoped analytics dashboards and audit trails without raw client-side report scans (Phase 11)
 - [x] Provincial Superadmins can target municipality, multi-municipality, or province-wide alert scope (Phase 10)
+- [x] Provincial Superadmins access province-wide analytics, drill-down, audit history, and disaster-map overlays (Phase 11)
 
 ### Active
 - [ ] Municipal Admins triage, verify, reject, dispatch, acknowledge, and resolve reports within their municipality
 - [ ] Municipal Admins route reports to responder contacts with snapshot-captured contact details
 - [ ] Municipal Admins manage a local responder contacts directory
-- [ ] Municipal Admins view scoped analytics and audit trails
 - [ ] Provincial Superadmins oversee all reports and triage operations across all 12 municipalities
-- [ ] Provincial Superadmins access full analytics, audit, and disaster-mapping data
 - [ ] Platform works on desktop (≥1280px) as a map-first command center with persistent Leaflet map and right-side workspace drawer
 - [ ] Platform works on mobile (≤768px) as a feed-first mini social app with bottom-tab navigation
 - [ ] Map never unmounts, resets viewport, or refetches when workspace drawer opens or closes
@@ -101,6 +101,8 @@ Established the production-grade project scaffold:
 | Contact snapshots at dispatch time | Later edits to contact don't rewrite historical routing events | — Pending Phase 8 |
 | Service worker Firebase config is handed off through IndexedDB | Files in `public/` cannot read Vite env vars directly; runtime config keeps the FCM worker deploy-safe | ✓ Phase 10 |
 | Browser clients subscribe to FCM topics through a callable Cloud Function | The web FCM SDK cannot subscribe tokens to topics directly, so the server mediates municipality/province subscriptions | ✓ Phase 10 |
+| Analytics and audit use route-backed admin workspaces with aggregate-only reads | Preserves the persistent map shell while keeping clients off raw reports and `report_ops` scans | ✓ Phase 11 |
+| Global immutable `audit` documents complement `report_ops.activity` | Cross-entity audit browsing needs a single searchable stream beyond report-local history | ✓ Phase 11 |
 
 ## Evolution
 
@@ -150,4 +152,16 @@ Established the official alerting layer:
 - **Alerts UI**: `/app/alerts` feed for consumers and `/app/admin/alerts` authoring flow for admins
 - **Shell integration**: Alerts surfaced in desktop/mobile navigation and linked from the admin queue
 
-*Last updated: 2026-04-04 after Phase 10*
+## Phase 11 Outcomes
+
+**Phase 11 (Analytics & Disaster Mapping) — COMPLETED 2026-04-04**
+
+Established the analytics and audit layer:
+
+- **Aggregate analytics pipeline**: Cloud Functions maintain municipality and province aggregate documents plus a scheduled daily rollup for weekly/monthly buckets
+- **Global audit stream**: Sensitive report, contact, announcement, and role mutations now emit immutable `audit/{auditId}` entries
+- **Admin analytics route**: `/app/admin/analytics` renders scoped KPI cards, trend charts, timing stats, municipality drill-down, and hotspot rankings
+- **Disaster-map overlay**: Aggregate hotspot counts can be toggled onto the persistent desktop map without replacing the map instance
+- **Admin audit route**: `/app/admin/audit` renders filtered, paginated audit history with expandable event details
+- **Shell integration**: Analytics and Audit are exposed in desktop navigation and mobile admin shortcuts
+*Last updated: 2026-04-04 after Phase 11*

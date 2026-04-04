@@ -4,6 +4,8 @@ import { FieldValue } from 'firebase-admin/firestore'
 import { UpdateContactSchema } from '../types/contact'
 import { sanitizeContactInput } from '../security/sanitize'
 import { validateMunicipalAdmin } from '../security/validateAuth'
+import { appendAuditEntry } from '../audit/shared'
+import type { AuditActorRole } from '../types/audit'
 
 export const updateContact = functions.https.onCall(async (data, context) => {
   if (!context.auth) {
@@ -43,6 +45,19 @@ export const updateContact = functions.https.onCall(async (data, context) => {
   await contactRef.update({
     ...sanitizedUpdates,
     updatedAt: FieldValue.serverTimestamp(),
+  })
+
+  await appendAuditEntry(null, db, {
+    entityType: 'contact',
+    entityId: id,
+    action: 'contact_update',
+    actorUid: context.auth.uid,
+    actorRole: (context.auth.token.role as AuditActorRole | undefined) ?? 'citizen',
+    municipalityCode,
+    provinceCode: 'CMN',
+    details: {
+      updatedFields: Object.keys(sanitizedUpdates).sort(),
+    },
   })
 
   return { success: true }

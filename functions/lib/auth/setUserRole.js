@@ -35,7 +35,9 @@ var __importStar = (this && this.__importStar) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.setUserRole = void 0;
 const functions = __importStar(require("firebase-functions"));
+const admin = __importStar(require("firebase-admin"));
 const claims_1 = require("./claims");
+const shared_1 = require("../audit/shared");
 const VALID_ROLES = ['citizen', 'municipal_admin', 'provincial_superadmin'];
 const MUNICIPALITY_CODE_REGEX = /^[A-Z]{3,4}$/;
 exports.setUserRole = functions.https.onCall(async (data, context) => {
@@ -80,6 +82,20 @@ exports.setUserRole = functions.https.onCall(async (data, context) => {
     };
     // Set claims atomically on Firestore doc and ID token
     await (0, claims_1.setCustomClaims)(data.uid, claims);
+    await (0, shared_1.appendAuditEntry)(null, admin.firestore(), {
+        entityType: 'user',
+        entityId: data.uid,
+        action: 'user_role_set',
+        actorUid: context.auth.uid,
+        actorRole: callerClaims.role ??
+            'provincial_superadmin',
+        municipalityCode: data.municipalityCode,
+        provinceCode: claims.provinceCode,
+        details: {
+            role: data.role,
+            municipalityCode: data.municipalityCode,
+        },
+    });
     return {
         success: true,
         role: claims.role,

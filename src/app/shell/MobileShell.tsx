@@ -26,13 +26,29 @@ function ProfileContent() {
     <div className="p-4 space-y-4">
       <h2 className="text-base font-semibold text-gray-900">Profile</h2>
       {isAdmin && (
-        <button
-          onClick={() => navigate('/app/admin')}
-          className="w-full text-left px-4 py-3 bg-blue-50 rounded-lg border border-blue-200 hover:bg-blue-100 transition-colors"
-        >
-          <p className="text-sm font-medium text-blue-700">Admin Panel</p>
-          <p className="text-xs text-blue-500 mt-0.5">Access triage queue and admin tools</p>
-        </button>
+        <div className="space-y-3">
+          <button
+            onClick={() => navigate('/app/admin')}
+            className="w-full text-left px-4 py-3 bg-blue-50 rounded-lg border border-blue-200 hover:bg-blue-100 transition-colors"
+          >
+            <p className="text-sm font-medium text-blue-700">Admin Panel</p>
+            <p className="text-xs text-blue-500 mt-0.5">Access triage queue and admin tools</p>
+          </button>
+          <button
+            onClick={() => navigate('/app/admin/analytics')}
+            className="w-full text-left px-4 py-3 bg-amber-50 rounded-lg border border-amber-200 hover:bg-amber-100 transition-colors"
+          >
+            <p className="text-sm font-medium text-amber-700">Analytics</p>
+            <p className="text-xs text-amber-600 mt-0.5">Review report metrics and hotspots</p>
+          </button>
+          <button
+            onClick={() => navigate('/app/admin/audit')}
+            className="w-full text-left px-4 py-3 bg-slate-50 rounded-lg border border-slate-200 hover:bg-slate-100 transition-colors"
+          >
+            <p className="text-sm font-medium text-slate-800">Audit Log</p>
+            <p className="text-xs text-slate-500 mt-0.5">Inspect admin activity history</p>
+          </button>
+        </div>
       )}
     </div>
   )
@@ -105,6 +121,8 @@ export function MobileShell({ children }: MobileShellProps) {
   const isAdminRoute =
     location.pathname === '/app/admin' ||
     location.pathname === '/app/admin/alerts' ||
+    location.pathname === '/app/admin/analytics' ||
+    location.pathname === '/app/admin/audit' ||
     location.pathname === '/app/contacts'
   const showsRouteContent =
     isReportRoute || isTrackedReportRoute || isAlertRoute || isAdminRoute

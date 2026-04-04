@@ -11,6 +11,8 @@ import {
   AnnouncementStatus,
   type AnnouncementInput,
 } from '../types/announcement'
+import { appendAuditEntry } from '../audit/shared'
+import type { AuditActorRole } from '../types/audit'
 
 export const createAnnouncement = functions.https.onCall(
   async (data: unknown, context) => {
@@ -60,6 +62,28 @@ export const createAnnouncement = functions.https.onCall(
       createdBy: context.auth!.uid,
       createdAt: now,
       updatedAt: now,
+    })
+
+    await appendAuditEntry(null, db, {
+      entityType: 'announcement',
+      entityId: announcementRef.id,
+      action: 'announcement_create',
+      actorUid: context.auth!.uid,
+      actorRole: (claims.role as AuditActorRole | undefined) ?? 'citizen',
+      municipalityCode:
+        announcementData.targetScope.type === 'province'
+          ? null
+          : announcementData.targetScope.municipalityCodes[0] ?? null,
+      provinceCode: 'CMN',
+      createdAt: now,
+      details: {
+        status: AnnouncementStatus.Draft,
+        targetScopeType: announcementData.targetScope.type,
+        municipalityCodes:
+          'municipalityCodes' in announcementData.targetScope
+            ? announcementData.targetScope.municipalityCodes
+            : [],
+      },
     })
 
     return {

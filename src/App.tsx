@@ -11,6 +11,8 @@ import ContactsRoute from './app/contacts/page'
 import { AlertsFeed } from './components/alerts/AlertsFeed'
 import { CreateAlertForm } from './components/alerts/CreateAlertForm'
 import { AdminQueueFeed } from './components/report/AdminQueueFeed'
+import { AdminAnalyticsPage } from './app/admin/analytics/page'
+import { AdminAuditPage } from './app/admin/audit/page'
 
 export function App() {
   return (
@@ -56,6 +58,22 @@ export function App() {
             element={
               <AdminRoute>
                 <CreateAlertForm />
+              </AdminRoute>
+            }
+          />
+          <Route
+            path="admin/analytics"
+            element={
+              <AdminRoute>
+                <AdminAnalyticsPage />
+              </AdminRoute>
+            }
+          />
+          <Route
+            path="admin/audit"
+            element={
+              <AdminRoute>
+                <AdminAuditPage />
               </AdminRoute>
             }
           />

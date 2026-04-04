@@ -47,6 +47,8 @@ const security_1 = require("../security");
 const shared_1 = require("./shared");
 const status_1 = require("../types/status");
 const report_1 = require("../types/report");
+const updateAnalyticsForStateChange_1 = require("../analytics/updateAnalyticsForStateChange");
+const shared_2 = require("../audit/shared");
 const VerifySchema = zod_1.z.object({
     reportId: zod_1.z.string(),
     expectedVersion: zod_1.z.number(),
@@ -82,11 +84,12 @@ exports.triageVerify = functions.https.onCall(async (data, context) => {
         (0, shared_1.validateTransition)(currentState, report_1.WorkflowState.Verified, reportId);
         // Build activity entry
         const claims = context.auth.token;
+        const now = new Date().toISOString();
         const entry = (0, shared_1.buildActivityEntry)('verified', claims.uid);
         // Update reports/{reportId}: workflowState → verified
         tx.update(db.collection('reports').doc(reportId), {
             workflowState: report_1.WorkflowState.Verified,
-            updatedAt: new Date().toISOString(),
+            updatedAt: now,
         });
         // Update report_private/{reportId}: ownerStatus → verified
         tx.update(db.collection('report_private').doc(reportId), {
@@ -96,7 +99,35 @@ exports.triageVerify = functions.https.onCall(async (data, context) => {
         // Update report_ops/{reportId}: version + 1, add activity entry
         tx.update(db.collection('report_ops').doc(reportId), {
             version: (opsData.version ?? 1) + 1,
+            verifiedAt: now,
             activity: firestore_1.FieldValue.arrayUnion(entry),
+        });
+        await (0, updateAnalyticsForStateChange_1.updateAnalyticsForStateChange)(tx, db, {
+            reportId,
+            municipalityCode,
+            provinceCode: 'CMN',
+            barangayCode: reportData.barangayCode,
+            incidentType: reportData.type,
+            severity: reportData.severity,
+            createdAt: reportData.createdAt,
+            previousState: currentState,
+            nextState: report_1.WorkflowState.Verified,
+            verifiedAt: now,
+            eventAt: now,
+        });
+        await (0, shared_2.appendAuditEntry)(tx, db, {
+            entityType: 'report',
+            entityId: reportId,
+            action: 'triage_verify',
+            actorUid: context.auth.uid,
+            actorRole: claims.role ?? 'citizen',
+            municipalityCode,
+            provinceCode: 'CMN',
+            createdAt: now,
+            details: {
+                fromState: currentState,
+                toState: report_1.WorkflowState.Verified,
+            },
         });
     });
     return { success: true };

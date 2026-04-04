@@ -11,6 +11,8 @@ import { z } from 'zod'
 
 import { validateAuthenticated, validateMunicipalAdmin } from '../security'
 import { buildActivityEntry, validateVersion } from './shared'
+import { appendAuditEntry } from '../audit/shared'
+import type { AuditActorRole } from '../types/audit'
 
 const UpdateNotesSchema = z.object({
   reportId: z.string(),
@@ -42,6 +44,7 @@ export const triageUpdateNotes = functions.https.onCall(
       validateMunicipalAdmin(context, municipalityCode)
 
       const claims = context.auth!.token
+      const now = new Date().toISOString()
       const entry = buildActivityEntry('notes_updated', claims.uid as string, {
         notesLength: internalNotes.length,
       })
@@ -55,6 +58,20 @@ export const triageUpdateNotes = functions.https.onCall(
       tx.update(db.collection('report_ops').doc(reportId), {
         version: (opsData.version ?? 1) + 1,
         activity: FieldValue.arrayUnion(entry),
+      })
+
+      await appendAuditEntry(tx, db, {
+        entityType: 'report',
+        entityId: reportId,
+        action: 'triage_update_notes',
+        actorUid: context.auth!.uid,
+        actorRole: (claims.role as AuditActorRole | undefined) ?? 'citizen',
+        municipalityCode,
+        provinceCode: 'CMN',
+        createdAt: now,
+        details: {
+          notesLength: internalNotes.length,
+        },
       })
     })
 
