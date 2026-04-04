@@ -1,4 +1,0 @@
-[    1453ms] [ERROR] Failed to load resource: net::ERR_HTTP2_PROTOCOL_ERROR @ https://www.adobe.com/etc.clientlibs/globalnav/clientlibs/base/polyfills.js:0
-[    1453ms] [ERROR] Failed to load resource: net::ERR_HTTP2_PROTOCOL_ERROR @ https://www.adobe.com/etc.clientlibs/globalnav/clientlibs/base/feds.js:0
-[    1454ms] [ERROR] Failed to load resource: net::ERR_HTTP2_PROTOCOL_ERROR @ https://www.adobe.com/marketingtech/main.min.js:0
-[    1474ms] [ERROR] Failed to load resource: net::ERR_HTTP2_PROTOCOL_ERROR @ https://www.adobe.com/etc.clientlibs/globalnav/clientlibs/base/feds.css:0

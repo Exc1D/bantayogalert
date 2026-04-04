@@ -1,3 +1,0 @@
-[     580ms] [LOG] Web Vitals CLS 94 {event: CLS, eventCategory: Web Vitals, eventLabel: v5-1775216430746-2721975591975, eventModel: Object} @ :0
-[     586ms] [LOG] Web Vitals LCP 640 {event: LCP, eventCategory: Web Vitals, eventLabel: v5-1775216430746-6849616208228, eventModel: Object} @ :0
-[     596ms] [ERROR] Failed to load resource: the server responded with a status of 404 () @ https://web.dev/articles/perceived-performance:0

@@ -1,7 +1,0 @@
-[     692ms] [ERROR] Failed to load resource: the server responded with a status of 404 () @ https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_breakpoints:0
-[     779ms] [WARNING] %cairgap.js%c Report-only mode enabled font-size:larger;font-weight:bold;border-radius:0.25em;padding:0.08em 0.25em;;color:amber;background-color:#6e3e00  @ https://transcend-cdn.com/cm/d556c3a1-e57c-4bdf-a490-390a1aebf6dd/airgap.js:5
-[    1291ms] [INFO] (Glean.core.Upload.PingUploadManager) Ping cff50324-a020-4ebb-8f31-fe67d5e21106 successfully sent 200. @ https://developer.mozilla.org/static/client/8903.f870aafb338b203a.js:0
-[    2150ms] [INFO] (Glean.core.Upload.PingUploadManager) Ping 19f1c8ed-4ca2-4764-9b16-d1c14ef67a9f successfully sent 200. @ https://developer.mozilla.org/static/client/8903.f870aafb338b203a.js:0
-[    2151ms] [INFO] (Glean.core.Upload.PingUploadManager) Ping 907d09c6-934a-4c0f-afe3-f7d8e0f440cf successfully sent 200. @ https://developer.mozilla.org/static/client/8903.f870aafb338b203a.js:0
-[    3157ms] [INFO] (Glean.core.Upload.PingUploadManager) Ping a2809a4f-322e-4368-84f8-fae285211f3f successfully sent 200. @ https://developer.mozilla.org/static/client/8903.f870aafb338b203a.js:0
-[    3158ms] [INFO] (Glean.core.Upload.PingUploadManager) Ping de2f4b9e-c0c3-451c-aec4-8b3180ceab7f successfully sent 200. @ https://developer.mozilla.org/static/client/8903.f870aafb338b203a.js:0
