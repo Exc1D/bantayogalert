@@ -81,6 +81,9 @@ export interface ReportPrivate {
 
 export interface ReportOps {
   id: string
+  municipalityCode: string  // enables server-side municipality filtering
+  version: number            // starts at 1, incremented on each triage action
+  activity?: ActivityLogEntry[]  // triage action audit log
   dispatchNotes?: string
   routingDestination?: string
   assignedContactId?: string

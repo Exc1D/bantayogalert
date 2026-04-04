@@ -7,9 +7,33 @@ import { ReportMarkers } from '@/components/map/ReportMarkers'
 import { ReportFeed } from '@/components/report/ReportFeed'
 import { FilterBar } from '@/components/map/FilterBar'
 import { useVerifiedReportsListener } from '@/hooks/useVerifiedReportsListener'
+import { useAuth } from '@/lib/auth/hooks'
+import { UserRole } from '@/types/user'
 
 interface MobileShellProps {
   children?: ReactNode
+}
+
+function ProfileContent() {
+  const { customClaims } = useAuth()
+  const navigate = useNavigate()
+  const role = customClaims?.role ?? UserRole.Citizen
+  const isAdmin = role === UserRole.MunicipalAdmin || role === UserRole.ProvincialSuperadmin
+
+  return (
+    <div className="p-4 space-y-4">
+      <h2 className="text-base font-semibold text-gray-900">Profile</h2>
+      {isAdmin && (
+        <button
+          onClick={() => navigate('/app/admin')}
+          className="w-full text-left px-4 py-3 bg-blue-50 rounded-lg border border-blue-200 hover:bg-blue-100 transition-colors"
+        >
+          <p className="text-sm font-medium text-blue-700">Admin Panel</p>
+          <p className="text-xs text-blue-500 mt-0.5">Access triage queue and admin tools</p>
+        </button>
+      )}
+    </div>
+  )
 }
 
 const TABS: { id: ActiveTab; label: string }[] = [
@@ -41,7 +65,7 @@ function TabContent({ tab }: { tab: ActiveTab }) {
     case 'alerts':
       return <div className="p-4">Alerts Content</div>
     case 'profile':
-      return <div className="p-4">Profile Content</div>
+      return <ProfileContent />
     case 'report':
       // Report tab navigates to /app/report which renders ReportFormMobileWrapper
       return null

@@ -4,6 +4,7 @@ import { useUIStore, type ActivePanel } from '@/stores/uiStore'
 import { useMap } from './MapContainerWrapper'
 import { ReportFormDesktopWrapper } from '../report/ReportFormDesktopWrapper'
 import { ReportDetailPanel } from '@/components/report/ReportDetailPanel'
+import { AdminReportDetailPanel } from '@/components/report/AdminReportDetailPanel'
 
 interface WorkspaceDrawerProps {
   // mapRef removed — now accessed via useMap() context
@@ -15,6 +16,7 @@ const PANEL_LABELS: Record<NonNullable<ActivePanel>, string> = {
   'announcement-detail': 'Announcement Detail',
   'report-form': 'Submit Report',
   settings: 'Settings',
+  'admin-report-detail': 'Report Detail',
 }
 
 function DrawerContent({ panel }: { panel: ActivePanel }) {
@@ -27,6 +29,10 @@ function DrawerContent({ panel }: { panel: ActivePanel }) {
   if (panel === 'report-detail') {
     if (!selectedReportId) return null
     return <ReportDetailPanel reportId={selectedReportId} />
+  }
+  if (panel === 'admin-report-detail') {
+    if (!selectedReportId) return null
+    return <AdminReportDetailPanel reportId={selectedReportId} />
   }
   return (
     <div className="p-4">

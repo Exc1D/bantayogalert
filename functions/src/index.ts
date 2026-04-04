@@ -7,6 +7,15 @@ import { createContact } from './contacts/createContact'
 import { updateContact } from './contacts/updateContact'
 import { deactivateContact } from './contacts/deactivateContact'
 import { getContacts } from './contacts/getContacts'
+import { triageVerify } from './triage/triageVerify'
+import { triageReject } from './triage/triageReject'
+import { triageDispatch } from './triage/triageDispatch'
+import { triageAcknowledge } from './triage/triageAcknowledge'
+import { triageInProgress } from './triage/triageInProgress'
+import { triageResolve } from './triage/triageResolve'
+import { triageReroute } from './triage/triageReroute'
+import { triageUpdatePriority } from './triage/triageUpdatePriority'
+import { triageUpdateNotes } from './triage/triageUpdateNotes'
 
 // Security utilities
 export {
@@ -36,6 +45,15 @@ export { createContact }
 export { updateContact }
 export { deactivateContact }
 export { getContacts }
+export { triageVerify }
+export { triageReject }
+export { triageDispatch }
+export { triageAcknowledge }
+export { triageInProgress }
+export { triageResolve }
+export { triageReroute }
+export { triageUpdatePriority }
+export { triageUpdateNotes }
 
 /**
  * Set surge mode for a municipality.

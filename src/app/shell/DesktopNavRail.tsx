@@ -55,6 +55,7 @@ function buildNavItems(
 
   if (role === UserRole.MunicipalAdmin || role === UserRole.ProvincialSuperadmin) {
     items.push({ icon: LayoutDashboard, label: 'Dashboard', onClick: onPanel('report-detail'), variant: 'rail' })
+    items.push({ icon: ClipboardList, label: 'Admin Queue', onClick: () => navigate('/app/admin'), variant: 'rail' })
     items.push({ icon: Users, label: 'Contacts', onClick: () => navigate('/app/contacts'), variant: 'rail' })
     items.push({ icon: BarChart3, label: 'Analytics', onClick: onPanel('announcement-detail'), variant: 'rail' })
     items.push({ icon: ClipboardList, label: 'Audit', onClick: onPanel('announcement-detail'), variant: 'rail' })

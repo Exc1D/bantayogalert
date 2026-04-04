@@ -81,6 +81,8 @@ export interface ReportPrivate {
 
 export interface ReportOps {
   id: string
+  municipalityCode: string  // mirrors server-side ReportOps
+  version: number          // starts at 1, incremented on each triage action
   dispatchNotes?: string
   routingDestination?: string
   assignedContactId?: string

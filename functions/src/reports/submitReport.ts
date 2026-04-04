@@ -165,10 +165,12 @@ export const submitReport = functions.https.onCall(
         ],
       })
 
-      // report_ops/{reportId}: empty initial document for admin operations
+      // report_ops/{reportId}: initial document for admin operations
       const reportOpsRef = db.collection('report_ops').doc(reportId)
       tx.set(reportOpsRef, {
         id: reportId,
+        municipalityCode: sanitizedData.municipalityCode,
+        version: 1,
       })
     })
 
