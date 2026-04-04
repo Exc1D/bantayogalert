@@ -7,6 +7,8 @@ import { AuthProvider, useAuth } from '@/lib/auth'
 import { AppCheckProvider } from '@/lib/app-check'
 import { useFcmToken } from '@/hooks/useFcmToken'
 import { useMunicipalityTopics } from '@/hooks/useMunicipalityTopics'
+import { ConnectionStatusBanner } from '@/components/pwa/ConnectionStatusBanner'
+import { InstallPromptBanner } from '@/components/pwa/InstallPromptBanner'
 import {
   onMessageInApp,
   setSwConfig,
@@ -100,6 +102,10 @@ export function AppProviders({ children }: AppProvidersProps) {
           <AppCheckProvider>
             <FCMSetup />
             <Toaster position="top-center" richColors closeButton />
+            <div className="pointer-events-none fixed inset-x-0 top-0 z-[70] flex flex-col items-center gap-2 px-4 pt-4">
+              <ConnectionStatusBanner />
+              <InstallPromptBanner />
+            </div>
             {children}
           </AppCheckProvider>
         </AuthProvider>

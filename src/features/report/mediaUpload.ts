@@ -5,6 +5,11 @@
 import imageCompression from 'browser-image-compression'
 import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage'
 
+function getFileExtension(file: File) {
+  const [, extension = 'jpg'] = file.name.split('.')
+  return extension.toLowerCase()
+}
+
 export async function compressImage(file: File): Promise<File> {
   const options = {
     maxSizeMB: 1,
@@ -25,7 +30,7 @@ export async function uploadMediaFiles(
   for (let i = 0; i < files.length; i++) {
     const file = files[i]
     if (!file) continue
-    const filename = `${Date.now()}-${i}.jpg`
+    const filename = `${String(i + 1).padStart(2, '0')}.${getFileExtension(file)}`
     const storageRef = ref(storage, `reports/${reportId}/${filename}`)
 
     // Convert File to Blob for uploadBytes compatibility

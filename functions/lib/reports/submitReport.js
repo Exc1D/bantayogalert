@@ -54,7 +54,6 @@ const functions = __importStar(require("firebase-functions"));
 const firestore_1 = require("firebase-admin/firestore");
 const zod_1 = require("zod");
 // ngeohash - using require to avoid type declaration issues
-// eslint-disable-next-line @typescript-eslint/no-var-requires
 const ngeohash = require('ngeohash');
 const security_1 = require("../security");
 const updateAnalyticsForStateChange_1 = require("../analytics/updateAnalyticsForStateChange");

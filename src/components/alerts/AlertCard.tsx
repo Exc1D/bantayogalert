@@ -1,4 +1,5 @@
 import { AlertCircle, AlertTriangle, Bell, CheckCircle, Info } from 'lucide-react'
+import { Link } from 'react-router-dom'
 import { getMunicipality } from '@/lib/geo/municipality'
 import type {
   Announcement,
@@ -74,9 +75,10 @@ function getScopeLabel(announcement: Announcement): string {
 interface AlertCardProps {
   announcement: Announcement
   onClick?: (announcement: Announcement) => void
+  href?: string
 }
 
-export function AlertCard({ announcement, onClick }: AlertCardProps) {
+function AlertCardBody({ announcement }: { announcement: Announcement }) {
   const Icon = TYPE_ICONS[announcement.type]
   const severity = SEVERITY_STYLES[announcement.severity]
   const relativeTime = formatRelativeTime(
@@ -84,33 +86,54 @@ export function AlertCard({ announcement, onClick }: AlertCardProps) {
   )
 
   return (
+    <div className="flex items-start gap-3">
+      <span className={`mt-1 h-2.5 w-2.5 rounded-full ${severity.accent}`} />
+      <div className="min-w-0 flex-1">
+        <div className="flex items-center gap-2 text-xs text-gray-500">
+          <Icon className="h-4 w-4" />
+          <span
+            className={`rounded-full border px-2 py-0.5 font-medium ${severity.badge}`}
+          >
+            {announcement.severity}
+          </span>
+          <span className="capitalize">{announcement.type.replace('_', ' ')}</span>
+        </div>
+        <h3 className="mt-2 text-sm font-semibold text-gray-900">
+          {announcement.title}
+        </h3>
+        <p className="mt-1 text-sm text-gray-600">{announcement.body}</p>
+        <div className="mt-3 flex items-center justify-between text-xs text-gray-500">
+          <span>{getScopeLabel(announcement)}</span>
+          <span>{relativeTime}</span>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+export function AlertCard({
+  announcement,
+  onClick,
+  href,
+}: AlertCardProps) {
+  const className =
+    'block w-full rounded-2xl border border-gray-200 bg-white p-4 text-left shadow-sm transition-colors hover:border-gray-300 hover:bg-gray-50'
+
+  if (href) {
+    return (
+      <Link to={href} className={className}>
+        <AlertCardBody announcement={announcement} />
+      </Link>
+    )
+  }
+
+  return (
     <button
       type="button"
       onClick={() => onClick?.(announcement)}
-      className="w-full rounded-2xl border border-gray-200 bg-white p-4 text-left shadow-sm transition-colors hover:border-gray-300 hover:bg-gray-50"
+      className={className}
     >
-      <div className="flex items-start gap-3">
-        <span className={`mt-1 h-2.5 w-2.5 rounded-full ${severity.accent}`} />
-        <div className="min-w-0 flex-1">
-          <div className="flex items-center gap-2 text-xs text-gray-500">
-            <Icon className="h-4 w-4" />
-            <span
-              className={`rounded-full border px-2 py-0.5 font-medium ${severity.badge}`}
-            >
-              {announcement.severity}
-            </span>
-            <span className="capitalize">{announcement.type.replace('_', ' ')}</span>
-          </div>
-          <h3 className="mt-2 text-sm font-semibold text-gray-900">
-            {announcement.title}
-          </h3>
-          <p className="mt-1 text-sm text-gray-600">{announcement.body}</p>
-          <div className="mt-3 flex items-center justify-between text-xs text-gray-500">
-            <span>{getScopeLabel(announcement)}</span>
-            <span>{relativeTime}</span>
-          </div>
-        </div>
-      </div>
+      <AlertCardBody announcement={announcement} />
     </button>
   )
 }

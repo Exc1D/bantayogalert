@@ -1,51 +1,57 @@
-/**
- * Firebase App Check Provider
- *
- * D-51: App Check in audit mode - initialized but not enforcing.
- * In this mode, App Check is integrated but traffic is not blocked.
- * Actual enforcement comes after Phase 12 burn-in period.
- *
- * Uses CustomProvider for audit/dev mode which logs but doesn't verify.
- */
-
-import { initializeAppCheck, CustomProvider } from 'firebase/app-check'
-import { firebaseApp } from '../firebase/config'
+import {
+  CustomProvider,
+  ReCaptchaEnterpriseProvider,
+  initializeAppCheck,
+} from 'firebase/app-check'
 import React, { useEffect, useState } from 'react'
+import { firebaseApp, firebaseRuntime } from '../firebase/config'
 
-// Custom provider for audit/dev mode
-// In production (Phase 12), this will be replaced with ReCaptchaEnterpriseProvider
-const createAuditProvider = () => {
+function createAuditProvider() {
   return new CustomProvider({
     getToken: async () => {
-      // In audit mode, return a placeholder token
-      // The token will be logged but not verified against reCAPTCHA
       if (import.meta.env.DEV) {
         console.debug('[AppCheck Audit] Generating placeholder token')
       }
 
       return {
         token: 'placeholder-audit-token-' + Date.now(),
-        expireTimeMillis: Date.now() + 3600000, // 1 hour
+        expireTimeMillis: Date.now() + 3600000,
       }
     },
   })
 }
 
-/**
- * App Check Provider component.
- * Wraps the app with App Check initialization in audit mode.
- *
- * For Phase 3: Audit mode - logs tokens but doesn't block traffic
- * For Phase 12: Switch to ReCaptchaEnterpriseProvider with real site key
- */
 export function AppCheckProvider({ children }: { children: React.ReactNode }) {
   const [initialized, setInitialized] = useState(false)
 
   useEffect(() => {
-    if (initialized) return
+    if (initialized || import.meta.env.MODE === 'test') {
+      setInitialized(true)
+      return
+    }
 
     try {
-      const provider = createAuditProvider()
+      const appCheckMode = firebaseRuntime.appCheckMode
+      const useProductionProvider =
+        !firebaseRuntime.useEmulator &&
+        import.meta.env.PROD &&
+        appCheckMode === 'enforce' &&
+        firebaseRuntime.appCheckSiteKey
+
+      if (
+        firebaseRuntime.appCheckDebugToken &&
+        (firebaseRuntime.useEmulator || !import.meta.env.PROD)
+      ) {
+        ;(
+          globalThis as typeof globalThis & {
+            FIREBASE_APPCHECK_DEBUG_TOKEN?: string
+          }
+        ).FIREBASE_APPCHECK_DEBUG_TOKEN = firebaseRuntime.appCheckDebugToken
+      }
+
+      const provider = useProductionProvider
+        ? new ReCaptchaEnterpriseProvider(firebaseRuntime.appCheckSiteKey)
+        : createAuditProvider()
 
       initializeAppCheck(firebaseApp, {
         provider,
@@ -53,17 +59,15 @@ export function AppCheckProvider({ children }: { children: React.ReactNode }) {
       })
 
       if (import.meta.env.DEV) {
-        console.debug('[AppCheck] Initialized in audit mode')
+        console.debug(`[AppCheck] Initialized in ${appCheckMode} mode`)
       }
 
       setInitialized(true)
     } catch (error) {
-      // Log but don't block - App Check failure in audit mode shouldn't prevent app load
       console.warn('[AppCheck] Initialization failed, continuing without App Check:', error)
-      setInitialized(true) // Mark as initialized to prevent retry loops
+      setInitialized(true)
     }
   }, [initialized])
 
-  // Render children immediately - App Check is non-blocking in audit mode
   return <>{children}</>
 }

@@ -30,6 +30,9 @@ Object.defineProperty(import.meta, 'env', {
     VITE_FIREBASE_MESSAGING_SENDER_ID: '000000000000',
     VITE_FIREBASE_APP_ID: '1:000000000000:web:test',
     VITE_USE_EMULATOR: 'true',
+    VITE_APP_CHECK_MODE: 'audit',
+    VITE_APP_CHECK_DEBUG_TOKEN: 'test-app-check-debug-token',
+    VITE_RECAPTCHA_ENTERPRISE_SITE_KEY: 'test-recaptcha-key',
   },
   writable: true,
 })
@@ -50,6 +53,14 @@ vi.mock('firebase/firestore', () => ({
 
 vi.mock('firebase/storage', () => ({
   getStorage: vi.fn(() => ({})),
+}))
+
+vi.mock('firebase/app-check', () => ({
+  initializeAppCheck: vi.fn(() => ({})),
+  CustomProvider: vi.fn().mockImplementation((config) => config),
+  ReCaptchaEnterpriseProvider: vi.fn().mockImplementation((siteKey: string) => ({
+    siteKey,
+  })),
 }))
 
 // Mock react-helmet-async to avoid HelmetProvider requirement

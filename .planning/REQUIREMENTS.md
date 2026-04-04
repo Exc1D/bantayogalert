@@ -139,19 +139,19 @@
 
 - [x] **PWA-01**: Service worker (Workbox via vite-plugin-pwa) with NetworkFirst for API, CacheFirst for tiles
 - [x] **PWA-02**: App shell, critical CSS/JS, and municipality GeoJSON pre-cached
-- [ ] **PWA-03**: Offline report draft saved to IndexedDB; submit when online
-- [ ] **PWA-04**: Visible connection status indicator with offline messaging
+- [x] **PWA-03**: Offline report draft saved to IndexedDB; submit when online
+- [x] **PWA-04**: Visible connection status indicator with offline messaging
 - [x] **PWA-05**: Custom install prompt for home-screen installation
 - [x] **PWA-06**: App manifest with proper icons and theme colors
 
 ### SEO & Public Surfaces
 
-- [ ] **SEO-01**: Landing page with full meta tags, OG tags, canonical URL
-- [ ] **SEO-02**: Public map and alerts pages are indexed
-- [ ] **SEO-03**: robots.txt allows public routes, disallows app/auth/admin
-- [ ] **SEO-04**: sitemap.xml includes landing, public/map, public/alerts
-- [ ] **SEO-05**: Private app routes have noindex meta tag
-- [ ] **SEO-06**: Dynamic OG tags for shared public alert pages via Cloud Function rewrite
+- [x] **SEO-01**: Landing page with full meta tags, OG tags, canonical URL
+- [x] **SEO-02**: Public map and alerts pages are indexed
+- [x] **SEO-03**: robots.txt allows public routes, disallows app/auth/admin
+- [x] **SEO-04**: sitemap.xml includes landing, public/map, public/alerts
+- [x] **SEO-05**: Private app routes have noindex meta tag
+- [x] **SEO-06**: Dynamic OG tags for shared public alert pages via Cloud Function rewrite
 
 ## v2 Requirements
 
@@ -207,9 +207,9 @@ Note: Phase 8 (Contacts) and Phase 9 (Admin Triage) were reordered per research 
 | DSK-01 through DSK-07 | Phase 4 | Pending |
 | MOB-01 through MOB-07 | Phase 4 | Pending |
 | ANL-01 through ANL-06 | Phase 11 | Complete |
-| SEC-01 through SEC-07 | Phase 3 + Phase 12 | Pending |
-| PWA-01 through PWA-06 | Phase 1 + Phase 12 | Pending |
-| SEO-01 through SEO-06 | Phase 12 | Pending |
+| SEC-01 through SEC-07 | Phase 3 + Phase 12 | Complete |
+| PWA-01 through PWA-06 | Phase 1 + Phase 12 | Complete |
+| SEO-01 through SEO-06 | Phase 12 | Complete |
 
 **Coverage:**
 - v1 requirements: 73 total
@@ -218,4 +218,4 @@ Note: Phase 8 (Contacts) and Phase 9 (Admin Triage) were reordered per research 
 
 ---
 *Requirements defined: 2026-04-03*
-*Last updated: 2026-04-04 after Phase 11 completion*
+*Last updated: 2026-04-04 after Phase 12 completion*

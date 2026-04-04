@@ -143,7 +143,10 @@ export function MobileShell({ children }: MobileShellProps) {
           ))}
         {showsRouteContent ? children : null}
       </div>
-      <div className="h-16 flex-shrink-0 fixed bottom-0 w-full z-20 bg-white border-t border-gray-200 flex">
+      <nav
+        className="h-16 flex-shrink-0 fixed bottom-0 w-full z-20 bg-white border-t border-gray-200 flex"
+        aria-label="Mobile navigation"
+      >
         {TABS.map((t) => (
           (() => {
             const Icon = TAB_ICONS[t.id]
@@ -165,6 +168,7 @@ export function MobileShell({ children }: MobileShellProps) {
                     navigate('/app')
                   }
                 }}
+                aria-label={t.label}
                 className={`flex-1 flex flex-col items-center justify-center gap-1 text-xs ${
                   activeTab === t.id ||
                   (t.id === 'report' && isReportRoute) ||
@@ -179,7 +183,7 @@ export function MobileShell({ children }: MobileShellProps) {
             )
           })()
         ))}
-      </div>
+      </nav>
     </div>
   )
 }

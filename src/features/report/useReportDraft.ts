@@ -18,16 +18,22 @@ export interface ReportDraft {
 
 const DB_NAME = 'bantayogalert'
 const STORE_NAME = 'drafts'
-const DB_VERSION = 1
+export const REPORT_PENDING_STORE_NAME = 'pending-submissions'
+export const REPORT_DRAFT_STORE_NAME = STORE_NAME
+const DB_VERSION = 2
 
 let dbPromise: Promise<IDBPDatabase> | null = null
 
-function getDB(): Promise<IDBPDatabase> {
+export function getReportPersistenceDb(): Promise<IDBPDatabase> {
   if (!dbPromise) {
     dbPromise = openDB(DB_NAME, DB_VERSION, {
       upgrade(db) {
         if (!db.objectStoreNames.contains(STORE_NAME)) {
           db.createObjectStore(STORE_NAME)
+        }
+
+        if (!db.objectStoreNames.contains(REPORT_PENDING_STORE_NAME)) {
+          db.createObjectStore(REPORT_PENDING_STORE_NAME)
         }
       },
     })
@@ -39,18 +45,18 @@ export async function saveDraft(
   userId: string,
   draft: ReportDraft
 ): Promise<void> {
-  const db = await getDB()
+  const db = await getReportPersistenceDb()
   await db.put(STORE_NAME, { ...draft, savedAt: new Date().toISOString() }, `report-draft-${userId}`)
 }
 
 export async function loadDraft(
   userId: string
 ): Promise<ReportDraft | undefined> {
-  const db = await getDB()
+  const db = await getReportPersistenceDb()
   return db.get(STORE_NAME, `report-draft-${userId}`)
 }
 
 export async function clearDraft(userId: string): Promise<void> {
-  const db = await getDB()
+  const db = await getReportPersistenceDb()
   await db.delete(STORE_NAME, `report-draft-${userId}`)
 }

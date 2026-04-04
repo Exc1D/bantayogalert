@@ -5,7 +5,7 @@
 import { httpsCallable, getFunctions } from 'firebase/functions'
 import type { IncidentType, Severity } from '@/types/report'
 
-interface SubmitReportData {
+export interface SubmitReportData {
   type: IncidentType
   severity: Severity
   description: string

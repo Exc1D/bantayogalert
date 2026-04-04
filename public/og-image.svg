@@ -1,0 +1,24 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="630" rx="32" fill="#020617"/>
+  <rect x="48" y="48" width="1104" height="534" rx="28" fill="url(#bg)"/>
+  <path d="M155 474C233 410 286 358 335 292C374 240 423 180 501 180C585 180 644 242 697 299C750 356 797 414 873 474" stroke="#F97316" stroke-width="28" stroke-linecap="round"/>
+  <circle cx="335" cy="292" r="18" fill="#F97316"/>
+  <circle cx="501" cy="180" r="18" fill="#FBBF24"/>
+  <circle cx="697" cy="299" r="18" fill="#FB7185"/>
+  <circle cx="873" cy="474" r="18" fill="#F97316"/>
+  <path d="M155 474H1035" stroke="#94A3B8" stroke-width="8" stroke-linecap="round" stroke-dasharray="10 18"/>
+  <rect x="120" y="124" width="272" height="62" rx="31" fill="#7F1D1D"/>
+  <text x="156" y="165" fill="#FEE2E2" font-family="Arial, sans-serif" font-size="28" font-weight="700" letter-spacing="2">BANTAYOG ALERT</text>
+  <text x="120" y="278" fill="#F8FAFC" font-family="Arial, sans-serif" font-size="74" font-weight="700">Public emergency visibility</text>
+  <text x="120" y="354" fill="#CBD5E1" font-family="Arial, sans-serif" font-size="34">Verified incidents, public alerts, and rapid disaster reporting</text>
+  <text x="120" y="402" fill="#CBD5E1" font-family="Arial, sans-serif" font-size="34">for communities across Camarines Norte.</text>
+  <rect x="120" y="456" width="346" height="74" rx="37" fill="#DC2626"/>
+  <text x="170" y="503" fill="white" font-family="Arial, sans-serif" font-size="28" font-weight="700">bantayogalert.web.app</text>
+  <defs>
+    <linearGradient id="bg" x1="84" y1="72" x2="1116" y2="558" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0F172A"/>
+      <stop offset="0.45" stop-color="#111827"/>
+      <stop offset="1" stop-color="#3F0D12"/>
+    </linearGradient>
+  </defs>
+</svg>

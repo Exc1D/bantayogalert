@@ -24,6 +24,13 @@ const requiredKeys: (keyof typeof firebaseConfig)[] = [
   'appId',
 ]
 
+export const firebaseRuntime = {
+  useEmulator: import.meta.env.VITE_USE_EMULATOR === 'true',
+  appCheckMode: import.meta.env.VITE_APP_CHECK_MODE ?? 'audit',
+  appCheckDebugToken: import.meta.env.VITE_APP_CHECK_DEBUG_TOKEN ?? '',
+  appCheckSiteKey: import.meta.env.VITE_RECAPTCHA_ENTERPRISE_SITE_KEY ?? '',
+}
+
 for (const key of requiredKeys) {
   if (!firebaseConfig[key]) {
     throw new Error(
@@ -49,7 +56,7 @@ function getOrInitializeFirebase(): {
   const storage = getStorage(app)
 
   // Connect to Firebase Emulators when VITE_USE_EMULATOR=true
-  if (import.meta.env.VITE_USE_EMULATOR === 'true') {
+  if (firebaseRuntime.useEmulator) {
     connectAuthEmulator(auth, 'http://localhost:9099', { disableWarnings: true })
     connectFirestoreEmulator(db, 'localhost', 8080)
     connectStorageEmulator(storage, 'localhost', 9199)

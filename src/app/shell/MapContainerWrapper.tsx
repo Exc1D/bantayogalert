@@ -19,9 +19,16 @@ export function useMap() {
 interface MapContainerWrapperProps {
   className?: string
   children?: React.ReactNode
+  showReportMarkers?: boolean
+  showAnalyticsOverlay?: boolean
 }
 
-export function MapContainerWrapper({ className = '', children }: MapContainerWrapperProps) {
+export function MapContainerWrapper({
+  className = '',
+  children,
+  showReportMarkers = true,
+  showAnalyticsOverlay = true,
+}: MapContainerWrapperProps) {
   const containerRef = useRef<HTMLDivElement>(null)
   const mapRef = useRef<L.Map | null>(null)
   const [mapReady, setMapReady] = useState(false)
@@ -49,8 +56,8 @@ export function MapContainerWrapper({ className = '', children }: MapContainerWr
     <MapRefContext.Provider value={{ mapRef, mapReady }}>
       <div ref={containerRef} className={`h-full w-full ${className}`} />
       <MunicipalityBoundaries />
-      <ReportMarkers />
-      <AnalyticsHeatmapOverlay />
+      {showReportMarkers ? <ReportMarkers /> : null}
+      {showAnalyticsOverlay ? <AnalyticsHeatmapOverlay /> : null}
       {children}
     </MapRefContext.Provider>
   )

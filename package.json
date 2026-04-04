@@ -13,6 +13,7 @@
     "test": "vitest",
     "test:ui": "vitest --ui",
     "lint": "eslint .",
+    "verify:release": "npm run lint && npm run build && npx vitest run",
     "format": "prettier --write .",
     "emulators": "firebase emulators:start --project demo-bantayogalert",
     "emulators:ci": "firebase emulators:start --project demo-bantayogalert --only auth,firestore,storage,functions",

@@ -17,7 +17,7 @@
 - [x] **Phase 9: Admin Triage** — Report verification, dispatch, routing, state machine, optimistic concurrency (completed 2026-04-04)
 - [x] **Phase 10: Announcements, Push & Alerts** — Announcement creation, FCM delivery, Alerts tab (completed 2026-04-04)
 - [x] **Phase 11: Analytics & Disaster Mapping** — Pre-aggregated dashboards, charts, audit log (completed 2026-04-04)
-- [ ] **Phase 12: Hardening, PWA, SEO & Release** — Accessibility audit, performance tuning, App Check enforcement
+- [x] **Phase 12: Hardening, PWA, SEO & Release** — Accessibility audit, performance tuning, App Check enforcement (completed 2026-04-04)
 
 ---
 
@@ -358,7 +358,14 @@
 11. Accessibility audit passes: semantic landmarks, keyboard navigation, focus trapping, ARIA labels, WCAG AA contrast
 12. Service worker uses NetworkFirst for API/Firestore reads and CacheFirst for tile images; offline fallback page is served when fully offline
 
-**Plans**: TBD
+**Plans**: 7 plans
+- [x] 12-01-PLAN.md — Public route split + metadata foundation + private noindex
+- [x] 12-02-PLAN.md — Landing page + public map/alerts surfaces + public-safe data hooks
+- [x] 12-03-PLAN.md — robots.txt + sitemap.xml + public alert OG rewrite
+- [x] 12-04-PLAN.md — Offline submission queue + reconnect retry + connection-state hook
+- [x] 12-05-PLAN.md — PWA finalization (offline fallback, install prompt, shared connection banner)
+- [x] 12-06-PLAN.md — Production App Check rollout + staged enforcement config
+- [x] 12-07-PLAN.md — Accessibility hardening + lazy loading + release verification coverage
 
 ---
 
@@ -377,7 +384,7 @@
 | 9. Admin Triage | 7/7 | Complete | 2026-04-04 |
 | 10. Announcements, Push & Alerts | 5/5 | Complete    | 2026-04-04 |
 | 11. Analytics & Disaster Mapping | 6/6 | Complete    | 2026-04-04 |
-| 12. Hardening, PWA, SEO & Release | 0/12 | Not started | |
+| 12. Hardening, PWA, SEO & Release | 7/7 | Complete | 2026-04-04 |
 
 ---
 
@@ -391,3 +398,4 @@
 
 *Roadmap created: 2026-04-03*
 *Derived from: REQUIREMENTS.md, SPECS.md, research/SUMMARY.md*
+*Last updated: 2026-04-04 after Phase 12 completion*

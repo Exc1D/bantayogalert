@@ -43,6 +43,11 @@
       "**/.*",
       "**/node_modules/**"
     ],
-    "rewrites": []
+    "rewrites": [
+      {
+        "source": "/public/alerts/**/share",
+        "function": "renderPublicAlertMeta"
+      }
+    ]
   }
 }

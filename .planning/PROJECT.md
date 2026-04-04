@@ -19,18 +19,14 @@ Production-grade disaster reporting, official alerting, emergency coordination, 
 - [x] Citizens receive municipality-scoped and province-wide official alerts inside the app and through browser push wiring (Phase 10)
 - [x] Municipal Admins create municipality-scoped announcements with draft, publish, and cancel flows (Phase 10)
 - [x] Municipal Admins view scoped analytics dashboards and audit trails without raw client-side report scans (Phase 11)
+- [x] Public visitors can access indexable landing, map, and alerts routes with shareable metadata (Phase 12)
+- [x] Report submission survives offline/network failures through a queued retry path (Phase 12)
+- [x] App Check rollout is env-gated and ready for staged production enforcement after burn-in (Phase 12)
 - [x] Provincial Superadmins can target municipality, multi-municipality, or province-wide alert scope (Phase 10)
 - [x] Provincial Superadmins access province-wide analytics, drill-down, audit history, and disaster-map overlays (Phase 11)
 
 ### Active
-- [ ] Municipal Admins triage, verify, reject, dispatch, acknowledge, and resolve reports within their municipality
-- [ ] Municipal Admins route reports to responder contacts with snapshot-captured contact details
-- [ ] Municipal Admins manage a local responder contacts directory
-- [ ] Provincial Superadmins oversee all reports and triage operations across all 12 municipalities
-- [ ] Platform works on desktop (≥1280px) as a map-first command center with persistent Leaflet map and right-side workspace drawer
-- [ ] Platform works on mobile (≤768px) as a feed-first mini social app with bottom-tab navigation
-- [ ] Map never unmounts, resets viewport, or refetches when workspace drawer opens or closes
-- [ ] Municipality scope is enforced server-side in Firestore security rules and Cloud Functions
+- None. Phase 12 completed the v1 roadmap scope; remaining work is operational rollout, deployment, and release verification.
 
 ### Out of Scope
 
@@ -103,6 +99,9 @@ Established the production-grade project scaffold:
 | Browser clients subscribe to FCM topics through a callable Cloud Function | The web FCM SDK cannot subscribe tokens to topics directly, so the server mediates municipality/province subscriptions | ✓ Phase 10 |
 | Analytics and audit use route-backed admin workspaces with aggregate-only reads | Preserves the persistent map shell while keeping clients off raw reports and `report_ops` scans | ✓ Phase 11 |
 | Global immutable `audit` documents complement `report_ops.activity` | Cross-entity audit browsing needs a single searchable stream beyond report-local history | ✓ Phase 11 |
+| Public SEO uses a dedicated `/public/*` route family plus shared metadata helpers | Keeps public surfaces indexable while `/app/*` and `/auth/*` stay noindexed | ✓ Phase 12 |
+| Offline report recovery uses a persisted pending-submission queue, not service-worker background sync | Keeps v1 retry behavior deterministic without adding a full background-sync pipeline | ✓ Phase 12 |
+| App Check enforcement is controlled by explicit env gates and staged rollout values | Lets local/test flows stay safe while production can move from audit to enforce after burn-in | ✓ Phase 12 |
 
 ## Evolution
 
@@ -164,4 +163,19 @@ Established the analytics and audit layer:
 - **Disaster-map overlay**: Aggregate hotspot counts can be toggled onto the persistent desktop map without replacing the map instance
 - **Admin audit route**: `/app/admin/audit` renders filtered, paginated audit history with expandable event details
 - **Shell integration**: Analytics and Audit are exposed in desktop navigation and mobile admin shortcuts
-*Last updated: 2026-04-04 after Phase 11*
+
+## Phase 12 Outcomes
+
+**Phase 12 (Hardening, PWA, SEO & Release) — COMPLETED 2026-04-04**
+
+Release hardening and public-surface work is now in place:
+
+- **Public route family**: `/`, `/public/map`, `/public/alerts`, and `/public/alerts/:id` now serve indexable public content with route-level metadata
+- **Crawler assets**: `robots.txt`, `sitemap.xml`, and a shared OG image ship from `public/`
+- **Dynamic share metadata**: published alerts have a dedicated Cloud Function rewrite for alert-specific OG tags on share URLs
+- **Offline recovery**: report submissions queue into IndexedDB on offline/network failure and retry after reconnection
+- **PWA runtime UX**: app-wide connection-status and install banners now render above all routes, and fully offline navigation falls back to `offline.html`
+- **App Check rollout prep**: env-gated production enforcement path is ready for the post-burn-in deploy flip
+- **Release hardening**: critical shells use stronger landmarks/labels, heavy routes are lazy-loaded, and release smoke coverage targets the new public route family
+
+*Last updated: 2026-04-04 after Phase 12*

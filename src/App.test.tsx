@@ -1,22 +1,21 @@
-import { describe, it, expect, vi } from 'vitest'
+import { describe, expect, it, vi } from 'vitest'
 import { render, screen, waitFor } from '@testing-library/react'
 import { HelmetProvider } from 'react-helmet-async'
 import { MemoryRouter } from 'react-router-dom'
+import type { ReactNode } from 'react'
+import { App } from './App'
 
-// Mock firebase/app to prevent Firebase from initializing at module load
 vi.mock('firebase/app', () => ({
   initializeApp: vi.fn(),
   getApps: vi.fn(() => []),
-  getApp: vi.fn(),
 }))
 
-// Mock firebase/auth to prevent GoogleAuthProvider instantiation at module load
 vi.mock('firebase/auth', () => ({
   GoogleAuthProvider: vi.fn().mockImplementation(() => ({
     addScope: vi.fn(),
     setCustomParameters: vi.fn(),
   })),
-  getAuth: vi.fn(),
+  getAuth: vi.fn(() => ({})),
   signInWithPopup: vi.fn(),
   setPersistence: vi.fn(),
   browserLocalPersistence: {},
@@ -24,20 +23,17 @@ vi.mock('firebase/auth', () => ({
   signOut: vi.fn(),
 }))
 
-// Mock firebase/firestore
 vi.mock('firebase/firestore', () => ({
-  getFirestore: vi.fn(),
+  getFirestore: vi.fn(() => ({})),
   collection: vi.fn(),
   doc: vi.fn(),
 }))
 
-// Mock firebase/storage
 vi.mock('firebase/storage', () => ({
-  getStorage: vi.fn(),
+  getStorage: vi.fn(() => ({})),
   ref: vi.fn(),
 }))
 
-// Mock auth providers to prevent module-level instantiation
 vi.mock('./lib/auth/providers', () => ({
   googleProvider: {
     addScope: vi.fn(),
@@ -48,7 +44,6 @@ vi.mock('./lib/auth/providers', () => ({
   },
 }))
 
-// Mock Firebase config module to return mock instances
 vi.mock('./lib/firebase/config', () => ({
   firebase: {
     app: {},
@@ -60,67 +55,141 @@ vi.mock('./lib/firebase/config', () => ({
   auth: {},
   db: {},
   storage: {},
+  firebaseRuntime: {
+    useEmulator: true,
+    appCheckMode: 'audit',
+    appCheckDebugToken: '',
+    appCheckSiteKey: '',
+  },
 }))
 
-// Mock AppCheckProvider
 vi.mock('./lib/app-check', () => ({
-  AppCheckProvider: ({ children }: { children: React.ReactNode }) => children,
+  AppCheckProvider: ({ children }: { children: ReactNode }) => children,
 }))
 
-// Mock router guards
 vi.mock('./lib/router/guards', () => ({
-  ProtectedRoute: ({ children }: { children: React.ReactNode }) => children,
-  AdminRoute: ({ children }: { children: React.ReactNode }) => children,
+  ProtectedRoute: ({ children }: { children: ReactNode }) => children,
+  AdminRoute: ({ children }: { children: ReactNode }) => children,
 }))
 
-// Mock auth pages
 vi.mock('./app/auth/login/page', () => ({
-  LoginPage: () => ({ $$typeof: Symbol('react.element'), type: 'div', props: {}, ref: null }),
-}))
-vi.mock('./app/auth/register/page', () => ({
-  RegisterPage: () => ({ $$typeof: Symbol('react.element'), type: 'div', props: {}, ref: null }),
-}))
-vi.mock('./app/auth/profile/page', () => ({
-  ProfilePage: () => ({ $$typeof: Symbol('react.element'), type: 'div', props: {}, ref: null }),
+  LoginPage: () => <main><h1>login page</h1></main>,
 }))
 
-// Mock shell router to keep the test focused on app-level routing + title behavior
+vi.mock('./app/auth/register/page', () => ({
+  RegisterPage: () => <main><h1>register page</h1></main>,
+}))
+
+vi.mock('./app/auth/profile/page', () => ({
+  ProfilePage: () => <main><h1>profile page</h1></main>,
+}))
+
+vi.mock('./app/public/landing/page', () => ({
+  LandingPage: () => <main><h1>landing page</h1></main>,
+}))
+
+vi.mock('./app/public/map/page', () => ({
+  PublicMapPage: () => <main><h1>public map</h1></main>,
+}))
+
+vi.mock('./app/public/alerts/page', () => ({
+  PublicAlertsPage: () => <main><h1>public alerts</h1></main>,
+}))
+
+vi.mock('./app/public/alerts/detail/page', () => ({
+  PublicAlertDetailPage: () => <main><h1>public alert detail</h1></main>,
+}))
+
 vi.mock('./app/shell/ShellRouter', () => ({
   ShellRouter: () => (
     <main>
-      <h1>Bantayog Alert</h1>
+      <h1>app shell</h1>
     </main>
   ),
 }))
 
-import { App } from './App'
+vi.mock('./components/alerts/AlertsFeed', () => ({
+  AlertsFeed: () => <section>alerts feed</section>,
+}))
 
-const renderWithProviders = (
-  ui: React.ReactElement,
-  { route = '/app' }: { route?: string } = {}
-) => {
+vi.mock('./components/alerts/CreateAlertForm', () => ({
+  CreateAlertForm: () => <section>create alert form</section>,
+}))
+
+vi.mock('./components/report/AdminQueueFeed', () => ({
+  AdminQueueFeed: () => <section>admin queue</section>,
+}))
+
+vi.mock('./app/admin/analytics/page', () => ({
+  AdminAnalyticsPage: () => <section>analytics page</section>,
+}))
+
+vi.mock('./app/admin/audit/page', () => ({
+  AdminAuditPage: () => <section>audit page</section>,
+}))
+
+vi.mock('./app/report/ReportFormPage', () => ({
+  ReportFormPage: () => <section>report form page</section>,
+}))
+
+vi.mock('./app/report/ReportTrack', () => ({
+  ReportTrack: () => <section>report track</section>,
+}))
+
+vi.mock('./app/contacts/page', () => ({
+  default: () => <section>contacts page</section>,
+}))
+
+vi.mock('./lib/seo/PrivateRouteMeta', () => ({
+  PrivateRouteMeta: () => (
+    <div data-testid="private-route-meta">noindex, nofollow</div>
+  ),
+}))
+
+const renderWithProviders = (route: string) => {
   return render(
     <HelmetProvider>
-      <MemoryRouter initialEntries={[route]}>{ui}</MemoryRouter>
+      <MemoryRouter initialEntries={[route]}>
+        <App />
+      </MemoryRouter>
     </HelmetProvider>
   )
 }
 
-describe('App', () => {
-  it('renders without crashing', () => {
-    renderWithProviders(<App />)
-    expect(screen.getByRole('heading', { name: 'Bantayog Alert' })).toBeTruthy()
-  })
+describe('App routes', () => {
+  it('renders the landing page route', async () => {
+    renderWithProviders('/')
 
-  it('sets the document title to Bantayog Alert', async () => {
-    renderWithProviders(<App />)
     await waitFor(() => {
-      expect(document.title).toBe('Bantayog Alert')
+      expect(screen.getByRole('heading', { name: 'landing page' })).toBeTruthy()
     })
   })
 
-  it('renders the app shell with a main heading', () => {
-    renderWithProviders(<App />)
-    expect(screen.getByRole('heading', { name: 'Bantayog Alert' })).toBeTruthy()
+  it('renders the public map route', async () => {
+    renderWithProviders('/public/map')
+
+    await waitFor(() => {
+      expect(screen.getByRole('heading', { name: 'public map' })).toBeTruthy()
+    })
+  })
+
+  it('renders the public alerts route', async () => {
+    renderWithProviders('/public/alerts')
+
+    await waitFor(() => {
+      expect(
+        screen.getByRole('heading', { name: 'public alerts' })
+      ).toBeTruthy()
+    })
+  })
+
+  it('renders private-route metadata for app routes', async () => {
+    renderWithProviders('/app')
+
+    await waitFor(() => {
+      expect(screen.getByTestId('private-route-meta')).toHaveTextContent(
+        'noindex, nofollow'
+      )
+    })
   })
 })
