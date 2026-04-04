@@ -6,17 +6,17 @@
 
 ## Phases
 
-- [ ] **Phase 1: Project Foundation & Tooling** — Scaffolding, CI/CD, PWA shell
+- [x] **Phase 1: Project Foundation & Tooling** — Scaffolding, CI/CD, PWA shell (completed 2026-04-03)
 - [x] **Phase 2: Domain Model & Backend Contracts** — Types, schemas, state machine, Firestore structure (completed 2026-04-03)
 - [x] **Phase 3: Auth & Role Model** — Firebase Auth, custom claims, RBAC, security rules (completed 2026-04-03)
 - [x] **Phase 4: Desktop & Mobile Shell** — Persistent map canvas, workspace drawer, bottom tabs (completed 2026-04-03)
-- [ ] **Phase 5: Report Submission** — Multi-step form, location picker, media upload, three-tier doc creation
+- [x] **Phase 5: Report Submission** — Multi-step form, location picker, media upload, three-tier doc creation (completed 2026-04-04)
 - [x] **Phase 6: Real-time Map & Feed** — Leaflet map, marker clustering, paginated feed, dual-canvas filters (completed 2026-04-03)
-- [ ] **Phase 7: Profile & Report Tracker** — User profile, My Reports list, owner status display
+- [x] **Phase 7: Profile & Report Tracker** — User profile, My Reports list, owner status display (completed 2026-04-04)
 - [x] **Phase 8: Contacts Management** — Responder contacts CRUD, municipality-scoped, snapshot capture (completed 2026-04-04)
-- [ ] **Phase 9: Admin Triage** — Report verification, dispatch, routing, state machine, optimistic concurrency
+- [x] **Phase 9: Admin Triage** — Report verification, dispatch, routing, state machine, optimistic concurrency (completed 2026-04-04)
 - [x] **Phase 10: Announcements, Push & Alerts** — Announcement creation, FCM delivery, Alerts tab (completed 2026-04-04)
-- [ ] **Phase 11: Analytics & Disaster Mapping** — Pre-aggregated dashboards, charts, audit log
+- [x] **Phase 11: Analytics & Disaster Mapping** — Pre-aggregated dashboards, charts, audit log (completed 2026-04-04)
 - [ ] **Phase 12: Hardening, PWA, SEO & Release** — Accessibility audit, performance tuning, App Check enforcement
 
 ---
@@ -49,7 +49,7 @@
 - [x] 01-05-PLAN.md — PWA Configuration (vite-plugin-pwa, manifest, icons)
 - [x] 01-06-PLAN.md — Vitest Setup (test runner, smoke test)
 - [x] 01-07-PLAN.md — Playwright Setup (e2e smoke tests)
-- [ ] 01-08-PLAN.md — GitHub Actions CI (pipeline, .gitignore)
+- [x] 01-08-PLAN.md — GitHub Actions CI (pipeline, .gitignore)
 
 ---
 
@@ -274,13 +274,13 @@
 16. Public and owner status documents are updated correctly by Cloud Function triggers after every triage action
 
 **Plans**: 7 plans
-- [ ] 09-01-PLAN.md — submitReport Fix (add municipalityCode + version: 1 to report_ops)
-- [ ] 09-02-PLAN.md — Core Triage CFs Part 1 (triageVerify, triageReject, triageDispatch, triageAcknowledge + shared helpers)
-- [ ] 09-03-PLAN.md — Core Triage CFs Part 2 (triageInProgress, triageResolve, triageReroute, triageUpdatePriority, triageUpdateNotes)
-- [ ] 09-04-PLAN.md — Admin Queue UI Foundation (useAdminQueueListener, AdminQueueCard, PriorityStars, AdminQueueFeed)
-- [ ] 09-05-PLAN.md — Admin Detail Panel & ContactPicker (AdminReportDetailPanel, ContactPickerModal, WorkspaceDrawer wiring)
-- [ ] 09-06-PLAN.md — Routes & Navigation (router, DesktopShell, MobileShell admin nav)
-- [ ] 09-07-PLAN.md — CF Exports (functions/src/index.ts exports for all 9 triage CFs)
+- [x] 09-01-PLAN.md — submitReport Fix (add municipalityCode + version: 1 to report_ops)
+- [x] 09-02-PLAN.md — Core Triage CFs Part 1 (triageVerify, triageReject, triageDispatch, triageAcknowledge + shared helpers)
+- [x] 09-03-PLAN.md — Core Triage CFs Part 2 (triageInProgress, triageResolve, triageReroute, triageUpdatePriority, triageUpdateNotes)
+- [x] 09-04-PLAN.md — Admin Queue UI Foundation (useAdminQueueListener, AdminQueueCard, PriorityStars, AdminQueueFeed)
+- [x] 09-05-PLAN.md — Admin Detail Panel & ContactPicker (AdminReportDetailPanel, ContactPickerModal, WorkspaceDrawer wiring)
+- [x] 09-06-PLAN.md — Routes & Navigation (router, DesktopShell, MobileShell admin nav)
+- [x] 09-07-PLAN.md — CF Exports (functions/src/index.ts exports for all 9 triage CFs)
 
 ---
 
@@ -326,7 +326,13 @@
 5. All analytics are powered by pre-aggregated Firestore documents maintained by Cloud Functions — clients never scan raw report documents
 6. Audit log viewer displays paginated entries with filters by action, entity, and user
 
-**Plans**: TBD
+**Plans**: 6 plans
+- [x] 11-01-PLAN.md — Foundation: analytics and audit contracts, rules, and indexes
+- [x] 11-02-PLAN.md — Analytics aggregation backend
+- [x] 11-03-PLAN.md — Global audit stream and sensitive-write retrofits
+- [x] 11-04-PLAN.md — Client data layer and route wiring
+- [x] 11-05-PLAN.md — Analytics dashboard UI and disaster-map overlay
+- [x] 11-06-PLAN.md — Audit viewer UI
 
 ---
 
@@ -360,17 +366,17 @@
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Project Foundation & Tooling | 7/8 | In Progress | |
+| 1. Project Foundation & Tooling | 8/8 | Complete | 2026-04-03 |
 | 2. Domain Model & Backend Contracts | 4/4 | Complete | 2026-04-03 |
 | 3. Auth & Role Model | 5/5 | Complete | 2026-04-03 |
 | 4. Desktop & Mobile Shell | 3/3 | Complete | 2026-04-03 |
-| 5. Report Submission | 4/5 | In Progress | |
+| 5. Report Submission | 5/5 | Complete | 2026-04-04 |
 | 6. Real-time Map & Feed | 5/5 | Complete   | 2026-04-03 |
-| 7. Profile & Report Tracker | 1/2 | In Progress | |
+| 7. Profile & Report Tracker | 2/2 | Complete | 2026-04-04 |
 | 8. Contacts Management | 4/4 | Complete   | 2026-04-04 |
-| 9. Admin Triage | 0/7 | Not started | |
+| 9. Admin Triage | 7/7 | Complete | 2026-04-04 |
 | 10. Announcements, Push & Alerts | 5/5 | Complete    | 2026-04-04 |
-| 11. Analytics & Disaster Mapping | 0/6 | Not started | |
+| 11. Analytics & Disaster Mapping | 6/6 | Complete    | 2026-04-04 |
 | 12. Hardening, PWA, SEO & Release | 0/12 | Not started | |
 
 ---

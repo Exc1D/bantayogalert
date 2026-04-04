@@ -40,6 +40,7 @@ const firestore_1 = require("firebase-admin/firestore");
 const contact_1 = require("../types/contact");
 const sanitize_1 = require("../security/sanitize");
 const validateAuth_1 = require("../security/validateAuth");
+const shared_1 = require("../audit/shared");
 exports.updateContact = functions.https.onCall(async (data, context) => {
     if (!context.auth) {
         throw new functions.https.HttpsError('unauthenticated', 'Authentication required');
@@ -69,6 +70,18 @@ exports.updateContact = functions.https.onCall(async (data, context) => {
     await contactRef.update({
         ...sanitizedUpdates,
         updatedAt: firestore_1.FieldValue.serverTimestamp(),
+    });
+    await (0, shared_1.appendAuditEntry)(null, db, {
+        entityType: 'contact',
+        entityId: id,
+        action: 'contact_update',
+        actorUid: context.auth.uid,
+        actorRole: context.auth.token.role ?? 'citizen',
+        municipalityCode,
+        provinceCode: 'CMN',
+        details: {
+            updatedFields: Object.keys(sanitizedUpdates).sort(),
+        },
     });
     return { success: true };
 });

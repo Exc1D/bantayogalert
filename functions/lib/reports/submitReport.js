@@ -57,6 +57,9 @@ const zod_1 = require("zod");
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const ngeohash = require('ngeohash');
 const security_1 = require("../security");
+const updateAnalyticsForStateChange_1 = require("../analytics/updateAnalyticsForStateChange");
+const shared_1 = require("../audit/shared");
+const report_1 = require("../types/report");
 // User role values - matching the const in auth/claims.ts
 const CITIZEN_ROLE = 'citizen';
 // Input validation schema
@@ -162,6 +165,34 @@ exports.submitReport = functions.https.onCall(async (data, context) => {
             id: reportId,
             municipalityCode: sanitizedData.municipalityCode,
             version: 1,
+        });
+        await (0, updateAnalyticsForStateChange_1.updateAnalyticsForStateChange)(tx, db, {
+            reportId,
+            municipalityCode: sanitizedData.municipalityCode,
+            provinceCode: 'CMN',
+            barangayCode: sanitizedData.barangayCode,
+            incidentType: sanitizedData.type,
+            severity: sanitizedData.severity,
+            createdAt: now,
+            previousState: null,
+            nextState: report_1.WorkflowState.Pending,
+            eventAt: now,
+        });
+        await (0, shared_1.appendAuditEntry)(tx, db, {
+            entityType: 'report',
+            entityId: reportId,
+            action: 'report_submit',
+            actorUid: userId,
+            actorRole: role ?? 'citizen',
+            municipalityCode: sanitizedData.municipalityCode,
+            provinceCode: 'CMN',
+            createdAt: now,
+            details: {
+                type: sanitizedData.type,
+                severity: sanitizedData.severity,
+                barangayCode: sanitizedData.barangayCode,
+                municipalityCode: sanitizedData.municipalityCode,
+            },
         });
     });
     // 8. Increment rate limit counter

@@ -111,16 +111,34 @@ service cloud.firestore {
     }
 
     // Analytics — admin read only, Cloud Functions write
-    match /analytics/{municipalityCode}/daily/{date} {
+    match /analytics_municipality/{municipalityCode} {
       allow read: if isProvincialSuperadmin() ||
         isMunicipalAdmin(municipalityCode);
-      allow write: if false;
+      allow create, update, delete: if false;
+
+      match /{bucketCollection}/{bucketId} {
+        allow read: if isProvincialSuperadmin() ||
+          isMunicipalAdmin(municipalityCode);
+        allow write: if false;
+      }
+    }
+
+    match /analytics_province/{provinceCode} {
+      allow read: if isProvincialSuperadmin();
+      allow create, update, delete: if false;
+
+      match /{bucketCollection}/{bucketId} {
+        allow read: if isProvincialSuperadmin();
+        allow write: if false;
+      }
     }
 
     // Audit — append only, read by admin
     match /audit/{auditId} {
-      allow read: if isProvincialSuperadmin();
-      allow create: if false; // Cloud Functions only
+      allow read: if isProvincialSuperadmin() ||
+        (resource.data.municipalityCode != null &&
+         isMunicipalAdmin(resource.data.municipalityCode));
+      allow create, update, delete: if false;
     }
 
     // Rate limits — user can read own, CF writes only

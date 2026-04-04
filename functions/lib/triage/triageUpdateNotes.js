@@ -46,6 +46,7 @@ const firestore_1 = require("firebase-admin/firestore");
 const zod_1 = require("zod");
 const security_1 = require("../security");
 const shared_1 = require("./shared");
+const shared_2 = require("../audit/shared");
 const UpdateNotesSchema = zod_1.z.object({
     reportId: zod_1.z.string(),
     expectedVersion: zod_1.z.number(),
@@ -69,6 +70,7 @@ exports.triageUpdateNotes = functions.https.onCall(async (data, context) => {
         const municipalityCode = opsData.municipalityCode;
         (0, security_1.validateMunicipalAdmin)(context, municipalityCode);
         const claims = context.auth.token;
+        const now = new Date().toISOString();
         const entry = (0, shared_1.buildActivityEntry)('notes_updated', claims.uid, {
             notesLength: internalNotes.length,
         });
@@ -80,6 +82,19 @@ exports.triageUpdateNotes = functions.https.onCall(async (data, context) => {
         tx.update(db.collection('report_ops').doc(reportId), {
             version: (opsData.version ?? 1) + 1,
             activity: firestore_1.FieldValue.arrayUnion(entry),
+        });
+        await (0, shared_2.appendAuditEntry)(tx, db, {
+            entityType: 'report',
+            entityId: reportId,
+            action: 'triage_update_notes',
+            actorUid: context.auth.uid,
+            actorRole: claims.role ?? 'citizen',
+            municipalityCode,
+            provinceCode: 'CMN',
+            createdAt: now,
+            details: {
+                notesLength: internalNotes.length,
+            },
         });
     });
     return { success: true };

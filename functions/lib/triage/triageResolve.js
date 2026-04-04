@@ -48,6 +48,8 @@ const security_1 = require("../security");
 const shared_1 = require("./shared");
 const status_1 = require("../types/status");
 const report_1 = require("../types/report");
+const updateAnalyticsForStateChange_1 = require("../analytics/updateAnalyticsForStateChange");
+const shared_2 = require("../audit/shared");
 const ResolveSchema = zod_1.z.object({
     reportId: zod_1.z.string(),
     expectedVersion: zod_1.z.number(),
@@ -85,12 +87,13 @@ exports.triageResolve = functions.https.onCall(async (data, context) => {
             throw new functions.https.HttpsError('failed-precondition', `Cannot resolve a report that is already '${currentState}'.`);
         }
         const claims = context.auth.token;
+        const now = new Date().toISOString();
         const entry = (0, shared_1.buildActivityEntry)('resolved', claims.uid, {
             resolutionNotes,
         });
         tx.update(db.collection('reports').doc(reportId), {
             workflowState: report_1.WorkflowState.Resolved,
-            updatedAt: new Date().toISOString(),
+            updatedAt: now,
         });
         tx.update(db.collection('report_private').doc(reportId), {
             ownerStatus: status_1.WORKFLOW_TO_OWNER_STATUS[report_1.WorkflowState.Resolved],
@@ -98,7 +101,37 @@ exports.triageResolve = functions.https.onCall(async (data, context) => {
         });
         tx.update(db.collection('report_ops').doc(reportId), {
             version: (opsData.version ?? 1) + 1,
+            resolvedAt: now,
             activity: firestore_1.FieldValue.arrayUnion(entry),
+        });
+        await (0, updateAnalyticsForStateChange_1.updateAnalyticsForStateChange)(tx, db, {
+            reportId,
+            municipalityCode,
+            provinceCode: 'CMN',
+            barangayCode: reportData.barangayCode,
+            incidentType: reportData.type,
+            severity: reportData.severity,
+            createdAt: reportData.createdAt,
+            previousState: currentState,
+            nextState: report_1.WorkflowState.Resolved,
+            verifiedAt: opsData.verifiedAt ?? null,
+            resolvedAt: now,
+            eventAt: now,
+        });
+        await (0, shared_2.appendAuditEntry)(tx, db, {
+            entityType: 'report',
+            entityId: reportId,
+            action: 'triage_resolve',
+            actorUid: context.auth.uid,
+            actorRole: claims.role ?? 'citizen',
+            municipalityCode,
+            provinceCode: 'CMN',
+            createdAt: now,
+            details: {
+                fromState: currentState,
+                toState: report_1.WorkflowState.Resolved,
+                resolutionNotes: resolutionNotes ?? null,
+            },
         });
     });
     return { success: true };

@@ -38,6 +38,7 @@ const functions = __importStar(require("firebase-functions"));
 const admin = __importStar(require("firebase-admin"));
 const firestore_1 = require("firebase-admin/firestore");
 const validateAuth_1 = require("../security/validateAuth");
+const shared_1 = require("../audit/shared");
 exports.deactivateContact = functions.https.onCall(async (data, context) => {
     if (!context.auth) {
         throw new functions.https.HttpsError('unauthenticated', 'Authentication required');
@@ -60,6 +61,19 @@ exports.deactivateContact = functions.https.onCall(async (data, context) => {
     await contactRef.update({
         isActive: !deactivate, // if deactivate=true, set isActive=false; if deactivate=false, reactivate
         updatedAt: firestore_1.FieldValue.serverTimestamp(),
+    });
+    await (0, shared_1.appendAuditEntry)(null, db, {
+        entityType: 'contact',
+        entityId: id,
+        action: 'contact_deactivate',
+        actorUid: context.auth.uid,
+        actorRole: context.auth.token.role ?? 'citizen',
+        municipalityCode: contactData.municipalityCode,
+        provinceCode: 'CMN',
+        details: {
+            deactivate,
+            isActive: !deactivate,
+        },
     });
     return { success: true, isActive: !deactivate };
 });

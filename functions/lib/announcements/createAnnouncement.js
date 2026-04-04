@@ -40,6 +40,7 @@ const claims_1 = require("../auth/claims");
 const sanitize_1 = require("../security/sanitize");
 const validateAuth_1 = require("../security/validateAuth");
 const announcement_1 = require("../types/announcement");
+const shared_1 = require("../audit/shared");
 exports.createAnnouncement = functions.https.onCall(async (data, context) => {
     (0, validateAuth_1.validateAuthenticated)(context);
     const parsed = announcement_1.AnnouncementSchema.safeParse(data);
@@ -68,6 +69,25 @@ exports.createAnnouncement = functions.https.onCall(async (data, context) => {
         createdBy: context.auth.uid,
         createdAt: now,
         updatedAt: now,
+    });
+    await (0, shared_1.appendAuditEntry)(null, db, {
+        entityType: 'announcement',
+        entityId: announcementRef.id,
+        action: 'announcement_create',
+        actorUid: context.auth.uid,
+        actorRole: claims.role ?? 'citizen',
+        municipalityCode: announcementData.targetScope.type === 'province'
+            ? null
+            : announcementData.targetScope.municipalityCodes[0] ?? null,
+        provinceCode: 'CMN',
+        createdAt: now,
+        details: {
+            status: announcement_1.AnnouncementStatus.Draft,
+            targetScopeType: announcementData.targetScope.type,
+            municipalityCodes: 'municipalityCodes' in announcementData.targetScope
+                ? announcementData.targetScope.municipalityCodes
+                : [],
+        },
     });
     return {
         success: true,

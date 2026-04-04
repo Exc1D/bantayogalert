@@ -13,6 +13,9 @@ import { validateAuthenticated, validateMunicipalAdmin } from '../security'
 import { buildActivityEntry, validateVersion } from './shared'
 import { WORKFLOW_TO_OWNER_STATUS } from '../types/status'
 import { WorkflowState } from '../types/report'
+import { updateAnalyticsForStateChange } from '../analytics/updateAnalyticsForStateChange'
+import { appendAuditEntry } from '../audit/shared'
+import type { AuditActorRole } from '../types/audit'
 
 const ResolveSchema = z.object({
   reportId: z.string(),
@@ -64,13 +67,14 @@ export const triageResolve = functions.https.onCall(
       }
 
       const claims = context.auth!.token
+      const now = new Date().toISOString()
       const entry = buildActivityEntry('resolved', claims.uid as string, {
         resolutionNotes,
       })
 
       tx.update(db.collection('reports').doc(reportId), {
         workflowState: WorkflowState.Resolved,
-        updatedAt: new Date().toISOString(),
+        updatedAt: now,
       })
 
       tx.update(db.collection('report_private').doc(reportId), {
@@ -80,7 +84,39 @@ export const triageResolve = functions.https.onCall(
 
       tx.update(db.collection('report_ops').doc(reportId), {
         version: (opsData.version ?? 1) + 1,
+        resolvedAt: now,
         activity: FieldValue.arrayUnion(entry),
+      })
+
+      await updateAnalyticsForStateChange(tx, db, {
+        reportId,
+        municipalityCode,
+        provinceCode: 'CMN',
+        barangayCode: reportData.barangayCode as string,
+        incidentType: reportData.type,
+        severity: reportData.severity,
+        createdAt: reportData.createdAt as string,
+        previousState: currentState,
+        nextState: WorkflowState.Resolved,
+        verifiedAt: (opsData.verifiedAt as string | undefined) ?? null,
+        resolvedAt: now,
+        eventAt: now,
+      })
+
+      await appendAuditEntry(tx, db, {
+        entityType: 'report',
+        entityId: reportId,
+        action: 'triage_resolve',
+        actorUid: context.auth!.uid,
+        actorRole: (claims.role as AuditActorRole | undefined) ?? 'citizen',
+        municipalityCode,
+        provinceCode: 'CMN',
+        createdAt: now,
+        details: {
+          fromState: currentState,
+          toState: WorkflowState.Resolved,
+          resolutionNotes: resolutionNotes ?? null,
+        },
       })
     })
 

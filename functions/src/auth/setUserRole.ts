@@ -1,5 +1,8 @@
 import * as functions from 'firebase-functions'
+import * as admin from 'firebase-admin'
 import { setCustomClaims, isSuperadmin, type CustomClaims } from './claims'
+import { appendAuditEntry } from '../audit/shared'
+import type { AuditActorRole } from '../types/audit'
 
 const VALID_ROLES = ['citizen', 'municipal_admin', 'provincial_superadmin']
 const MUNICIPALITY_CODE_REGEX = /^[A-Z]{3,4}$/
@@ -88,6 +91,22 @@ export const setUserRole = functions.https.onCall(
 
     // Set claims atomically on Firestore doc and ID token
     await setCustomClaims(data.uid, claims)
+
+    await appendAuditEntry(null, admin.firestore(), {
+      entityType: 'user',
+      entityId: data.uid,
+      action: 'user_role_set',
+      actorUid: context.auth.uid,
+      actorRole:
+        (callerClaims.role as AuditActorRole | undefined) ??
+        'provincial_superadmin',
+      municipalityCode: data.municipalityCode,
+      provinceCode: claims.provinceCode,
+      details: {
+        role: data.role,
+        municipalityCode: data.municipalityCode,
+      },
+    })
 
     return {
       success: true,

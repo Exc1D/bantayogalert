@@ -33,7 +33,7 @@ var __importStar = (this && this.__importStar) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.stub = exports.setSurgeModeCF = exports.subscribeAnnouncementTopics = exports.getAnnouncements = exports.cancelAnnouncement = exports.publishAnnouncement = exports.createAnnouncement = exports.triageUpdateNotes = exports.triageUpdatePriority = exports.triageReroute = exports.triageResolve = exports.triageInProgress = exports.triageAcknowledge = exports.triageDispatch = exports.triageReject = exports.triageVerify = exports.getContacts = exports.deactivateContact = exports.updateContact = exports.createContact = exports.submitReport = exports.onUserCreated = exports.setUserRole = exports.validateRole = exports.validateWriteScope = exports.validateAuthenticated = exports.validateMunicipalAdmin = exports.validateSuperadmin = exports.disableSurgeModeForMunicipality = exports.enableSurgeModeForMunicipality = exports.isSurgeModeActive = exports.setSurgeMode = exports.incrementRateLimit = exports.checkRateLimit = exports.sanitizeAnnouncementInput = exports.sanitizeContactInput = exports.sanitizeReportInput = exports.sanitizeUserInput = exports.sanitizeObject = exports.sanitizeText = void 0;
+exports.stub = exports.setSurgeModeCF = exports.scheduledAggregation = exports.subscribeAnnouncementTopics = exports.getAnnouncements = exports.cancelAnnouncement = exports.publishAnnouncement = exports.createAnnouncement = exports.triageUpdateNotes = exports.triageUpdatePriority = exports.triageReroute = exports.triageResolve = exports.triageInProgress = exports.triageAcknowledge = exports.triageDispatch = exports.triageReject = exports.triageVerify = exports.getContacts = exports.deactivateContact = exports.updateContact = exports.createContact = exports.submitReport = exports.onUserCreated = exports.setUserRole = exports.validateRole = exports.validateWriteScope = exports.validateAuthenticated = exports.validateMunicipalAdmin = exports.validateSuperadmin = exports.disableSurgeModeForMunicipality = exports.enableSurgeModeForMunicipality = exports.isSurgeModeActive = exports.setSurgeMode = exports.incrementRateLimit = exports.checkRateLimit = exports.sanitizeAnnouncementInput = exports.sanitizeContactInput = exports.sanitizeReportInput = exports.sanitizeUserInput = exports.sanitizeObject = exports.sanitizeText = void 0;
 const admin = __importStar(require("firebase-admin"));
 const functions = __importStar(require("firebase-functions"));
 const https_1 = require("firebase-functions/v2/https");
@@ -79,6 +79,8 @@ const getAnnouncements_1 = require("./announcements/getAnnouncements");
 Object.defineProperty(exports, "getAnnouncements", { enumerable: true, get: function () { return getAnnouncements_1.getAnnouncements; } });
 const subscribeAnnouncementTopics_1 = require("./announcements/subscribeAnnouncementTopics");
 Object.defineProperty(exports, "subscribeAnnouncementTopics", { enumerable: true, get: function () { return subscribeAnnouncementTopics_1.subscribeAnnouncementTopics; } });
+const scheduledAggregation_1 = require("./analytics/scheduledAggregation");
+Object.defineProperty(exports, "scheduledAggregation", { enumerable: true, get: function () { return scheduledAggregation_1.scheduledAggregation; } });
 if (admin.apps.length === 0) {
     admin.initializeApp();
 }

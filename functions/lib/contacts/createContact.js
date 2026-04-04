@@ -40,6 +40,7 @@ const firestore_1 = require("firebase-admin/firestore");
 const contact_1 = require("../types/contact");
 const sanitize_1 = require("../security/sanitize");
 const validateAuth_1 = require("../security/validateAuth");
+const shared_1 = require("../audit/shared");
 exports.createContact = functions.https.onCall(async (data, context) => {
     // Validate authentication
     if (!context.auth) {
@@ -64,6 +65,20 @@ exports.createContact = functions.https.onCall(async (data, context) => {
         isActive: true,
         createdAt: now,
         updatedAt: now,
+    });
+    await (0, shared_1.appendAuditEntry)(null, db, {
+        entityType: 'contact',
+        entityId: contactRef.id,
+        action: 'contact_create',
+        actorUid: context.auth.uid,
+        actorRole: context.auth.token.role ?? 'citizen',
+        municipalityCode: contactData.municipalityCode,
+        provinceCode: 'CMN',
+        details: {
+            agency: contactData.agency,
+            type: contactData.type,
+            isActive: true,
+        },
     });
     return {
         success: true,

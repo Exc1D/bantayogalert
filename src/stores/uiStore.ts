@@ -1,4 +1,5 @@
 import { create } from 'zustand'
+import type { HotspotCount } from '@/types/analytics'
 
 export type ActivePanel = 'report-detail' | 'contact-detail' | 'announcement-detail' | 'report-form' | 'settings' | 'admin-report-detail' | null
 export type ActiveTab = 'feed' | 'map' | 'report' | 'alerts' | 'profile'
@@ -12,6 +13,10 @@ interface UIState {
   setActiveTab: (tab: ActiveTab) => void
   selectedReportId: string | null
   setSelectedReportId: (id: string | null) => void
+  analyticsHeatmapEnabled: boolean
+  setAnalyticsHeatmapEnabled: (enabled: boolean) => void
+  analyticsHotspots: HotspotCount[]
+  setAnalyticsHotspots: (hotspots: HotspotCount[]) => void
 }
 
 export const useUIStore = create<UIState>((set) => ({
@@ -24,4 +29,8 @@ export const useUIStore = create<UIState>((set) => ({
   setActiveTab: (tab) => set({ activeTab: tab }),
   selectedReportId: null,
   setSelectedReportId: (id) => set({ selectedReportId: id }),
+  analyticsHeatmapEnabled: false,
+  setAnalyticsHeatmapEnabled: (enabled) => set({ analyticsHeatmapEnabled: enabled }),
+  analyticsHotspots: [],
+  setAnalyticsHotspots: (hotspots) => set({ analyticsHotspots: hotspots }),
 }))

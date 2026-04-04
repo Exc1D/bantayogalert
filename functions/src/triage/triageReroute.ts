@@ -13,6 +13,8 @@ import { validateAuthenticated, validateMunicipalAdmin } from '../security'
 import { buildActivityEntry, validateVersion } from './shared'
 import { WorkflowState } from '../types/report'
 import type { ContactSnapshot } from '../types/contact'
+import { appendAuditEntry } from '../audit/shared'
+import type { AuditActorRole } from '../types/audit'
 
 const RerouteSchema = z.object({
   reportId: z.string(),
@@ -86,6 +88,7 @@ export const triageReroute = functions.https.onCall(
       }
 
       const claims = context.auth!.token
+      const now = new Date().toISOString()
       const entry = buildActivityEntry('rerouted', claims.uid as string, {
         previousContactId,
         newContactId: contactId,
@@ -107,6 +110,25 @@ export const triageReroute = functions.https.onCall(
         routingDestination: routingDestination ?? null,
         dispatchNotes: dispatchNotes ?? null,
         activity: FieldValue.arrayUnion(entry),
+      })
+
+      await appendAuditEntry(tx, db, {
+        entityType: 'report',
+        entityId: reportId,
+        action: 'triage_reroute',
+        actorUid: context.auth!.uid,
+        actorRole: (claims.role as AuditActorRole | undefined) ?? 'citizen',
+        municipalityCode,
+        provinceCode: 'CMN',
+        createdAt: now,
+        details: {
+          currentState,
+          previousContactId: previousContactId ?? null,
+          newContactId: contactId,
+          contactName: snapshot.name,
+          routingDestination: routingDestination ?? null,
+          dispatchNotes: dispatchNotes ?? null,
+        },
       })
     })
 

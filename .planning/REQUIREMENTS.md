@@ -118,12 +118,12 @@
 
 ### Analytics & Monitoring
 
-- [ ] **ANL-01**: Dashboard shows summary cards: total reports, pending, verified, resolved, rejected
-- [ ] **ANL-02**: Charts: reports by type (bar), severity (donut), over time (line), avg resolution time
-- [ ] **ANL-03**: Municipal admin sees only own municipality data
-- [ ] **ANL-04**: Provincial superadmin sees province-wide data
-- [ ] **ANL-05**: Analytics pre-aggregated via Cloud Functions triggers + scheduled jobs — clients never scan raw reports
-- [ ] **ANL-06**: Audit log viewer with filters by action/entity/user and paginated results
+- [x] **ANL-01**: Dashboard shows summary cards: total reports, pending, verified, resolved, rejected
+- [x] **ANL-02**: Charts: reports by type (bar), severity (donut), over time (line), avg resolution time
+- [x] **ANL-03**: Municipal admin sees only own municipality data
+- [x] **ANL-04**: Provincial superadmin sees province-wide data
+- [x] **ANL-05**: Analytics pre-aggregated via Cloud Functions triggers + scheduled jobs — clients never scan raw reports
+- [x] **ANL-06**: Audit log viewer with filters by action/entity/user and paginated results
 
 ### Infrastructure & Security
 
@@ -206,7 +206,7 @@ Note: Phase 8 (Contacts) and Phase 9 (Admin Triage) were reordered per research 
 | ALR-01 through ALR-07 | Phase 10 | Complete |
 | DSK-01 through DSK-07 | Phase 4 | Pending |
 | MOB-01 through MOB-07 | Phase 4 | Pending |
-| ANL-01 through ANL-06 | Phase 11 | Pending |
+| ANL-01 through ANL-06 | Phase 11 | Complete |
 | SEC-01 through SEC-07 | Phase 3 + Phase 12 | Pending |
 | PWA-01 through PWA-06 | Phase 1 + Phase 12 | Pending |
 | SEO-01 through SEO-06 | Phase 12 | Pending |
@@ -218,4 +218,4 @@ Note: Phase 8 (Contacts) and Phase 9 (Admin Triage) were reordered per research 
 
 ---
 *Requirements defined: 2026-04-03*
-*Last updated: 2026-04-04 after Phase 10 completion*
+*Last updated: 2026-04-04 after Phase 11 completion*

@@ -10,6 +10,8 @@ import {
   AnnouncementStatus,
   type Announcement,
 } from '../types/announcement'
+import { appendAuditEntry } from '../audit/shared'
+import type { AuditActorRole } from '../types/audit'
 
 const CancelAnnouncementSchema = z.object({
   announcementId: z.string().min(1),
@@ -72,6 +74,25 @@ export const cancelAnnouncement = functions.https.onCall(
       status: AnnouncementStatus.Cancelled,
       cancelledAt: now,
       updatedAt: now,
+    })
+
+    await appendAuditEntry(null, db, {
+      entityType: 'announcement',
+      entityId: announcementId,
+      action: 'announcement_cancel',
+      actorUid: context.auth!.uid,
+      actorRole: (context.auth!.token.role as AuditActorRole | undefined) ?? 'citizen',
+      municipalityCode:
+        announcement.targetScope.type === 'province'
+          ? null
+          : announcement.targetScope.municipalityCodes[0] ?? null,
+      provinceCode: 'CMN',
+      createdAt: now,
+      details: {
+        status: AnnouncementStatus.Cancelled,
+        previousStatus: announcement.status,
+        targetScopeType: announcement.targetScope.type,
+      },
     })
 
     return {

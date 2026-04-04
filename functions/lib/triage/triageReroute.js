@@ -47,6 +47,7 @@ const zod_1 = require("zod");
 const security_1 = require("../security");
 const shared_1 = require("./shared");
 const report_1 = require("../types/report");
+const shared_2 = require("../audit/shared");
 const RerouteSchema = zod_1.z.object({
     reportId: zod_1.z.string(),
     expectedVersion: zod_1.z.number(),
@@ -103,6 +104,7 @@ exports.triageReroute = functions.https.onCall(async (data, context) => {
             municipalityCode: contactData.municipalityCode,
         };
         const claims = context.auth.token;
+        const now = new Date().toISOString();
         const entry = (0, shared_1.buildActivityEntry)('rerouted', claims.uid, {
             previousContactId,
             newContactId: contactId,
@@ -121,6 +123,24 @@ exports.triageReroute = functions.https.onCall(async (data, context) => {
             routingDestination: routingDestination ?? null,
             dispatchNotes: dispatchNotes ?? null,
             activity: firestore_1.FieldValue.arrayUnion(entry),
+        });
+        await (0, shared_2.appendAuditEntry)(tx, db, {
+            entityType: 'report',
+            entityId: reportId,
+            action: 'triage_reroute',
+            actorUid: context.auth.uid,
+            actorRole: claims.role ?? 'citizen',
+            municipalityCode,
+            provinceCode: 'CMN',
+            createdAt: now,
+            details: {
+                currentState,
+                previousContactId: previousContactId ?? null,
+                newContactId: contactId,
+                contactName: snapshot.name,
+                routingDestination: routingDestination ?? null,
+                dispatchNotes: dispatchNotes ?? null,
+            },
         });
     });
     return { success: true };

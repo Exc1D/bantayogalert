@@ -22,6 +22,7 @@ import { publishAnnouncement } from './announcements/publishAnnouncement'
 import { cancelAnnouncement } from './announcements/cancelAnnouncement'
 import { getAnnouncements } from './announcements/getAnnouncements'
 import { subscribeAnnouncementTopics } from './announcements/subscribeAnnouncementTopics'
+import { scheduledAggregation } from './analytics/scheduledAggregation'
 
 if (admin.apps.length === 0) {
   admin.initializeApp()
@@ -69,6 +70,7 @@ export { publishAnnouncement }
 export { cancelAnnouncement }
 export { getAnnouncements }
 export { subscribeAnnouncementTopics }
+export { scheduledAggregation }
 
 /**
  * Set surge mode for a municipality.

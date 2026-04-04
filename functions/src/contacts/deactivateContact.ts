@@ -2,6 +2,8 @@ import * as functions from 'firebase-functions'
 import * as admin from 'firebase-admin'
 import { FieldValue } from 'firebase-admin/firestore'
 import { validateMunicipalAdmin } from '../security/validateAuth'
+import { appendAuditEntry } from '../audit/shared'
+import type { AuditActorRole } from '../types/audit'
 
 export const deactivateContact = functions.https.onCall(async (data, context) => {
   if (!context.auth) {
@@ -32,6 +34,20 @@ export const deactivateContact = functions.https.onCall(async (data, context) =>
   await contactRef.update({
     isActive: !deactivate,  // if deactivate=true, set isActive=false; if deactivate=false, reactivate
     updatedAt: FieldValue.serverTimestamp(),
+  })
+
+  await appendAuditEntry(null, db, {
+    entityType: 'contact',
+    entityId: id,
+    action: 'contact_deactivate',
+    actorUid: context.auth.uid,
+    actorRole: (context.auth.token.role as AuditActorRole | undefined) ?? 'citizen',
+    municipalityCode: contactData.municipalityCode as string,
+    provinceCode: 'CMN',
+    details: {
+      deactivate,
+      isActive: !deactivate,
+    },
   })
 
   return { success: true, isActive: !deactivate }

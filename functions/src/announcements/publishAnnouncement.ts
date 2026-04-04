@@ -11,6 +11,8 @@ import {
   type Announcement,
 } from '../types/announcement'
 import { sendAnnouncementPush } from './sendAnnouncementPush'
+import { appendAuditEntry } from '../audit/shared'
+import type { AuditActorRole } from '../types/audit'
 
 const PublishAnnouncementSchema = z.object({
   announcementId: z.string().min(1),
@@ -92,6 +94,29 @@ export const publishAnnouncement = functions.https.onCall(
         error
       )
     }
+
+    await appendAuditEntry(null, db, {
+      entityType: 'announcement',
+      entityId: announcementId,
+      action: 'announcement_publish',
+      actorUid: context.auth!.uid,
+      actorRole: (context.auth!.token.role as AuditActorRole | undefined) ?? 'citizen',
+      municipalityCode:
+        announcement.targetScope.type === 'province'
+          ? null
+          : announcement.targetScope.municipalityCodes[0] ?? null,
+      provinceCode: 'CMN',
+      createdAt: now,
+      details: {
+        status: AnnouncementStatus.Published,
+        targetScopeType: announcement.targetScope.type,
+        municipalityCodes:
+          'municipalityCodes' in announcement.targetScope
+            ? announcement.targetScope.municipalityCodes
+            : [],
+        delivery,
+      },
+    })
 
     return {
       success: true,
