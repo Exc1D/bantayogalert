@@ -9,6 +9,7 @@ import { ProfilePage } from './app/auth/profile/page'
 import { ShellRouter } from './app/shell/ShellRouter'
 import { ReportFormPage } from './app/report/ReportFormPage'
 import { ReportTrack } from './app/report/ReportTrack'
+import ContactsRoute from './app/contacts/page'
 
 export function App() {
   return (
@@ -42,6 +43,7 @@ export function App() {
             <Route index element={<div className="p-4">Feed coming soon</div>} />
             <Route path="report" element={<ReportFormPage />} />
             <Route path="track/:reportId" element={<ReportTrack />} />
+            <Route path="contacts" element={<ContactsRoute />} />
           </Route>
 
           {/* Admin routes */}
