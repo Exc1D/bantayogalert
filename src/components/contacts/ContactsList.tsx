@@ -4,6 +4,10 @@ import { ContactCard } from './ContactCard'
 import { ContactForm } from './ContactForm'
 import { Plus, Search } from 'lucide-react'
 import type { Contact } from '@/types/contact'
+import { ContactSchema } from '@/types/contact'
+import { z } from 'zod'
+
+type ContactFormData = z.input<typeof ContactSchema>
 
 interface ContactsListProps {
   contacts?: Contact[]  // If provided, displays these contacts instead of fetching
@@ -26,14 +30,35 @@ export function ContactsList({ contacts: propContacts }: ContactsListProps = {})
   // If propContacts provided, use those; otherwise fetch
   const contacts = propContacts ?? fetchedContacts
 
-  const handleCreate = async (data: Omit<Contact, 'id' | 'createdAt' | 'updatedAt' | 'isActive'>) => {
-    await createContact(data)
+  const handleCreate = async (data: ContactFormData) => {
+    // Transform form data to match what createContact expects
+    const submitData = {
+      name: data.name,
+      agency: data.agency,
+      type: data.type,
+      phones: data.phones,
+      email: data.email ?? '',
+      capabilities: data.capabilities,
+      municipalityCode: data.municipalityCode,
+      barangayCode: data.barangayCode,
+    }
+    await createContact(submitData)
     setIsCreating(false)
   }
 
-  const handleUpdate = async (data: Omit<Contact, 'id' | 'createdAt' | 'updatedAt' | 'isActive'>) => {
+  const handleUpdate = async (data: ContactFormData) => {
     if (!editingContact) return
-    await updateContact({ id: editingContact.id, ...data })
+    const submitData = {
+      name: data.name,
+      agency: data.agency,
+      type: data.type,
+      phones: data.phones,
+      email: data.email ?? '',
+      capabilities: data.capabilities,
+      municipalityCode: data.municipalityCode,
+      barangayCode: data.barangayCode,
+    }
+    await updateContact({ id: editingContact.id, ...submitData })
     setEditingContact(null)
   }
 

@@ -4,8 +4,10 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { X, Plus } from 'lucide-react'
 import { ContactSchema, type Contact } from '@/types/contact'
 import { ContactType } from '@/types/contact'
+import { z } from 'zod'
 
-type ContactFormData = Omit<Contact, 'id' | 'createdAt' | 'updatedAt'>
+// Use z.input for form data since handleSubmit passes form values
+type ContactFormData = z.input<typeof ContactSchema>
 
 interface ContactFormProps {
   contact?: Contact  // If provided, form is in edit mode
@@ -24,22 +26,27 @@ export function ContactForm({ contact, onSubmit, onCancel, isLoading }: ContactF
     watch,
     setValue,
   } = useForm<ContactFormData>({
-    resolver: zodResolver(ContactSchema),
+    resolver: zodResolver(ContactSchema) as any,
     defaultValues: contact
       ? {
           name: contact.name,
           agency: contact.agency,
           type: contact.type,
           phones: contact.phones,
-          email: contact.email ?? '',
+          email: contact.email,
           capabilities: contact.capabilities,
           municipalityCode: contact.municipalityCode,
           barangayCode: contact.barangayCode,
           isActive: contact.isActive,
         }
       : {
-          phones: [''],
-          capabilities: [],
+          name: '',
+          agency: '',
+          type: ContactType.Other,
+          phones: [''] as string[],
+          email: undefined,
+          capabilities: [] as string[],
+          municipalityCode: '',
           isActive: true,
         },
   })
@@ -49,7 +56,7 @@ export function ContactForm({ contact, onSubmit, onCancel, isLoading }: ContactF
 
   const addCapability = () => {
     if (newCapability.trim()) {
-      setValue('capabilities', [...capabilities, newCapability.trim()])
+      setValue('capabilities', [...capabilities, newCapability.trim()] as any)
       setNewCapability('')
     }
   }
@@ -57,7 +64,7 @@ export function ContactForm({ contact, onSubmit, onCancel, isLoading }: ContactF
   const removeCapability = (index: number) => {
     setValue(
       'capabilities',
-      capabilities.filter((_, i) => i !== index)
+      capabilities.filter((_: string, i: number) => i !== index) as any
     )
   }
 
@@ -66,7 +73,7 @@ export function ContactForm({ contact, onSubmit, onCancel, isLoading }: ContactF
 
   const addPhone = () => {
     if (newPhone.trim()) {
-      setValue('phones', [...phones, newPhone.trim()])
+      setValue('phones', [...phones, newPhone.trim()] as any)
       setNewPhone('')
     }
   }
@@ -74,7 +81,7 @@ export function ContactForm({ contact, onSubmit, onCancel, isLoading }: ContactF
   const removePhone = (index: number) => {
     setValue(
       'phones',
-      phones.filter((_, i) => i !== index)
+      phones.filter((_: string, i: number) => i !== index) as any
     )
   }
 
@@ -87,7 +94,7 @@ export function ContactForm({ contact, onSubmit, onCancel, isLoading }: ContactF
           className="mt-1 w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary-500"
           placeholder="Responder or unit name"
         />
-        {errors.name && <p className="mt-1 text-sm text-red-600">{errors.name.message}</p>}
+        {errors.name && <p className="mt-1 text-sm text-red-600">{String(errors.name?.message ?? '')}</p>}
       </div>
 
       <div>
@@ -97,7 +104,7 @@ export function ContactForm({ contact, onSubmit, onCancel, isLoading }: ContactF
           className="mt-1 w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary-500"
           placeholder="Agency or organization"
         />
-        {errors.agency && <p className="mt-1 text-sm text-red-600">{errors.agency.message}</p>}
+        {errors.agency && <p className="mt-1 text-sm text-red-600">{String(errors.agency?.message ?? '')}</p>}
       </div>
 
       <div>
@@ -112,7 +119,7 @@ export function ContactForm({ contact, onSubmit, onCancel, isLoading }: ContactF
             </option>
           ))}
         </select>
-        {errors.type && <p className="mt-1 text-sm text-red-600">{errors.type.message}</p>}
+        {errors.type && <p className="mt-1 text-sm text-red-600">{String(errors.type?.message ?? '')}</p>}
       </div>
 
       <div>
@@ -124,14 +131,14 @@ export function ContactForm({ contact, onSubmit, onCancel, isLoading }: ContactF
           maxLength={4}
         />
         {errors.municipalityCode && (
-          <p className="mt-1 text-sm text-red-600">{errors.municipalityCode.message}</p>
+          <p className="mt-1 text-sm text-red-600">{String(errors.municipalityCode?.message ?? '')}</p>
         )}
       </div>
 
       <div>
         <label className="block text-sm font-medium text-gray-700">Phones</label>
         <div className="space-y-2">
-          {phones.map((phone, index) => (
+          {phones.map((phone: string, index: number) => (
             <div key={index} className="flex gap-2">
               <input
                 value={phone}
@@ -164,7 +171,7 @@ export function ContactForm({ contact, onSubmit, onCancel, isLoading }: ContactF
             </button>
           </div>
         </div>
-        {errors.phones && <p className="mt-1 text-sm text-red-600">{errors.phones.message}</p>}
+        {errors.phones && <p className="mt-1 text-sm text-red-600">{String(errors.phones?.message ?? '')}</p>}
       </div>
 
       <div>
@@ -175,14 +182,14 @@ export function ContactForm({ contact, onSubmit, onCancel, isLoading }: ContactF
           className="mt-1 w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary-500"
           placeholder="contact@agency.gov.ph"
         />
-        {errors.email && <p className="mt-1 text-sm text-red-600">{errors.email.message}</p>}
+        {errors.email && <p className="mt-1 text-sm text-red-600">{String(errors.email?.message ?? '')}</p>}
       </div>
 
       <div>
         <label className="block text-sm font-medium text-gray-700">Capabilities</label>
         <div className="space-y-2">
           <div className="flex flex-wrap gap-2">
-            {capabilities.map((cap, index) => (
+            {capabilities.map((cap: string, index: number) => (
               <span
                 key={index}
                 className="inline-flex items-center gap-1 px-2 py-1 bg-gray-100 text-gray-700 rounded text-sm"
@@ -216,7 +223,7 @@ export function ContactForm({ contact, onSubmit, onCancel, isLoading }: ContactF
           </div>
         </div>
         {errors.capabilities && (
-          <p className="mt-1 text-sm text-red-600">{errors.capabilities.message}</p>
+          <p className="mt-1 text-sm text-red-600">{String(errors.capabilities?.message ?? '')}</p>
         )}
       </div>
 
