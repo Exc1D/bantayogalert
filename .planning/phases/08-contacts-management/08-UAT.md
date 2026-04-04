@@ -7,7 +7,7 @@ source:
   - 08-03-SUMMARY.md
   - 08-04-SUMMARY.md
 started: 2026-04-04T03:10:00Z
-updated: 2026-04-04T03:11:00Z
+updated: 2026-04-04T03:20:00Z
 ---
 
 ## Current Test
@@ -25,18 +25,10 @@ awaiting: user response
 ## Tests
 
 ### 1. Cold Start Build
-expected: Run `npm run build`. TypeScript compiles without errors. Vite produces production build
+expected: |
+  Run `npm run build`. TypeScript compiles without errors. Vite produces production build
   with no warnings. Output includes bundled JS and CSS for the contacts feature.
 result: pass
-
-### 2. Contacts Route - Admin User
-expected: |
-  Log in as a municipal_admin. Navigate to http://localhost:5173/app/contacts
-  (or the dev server URL). The ContactsPage loads with:
-  - ContactsFilterBar (search input, type dropdown)
-  - ContactsList showing active contacts
-  - "Add Contact" button visible
-result: pending
 
 ### 2. Contacts Route - Admin User
 expected: |
@@ -154,10 +146,35 @@ result: pending
 
 total: 16
 passed: 1
-issues: 0
+issues: 1
 pending: 15
 skipped: 0
 
 ## Gaps
 
-[none yet]
+- truth: "Firebase emulator connections were not implemented in the web app code"
+  status: failed
+  reason: "Firebase SDK was using demo credentials from .env.local but never calling connectAuthEmulator/connectFirestoreEmulator/connectStorageEmulator — all Firebase operations returned 404"
+  severity: blocker
+  test: 2
+  artifacts:
+    - "src/lib/firebase/config.ts (FIXED: added emulator connections)"
+  missing: []
+  root_cause: "Phase 01 emulator plan set firebase.json ports but never added the client-side connect*Emulator() calls"
+  fix_applied: true
+  fix_summary: "Added VITE_USE_EMULATOR check and connectAuthEmulator/connectFirestoreEmulator/connectStorageEmulator calls to src/lib/firebase/config.ts"
+
+## Additional Gaps
+
+- truth: "Contacts UI has poor visual design — raw HTML elements with no spacing consistency, rough typography, and unprofessional appearance"
+  status: failed
+  reason: "User reported: 'very ugly, everything is improperly spaced, not a soul of artistry'"
+  severity: major
+  test: 2
+  artifacts: []
+  missing:
+    - "src/components/contacts/ContactsFilterBar.tsx"
+    - "src/components/contacts/ContactsList.tsx"
+    - "src/components/contacts/ContactCard.tsx"
+    - "src/components/contacts/ContactForm.tsx"
+  root_cause: "No UI component library exists — raw HTML with Tailwind lacks design consistency"
