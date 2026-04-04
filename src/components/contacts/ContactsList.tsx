@@ -5,12 +5,16 @@ import { ContactForm } from './ContactForm'
 import { Plus, Search } from 'lucide-react'
 import type { Contact } from '@/types/contact'
 
-export function ContactsList() {
+interface ContactsListProps {
+  contacts?: Contact[]  // If provided, displays these contacts instead of fetching
+}
+
+export function ContactsList({ contacts: propContacts }: ContactsListProps = {}) {
   const [editingContact, setEditingContact] = useState<Contact | null>(null)
   const [isCreating, setIsCreating] = useState(false)
 
   const {
-    contacts,
+    contacts: fetchedContacts,
     isLoading,
     error,
     createContact,
@@ -18,6 +22,9 @@ export function ContactsList() {
     deactivateContact,
     isCreating: isSubmitting,
   } = useContacts({ includeInactive: true })
+
+  // If propContacts provided, use those; otherwise fetch
+  const contacts = propContacts ?? fetchedContacts
 
   const handleCreate = async (data: Omit<Contact, 'id' | 'createdAt' | 'updatedAt' | 'isActive'>) => {
     await createContact(data)
@@ -55,22 +62,24 @@ export function ContactsList() {
 
   return (
     <div className="space-y-6">
-      <div className="flex items-center justify-between">
-        <div className="flex items-center gap-2">
-          <Search className="w-5 h-5 text-gray-400" />
-          <span className="text-sm text-gray-600">
-            {activeContacts.length} active contact{activeContacts.length !== 1 ? 's' : ''}
-          </span>
+      {!propContacts && (
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <Search className="w-5 h-5 text-gray-400" />
+            <span className="text-sm text-gray-600">
+              {activeContacts.length} active contact{activeContacts.length !== 1 ? 's' : ''}
+            </span>
+          </div>
+          <button
+            type="button"
+            className="px-4 py-2 bg-primary-600 text-white rounded hover:bg-primary-700 flex items-center gap-2"
+            onClick={() => setIsCreating(true)}
+          >
+            <Plus className="w-4 h-4" />
+            Add Contact
+          </button>
         </div>
-        <button
-          type="button"
-          className="px-4 py-2 bg-primary-600 text-white rounded hover:bg-primary-700 flex items-center gap-2"
-          onClick={() => setIsCreating(true)}
-        >
-          <Plus className="w-4 h-4" />
-          Add Contact
-        </button>
-      </div>
+      )}
 
       {/* Create/Edit Modal */}
       {(isCreating || editingContact) && (
@@ -106,15 +115,19 @@ export function ContactsList() {
             />
           ))}
         </div>
-      ) : (
+      ) : !propContacts ? (
         <div className="text-center py-12 text-gray-500">
           <p>No active contacts yet.</p>
           <p className="text-sm">Click "Add Contact" to create your first responder contact.</p>
         </div>
+      ) : (
+        <div className="text-center py-12 text-gray-500">
+          <p>No contacts match your filters.</p>
+        </div>
       )}
 
       {/* Inactive Contacts */}
-      {inactiveContacts.length > 0 && (
+      {inactiveContacts.length > 0 && !propContacts && (
         <div className="pt-6 border-t">
           <h3 className="text-sm font-medium text-gray-500 mb-4">
             Deactivated ({inactiveContacts.length})
