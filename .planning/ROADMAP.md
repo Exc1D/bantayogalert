@@ -13,7 +13,7 @@
 - [ ] **Phase 5: Report Submission** — Multi-step form, location picker, media upload, three-tier doc creation
 - [x] **Phase 6: Real-time Map & Feed** — Leaflet map, marker clustering, paginated feed, dual-canvas filters (completed 2026-04-03)
 - [ ] **Phase 7: Profile & Report Tracker** — User profile, My Reports list, owner status display
-- [ ] **Phase 8: Contacts Management** — Responder contacts CRUD, municipality-scoped, snapshot capture
+- [x] **Phase 8: Contacts Management** — Responder contacts CRUD, municipality-scoped, snapshot capture (completed 2026-04-04)
 - [ ] **Phase 9: Admin Triage** — Report verification, dispatch, routing, state machine, optimistic concurrency
 - [ ] **Phase 10: Announcements, Push & Alerts** — Announcement creation, FCM delivery, Alerts tab
 - [ ] **Phase 11: Analytics & Disaster Mapping** — Pre-aggregated dashboards, charts, audit log
@@ -243,7 +243,7 @@
 - [x] 08-01-PLAN.md — Contact CRUD Cloud Functions (createContact, updateContact, deactivateContact, getContacts)
 - [x] 08-02-PLAN.md — Contacts UI Components (useContacts hook, ContactCard, ContactForm, ContactsList)
 - [x] 08-03-PLAN.md — Contacts Search & Filter (ContactsFilterBar, ContactsPage, filter store)
-- [ ] 08-04-PLAN.md — Contacts Integration (router, nav, /app/contacts route)
+- [x] 08-04-PLAN.md — Contacts Integration (router, nav, /app/contacts route)
 
 ---
 
@@ -355,7 +355,7 @@
 | 5. Report Submission | 4/5 | In Progress | |
 | 6. Real-time Map & Feed | 5/5 | Complete   | 2026-04-03 |
 | 7. Profile & Report Tracker | 1/2 | In Progress | |
-| 8. Contacts Management | 3/4 | In Progress|  |
+| 8. Contacts Management | 4/4 | Complete   | 2026-04-04 |
 | 9. Admin Triage | 0/16 | Not started | |
 | 10. Announcements, Push & Alerts | 0/7 | Not started | |
 | 11. Analytics & Disaster Mapping | 0/6 | Not started | |
