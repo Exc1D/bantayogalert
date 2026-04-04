@@ -79,12 +79,12 @@
 
 ### Contacts Management
 
-- [ ] **CON-01**: Admin can create responder contact with name, agency, type, phones, email, capabilities
-- [ ] **CON-02**: Admin can edit existing contacts
-- [ ] **CON-03**: Admin can deactivate/reactivate contacts
+- [x] **CON-01**: Admin can create responder contact with name, agency, type, phones, email, capabilities
+- [x] **CON-02**: Admin can edit existing contacts
+- [x] **CON-03**: Admin can deactivate/reactivate contacts
 - [ ] **CON-04**: Contact list is searchable and filterable by type and municipality
-- [ ] **CON-05**: Municipal scope enforced — admin manages only own municipality's contacts
-- [ ] **CON-06**: At dispatch, contact details are snapshotted into the report routing event
+- [x] **CON-05**: Municipal scope enforced — admin manages only own municipality's contacts
+- [x] **CON-06**: At dispatch, contact details are snapshotted into the report routing event
 
 ### Announcements & Alerts
 

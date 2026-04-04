@@ -239,7 +239,11 @@
 5. Municipal scope is enforced — a municipal admin can only view and manage contacts within their own municipality
 6. When a report is dispatched to a contact, the contact's details are snapshotted into the routing event and preserved even if the contact is later edited
 
-**Plans**: TBD
+**Plans**: 4 plans
+- [x] 08-01-PLAN.md — Contact CRUD Cloud Functions (createContact, updateContact, deactivateContact, getContacts)
+- [ ] 08-02-PLAN.md — Contacts UI Components (useContacts hook, ContactCard, ContactForm, ContactsList)
+- [ ] 08-03-PLAN.md — Contacts Search & Filter (ContactsFilterBar, ContactsPage, filter store)
+- [ ] 08-04-PLAN.md — Contacts Integration (router, nav, /app/contacts route)
 
 ---
 
@@ -351,7 +355,7 @@
 | 5. Report Submission | 4/5 | In Progress | |
 | 6. Real-time Map & Feed | 5/5 | Complete   | 2026-04-03 |
 | 7. Profile & Report Tracker | 1/2 | In Progress | |
-| 8. Contacts Management | 0/6 | Not started | |
+| 8. Contacts Management | 1/4 | In Progress|  |
 | 9. Admin Triage | 0/16 | Not started | |
 | 10. Announcements, Push & Alerts | 0/7 | Not started | |
 | 11. Analytics & Disaster Mapping | 0/6 | Not started | |
