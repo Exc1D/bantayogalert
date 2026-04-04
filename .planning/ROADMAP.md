@@ -301,7 +301,12 @@
 6. Delivery status is tracked per recipient in the notification subcollection (pending/delivered/failed/read)
 7. Citizens see only alerts targeting their specific municipality or province-wide announcements
 
-**Plans**: TBD
+**Plans**: 5 plans
+- [ ] 10-01-PLAN.md — Announcement type extension + Firestore rules + composite indexes + env var
+- [ ] 10-02-PLAN.md — Cloud Functions (create, publish, cancel, getAnnouncements, sendAnnouncementPush)
+- [ ] 10-03-PLAN.md — Client FCM integration (service worker, messaging.ts, useFcmToken, useMunicipalityTopics, useAnnouncements)
+- [ ] 10-04-PLAN.md — Alerts UI (AlertCard, AlertsFeed, CreateAlertForm, /app/alerts route)
+- [ ] 10-05-PLAN.md — Alerts integration (DesktopShell, MobileShell, auth provider FCM wiring)
 
 ---
 
@@ -364,7 +369,7 @@
 | 7. Profile & Report Tracker | 1/2 | In Progress | |
 | 8. Contacts Management | 4/4 | Complete   | 2026-04-04 |
 | 9. Admin Triage | 0/7 | Not started | |
-| 10. Announcements, Push & Alerts | 0/7 | Not started | |
+| 10. Announcements, Push & Alerts | 0/5 | Not started | |
 | 11. Analytics & Disaster Mapping | 0/6 | Not started | |
 | 12. Hardening, PWA, SEO & Release | 0/12 | Not started | |
 
