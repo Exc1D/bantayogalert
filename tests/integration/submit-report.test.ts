@@ -1,7 +1,4 @@
 import { describe, it, expect, beforeAll } from 'vitest'
-import { initializeApp } from 'firebase/app'
-import { getFirestore, connectFirestoreEmulator } from 'firebase/firestore'
-import { getAuth, connectAuthEmulator } from 'firebase/auth'
 
 // Stub: actual emulator test fills in during implementation
 describe('submitReport Cloud Function integration', () => {

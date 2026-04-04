@@ -1,6 +1,8 @@
 import { createContext, useContext, useEffect, useRef, useState } from 'react'
 import L from 'leaflet'
 import 'leaflet/dist/leaflet.css'
+import { MunicipalityBoundaries } from '@/components/map/MunicipalityBoundaries'
+import { ReportMarkers } from '@/components/map/ReportMarkers'
 
 interface MapContextValue {
   mapRef: React.RefObject<L.Map | null>
@@ -45,6 +47,8 @@ export function MapContainerWrapper({ className = '', children }: MapContainerWr
   return (
     <MapRefContext.Provider value={{ mapRef, mapReady }}>
       <div ref={containerRef} className={`h-full w-full ${className}`} />
+      <MunicipalityBoundaries />
+      <ReportMarkers />
       {children}
     </MapRefContext.Provider>
   )

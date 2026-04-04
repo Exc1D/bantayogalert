@@ -190,7 +190,7 @@ describe('report_private', () => {
   const REPORT_ID = 'report-priv-001'
   const USER_ID = 'user-citizen-basud'
   const ADMIN_BASUD = 'user-admin-basud'
-  const ADMIN_DAET = 'user-admin-daet'
+  // ADMIN_DAET reserved for future cross-municipality tests
   const SUPERADMIN_ID = 'user-superadmin'
   const REPORT_DOC = { reporterId: USER_ID, municipalityCode: 'BASUD', workflowState: 'pending', createdAt: '2026-01-01T00:00:00Z' }
 
@@ -255,7 +255,7 @@ describe('report_private', () => {
 describe('report_ops', () => {
   const REPORT_ID = 'report-ops-001'
   const ADMIN_BASUD = 'user-admin-basud'
-  const ADMIN_DAET = 'user-admin-daet'
+  // ADMIN_DAET reserved for future cross-municipality tests
   const SUPERADMIN_ID = 'user-superadmin'
   const CITIZEN_ID = 'user-citizen'
   const REPORT_DOC = { reporterId: CITIZEN_ID, municipalityCode: 'BASUD', workflowState: 'dispatched', createdAt: '2026-01-01T00:00:00Z' }
@@ -313,7 +313,7 @@ describe('report_ops', () => {
 describe('contacts', () => {
   const CONTACT_ID = 'contact-001'
   const ADMIN_BASUD = { uid: 'user-admin-basud', role: 'municipal_admin' as const, municipalityCode: 'BASUD' }
-  const ADMIN_DAET = { uid: 'user-admin-daet', role: 'municipal_admin' as const, municipalityCode: 'DAET' }
+  // ADMIN_DAET reserved for future cross-municipality tests
   const SUPERADMIN_ID = { uid: 'user-superadmin', role: 'provincial_superadmin' as const, municipalityCode: null }
   const CITIZEN_ID = { uid: 'user-citizen', role: 'citizen' as const, municipalityCode: 'BASUD' }
   const CONTACT_DOC = { name: 'Contact Name', agency: 'Agency', municipalityCode: 'BASUD', phones: ['+639000000000'], email: 'contact@test.com', createdAt: '2026-01-01T00:00:00Z', updatedAt: '2026-01-01T00:00:00Z' }
@@ -414,7 +414,7 @@ describe('contacts', () => {
 
 describe('announcements', () => {
   const ADMIN_BASUD = { uid: 'user-admin-basud', role: 'municipal_admin' as const, municipalityCode: 'BASUD' }
-  const ADMIN_DAET = { uid: 'user-admin-daet', role: 'municipal_admin' as const, municipalityCode: 'DAET' }
+  // ADMIN_DAET reserved for future cross-municipality tests
   const SUPERADMIN_ID = { uid: 'user-superadmin', role: 'provincial_superadmin' as const, municipalityCode: null }
   const CITIZEN_ID = { uid: 'user-citizen', role: 'citizen' as const, municipalityCode: 'BASUD' }
   const ANN_DOC = { title: 'Test Announcement', body: 'Announcement body', type: 'alert', severity: 'warning', targetScope: { type: 'municipality', municipalityCode: 'BASUD' }, createdAt: '2026-01-01T00:00:00Z', publishedAt: '2026-01-01T00:00:00Z' }

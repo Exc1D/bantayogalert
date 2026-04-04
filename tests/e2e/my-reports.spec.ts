@@ -7,7 +7,7 @@ test.describe('My Reports / Track Page', () => {
     expect(true).toBe(true)
   })
 
-  test('real-time updates reflect in UI', async ({ page }) => {
+  test('real-time updates reflect in UI', async () => {
     // Stub: actual E2E fills in during implementation
     expect(true).toBe(true)
   })

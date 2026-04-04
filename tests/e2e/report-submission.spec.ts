@@ -7,12 +7,12 @@ test.describe('Report Submission Flow', () => {
     expect(true).toBe(true)
   })
 
-  test('location picker renders with map', async ({ page }) => {
+  test('location picker renders with map', async () => {
     // Stub: actual E2E fills in during implementation
     expect(true).toBe(true)
   })
 
-  test('submit navigates to track page', async ({ page }) => {
+  test('submit navigates to track page', async () => {
     // Stub: actual E2E fills in during implementation
     expect(true).toBe(true)
   })

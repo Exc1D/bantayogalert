@@ -9,7 +9,8 @@ interface UseSuperclusterOptions {
 }
 
 interface UseSuperclusterResult {
-  clusters: ReturnType<Supercluster['getClusters']>
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  clusters: ReturnType<Supercluster<any, any>['getClusters']>
   supercluster: Supercluster | null
 }
 
@@ -18,12 +19,14 @@ export function useSupercluster({ features, bounds, zoom }: UseSuperclusterOptio
   const indexRef = useRef<Supercluster | null>(null)
 
   const index = useMemo(() => {
-    const idx = new Supercluster<Feature<Point>, Supercluster.AnyProps>({
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const idx = new Supercluster<any, any>({
       radius: 60,
       maxZoom: 16,
     })
     if (features.length > 0) {
-      idx.load(features)
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      (idx as any).load(features)
       setVersion((v) => v + 1)
     }
     indexRef.current = idx
