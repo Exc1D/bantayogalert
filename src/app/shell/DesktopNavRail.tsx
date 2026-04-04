@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import {
   Shield,
   Map,
@@ -39,7 +40,8 @@ type PanelType = 'report-detail' | 'contact-detail' | 'announcement-detail' | 's
 
 function buildNavItems(
   role: UserRole,
-  onPanel: (panel: PanelType) => () => void
+  onPanel: (panel: PanelType) => () => void,
+  navigate: (path: string) => void
 ): NavItemConfig[] {
   const items: NavItemConfig[] = []
 
@@ -53,7 +55,7 @@ function buildNavItems(
 
   if (role === UserRole.MunicipalAdmin || role === UserRole.ProvincialSuperadmin) {
     items.push({ icon: LayoutDashboard, label: 'Dashboard', onClick: onPanel('report-detail'), variant: 'rail' })
-    items.push({ icon: Users, label: 'Contacts', onClick: onPanel('contact-detail'), variant: 'rail' })
+    items.push({ icon: Users, label: 'Contacts', onClick: () => navigate('/app/contacts'), variant: 'rail' })
     items.push({ icon: BarChart3, label: 'Analytics', onClick: onPanel('announcement-detail'), variant: 'rail' })
     items.push({ icon: ClipboardList, label: 'Audit', onClick: onPanel('announcement-detail'), variant: 'rail' })
   }
@@ -65,6 +67,7 @@ export function DesktopNavRail() {
   const { customClaims } = useAuth()
   const { activePanel, setActivePanel } = useUIStore()
   const [scope, setScope] = useState<string>('all')
+  const navigate = useNavigate()
 
   const role = customClaims?.role ?? UserRole.Citizen
   const isSuperadmin = role === UserRole.ProvincialSuperadmin
@@ -73,7 +76,7 @@ export function DesktopNavRail() {
     setActivePanel(panel)
   }
 
-  const navItems = buildNavItems(role, handlePanelClick)
+  const navItems = buildNavItems(role, handlePanelClick, navigate)
 
   return (
     <nav
