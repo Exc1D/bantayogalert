@@ -87,7 +87,7 @@ export interface ReportOps {
   dispatchNotes?: string
   routingDestination?: string
   assignedContactId?: string
-  assignedContactSnapshot?: import('./contact').Contact
+  assignedContactSnapshot?: import('./contact').ContactSnapshot
   classification?: string
 }
 

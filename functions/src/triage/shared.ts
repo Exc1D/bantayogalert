@@ -29,7 +29,7 @@ export function buildActivityEntry(
 export function validateVersion(
   currentVersion: number,
   expectedVersion: number,
-  reportId: string
+  _reportId: string
 ): void {
   if (currentVersion !== expectedVersion) {
     throw new functions.https.HttpsError(
@@ -46,7 +46,7 @@ export function validateVersion(
 export function validateTransition(
   currentState: WorkflowState,
   targetState: WorkflowState,
-  reportId: string
+  _reportId: string
 ): void {
   if (!canTransition(currentState, targetState)) {
     throw new functions.https.HttpsError(

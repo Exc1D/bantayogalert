@@ -1,5 +1,6 @@
 import { useEffect, useState, type ReactNode } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
+import { Bell, FilePlus2, LayoutList, Map, User } from 'lucide-react'
 import { useUIStore, type ActiveTab } from '@/stores/uiStore'
 import { MapContainerWrapper } from './MapContainerWrapper'
 import { MunicipalityBoundaries } from '@/components/map/MunicipalityBoundaries'
@@ -9,6 +10,7 @@ import { FilterBar } from '@/components/map/FilterBar'
 import { useVerifiedReportsListener } from '@/hooks/useVerifiedReportsListener'
 import { useAuth } from '@/lib/auth/hooks'
 import { UserRole } from '@/types/user'
+import { AlertsFeed } from '@/components/alerts/AlertsFeed'
 
 interface MobileShellProps {
   children?: ReactNode
@@ -44,6 +46,14 @@ const TABS: { id: ActiveTab; label: string }[] = [
   { id: 'profile', label: 'Profile' },
 ]
 
+const TAB_ICONS = {
+  feed: LayoutList,
+  map: Map,
+  report: FilePlus2,
+  alerts: Bell,
+  profile: User,
+} satisfies Record<ActiveTab, typeof Bell>
+
 function TabContent({ tab }: { tab: ActiveTab }) {
   switch (tab) {
     case 'feed':
@@ -63,7 +73,11 @@ function TabContent({ tab }: { tab: ActiveTab }) {
         </div>
       )
     case 'alerts':
-      return <div className="p-4">Alerts Content</div>
+      return (
+        <div className="h-full overflow-y-auto p-4">
+          <AlertsFeed />
+        </div>
+      )
     case 'profile':
       return <ProfileContent />
     case 'report':
@@ -85,44 +99,67 @@ export function MobileShell({ children }: MobileShellProps) {
     setMounted(true)
   }, [])
 
-  // Check if we're on the report route
   const isReportRoute = location.pathname === '/app/report'
+  const isTrackedReportRoute = location.pathname.startsWith('/app/track/')
+  const isAlertRoute = location.pathname === '/app/alerts'
+  const isAdminRoute =
+    location.pathname === '/app/admin' ||
+    location.pathname === '/app/admin/alerts' ||
+    location.pathname === '/app/contacts'
+  const showsRouteContent =
+    isReportRoute || isTrackedReportRoute || isAlertRoute || isAdminRoute
 
   if (!mounted) return null
 
   return (
     <div className="flex flex-col h-screen w-screen overflow-hidden">
       <div className="flex-1 overflow-hidden relative">
-        {/* Show tab content only if NOT on report route */}
-        {!isReportRoute && TABS.map((t) => (
-          <div
-            key={t.id}
-            className={activeTab === t.id ? 'block h-full' : 'hidden'}
-          >
-            <TabContent tab={t.id} />
-          </div>
-        ))}
-        {/* Child routes render here */}
-        {children}
+        {!showsRouteContent &&
+          TABS.map((t) => (
+            <div
+              key={t.id}
+              className={activeTab === t.id ? 'block h-full' : 'hidden'}
+            >
+              <TabContent tab={t.id} />
+            </div>
+          ))}
+        {showsRouteContent ? children : null}
       </div>
       <div className="h-16 flex-shrink-0 fixed bottom-0 w-full z-20 bg-white border-t border-gray-200 flex">
         {TABS.map((t) => (
-          <button
-            key={t.id}
-            onClick={() => {
-              if (t.id === 'report') {
-                navigate('/app/report')
-              } else {
-                setActiveTab(t.id)
-              }
-            }}
-            className={`flex-1 flex flex-col items-center justify-center gap-1 text-xs ${
-              activeTab === t.id || (t.id === 'report' && isReportRoute) ? 'text-blue-600' : 'text-gray-500'
-            }`}
-          >
-            <div className="w-5 h-5 bg-gray-300 rounded" />
-            {t.label}
-          </button>
+          (() => {
+            const Icon = TAB_ICONS[t.id]
+
+            return (
+              <button
+                key={t.id}
+                onClick={() => {
+                  if (t.id === 'report') {
+                    navigate('/app/report')
+                  } else if (t.id === 'alerts') {
+                    setActiveTab('alerts')
+                    navigate('/app/alerts')
+                  } else if (t.id === 'profile') {
+                    setActiveTab('profile')
+                    navigate('/app')
+                  } else {
+                    setActiveTab(t.id)
+                    navigate('/app')
+                  }
+                }}
+                className={`flex-1 flex flex-col items-center justify-center gap-1 text-xs ${
+                  activeTab === t.id ||
+                  (t.id === 'report' && isReportRoute) ||
+                  (t.id === 'alerts' && isAlertRoute)
+                    ? 'text-blue-600'
+                    : 'text-gray-500'
+                }`}
+              >
+                <Icon className="w-5 h-5" />
+                {t.label}
+              </button>
+            )
+          })()
         ))}
       </div>
     </div>

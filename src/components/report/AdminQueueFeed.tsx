@@ -1,4 +1,5 @@
 import { useState, useMemo } from 'react'
+import { Link } from 'react-router-dom'
 import { useAuth } from '@/lib/auth/AuthProvider'
 import {
   useAdminQueueListener,
@@ -102,6 +103,12 @@ export function AdminQueueFeed() {
       <div className="px-4 py-3 border-b border-gray-200">
         <div className="flex items-center justify-between gap-3">
           <h1 className="text-lg font-semibold text-gray-900">Admin Queue</h1>
+          <Link
+            to="/app/admin/alerts"
+            className="inline-flex items-center rounded-lg bg-red-600 px-3 py-2 text-sm font-medium text-white hover:bg-red-700"
+          >
+            Create Alert
+          </Link>
 
           {/* Superadmin municipality filter */}
           {role === 'provincial_superadmin' && (

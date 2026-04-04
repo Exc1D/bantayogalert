@@ -1,3 +1,4 @@
+import * as admin from 'firebase-admin'
 import * as functions from 'firebase-functions'
 import { onCall } from 'firebase-functions/v2/https'
 import { setUserRole } from './auth/setUserRole'
@@ -16,6 +17,15 @@ import { triageResolve } from './triage/triageResolve'
 import { triageReroute } from './triage/triageReroute'
 import { triageUpdatePriority } from './triage/triageUpdatePriority'
 import { triageUpdateNotes } from './triage/triageUpdateNotes'
+import { createAnnouncement } from './announcements/createAnnouncement'
+import { publishAnnouncement } from './announcements/publishAnnouncement'
+import { cancelAnnouncement } from './announcements/cancelAnnouncement'
+import { getAnnouncements } from './announcements/getAnnouncements'
+import { subscribeAnnouncementTopics } from './announcements/subscribeAnnouncementTopics'
+
+if (admin.apps.length === 0) {
+  admin.initializeApp()
+}
 
 // Security utilities
 export {
@@ -54,6 +64,11 @@ export { triageResolve }
 export { triageReroute }
 export { triageUpdatePriority }
 export { triageUpdateNotes }
+export { createAnnouncement }
+export { publishAnnouncement }
+export { cancelAnnouncement }
+export { getAnnouncements }
+export { subscribeAnnouncementTopics }
 
 /**
  * Set surge mode for a municipality.

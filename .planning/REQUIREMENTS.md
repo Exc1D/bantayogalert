@@ -88,13 +88,13 @@
 
 ### Announcements & Alerts
 
-- [ ] **ALR-01**: Admin can create announcement with title, body, type, severity, scope, target municipalities
-- [ ] **ALR-02**: Municipal admin can only target own municipality (province_admin can target any scope)
-- [ ] **ALR-03**: Announcement status: draft → published → cancelled
-- [ ] **ALR-04**: Published announcements visible in Alerts tab scoped by targetKeys
-- [ ] **ALR-05**: Push notification delivery via FCM to targeted users
-- [ ] **ALR-06**: Delivery status tracked per recipient in notifications subcollection
-- [ ] **ALR-07**: Citizens see only alerts targeting their municipality or province-wide
+- [x] **ALR-01**: Admin can create announcement with title, body, type, severity, scope, target municipalities
+- [x] **ALR-02**: Municipal admin can only target own municipality (province_admin can target any scope)
+- [x] **ALR-03**: Announcement status: draft → published → cancelled
+- [x] **ALR-04**: Published announcements visible in Alerts tab scoped by targetKeys
+- [x] **ALR-05**: Push notification delivery via FCM to targeted users
+- [x] **ALR-06**: Delivery status tracked per recipient in notifications subcollection
+- [x] **ALR-07**: Citizens see only alerts targeting their municipality or province-wide
 
 ### Desktop Shell
 
@@ -203,7 +203,7 @@ Note: Phase 8 (Contacts) and Phase 9 (Admin Triage) were reordered per research 
 | TRK-01 through TRK-04 | Phase 7 | Pending |
 | CON-01 through CON-06 | Phase 8 | Pending |
 | TRI-01 through TRI-16 | Phase 9 | Pending |
-| ALR-01 through ALR-07 | Phase 10 | Pending |
+| ALR-01 through ALR-07 | Phase 10 | Complete |
 | DSK-01 through DSK-07 | Phase 4 | Pending |
 | MOB-01 through MOB-07 | Phase 4 | Pending |
 | ANL-01 through ANL-06 | Phase 11 | Pending |
@@ -218,4 +218,4 @@ Note: Phase 8 (Contacts) and Phase 9 (Admin Triage) were reordered per research 
 
 ---
 *Requirements defined: 2026-04-03*
-*Last updated: 2026-04-03 after roadmap creation — phase order corrected (Contacts before Triage)*
+*Last updated: 2026-04-04 after Phase 10 completion*

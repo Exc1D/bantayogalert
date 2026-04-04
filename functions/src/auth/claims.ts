@@ -75,19 +75,34 @@ export function verifyCustomClaims(
 /**
  * Check if claims indicate a provincial superadmin.
  */
-export function isSuperadmin(claims: { role: string }): boolean {
-  return claims.role === UserRole.ProvincialSuperadmin
+export function isSuperadmin(claims: unknown): boolean {
+  if (!claims || typeof claims !== 'object') {
+    return false
+  }
+
+  return (
+    (claims as { role?: string }).role === UserRole.ProvincialSuperadmin
+  )
 }
 
 /**
  * Check if claims indicate a municipal admin for a specific municipality.
  */
 export function isMunicipalAdmin(
-  claims: { role: string; municipalityCode: string | null },
+  claims: unknown,
   municipalityCode: string
 ): boolean {
+  if (!claims || typeof claims !== 'object') {
+    return false
+  }
+
+  const typedClaims = claims as {
+    role?: string
+    municipalityCode?: string | null
+  }
+
   return (
-    claims.role === UserRole.MunicipalAdmin &&
-    claims.municipalityCode === municipalityCode
+    typedClaims.role === UserRole.MunicipalAdmin &&
+    (typedClaims.municipalityCode ?? null) === municipalityCode
   )
 }

@@ -55,6 +55,13 @@ service cloud.firestore {
       allow read: if isOwner(userId) || isProvincialSuperadmin() || isMunicipalAdmin(resource.data.municipalityCode);
       allow create: if isOwner(userId);
       allow update: if isOwner(userId);
+
+      match /fcmTokens/{tokenId} {
+        allow read: if isOwner(userId) || isProvincialSuperadmin();
+        allow create: if isOwner(userId);
+        allow update: if isOwner(userId);
+        allow delete: if isOwner(userId) || isProvincialSuperadmin();
+      }
     }
 
     // Public reports — verified only
@@ -96,9 +103,10 @@ service cloud.firestore {
     match /announcements/{announcementId} {
       allow read: if isAuthenticated();
       allow create: if isProvincialSuperadmin() ||
-        isMunicipalAdmin(request.resource.data.targetScope.municipalityCode);
+        (isMunicipalAdmin(request.resource.data.targetScope.municipalityCodes[0]));
       allow update: if isProvincialSuperadmin() ||
-        isMunicipalAdmin(resource.data.targetScope.municipalityCode);
+        (resource.data.status == 'draft' &&
+         isMunicipalAdmin(request.resource.data.targetScope.municipalityCodes[0]));
       allow delete: if isProvincialSuperadmin();
     }
 

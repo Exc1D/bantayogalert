@@ -16,16 +16,16 @@ Production-grade disaster reporting, official alerting, emergency coordination, 
 - [x] Citizens track their own reports through all states from submission to resolution (Phase 05)
 - [x] Citizens consume a real-time map and paginated feed of verified incidents in their municipality (Phase 06)
 - [x] Citizens view their profile, track submitted reports with owner status and activity timeline (Phase 07)
+- [x] Citizens receive municipality-scoped and province-wide official alerts inside the app and through browser push wiring (Phase 10)
+- [x] Municipal Admins create municipality-scoped announcements with draft, publish, and cancel flows (Phase 10)
+- [x] Provincial Superadmins can target municipality, multi-municipality, or province-wide alert scope (Phase 10)
 
 ### Active
-- [ ] Citizens receive push notifications for official alerts targeting their municipality
 - [ ] Municipal Admins triage, verify, reject, dispatch, acknowledge, and resolve reports within their municipality
 - [ ] Municipal Admins route reports to responder contacts with snapshot-captured contact details
-- [ ] Municipal Admins send municipality-scoped announcements with push delivery
 - [ ] Municipal Admins manage a local responder contacts directory
 - [ ] Municipal Admins view scoped analytics and audit trails
 - [ ] Provincial Superadmins oversee all reports and triage operations across all 12 municipalities
-- [ ] Provincial Superadmins issue province-wide or multi-municipality announcements
 - [ ] Provincial Superadmins access full analytics, audit, and disaster-mapping data
 - [ ] Platform works on desktop (≥1280px) as a map-first command center with persistent Leaflet map and right-side workspace drawer
 - [ ] Platform works on mobile (≤768px) as a feed-first mini social app with bottom-tab navigation
@@ -99,6 +99,8 @@ Established the production-grade project scaffold:
 | Supercluster for marker clustering | Client-side clustering with decluster on zoom — no server-side clustering needed | — Pending Phase 6 |
 | Approximate public locations (reduced precision geohash) | Protects reporter privacy; exact coordinates restricted to report_private | — Pending Phase 5 |
 | Contact snapshots at dispatch time | Later edits to contact don't rewrite historical routing events | — Pending Phase 8 |
+| Service worker Firebase config is handed off through IndexedDB | Files in `public/` cannot read Vite env vars directly; runtime config keeps the FCM worker deploy-safe | ✓ Phase 10 |
+| Browser clients subscribe to FCM topics through a callable Cloud Function | The web FCM SDK cannot subscribe tokens to topics directly, so the server mediates municipality/province subscriptions | ✓ Phase 10 |
 
 ## Evolution
 
@@ -135,4 +137,17 @@ Established Firebase Auth, RBAC, and security layer:
 - **Rate limiting**: 5 reports/hour default, 20/hour surge mode, per-municipality configurable (D-54)
 - **Auth validation middleware**: validateSuperadmin, validateMunicipalAdmin, validateAuthenticated, validateWriteScope, validateRole
 
-*Last updated: 2026-04-04 after Phase 07*
+## Phase 10 Outcomes
+
+**Phase 10 (Announcements, Push & Alerts) — COMPLETED 2026-04-04**
+
+Established the official alerting layer:
+
+- **Announcement model + rules**: Multi-scope targeting (`municipality`, `multi_municipality`, `province`) with Firestore rules and indexes aligned to the shared type model
+- **Cloud Functions**: Draft creation, publish, cancel, scoped fetch, multicast push delivery, and topic subscription callable for browser clients
+- **Push delivery tracking**: Per-recipient notification records written to `announcements/{id}/notifications/{userId}`
+- **Client FCM wiring**: Browser token registration, municipality/province topic subscription, runtime service-worker config handoff, and foreground toast handling
+- **Alerts UI**: `/app/alerts` feed for consumers and `/app/admin/alerts` authoring flow for admins
+- **Shell integration**: Alerts surfaced in desktop/mobile navigation and linked from the admin queue
+
+*Last updated: 2026-04-04 after Phase 10*

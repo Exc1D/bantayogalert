@@ -6,11 +6,12 @@ import reactRefresh from 'eslint-plugin-react-refresh'
 import react from 'eslint-plugin-react'
 
 export default tseslint.config(
-  { ignores: ['dist', 'node_modules', '*.config.js'] },
+  { ignores: ['dist', 'node_modules', 'functions/lib', '*.config.js'] },
   {
     extends: [js.configs.recommended],
     files: ['**/*.{ts,tsx}'],
     languageOptions: {
+      parser: tseslint.parser,
       ecmaVersion: 2022,
       globals: {
         ...globals.browser,
@@ -23,11 +24,15 @@ export default tseslint.config(
       },
     },
     plugins: {
+      '@typescript-eslint': tseslint.plugin,
       react,
       'react-hooks': reactHooks,
       'react-refresh': reactRefresh,
     },
     rules: {
+      'no-undef': 'off',
+      'no-redeclare': 'off',
+      'no-unused-vars': 'off',
       ...reactHooks.configs.recommended.rules,
       'react-refresh/only-export-components': [
         'warn',

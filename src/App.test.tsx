@@ -1,6 +1,7 @@
 import { describe, it, expect, vi } from 'vitest'
-import { render } from '@testing-library/react'
-import { BrowserRouter } from 'react-router-dom'
+import { render, screen, waitFor } from '@testing-library/react'
+import { HelmetProvider } from 'react-helmet-async'
+import { MemoryRouter } from 'react-router-dom'
 
 // Mock firebase/app to prevent Firebase from initializing at module load
 vi.mock('firebase/app', () => ({
@@ -83,28 +84,43 @@ vi.mock('./app/auth/profile/page', () => ({
   ProfilePage: () => ({ $$typeof: Symbol('react.element'), type: 'div', props: {}, ref: null }),
 }))
 
+// Mock shell router to keep the test focused on app-level routing + title behavior
+vi.mock('./app/shell/ShellRouter', () => ({
+  ShellRouter: () => (
+    <main>
+      <h1>Bantayog Alert</h1>
+    </main>
+  ),
+}))
+
 import { App } from './App'
 
-const renderWithRouter = (ui: React.ReactElement) => {
-  return render(<BrowserRouter>{ui}</BrowserRouter>)
+const renderWithProviders = (
+  ui: React.ReactElement,
+  { route = '/app' }: { route?: string } = {}
+) => {
+  return render(
+    <HelmetProvider>
+      <MemoryRouter initialEntries={[route]}>{ui}</MemoryRouter>
+    </HelmetProvider>
+  )
 }
 
 describe('App', () => {
   it('renders without crashing', () => {
-    renderWithRouter(<App />)
-    const root = document.getElementById('root')
-    expect(root).toBeTruthy()
+    renderWithProviders(<App />)
+    expect(screen.getByRole('heading', { name: 'Bantayog Alert' })).toBeTruthy()
   })
 
-  it('sets the document title to Bantayog Alert', () => {
-    renderWithRouter(<App />)
-    expect(document.title).toBe('Bantayog Alert')
+  it('sets the document title to Bantayog Alert', async () => {
+    renderWithProviders(<App />)
+    await waitFor(() => {
+      expect(document.title).toBe('Bantayog Alert')
+    })
   })
 
   it('renders the app shell with a main heading', () => {
-    renderWithRouter(<App />)
-    // App uses routing - when navigating to /app (default route), AppLayout renders
-    // The heading "Bantayog Alert" is visible in the AppLayout
-    expect(document.body.textContent).toContain('Bantayog Alert')
+    renderWithProviders(<App />)
+    expect(screen.getByRole('heading', { name: 'Bantayog Alert' })).toBeTruthy()
   })
 })

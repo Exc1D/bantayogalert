@@ -1,6 +1,6 @@
 import * as functions from 'firebase-functions'
 import * as admin from 'firebase-admin'
-import { isSuperadmin, isMunicipalAdmin } from '../auth/claims'
+import { isSuperadmin } from '../auth/claims'
 
 interface GetContactsRequest {
   municipalityCode?: string  // optional filter

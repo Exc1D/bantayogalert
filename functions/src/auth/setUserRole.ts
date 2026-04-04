@@ -20,7 +20,7 @@ export const setUserRole = functions.https.onCall(
       )
     }
 
-    const callerClaims = context.auth.token as { role: string }
+    const callerClaims = context.auth.token
 
     // Verify caller is superadmin
     if (!isSuperadmin(callerClaims)) {

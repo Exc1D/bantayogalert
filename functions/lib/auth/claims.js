@@ -89,12 +89,19 @@ function verifyCustomClaims(claims, requiredRole) {
  * Check if claims indicate a provincial superadmin.
  */
 function isSuperadmin(claims) {
-    return claims.role === UserRole.ProvincialSuperadmin;
+    if (!claims || typeof claims !== 'object') {
+        return false;
+    }
+    return (claims.role === UserRole.ProvincialSuperadmin);
 }
 /**
  * Check if claims indicate a municipal admin for a specific municipality.
  */
 function isMunicipalAdmin(claims, municipalityCode) {
-    return (claims.role === UserRole.MunicipalAdmin &&
-        claims.municipalityCode === municipalityCode);
+    if (!claims || typeof claims !== 'object') {
+        return false;
+    }
+    const typedClaims = claims;
+    return (typedClaims.role === UserRole.MunicipalAdmin &&
+        (typedClaims.municipalityCode ?? null) === municipalityCode);
 }

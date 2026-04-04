@@ -19,18 +19,21 @@ export enum AnnouncementStatus {
   Cancelled = 'cancelled',
 }
 
+export type AnnouncementTargetScope =
+  | { type: 'province' }
+  | { type: 'municipality'; municipalityCodes: [string] }
+  | { type: 'multi_municipality'; municipalityCodes: string[] }
+
 export interface Announcement {
   id: string
   title: string
   body: string
   type: AnnouncementType
   severity: AnnouncementSeverity
-  targetScope: {
-    type: 'municipality' | 'province'
-    municipalityCode?: string  // required if type = 'municipality'
-  }
+  targetScope: AnnouncementTargetScope
   status: AnnouncementStatus
   publishedAt?: string
+  cancelledAt?: string
   createdBy: string
   createdAt: string
   updatedAt: string
@@ -43,6 +46,13 @@ export const AnnouncementSchema = z.object({
   severity: z.nativeEnum(AnnouncementSeverity),
   targetScope: z.discriminatedUnion('type', [
     z.object({ type: z.literal('province') }),
-    z.object({ type: z.literal('municipality'), municipalityCode: z.string().min(3).max(4) }),
+    z.object({
+      type: z.literal('municipality'),
+      municipalityCodes: z.array(z.string()).min(1).max(1),
+    }),
+    z.object({
+      type: z.literal('multi_municipality'),
+      municipalityCodes: z.array(z.string()).min(2).max(12),
+    }),
   ]),
 })

@@ -37,7 +37,8 @@ export const updateContact = functions.https.onCall(async (data, context) => {
   validateMunicipalAdmin(context, municipalityCode)
 
   // Prevent changing municipalityCode (only superadmin should do this via delete+create)
-  const { municipalityCode: _municipalityCode, ...sanitizedUpdates } = sanitizeContactInput(updates)
+  const sanitizedUpdates = sanitizeContactInput(updates) as Record<string, unknown>
+  delete sanitizedUpdates.municipalityCode
 
   await contactRef.update({
     ...sanitizedUpdates,

@@ -41,15 +41,15 @@
 | Pillar             | Principle                           | Application                                                                                          |
 | ------------------ | ----------------------------------- | ---------------------------------------------------------------------------------------------------- |
 | **Clarity**        | One glance = one understanding      | Color-coded severity, large status badges, plain Filipino + English labels                           |
-| **Speed**          | Every critical path ≤ 3 taps/clicks | Report in 3–4 steps on mobile; triage in 2 clicks for admins                                         |
+| **Speed**          | Every critical path ≤ 3 taps/clicks | Report in 3 steps on mobile; triage in 2 clicks for admins                                           |
 | **Calm Authority** | Reduce panic, build trust           | Cool blue base palette, warm severity accents only where needed, verified badges on official content |
 
 ### Crisis UX Laws Applied
 
-1. **Hick's Law** — Reduce choices at every step. Show only the 4 most common disaster types upfront; hide "Other" behind "More types."
+1. **Hick's Law** — Reduce choices at every step. The citizen report flow contains zero classification decisions (no disaster type, no severity picker). Those are admin responsibilities during triage, where trained personnel can make accurate judgments calmly.
 2. **Fitts's Law** — Make critical buttons large (min 48×48px mobile, 44×44px desktop). The "Report Emergency" button is the largest interactive element.
 3. **Miller's Law** — Chunk information. Report cards show **max 5** pieces of data in compact mode (severity, type, location, time, status). Standard mode adds description preview and thumbnails.
-4. **Cognitive load theory** — In emergencies, working memory drops to ~3 items. Every screen answers: **What happened? Where? What should I do?**
+4. **Cognitive load theory** — In emergencies, working memory drops to ~3 items. Every screen answers: **What happened? Where? What should I do?** For citizens: capture evidence → confirm location → describe situation. Classification is deferred to admins.
 
 ### Design Mood
 
@@ -717,7 +717,8 @@ Alert tab:
 
 ```
 PEEK (120px):
-  Visible: severity badge + type + location + timestamp + "Swipe up"
+  Citizen view: severity badge + type + location + timestamp + "Swipe up"
+  Admin view (unclassified): "⬜ Unclassified" + location + timestamp + "Classify →"
   Tab bar: visible below sheet
   Map: still interactive (can pan/tap other pins)
   Dismissed: tap outside sheet or swipe down
@@ -782,12 +783,13 @@ Gestures: swipe-up to expand, swipe-down to collapse, tap outside to dismiss fro
 │  ─── PENDING ───                 │
 │                                  │
 │  ┌──────────────────────────────┐│
-│  │ ● CRITICAL  🌊 Flood        ││  ← Triage card
-│  │ Waist-deep flood...         ││
-│  │ 5m ago                      ││
-│  │  ┌─────────┐  ┌──────────┐  ││  ← One-tap actions
-│  │  │ Verify ✓│  │ Reject ✕ │  ││
-│  │  └─────────┘  └──────────┘  ││
+│  │ ⬜ Unclassified · 5m ago    ││  ← No severity color
+│  │ Daet, Brgy. Gahonon         ││     Neutral gray left border
+│  │ "Waist-deep tubig sa daan..." ││
+│  │ 📷 2 photos                  ││
+│  │  ┌──────────────────────┐    ││  ← Single CTA: full-width
+│  │  │ Classify & Verify →  │    ││     opens bottom sheet
+│  │  └──────────────────────┘    ││
 │  └──────────────────────────────┘│
 │  ...                             │
 ├──────────────────────────────────┤
@@ -795,13 +797,44 @@ Gestures: swipe-up to expand, swipe-down to collapse, tap outside to dismiss fro
 └──────────────────────────────────┘
 ```
 
+**"Classify & Verify" opens a bottom sheet (HALF state):**
+
+```
+┌──────────────────────────────────┐
+│  ── ●● ──  (drag handle)         │
+│  Classify Report                 │
+│  Daet, Brgy. Gahonon · 5m ago   │
+├──────────────────────────────────┤
+│  📷 [photo thumb] [photo thumb]  │  ← Evidence visible for reference
+│                                  │
+│  Hazard / Disaster Type *        │
+│  ┌──────────────────────────────┐│
+│  │ Select type...            ▾  ││  ← Full dropdown (all 12 types)
+│  └──────────────────────────────┘│
+│                                  │
+│  Severity *                      │
+│  ┌──────┐┌──────┐┌──────┐┌──────┐│
+│  │  Low ││ Med  ││ High ││Crit. ││  ← Segmented control, color-coded
+│  └──────┘└──────┘└──────┘└──────┘│
+│                                  │
+│  ┌──────────────────────────────┐│
+│  │     ✓ Verify Report          ││  ← Disabled until both fields set
+│  └──────────────────────────────┘│
+│  [Reject instead]                │  ← Ghost button, secondary
+└──────────────────────────────────┘
+```
+
 **Mobile triage interaction rules:**
 
-- Verify and Reject are one-tap actions in the card, no additional modal for Verify
-- Reject requires a reason — opens a half-screen bottom sheet with reason selector + note field
-- Dispatch opens a contact picker bottom sheet (3-tap max: select category → select contact → confirm)
-- Resolve opens a summary note field bottom sheet before confirming
-- Maximum 3 taps for any triage action
+- Pending cards show "Classify & Verify" as the single primary action (no inline Verify/Reject split)
+- Classification bottom sheet shows photo evidence at top so admin can reference it while classifying
+- Severity uses a segmented control (not radio buttons) — faster tap targeting on mobile
+- "Verify" in the sheet is disabled until both Type and Severity are selected
+- "Reject instead" is a ghost button below Verify — accessible but not prominent
+- Reject opens a second bottom sheet with reason selector + note field
+- Dispatch opens a contact picker bottom sheet (3-tap max: category → contact → confirm)
+- Resolve opens a summary note field bottom sheet
+- Maximum 3 taps for any triage action including classification + verify
 
 ---
 
@@ -855,142 +888,162 @@ Use a **modified desktop layout** with these adaptations:
 
 ## 11. Report Submission Flow
 
-### Design Goal: 4 focused steps on mobile, each with ≤3 input items
+### Design Goal: 3 steps, zero classification decisions for the citizen
 
-> **Design decision:** The original 3-step flow placed 6 inputs (map, municipality, barangay, title, description, character counter) on a single 360px screen. This violates the stated cognitive load target of ≤3 items per screen. The flow is split into 4 steps with cleaner separation of concerns.
+> **Design decision:** Disaster type and severity classification have been removed from the citizen submission flow entirely. During an emergency, a panicked citizen cannot reliably distinguish "High" from "Critical," or "Storm Surge" from "Flood." Wrong classifications create noise and erode public trust in the feed. Instead, citizens do only what they can do well under stress: capture evidence, confirm where they are, and describe what they see in their own words. Trained admins assign type and severity during triage, where they have context, tools, and the ability to cross-reference multiple reports.
+>
+> This also reduces the submission path from 4 steps to 3, and eliminates the largest source of decision fatigue in the old flow.
 
-### 11.1 Mobile Flow (Full-Screen)
+### 11.1 Responsibility Split
+
+| Task                              | Citizen    | Admin (Triage)            |
+| --------------------------------- | ---------- | ------------------------- |
+| Capture photo/video evidence      | ✅ Step 1  | —                         |
+| Confirm location (pin + barangay) | ✅ Step 2  | Can correct if wrong      |
+| Describe what is happening        | ✅ Step 3  | —                         |
+| Classify disaster/hazard type     | ❌ Removed | ✅ Required before Verify |
+| Assign severity level             | ❌ Removed | ✅ Required before Verify |
+
+### 11.2 Mobile Flow (Full-Screen)
 
 ```
-Step 1: WHAT HAPPENED?  (1/4)
+Step 1: EVIDENCE  (1/3)
 ┌──────────────────────────────────┐
-│  ← Cancel       Report  (1/4)   │
-├──────────────────────────────────┤
-│                                  │
-│  What type of emergency?         │
-│                                  │
-│  ┌────────┐ ┌────────┐          │
-│  │  🌊    │ │  🔥    │          │  ← 80×80px tap targets
-│  │ Flood  │ │ Fire   │          │
-│  └────────┘ └────────┘          │
-│  ┌────────┐ ┌────────┐          │
-│  │  🌀    │ │  ⛰️    │          │
-│  │Typhoon │ │Landslide│         │
-│  └────────┘ └────────┘          │
-│  [More types ▾]                  │  ← Expands to show all 12
-│                                  │
-│  How severe is it?               │
-│  ○ Low   ○ Medium                │  ← Radio group with color coding
-│  ○ High  ○ Critical              │
-│                                  │
-│          [NEXT →]                │
-└──────────────────────────────────┘
-```
-
-```
-Step 2: WHERE?  (2/4)
-┌──────────────────────────────────┐
-│  ← Back        Report  (2/4)    │
+│  ← Cancel       Report  (1/3)   │
 ├──────────────────────────────────┤
 │                                  │
 │  ┌──────────────────────────────┐│
-│  │        📍 PIN MAP            ││  ← 200px draggable pin map
-│  │    (USE MY LOCATION button)  ││     Pre-centered on GPS
+│  │                              ││
+│  │                              ││
+│  │       CAMERA VIEWFINDER      ││  ← Full camera preview
+│  │                              ││     (requestCamera permission)
+│  │                              ││
+│  │         [ 📷 Capture ]       ││  ← 72px circle shutter button
 │  └──────────────────────────────┘│
+│                                  │
+│  ── or choose from gallery ──    │
+│  ┌────┐ ┌────┐ ┌────┐ ┌────┐   │
+│  │    │ │    │ │    │ │ ➕  │   │  ← Recent gallery thumbnails (3)
+│  └────┘ └────┘ └────┘ └────┘   │     + open full gallery picker
+│                                  │
+│  ┌──────────────────────────────┐│
+│  │ Selected (1)  ·  Max 5       ││  ← Selection count indicator
+│  └──────────────────────────────┘│
+│                                  │
+│  Photos are optional.            │  ← Reassurance note
+│                                  │
+│          [NEXT →]                │  ← Active even if no photos selected
+└──────────────────────────────────┘
+
+Photo state:
+  Empty:    Step shows camera + gallery picker. NEXT is active.
+  1+ added: Thumbnails show with ✕ remove. Camera still accessible.
+  5 added:  Camera and gallery picker are disabled. Count shows "5/5".
+
+Video support: Short clips (≤30s) accepted same as photos. Shown
+with a play-icon overlay in the thumbnail grid.
+```
+
+```
+Step 2: WHERE?  (2/3)
+┌──────────────────────────────────┐
+│  ← Back        Report  (2/3)    │
+├──────────────────────────────────┤
+│                                  │
+│  ┌──────────────────────────────┐│
+│  │                              ││
+│  │        📍 PIN MAP            ││  ← 240px, draggable pin
+│  │                              ││     Pre-centered on GPS position
+│  └──────────────────────────────┘│
+│                                  │
+│  [ 📍 Use My Current Location ]  │  ← Primary action button if GPS
+│                                  │     not yet used; re-centers pin
 │                                  │
 │  Municipality *                  │
 │  ┌──────────────────────────────┐│
-│  │ Daet                      ▾ ││  ← Auto-filled from pin/GPS
+│  │ Daet                      ▾ ││  ← Auto-resolved from pin position
 │  └──────────────────────────────┘│     via static GeoJSON intersection
 │                                  │
 │  Barangay *                      │
 │  ┌──────────────────────────────┐│
 │  │ Gahonon                   ▾ ││  ← Filtered by municipality
-│  └──────────────────────────────┘│
+│  └──────────────────────────────┘│     Always editable
 │                                  │
 │          [NEXT →]                │
 └──────────────────────────────────┘
 
-Note: Location auto-detection uses offline municipality/barangay static
-GeoJSON + coordinate bounding checks. No live geocoding API is used.
-Municipality and barangay are always editable if GPS/pin is wrong.
+Location resolution:
+  - Uses offline static GeoJSON + coordinate bounding. No live API.
+  - Municipality and barangay are always manually editable.
+  - If GPS is unavailable: map defaults to municipality center;
+    user must drag pin or manually select barangay.
+  - GPS accuracy indicator shown as subtle ring around pin
+    (green = <30m, yellow = 30–100m, red = >100m).
 ```
 
 ```
-Step 3: WHAT'S HAPPENING?  (3/4)
+Step 3: WHAT'S HAPPENING?  (3/3)
 ┌──────────────────────────────────┐
-│  ← Back        Report  (3/4)    │
+│  ← Back        Report  (3/3)    │
 ├──────────────────────────────────┤
 │                                  │
-│  What's happening? *             │
+│  Describe what you see *         │
 │  ┌──────────────────────────────┐│
-│  │ Fire in Brgy. Gahonon       ││  ← Title (1 line, max 100 chars)
-│  └──────────────────────────────┘│
-│                                  │
-│  Describe the situation          │
-│  ┌──────────────────────────────┐│
-│  │                              ││  ← Textarea, min 100px
+│  │                              ││  ← Textarea, min 120px
 │  │                              ││     Character counter: 0/2000
-│  └──────────────────────────────┘│
-│                                  │
-│          [NEXT →]                │
-└──────────────────────────────────┘
-```
-
-```
-Step 4: PHOTOS & CONFIRM  (4/4)
-┌──────────────────────────────────┐
-│  ← Back        Report  (4/4)    │
-├──────────────────────────────────┤
-│                                  │
-│  Add photos (optional)           │
-│  ┌────┐ ┌────┐ ┌────┐ ┌────┐   │
-│  │ 📷 │ │ 📷 │ │ ➕  │ │    │   │  ← Max 5 photos
-│  └────┘ └────┘ └────┘ └────┘   │
-│                                  │
+│  │                              ││     Placeholder: "E.g. Waist-deep
+│  └──────────────────────────────┘│     flood water on the main road,
+│                                  │     several houses submerged..."
 │  ── Review ────                  │
-│  Type:     🔥 Fire               │
-│  Severity: ● HIGH                │
-│  Location: Daet, Brgy. Gahonon  │
-│  Title:    Fire in Brgy. Gahonon│
-│                                  │
+│  Location: Daet, Brgy. Gahonon  │  ← Summary of Steps 1–2
+│  Photos:   2 attached            │     (no type or severity — those
+│                                  │     are set by admin)
 │  ┌──────────────────────────────┐│
 │  │      SUBMIT REPORT           ││  ← bg:#2563EB, 56px, full width
 │  └──────────────────────────────┘│
 │                                  │
 │  Your report will be reviewed    │
 │  by local authorities before     │
-│  appearing publicly.             │
+│  it appears on the public map.   │
 └──────────────────────────────────┘
+
+Note: The review summary intentionally omits disaster type and severity
+because they are not yet classified. Citizens are not shown placeholder
+or "unknown" values — the review only shows what they provided.
 ```
 
 ```
 Success Screen:
 ┌──────────────────────────────────┐
+│                                  │
 │           ✅                      │
+│                                  │
 │  Report Submitted!               │
 │  RPT-2024-DAET-0042              │
 │                                  │
 │  Local authorities have been     │
-│  notified. Track your report     │
-│  in your Profile.                │
+│  notified. You can track your    │
+│  report in your Profile.         │
 │                                  │
 │  [Track My Report →]             │
 │  [Back to Map]                   │
+│                                  │
 └──────────────────────────────────┘
 ```
 
-### 11.2 Key Form UX Decisions
+### 11.3 Key Form UX Decisions
 
-| Decision                                           | Rationale                                                                                                                                                  |
-| -------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **4 steps, ≤3 inputs each**                        | Matches the cognitive load target. Each screen is manageable on 360px without scrolling.                                                                   |
-| **GPS + static GeoJSON for municipality/barangay** | No external geocoding API. Offline-safe, free, reliable during disaster network conditions.                                                                |
-| **4 prominent types + "More"**                     | Reduces decision paralysis. The 4 shown rotate by active weather/season.                                                                                   |
-| **Photos optional and last**                       | Don't block urgent reports behind media upload.                                                                                                            |
-| **Review step before submit**                      | Prevents errors. Shows exactly what will be sent.                                                                                                          |
-| **Trust message at Step 4**                        | Sets expectation that report will be reviewed before appearing publicly.                                                                                   |
-| **Draft autosave**                                 | Every field change saves to IndexedDB (as unsent form state). Once submitted, Firestore SDK handles queued delivery — no custom service worker sync layer. |
+| Decision                                            | Rationale                                                                                                                                                                                                                |
+| --------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **Evidence first (camera/gallery)**                 | Puts the citizen's most immediate instinct first. Photo evidence is the highest-value input for admin classification. Opening with the camera also anchors the user before asking them to think.                         |
+| **No disaster type or severity picker**             | Citizens under stress cannot classify reliably. Mis-classification (e.g., reporting a storm surge as a flood) creates inaccurate public data. Admins have training, context, and can cross-reference before classifying. |
+| **Photos are optional — NEXT active from Step 1**   | Don't block urgent text-only reports. Some situations are too dangerous to photograph.                                                                                                                                   |
+| **GPS + static GeoJSON for auto-location**          | No live geocoding API. Offline-safe and reliable during disaster network congestion.                                                                                                                                     |
+| **GPS accuracy ring on pin**                        | Citizens know when their GPS is unreliable and will manually correct it.                                                                                                                                                 |
+| **Textarea placeholder is an example, not a label** | Reduces blank-page anxiety. The example shows what kind of text is useful without being prescriptive.                                                                                                                    |
+| **Review omits unclassified fields**                | Showing "Type: Unknown" or "Severity: —" would alarm or confuse citizens. The review shows only what they submitted.                                                                                                     |
+| **Draft autosave**                                  | Every field change saves to IndexedDB as unsent form state. Once submitted, Firestore SDK handles queued delivery. No custom service worker sync.                                                                        |
+| **Trust message at Step 3**                         | Sets expectation that the report goes through a review step before appearing publicly. Prevents confusion when their pin doesn't immediately appear on the map.                                                          |
 
 ---
 
@@ -1123,7 +1176,13 @@ Standard Pin (28px visual, 48px touch target):
   └──────┬───────┘
          ▼           ← Small triangle pointer
 
-Outer ring colors by severity:
+Unclassified pin (pending, not yet triaged by admin):
+  Outer ring: #6B7280 (gray) fill, dashed stroke
+  Icon: ? (question mark, white)
+  Visible only to admins on the map. Citizens cannot see pending
+  reports on the public map until classified + verified.
+
+Outer ring colors by severity (post-classification):
   Critical: #DC2626 fill, #991B1B stroke
   High:     #EA580C fill, #9A3412 stroke
   Medium:   #65A30D fill, #3F6212 stroke
@@ -1207,57 +1266,154 @@ Initial payload target: <1MB on mobile
 │  ── PENDING QUEUE (newest first) ──    │
 │                                        │
 │  ┌──────────────────────────────┐      │
-│  │ ● CRITICAL · 🌊 Flood       │      │
-│  │ Waist-deep flood...          │      │
-│  │ Pending · 5m ago             │      │
-│  │ [Verify ✓] [Reject ✕]       │      │
+│  │ ⬜ UNCLASSIFIED  · 5m ago    │      │  ← No severity/type yet
+│  │ Daet, Brgy. Gahonon          │      │     Shown as neutral gray
+│  │ "Waist-deep tubig sa daan,   │      │
+│  │  ilang bahay na natatakpan"  │      │
+│  │ 📷 2 photos                  │      │
+│  │ [Classify & Verify] [Reject] │      │  ← Primary action is now
+│  └──────────────────────────────┘      │     "Classify & Verify"
+│  ┌──────────────────────────────┐      │
+│  │ ⬜ UNCLASSIFIED  · 12m ago   │      │
+│  │ Daet, Brgy. Lag-on           │      │
+│  │ "May sunog sa tabi ng palengke│     │
+│  │  may usok galing sa highway" │      │
+│  │ 📷 1 photo                   │      │
+│  │ [Classify & Verify] [Reject] │      │
 │  └──────────────────────────────┘      │
 │  ...                                   │
 │                                        │
 │  ── RECENT ACTIVITY ──                 │
-│  Admin verified RPT-0042 · 15m ago     │
-│  Admin dispatched RPT-0039 · 1h ago    │
+│  Admin classified RPT-0042 as         │
+│  🔥 Fire · HIGH · Verified · 15m ago  │
+│  Admin dispatched RPT-0039 · 1h ago   │
 └────────────────────────────────────────┘
 ```
 
-### 14.2 Triage Action Panel (Admin-Only Section of Report Detail)
+**Pending queue card — unclassified state:**
+
+- No severity color badge or left border color (neutral gray `#6B7280`)
+- Shows: location, citizen's description (2 lines), photo count, submission time
+- Primary CTA is **"Classify & Verify"** — opens the classification panel
+- "Reject" is secondary, requires confirmation + reason
+
+### 14.2 Triage Action Panel — Pending / Unclassified Report
+
+When a report arrives in the queue it has no type or severity. The admin must classify it before they can verify and dispatch. The triage panel is structured in two phases: **Classify first, then act.**
 
 ```
-┌─── TRIAGE ACTIONS ─────────────────────────────┐
-│                                                  │
-│  Internal State: [ DISPATCHED ]                  │
-│  Priority: ★★★☆☆  (click stars to change)       │
-│                                                  │
-│  Assigned Contact:                               │
-│  ┌──────────────────────────────────────┐       │
-│  │ 🚒 Daet Municipal Fire Station       │       │
-│  │ (0912) 345-6789                      │       │
-│  │ Captured Jan 15, 4:01 PM (snapshot)  │       │
-│  └──────────────────────────────────────┘       │
-│                                                  │
-│  Admin Notes:                                    │
-│  [text area]  [Save Notes]                       │
-│                                                  │
-│  ── Available Actions ──                         │
-│  [ ✓ Acknowledge ] [ ↻ Reroute ] [ ✅ Resolve ] │
-│                                                  │
-│  RULE: Only valid next-state actions are shown.  │
-│  Invalid transitions are hidden, not grayed.     │
-│                                                  │
-└──────────────────────────────────────────────────┘
+Desktop — Pending Report Detail (Admin View):
+
+┌────────────────────────────────────────────────────┐
+│ ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ │  ← 4px neutral gray top bar
+│                                                    │     (no severity color yet)
+│  📋 Report from Brgy. Gahonon, Daet    ✕ Close   │
+│  ⬜ Unclassified  ·  RPT-2024-DAET-0042           │
+│                                                    │
+├────────────────────────────────────────────────────┤
+│  📍 Daet, Brgy. Gahonon                           │
+│  🕐 January 15, 2024 at 3:42 PM (12 min ago)      │
+│  Status: Under Review                              │
+│                                                    │
+│  Citizen's Description                             │
+│  "Waist-deep tubig sa daan, ilang bahay na         │
+│  natatakpan na. Kailangan ng tulong."              │
+│                                                    │
+│  📷 Photos (2)                                     │
+│  ┌──────┐ ┌──────┐                                │
+│  │      │ │      │  ← Click to expand full-size   │
+│  └──────┘ └──────┘                                │
+│                                                    │
+│  ┌─ 🗺️ Location ──────────────────────────────┐  │
+│  │                  📍                          │  │
+│  └──────────────────────────────────────────────┘  │
+│                                                    │
+├────────────────────────────────────────────────────┤
+│  ┌─── STEP 1: CLASSIFY (required to verify) ───┐  │
+│  │                                              │  │
+│  │  Hazard / Disaster Type *                    │  │
+│  │  ┌──────────────────────────────────────┐   │  │
+│  │  │ 🌊 Flood                          ▾ │   │  │  ← Dropdown, all 12 types
+│  │  └──────────────────────────────────────┘   │  │
+│  │                                              │  │
+│  │  Severity *                                  │  │
+│  │  ┌──────────────────────────────────────┐   │  │
+│  │  │ ○ Low  ○ Medium  ○ High  ○ Critical  │   │  │  ← Color-coded radio group
+│  │  └──────────────────────────────────────┘   │  │
+│  │                                              │  │
+│  │  Admin Notes (optional)                      │  │
+│  │  ┌──────────────────────────────────────┐   │  │
+│  │  │                                      │   │  │
+│  │  └──────────────────────────────────────┘   │  │
+│  │                                              │  │
+│  └──────────────────────────────────────────────┘  │
+│                                                    │
+│  ┌─── STEP 2: ACTION ──────────────────────────┐  │
+│  │                                              │  │
+│  │  ┌──────────────────┐  ┌──────────────────┐ │  │
+│  │  │  ✓ Verify Report  │  │  ✕ Reject Report │ │  │
+│  │  └──────────────────┘  └──────────────────┘ │  │
+│  │                                              │  │
+│  │  Verify is disabled until Type + Severity    │  │
+│  │  are both selected.                          │  │
+│  │                                              │  │
+│  └──────────────────────────────────────────────┘  │
+└────────────────────────────────────────────────────┘
+
+State behavior:
+  - Type and Severity fields are empty on arrival
+  - "Verify Report" button is disabled (grayed, not hidden) with
+    tooltip: "Select Type and Severity to verify"
+  - Once both are filled: "Verify Report" becomes active (Primary Blue)
+  - On Verify: report transitions to Verified; severity color fills
+    the top bar; type icon appears in the report header
+  - On Reject: confirmation bottom sheet with required reason
 ```
 
-### 14.3 Triage Action UX Rules
+### 14.3 Triage Action Panel — Post-Classification States
 
-| Rule                                          | Rationale                                                                                                     |
-| --------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
-| **Only show valid next actions**              | Prevents confusion. If dispatched, don't show "Verify."                                                       |
-| **Reject requires confirmation + reason**     | Modal with required reason field; reason is stored in audit log                                               |
-| **Dispatch requires contact selection**       | Contact picker filtered by municipality                                                                       |
-| **Resolve requires resolution summary**       | Text input before confirming; stored in activity log                                                          |
-| **Duplicate action available from any state** | Admin can mark as duplicate of canonical report ID                                                            |
-| **Version conflict shows inline error**       | "This report was updated by another admin. Please refresh."                                                   |
-| **verified → rejected**                       | Restricted to `provincial_superadmin` only; requires reason code `supervisory_override`; triggers audit alert |
+Once classified and verified, the triage panel changes to show the standard action set for subsequent state transitions.
+
+```
+┌─── TRIAGE ACTIONS (post-verify) ────────────────────┐
+│                                                      │
+│  Internal State: [ VERIFIED ]                        │
+│  Type: 🌊 Flood  ·  Severity: ● HIGH                │
+│  Priority: ★★★☆☆  (click stars to change)           │
+│                                                      │
+│  Admin Notes:                                        │
+│  [text area]  [Save Notes]                           │
+│                                                      │
+│  ── Available Actions ──                             │
+│  [ 📡 Dispatch ]  [ ✕ Reject ]                      │
+│  (Only valid next-state actions are shown)           │
+│                                                      │
+└──────────────────────────────────────────────────────┘
+
+Dispatched state adds:
+│  Assigned Contact:                                   │
+│  ┌──────────────────────────────────────────────┐   │
+│  │ 🚒 Daet Municipal Fire Station               │   │
+│  │ (0912) 345-6789  ·  Captured Jan 15, 4:01 PM │   │
+│  └──────────────────────────────────────────────┘   │
+│  [ ✓ Acknowledge ] [ ↻ Reroute ] [ ✅ Resolve ]     │
+```
+
+### 14.4 Triage Action UX Rules
+
+| Rule                                                                     | Rationale                                                                                                                                      |
+| ------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Classification (Type + Severity) is required before Verify**           | Citizens don't classify — admins do. No report can go Verified without both fields set.                                                        |
+| **"Verify" is disabled (not hidden) until Type + Severity are selected** | Disabled with tooltip communicates what's needed. Hiding would leave admins confused about where the action went.                              |
+| **Classification fields are shown before action buttons**                | Visual hierarchy signals that classify-first is the expected workflow, not an afterthought.                                                    |
+| **Admin can re-classify after Verify**                                   | Mistakes happen. Type and Severity remain editable post-Verify by the same or higher-role admin. Re-classification creates an audit log entry. |
+| **Only show valid next-state actions**                                   | Prevents confusion. If dispatched, don't show "Verify."                                                                                        |
+| **Reject requires confirmation + reason**                                | Modal with required reason field; reason stored in audit log. Can be done before or after classification.                                      |
+| **Dispatch requires contact selection**                                  | Contact picker filtered by municipality.                                                                                                       |
+| **Resolve requires resolution summary**                                  | Text input before confirming; stored in activity log.                                                                                          |
+| **Duplicate action available from any state**                            | Admin can mark as duplicate of canonical report ID.                                                                                            |
+| **Version conflict shows inline error**                                  | "This report was updated by another admin. Please refresh."                                                                                    |
+| **verified → rejected**                                                  | Restricted to `provincial_superadmin` only; requires reason code `supervisory_override`; triggers audit alert.                                 |
 
 ### 14.4 Duplicate Report State
 
@@ -1526,29 +1682,19 @@ Shimmer animation:
 
 ## 21. Design Quality Targets
 
-| Metric                             | Target                                    | How We Achieve It                                                                   |
-| ---------------------------------- | ----------------------------------------- | ----------------------------------------------------------------------------------- |
-| **Time to submit report (mobile)** | ≤ 60 seconds                              | 4-step flow, GPS auto-fill, large buttons, no required photos                       |
-| **Time to triage (admin)**         | ≤ 15 seconds per report                   | Quick actions in queue cards, 1-tap verify, direct deep-link from push notification |
-| **Admin mobile triage path**       | ≤ 3 taps                                  | Dedicated Triage tab in admin tab bar; push notifications deep-link to action       |
-| **Lighthouse Accessibility**       | ≥ 95                                      | WCAG AA contrasts, keyboard nav, ARIA, semantic HTML                                |
-| **Cognitive load per screen**      | ≤ 3–5 information units                   | Compact/standard card modes, chunked form steps, progressive disclosure             |
-| **Critical action click depth**    | ≤ 3 clicks/taps                           | Report, triage, and alert receipt all ≤ 3 interactions                              |
-| **Map stability**                  | Zero remounts on navigation               | Sibling architecture, CSS-only drawer transitions                                   |
-| **Severity recognition time**      | ≤ 1 second                                | Consistent color + text + position across all views                                 |
-| **Offline resilience**             | Core read/submit available offline        | Firestore SDK persistence + bundled assets + IndexedDB form drafts                  |
-| **Dark mode**                      | System auto mode (V1), manual toggle (V2) | Semantic CSS tokens, CartoDB Dark Matter map tiles                                  |
+| Metric                                | Target                                    | How We Achieve It                                                                      |
+| ------------------------------------- | ----------------------------------------- | -------------------------------------------------------------------------------------- |
+| **Time to submit report (mobile)**    | ≤ 45 seconds                              | 3-step flow, evidence-first, GPS auto-fill, zero classification decisions for citizen  |
+| **Time to classify + triage (admin)** | ≤ 20 seconds per report                   | Classification panel inline with evidence, segmented severity control, one confirm tap |
+| **Admin mobile triage path**          | ≤ 3 taps                                  | Dedicated Triage tab in admin tab bar; push notifications deep-link to action          |
+| **Lighthouse Accessibility**          | ≥ 95                                      | WCAG AA contrasts, keyboard nav, ARIA, semantic HTML                                   |
+| **Cognitive load per screen**         | ≤ 3–5 information units                   | Compact/standard card modes, chunked form steps, progressive disclosure                |
+| **Critical action click depth**       | ≤ 3 clicks/taps                           | Report, triage, and alert receipt all ≤ 3 interactions                                 |
+| **Map stability**                     | Zero remounts on navigation               | Sibling architecture, CSS-only drawer transitions                                      |
+| **Severity recognition time**         | ≤ 1 second                                | Consistent color + text + position across all views                                    |
+| **Offline resilience**                | Core read/submit available offline        | Firestore SDK persistence + bundled assets + IndexedDB form drafts                     |
+| **Dark mode**                         | System auto mode (V1), manual toggle (V2) | Semantic CSS tokens, CartoDB Dark Matter map tiles                                     |
 
-## Final Design Standard
-
-If a future design or implementation choice conflicts with this document, choose the option that is:
-
-1. faster for a panicked citizen,
-2. clearer for the public,
-3. more operationally reliable for admins,
-4. safer for privacy and municipality scoping,
-5. and easier to implement without hidden consistency risk.
-
-## That standard is the core of Bantayog Alert.
+---
 
 > **The best emergency UI is the one you never have to think about using. Every pixel in Bantayog Alert serves one purpose: helping people act fast and act right when it matters most.**
