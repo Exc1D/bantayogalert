@@ -326,7 +326,13 @@
 5. All analytics are powered by pre-aggregated Firestore documents maintained by Cloud Functions — clients never scan raw report documents
 6. Audit log viewer displays paginated entries with filters by action, entity, and user
 
-**Plans**: TBD
+**Plans**: 6 plans
+- [ ] 11-01-PLAN.md — Foundation: analytics and audit contracts, rules, and indexes
+- [ ] 11-02-PLAN.md — Analytics aggregation backend
+- [ ] 11-03-PLAN.md — Global audit stream and sensitive-write retrofits
+- [ ] 11-04-PLAN.md — Client data layer and route wiring
+- [ ] 11-05-PLAN.md — Analytics dashboard UI and disaster-map overlay
+- [ ] 11-06-PLAN.md — Audit viewer UI
 
 ---
 
@@ -370,7 +376,7 @@
 | 8. Contacts Management | 4/4 | Complete   | 2026-04-04 |
 | 9. Admin Triage | 0/7 | Not started | |
 | 10. Announcements, Push & Alerts | 5/5 | Complete    | 2026-04-04 |
-| 11. Analytics & Disaster Mapping | 0/6 | Not started | |
+| 11. Analytics & Disaster Mapping | 0/6 | Planned    |  |
 | 12. Hardening, PWA, SEO & Release | 0/12 | Not started | |
 
 ---
