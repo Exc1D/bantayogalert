@@ -3,6 +3,10 @@ import { onCall } from 'firebase-functions/v2/https'
 import { setUserRole } from './auth/setUserRole'
 import { onUserCreated } from './auth/onUserCreated'
 import { submitReport } from './reports/submitReport'
+import { createContact } from './contacts/createContact'
+import { updateContact } from './contacts/updateContact'
+import { deactivateContact } from './contacts/deactivateContact'
+import { getContacts } from './contacts/getContacts'
 
 // Security utilities
 export {
@@ -28,6 +32,10 @@ export {
 export { setUserRole }
 export { onUserCreated }
 export { submitReport }
+export { createContact }
+export { updateContact }
+export { deactivateContact }
+export { getContacts }
 
 /**
  * Set surge mode for a municipality.
