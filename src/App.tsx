@@ -59,7 +59,7 @@ export function App() {
           </Route>
 
           {/* Root redirect */}
-          <Route path="/" element={<Navigate to="/app" replace />} />
+          <Route path="/*" element={<Navigate to="/app" replace />} />
         </Routes>
       </AppCheckProvider>
     </AuthProvider>
