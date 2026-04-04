@@ -273,7 +273,14 @@
 15. Provincial superadmin can view and triage pending reports across all 12 municipalities
 16. Public and owner status documents are updated correctly by Cloud Function triggers after every triage action
 
-**Plans**: TBD
+**Plans**: 7 plans
+- [ ] 09-01-PLAN.md — submitReport Fix (add municipalityCode + version: 1 to report_ops)
+- [ ] 09-02-PLAN.md — Core Triage CFs Part 1 (triageVerify, triageReject, triageDispatch, triageAcknowledge + shared helpers)
+- [ ] 09-03-PLAN.md — Core Triage CFs Part 2 (triageInProgress, triageResolve, triageReroute, triageUpdatePriority, triageUpdateNotes)
+- [ ] 09-04-PLAN.md — Admin Queue UI Foundation (useAdminQueueListener, AdminQueueCard, PriorityStars, AdminQueueFeed)
+- [ ] 09-05-PLAN.md — Admin Detail Panel & ContactPicker (AdminReportDetailPanel, ContactPickerModal, WorkspaceDrawer wiring)
+- [ ] 09-06-PLAN.md — Routes & Navigation (router, DesktopShell, MobileShell admin nav)
+- [ ] 09-07-PLAN.md — CF Exports (functions/src/index.ts exports for all 9 triage CFs)
 
 ---
 
@@ -356,7 +363,7 @@
 | 6. Real-time Map & Feed | 5/5 | Complete   | 2026-04-03 |
 | 7. Profile & Report Tracker | 1/2 | In Progress | |
 | 8. Contacts Management | 4/4 | Complete   | 2026-04-04 |
-| 9. Admin Triage | 0/16 | Not started | |
+| 9. Admin Triage | 0/7 | Not started | |
 | 10. Announcements, Push & Alerts | 0/7 | Not started | |
 | 11. Analytics & Disaster Mapping | 0/6 | Not started | |
 | 12. Hardening, PWA, SEO & Release | 0/12 | Not started | |
