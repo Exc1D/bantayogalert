@@ -38,8 +38,9 @@ export function ReportFeedCard({ report, onClick, isSelected = false, compact = 
     [report.municipalityCode]
   )
   const severityStyle = SEVERITY_COLORS[report.severity]
-  const IncidentIcon = INCIDENT_TYPE_COMPONENTS[report.type]
+  const IncidentIcon = INCIDENT_TYPE_COMPONENTS[report.type] ?? INCIDENT_TYPE_COMPONENTS.other
   const publicStatus = WORKFLOW_TO_PUBLIC_STATUS[report.workflowState]
+  const typeLabel = report.type?.replace('_', ' ') ?? 'Unknown'
 
   return (
     <button
@@ -47,13 +48,13 @@ export function ReportFeedCard({ report, onClick, isSelected = false, compact = 
       className={`w-full text-left px-3 py-2 border-b border-gray-100 hover:bg-gray-50 transition-colors ${
         isSelected ? 'bg-blue-50 border-l-4 border-l-blue-500' : ''
       }`}
-      aria-label={`${report.type} report in ${municipality?.name ?? report.municipalityCode}`}
+      aria-label={`${typeLabel} report in ${municipality?.name ?? report.municipalityCode}`}
     >
       {compact ? (
         <div className="flex items-center gap-2 h-10">
           <span className={`w-2.5 h-2.5 rounded-full flex-shrink-0 ${severityStyle.dot}`} />
           <span className="text-sm font-medium text-neutral-900 dark:text-neutral-100 truncate">
-            {report.type.replace('_', ' ')}
+            {typeLabel}
           </span>
           <span className="text-xs text-neutral-500 dark:text-neutral-400 truncate flex-1">
             {municipality?.name ?? report.municipalityCode}
@@ -72,7 +73,7 @@ export function ReportFeedCard({ report, onClick, isSelected = false, compact = 
           <div className="flex-1 min-w-0">
             <div className="flex items-center gap-2">
               <span className="text-sm font-medium text-neutral-900 dark:text-neutral-100 capitalize">
-                {report.type.replace('_', ' ')}
+                {typeLabel}
               </span>
               <span className={`text-xs px-1.5 py-0.5 rounded ${severityStyle.bg} text-white capitalize`} aria-label={`Severity: ${report.severity}`}>
                 {report.severity}

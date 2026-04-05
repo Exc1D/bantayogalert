@@ -1,66 +1,46 @@
-# Handoff — 2026-04-05
+# Handoff — 2026-04-05 (Session 4)
 
 ## Context
 - **Branch:** `main`
-- **Last commit:** `e73cac6 feat(wave-3): admin tab integration — MobileBottomTabs + tablet profile`
-- **Design Gap Bridging:** Wave 0, 1, 2 COMPLETE. Wave 3 ~80% DONE.
+- **Last commit:** `a5fa63c feat(wave-4.5-4.6): accessibility + form improvements`
+- **Wave 4:** COMPLETE (5/5) — 4.2 map pin redesign done in this session
 
-## Completed
-
-### Wave 0 (Foundation) — COMPLETE
-- CSS custom properties, Switzer font, motion rules, emoji→Lucide
-
-### Wave 1 (Architecture) — COMPLETE
-- 3-step report form (Evidence→Location→Description), CSS var token colors,
-  type/severity defaults, dead code removal, old step files deleted
-
-### Wave 2 (Core Features) — COMPLETE
-- Status Timeline (zigzag, citizen labels, ghost future steps, activity log)
-- Compact Card Mode (feedDensity toggle in uiStore)
-- Loading Skeletons (Skeleton, ReportCardSkeleton, StatusTimelineSkeleton)
-- Dark mode variants on ReportTrack, ReportDetailOwner, ReportDetailPanel, ReportFeedCard
-
-### Wave 3 (Mobile UX) — ~80% DONE
-
-#### DONE (4/5 tasks):
-1. **Three-tier breakpoint system** — `useBreakpoint()` hook: mobile(0-768), tablet(769-1279), desktop(1280+). ShellRouter refactored.
-2. **BottomSheet component** — PEEK(30vh)/HALF(60vh)/FULL with touch drag + snap logic, Escape key, backdrop tap, portal rendering.
-3. **OverlayDrawer component** — Tablet overlay with `placement: "right" | "bottom"` for orientation awareness.
-4. **Admin tab integration** — MobileBottomTabs now has "Admin" tab for admin roles. AdminQueueFeed renders as full-screen tab content. TabletShell enriched with profile content + admin tab.
-
-#### REMAINING:
-5. **Bottom sheet wiring** — `AdminQueueFeed` card clicks still use `setActivePanel('admin-report-detail')` (desktop WorkspaceDrawer path). Need to intercept on mobile to open BottomSheet instead. Wire `BottomSheetReportDetail` (wrapper component not yet created) to admin queue card clicks.
-
-### Remaining Waves
-- **Wave 4:** Polish & a11y (map pins, boundaries, empty states, a11y, form fixes)
+## Completed This Session (All Unstaged)
+- [x] **Wave 4.2 COMPLETE** — Map pin redesign per DESIGN.md §13.1
+  - Pin shape: CSS circle + rotated square triangle pointer
+  - Severity colors: Low=#2563EB(blue), Medium=#65A30D(green), High=#EA580C, Critical=#DC2626
+  - Cluster markers: fill by worst severity in cluster (not hardcoded blue)
+  - Selected state: scale 1.25× + 3px white ring + spring bounce (150ms)
+  - Resolved state: 50% opacity + gray ring
+  - 48px touch target for accessibility
+- [x] **Critical bug:** `src/main.tsx` missing `import './index.css'` — ALL Tailwind was disconnected
+- [x] **Crash fix:** `reportToGeoJSON` returns null for missing `location`, callers filter
+- [x] **Crash fix:** `ReportFeedCard` null-safe `report.type` handling
+- [x] **Query fix:** Added `queryFn` to cache-only `useQuery` in `ReportMarkers`
 
 ## Build & Test Status
-- Build: PASS | TypeScript: PASS
-- Tests: 17 unit tests pass (30 total including integration), 2 pre-existing fail (emulator ECONNREFUSED)
-- New test files: `tests/unit/shell/useBreakpoint.test.ts`, `tests/unit/ui/BottomSheet.test.tsx`
+- Build: PASS (`npm run build` clean)
+- TypeScript: PASS
+- Tests: 91 pass / 30 fail (pre-existing, unrelated to this session)
 
-## Artifacts
-- `docs/superpowers/specs/2026-04-05-wave-3-mobile-ux-design.md` — Full design spec
-- `docs/superpowers/plans/2026-04-05-wave-3-mobile-ux-plan.md` — Implementation plan (5 tasks)
+## Remaining
+- [ ] **Storage rules tests** (23/23) — Java rules runtime returns "unknown error" not PERMISSON_DENIED
+- [ ] **Firestore rules tests** (7/68) — undefined properties in announcements/analytics test fixtures
 
-## Key Files Created This Session
-- `src/hooks/useBreakpoint.ts` — Three-tier breakpoint hook
-- `src/app/shell/TabletShell.tsx` — Tablet layout shell
-- `src/components/ui/BottomSheet.tsx` — Bottom sheet with swipe
-- `src/components/ui/OverlayDrawer.tsx` — Orientation-aware tablet overlay
+## Files Modified (All Unstaged — 9 files)
+| File | Change |
+|------|--------|
+| `src/main.tsx` | Added `import './index.css'` |
+| `src/components/map/MapClusterIcon.tsx` | Pin shape, severity colors, cluster severity coloring |
+| `src/components/map/ReportMarkers.tsx` | Cluster severity array, resolved state, queryFn, null filtering |
+| `src/components/map/PublicReportMarkers.tsx` | Null filtering for `reportToGeoJSON` |
+| `src/lib/geo/reportToGeoJSON.ts` | Returns null for missing location, added `workflowState` prop |
+| `src/components/report/ReportFeedCard.tsx` | Null-safe `report.type` with fallback label |
+| `index.html` | Pin CSS, selected/resolved states, 48px touch target |
 
-## Key Files Modified
-- `src/app/shell/ShellRouter.tsx` — Three-tier routing
-- `src/app/shell/MobileShell.tsx` — Uses MobileBottomTabs (removed inline nav), admin tab content
-- `src/app/shell/MobileBottomTabs.tsx` — Admin tab added, Contacts removed
-- `src/stores/uiStore.ts` — ActiveTab type: added 'admin'
-
-## To Resume
-```bash
-# Continue Wave 3 task 5: bottom sheet wiring
-# BottomSheet is built and tested. Need to:
-# 1. Create BottomSheetReportDetail wrapper (wraps AdminReportDetailPanel in BottomSheet)
-# 2. Wire into admin queue card clicks — detect breakpoint, open sheet on mobile
-# 3. E2E verification of admin mobile flow
-# Then proceed to Wave 4
-```
+## Notes for Next Agent
+- All 9 files are **unstaged** on `main` — review before committing
+- The `TanStack Query queryFn` fix re-added a queryFn (see `src/components/map/ReportMarkers.tsx` line ~36) — this goes against an earlier decision to remove queryFn from cache-only reads, but v5 requires it or throws errors
+- Emulators needed: `firebase emulators:start --project demo-bantayogalert`
+- Dev server: `npm run dev` → http://localhost:5173
+- Test user: `citizen@test.com` / `TestPass123!` (created in emulator this session)
