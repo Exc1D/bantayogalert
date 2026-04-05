@@ -29,9 +29,10 @@ interface ReportFeedCardProps {
   report: Report
   onClick?: (report: Report) => void
   isSelected?: boolean
+  compact?: boolean
 }
 
-export function ReportFeedCard({ report, onClick, isSelected = false }: ReportFeedCardProps) {
+export function ReportFeedCard({ report, onClick, isSelected = false, compact = false }: ReportFeedCardProps) {
   const municipality = useMemo(
     () => getMunicipality(report.municipalityCode),
     [report.municipalityCode]
@@ -48,36 +49,49 @@ export function ReportFeedCard({ report, onClick, isSelected = false }: ReportFe
       }`}
       aria-label={`${report.type} report in ${municipality?.name ?? report.municipalityCode}`}
     >
-      <div className="flex items-center gap-3 h-[72px]">
-        {/* Severity dot + type icon */}
-        <div className="flex flex-col items-center gap-0.5 w-8 flex-shrink-0">
-          <IncidentIcon className="w-5 h-5" aria-hidden="true" />
-          <span className={`w-2.5 h-2.5 rounded-full ${severityStyle.dot}`} />
-        </div>
-
-        {/* Main info */}
-        <div className="flex-1 min-w-0">
-          <div className="flex items-center gap-2">
-            <span className="text-sm font-medium text-gray-900 capitalize">
-              {report.type.replace('_', ' ')}
-            </span>
-            <span className={`text-xs px-1.5 py-0.5 rounded ${severityStyle.bg} text-white capitalize`}>
-              {report.severity}
-            </span>
-          </div>
-          <div className="text-xs text-gray-500 mt-0.5 truncate">
-            {municipality?.name ?? report.municipalityCode}
-          </div>
-        </div>
-
-        {/* Time + status */}
-        <div className="flex flex-col items-end gap-1 flex-shrink-0">
-          <span className="text-xs text-gray-400">{formatRelativeTime(report.createdAt)}</span>
-          <span className={`text-xs ${severityStyle.text} font-medium`}>
-            {publicStatus}
+      {compact ? (
+        <div className="flex items-center gap-2 h-10">
+          <span className={`w-2.5 h-2.5 rounded-full flex-shrink-0 ${severityStyle.dot}`} />
+          <span className="text-sm font-medium text-neutral-900 dark:text-neutral-100 truncate">
+            {report.type.replace('_', ' ')}
           </span>
+          <span className="text-xs text-neutral-500 dark:text-neutral-400 truncate flex-1">
+            {municipality?.name ?? report.municipalityCode}
+          </span>
+          <span className="text-xs text-neutral-400 flex-shrink-0">{formatRelativeTime(report.createdAt)}</span>
         </div>
-      </div>
+      ) : (
+        <div className="flex items-center gap-3 h-[72px]">
+          {/* Severity dot + type icon */}
+          <div className="flex flex-col items-center gap-0.5 w-8 flex-shrink-0">
+            <IncidentIcon className="w-5 h-5" aria-hidden="true" />
+            <span className={`w-2.5 h-2.5 rounded-full ${severityStyle.dot}`} />
+          </div>
+
+          {/* Main info */}
+          <div className="flex-1 min-w-0">
+            <div className="flex items-center gap-2">
+              <span className="text-sm font-medium text-neutral-900 dark:text-neutral-100 capitalize">
+                {report.type.replace('_', ' ')}
+              </span>
+              <span className={`text-xs px-1.5 py-0.5 rounded ${severityStyle.bg} text-white capitalize`}>
+                {report.severity}
+              </span>
+            </div>
+            <div className="text-xs text-neutral-500 dark:text-neutral-400 mt-0.5 truncate">
+              {municipality?.name ?? report.municipalityCode}
+            </div>
+          </div>
+
+          {/* Time + status */}
+          <div className="flex flex-col items-end gap-1 flex-shrink-0">
+            <span className="text-xs text-neutral-400">{formatRelativeTime(report.createdAt)}</span>
+            <span className={`text-xs ${severityStyle.text} font-medium`}>
+              {publicStatus}
+            </span>
+          </div>
+        </div>
+      )}
     </button>
   )
 }

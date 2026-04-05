@@ -17,6 +17,8 @@ interface UIState {
   setAnalyticsHeatmapEnabled: (enabled: boolean) => void
   analyticsHotspots: HotspotCount[]
   setAnalyticsHotspots: (hotspots: HotspotCount[]) => void
+  feedDensity: 'normal' | 'compact'
+  setFeedDensity: (density: 'normal' | 'compact') => void
 }
 
 export const useUIStore = create<UIState>((set) => ({
@@ -33,4 +35,6 @@ export const useUIStore = create<UIState>((set) => ({
   setAnalyticsHeatmapEnabled: (enabled) => set({ analyticsHeatmapEnabled: enabled }),
   analyticsHotspots: [],
   setAnalyticsHotspots: (hotspots) => set({ analyticsHotspots: hotspots }),
+  feedDensity: 'normal',
+  setFeedDensity: (density) => set({ feedDensity: density }),
 }))

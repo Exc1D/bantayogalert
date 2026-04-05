@@ -183,3 +183,16 @@
 
 /* Performance guardrails for animated elements */
 .will-animate { will-change: transform, opacity; }
+
+/* Skeleton shimmer base — dark mode via color CSS vars */
+.animate-pulse-skeleton {
+  animation: shimmer 2s ease-in-out infinite;
+  background: linear-gradient(
+    90deg,
+    var(--color-gray-100) 0%,
+    var(--color-gray-50) 50%,
+    var(--color-gray-100) 100%
+  );
+  background-size: 200% 100%;
+  will-change: background-position;
+}

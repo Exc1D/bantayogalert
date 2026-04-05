@@ -6,10 +6,10 @@ import { getMunicipality } from '@/lib/geo/municipality'
 import { REPORTS_QUERY_KEY } from '@/hooks/useVerifiedReportsListener'
 
 const SEVERITY_STYLES: Record<Severity, { bg: string; text: string; border: string }> = {
-  [Severity.Critical]: { bg: 'bg-red-50', text: 'text-red-700', border: 'border-red-200' },
-  [Severity.High]: { bg: 'bg-orange-50', text: 'text-orange-700', border: 'border-orange-200' },
-  [Severity.Medium]: { bg: 'bg-yellow-50', text: 'text-yellow-700', border: 'border-yellow-200' },
-  [Severity.Low]: { bg: 'bg-green-50', text: 'text-green-700', border: 'border-green-200' },
+  [Severity.Critical]: { bg: 'bg-severity-criticalBg', text: 'text-severity-critical', border: 'border-severity-criticalBorder' },
+  [Severity.High]: { bg: 'bg-severity-highBg', text: 'text-severity-high', border: 'border-severity-highBorder' },
+  [Severity.Medium]: { bg: 'bg-severity-mediumBg', text: 'text-severity-medium', border: 'border-severity-mediumBorder' },
+  [Severity.Low]: { bg: 'bg-severity-lowBg', text: 'text-severity-low', border: 'border-severity-lowBorder' },
 }
 
 const TYPE_LABELS: Record<string, string> = {
