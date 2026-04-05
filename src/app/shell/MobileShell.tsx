@@ -12,6 +12,8 @@ import { UserRole } from '@/types/user'
 import { AlertsFeed } from '@/components/alerts/AlertsFeed'
 import { MobileBottomTabs } from './MobileBottomTabs'
 import { AdminQueueFeed } from '@/components/report/AdminQueueFeed'
+import { AdminReportDetailPanel } from '@/components/report/AdminReportDetailPanel'
+import { BottomSheet } from '@/components/ui/BottomSheet'
 
 interface MobileShellProps {
   children?: ReactNode
@@ -90,7 +92,7 @@ function TabContent({ tab }: { tab: ActiveTab }) {
 
 export function MobileShell({ children }: MobileShellProps) {
   const [mounted, setMounted] = useState(false)
-  const { activeTab } = useUIStore()
+  const { activeTab, activePanel, selectedReportId, setActivePanel, setSelectedReportId } = useUIStore()
   const location = useLocation()
 
   useVerifiedReportsListener()
@@ -106,6 +108,11 @@ export function MobileShell({ children }: MobileShellProps) {
     location.pathname.startsWith('/app/admin') ||
     location.pathname === '/app/alerts' ||
     location.pathname === '/app/contacts'
+
+  function handleAdminDetailSheetClose() {
+    setActivePanel(null)
+    setSelectedReportId(null)
+  }
 
   if (!mounted) return null
 
@@ -133,6 +140,16 @@ export function MobileShell({ children }: MobileShellProps) {
         )}
         {showsRouteContent ? children : null}
       </div>
+
+      {/* Admin report detail bottom sheet (mobile) */}
+      <BottomSheet
+        isOpen={activePanel === 'admin-report-detail' && selectedReportId !== null}
+        onClose={handleAdminDetailSheetClose}
+        defaultState="half"
+      >
+        <AdminReportDetailPanel reportId={selectedReportId!} />
+      </BottomSheet>
+
       <MobileBottomTabs />
     </div>
   )
