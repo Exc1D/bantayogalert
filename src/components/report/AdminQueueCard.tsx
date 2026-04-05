@@ -1,24 +1,36 @@
 import { useMemo } from 'react'
 import type { AdminQueueReport } from '@/hooks/useAdminQueueListener'
-import type { Severity } from '@/types/report'
+import { Severity } from '@/types/report'
 import { getMunicipality } from '@/lib/geo/municipality'
+import {
+  Droplets,
+  MountainSnow,
+  Flame,
+  Zap,
+  HeartPulse,
+  Car,
+  ShieldAlert,
+  CircleEllipsis,
+} from 'lucide-react'
 
-const SEVERITY_COLORS: Record<Severity, { bg: string; dot: string }> = {
-  critical: { bg: 'bg-red-600', dot: 'bg-red-600' },
-  high: { bg: 'bg-orange-500', dot: 'bg-orange-500' },
-  medium: { bg: 'bg-yellow-500', dot: 'bg-yellow-500' },
-  low: { bg: 'bg-green-500', dot: 'bg-green-500' },
-}
+const TYPE_ICONS = {
+  flood: Droplets,
+  landslide: MountainSnow,
+  fire: Flame,
+  earthquake: Zap,
+  medical: HeartPulse,
+  vehicle_accident: Car,
+  crime: ShieldAlert,
+  other: CircleEllipsis,
+} as const
 
-const TYPE_ICONS: Record<string, string> = {
-  flood: '💧',
-  landslide: '🔺',
-  fire: '🔥',
-  earthquake: '⚡',
-  medical: '➕',
-  vehicle_accident: '🚗',
-  crime: '🛡️',
-  other: '❗',
+type TypeKey = keyof typeof TYPE_ICONS
+
+const SEVERITY_COLORS: Record<Severity, { bg: string; text: string; dot: string }> = {
+  [Severity.Critical]: { bg: 'bg-severity-critical', text: 'text-severity-critical', dot: 'bg-severity-critical' },
+  [Severity.High]: { bg: 'bg-severity-high', text: 'text-severity-high', dot: 'bg-severity-high' },
+  [Severity.Medium]: { bg: 'bg-severity-medium', text: 'text-severity-medium-text', dot: 'bg-severity-medium' },
+  [Severity.Low]: { bg: 'bg-severity-low', text: 'text-severity-low', dot: 'bg-severity-low' },
 }
 
 const PRIORITY_DOT: Record<number, string> = {
@@ -67,22 +79,25 @@ export function AdminQueueCard({
     [report.municipalityCode]
   )
   const severityStyle = SEVERITY_COLORS[report.severity]
-  const typeIcon = TYPE_ICONS[report.type] ?? TYPE_ICONS.other
+  const typeKey = (report.type as TypeKey) in TYPE_ICONS ? (report.type as TypeKey) : 'other'
+  const TypeIcon = TYPE_ICONS[typeKey]
   const stateBadge = WORKFLOW_STATE_BADGE[report.workflowState] ?? { bg: 'bg-gray-100 text-gray-600', label: report.workflowState }
   const priorityDot = report.priority ? PRIORITY_DOT[report.priority] : null
 
   return (
-    <button
-      onClick={() => onClick?.(report)}
-      className={`w-full text-left px-3 py-2 border-b border-gray-100 hover:bg-gray-50 transition-colors ${
+    <div
+      className={`w-full text-left px-3 py-2 border-b border-gray-100 hover:bg-gray-50 transition-colors cursor-pointer ${
         isSelected ? 'bg-blue-50 border-l-4 border-l-blue-500' : ''
       }`}
       aria-label={`${report.type} report in ${municipality?.name ?? report.municipalityCode}`}
+      onClick={() => onClick?.(report)}
+      role="button"
+      tabIndex={0}
     >
       <div className="flex items-center gap-3 h-[72px]">
         {/* Left: type icon + severity dot */}
         <div className="flex flex-col items-center gap-0.5 w-8 flex-shrink-0">
-          <span className="text-lg">{typeIcon}</span>
+          <TypeIcon className="w-5 h-5 text-gray-600" aria-hidden="true" />
           <span className={`w-2.5 h-2.5 rounded-full ${severityStyle.dot}`} />
         </div>
 
@@ -109,12 +124,12 @@ export function AdminQueueCard({
           </span>
           {priorityDot && (
             <span
-              className={`w-2.5 h-2.5 rounded-full ${priorityDot}`}
+              className={`w-2.5 h-2.5 rounded-full ${priorityDot} mt-1`}
               title={`Priority ${report.priority}`}
             />
           )}
         </div>
       </div>
-    </button>
+    </div>
   )
 }

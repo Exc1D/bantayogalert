@@ -1,0 +1,202 @@
+/* ==========================================================================
+   Bantayog Alert — Global CSS Foundation
+   DESIGN.md §3 Color tokens as semantic CSS Custom Properties
+   ========================================================================== */
+
+/* ── Switzer Font (DESIGN.md §22.1) ────────────────────────────── */
+@font-face {
+  font-family: 'Switzer';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/Switzer-Regular.woff') format('woff');
+}
+@font-face {
+  font-family: 'Switzer';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('/fonts/Switzer-Medium.woff') format('woff');
+}
+@font-face {
+  font-family: 'Switzer';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('/fonts/Switzer-Semibold.woff') format('woff');
+}
+@font-face {
+  font-family: 'Switzer';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('/fonts/Switzer-Bold.woff') format('woff');
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Light Mode Token Mapping ──────────────────────────────────── */
+:root {
+  /* 3.1 Brand */
+  --color-nav: #1B2A4A;
+  --color-brand: #2563EB;
+  --color-brand-light: #3B82F6;
+
+  /* 3.2 Neutral */
+  --color-surface: #FFFFFF;
+  --color-surface-2: #F9FAFB;
+  --color-text-primary: #111827;
+  --color-text-secondary: #374151;
+  --color-text-tertiary: #6B7280;
+  --color-border: #D1D5DB;
+
+  /* 3.3 Severity — pure color values */
+  --color-critical: #DC2626;
+  --color-high: #EA580C;
+  --color-medium: #65A30D;
+  --color-low: #2563EB;
+
+  /* 3.3 Severity — background variants */
+  --color-critical-bg: #FEF2F2;
+  --color-critical-border: #FECACA;
+  --color-critical-text: #991B1B;
+  --color-high-bg: #FFF7ED;
+  --color-high-border: #FED7AA;
+  --color-high-text: #9A3412;
+  --color-medium-bg: #F7FEE7;
+  --color-medium-border: #D9F99D;
+  --color-medium-text: #3F6212;
+  --color-low-bg: #EFF6FF;
+  --color-low-border: #BFDBFE;
+  --color-low-text: #1E40AF;
+
+  /* 3.4 Status */
+  --color-status-submitted: #6B7280;
+  --color-status-submitted-bg: #F3F4F6;
+  --color-status-review: #2563EB;
+  --color-status-review-bg: #EFF6FF;
+  --color-status-verified: #059669;
+  --color-status-verified-bg: #ECFDF5;
+  --color-status-dispatched: #7C3AED;
+  --color-status-dispatched-bg: #F5F3FF;
+  --color-status-inprogress: #D97706;
+  --color-status-inprogress-bg: #FFFBEB;
+  --color-status-resolved: #047857;
+  --color-status-resolved-bg: #D1FAE5;
+  --color-status-rejected: #BE123C;
+  --color-status-rejected-bg: #FFF1F2;
+  --color-status-duplicate: #4B5563;
+  --color-status-duplicate-bg: #F1F5F9;
+
+  /* 3.5 Alert */
+  --color-alert-info: #2563EB;
+  --color-alert-info-bg: #EFF6FF;
+  --color-alert-warning: #D97706;
+  --color-alert-warning-bg: #FFFBEB;
+  --color-alert-critical: #DC2626;
+  --color-alert-critical-bg: #FEF2F2;
+  --color-alert-clear: #059669;
+  --color-alert-clear-bg: #ECFDF5;
+
+  /* Motion (DESIGN.md §16.2) */
+  --motion-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --motion-normal: 200ms cubic-bezier(0.4, 0, 0.2, 1);
+  --motion-slow: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ── Dark Mode Token Mapping ───────────────────────────────────── */
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* 18.2 Dark surface/text/border */
+    --color-surface: #111827;
+    --color-surface-2: #1F2937;
+    --color-text-primary: #F9FAFB;
+    --color-text-secondary: #D1D5DB;
+    --color-text-tertiary: #6B7280;
+    --color-border: #374151;
+
+    /* Severity backgrounds invert to dark surfaces */
+    --color-critical-bg: #450A0A;
+    --color-critical-border: #991B1B;
+    --color-critical-text: #FCA5A5;
+    --color-high-bg: #431407;
+    --color-high-border: #9A3412;
+    --color-high-text: #FDBA74;
+    --color-medium-bg: #1A2E05;
+    --color-medium-border: #65A30D;
+    --color-medium-text: #BEF264;
+    --color-low-bg: #1E3A5F;
+    --color-low-border: #3B82F6;
+    --color-low-text: #93C5FD;
+
+    /* Status dark */
+    --color-status-submitted-bg: #1F2937;
+    --color-status-review-bg: #1E3A5F;
+    --color-status-verified-bg: #052E16;
+    --color-status-dispatched-bg: #2E1065;
+    --color-status-inprogress-bg: #451A03;
+    --color-status-resolved-bg: #022C22;
+    --color-status-rejected-bg: #4C0519;
+    --color-status-duplicate-bg: #1F2937;
+
+    /* Alert dark */
+    --color-alert-info-bg: #1E3A5F;
+    --color-alert-warning-bg: #451A03;
+    --color-alert-critical-bg: #450A0A;
+    --color-alert-clear-bg: #052E16;
+  }
+}
+
+/* ── Tailwind Plugin Custom Colors ─────────────────────────────── */
+@layer base {
+  *:focus-visible {
+    outline: 2px solid var(--color-brand);
+    outline-offset: 2px;
+  }
+
+  /* prefers-reduced-motion — DESIGN.md §16.2
+     All animations collapse to 0.01ms except Leaflet zoom */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+    /* Leaflet zoom animation preserved for map usability */
+    .leaflet-zoom-animated {
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+/* ── Skeleton Shimmer Keyframe (DESIGN.md §19.3) ───────────────── */
+@keyframes shimmer {
+  0% {
+    background-position: -100% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.skeleton-shimmer {
+  background: linear-gradient(
+    90deg,
+    var(--color-surface-2) 25%,
+    var(--color-border) 37%,
+    var(--color-surface-2) 63%
+  );
+  background-size: 140% 100%;
+  animation: shimmer 1.4s ease infinite;
+}
+
+/* ── Performance Guardrails ────────────────────────────────────── */
+.will-animate-transform,
+.will-animate-opacity,
+.will-animate-translate {
+  will-change: transform, opacity;
+}

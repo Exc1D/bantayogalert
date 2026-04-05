@@ -3,24 +3,36 @@ import type { Report } from '@/types/report'
 import { Severity } from '@/types/report'
 import { WORKFLOW_TO_PUBLIC_STATUS } from '@/types/status'
 import { getMunicipality } from '@/lib/geo/municipality'
+import {
+  Droplets,
+  MountainSnow,
+  Flame,
+  Zap,
+  HeartPulse,
+  Car,
+  ShieldAlert,
+  CircleEllipsis,
+} from 'lucide-react'
 
-// D-151 severity colors for badge
+const TYPE_ICONS = {
+  flood: Droplets,
+  landslide: MountainSnow,
+  fire: Flame,
+  earthquake: Zap,
+  medical: HeartPulse,
+  vehicle_accident: Car,
+  crime: ShieldAlert,
+  other: CircleEllipsis,
+} as const
+
+type TypeKey = keyof typeof TYPE_ICONS
+
+// D-151 severity colors for badge (DESIGN.md §3.3)
 const SEVERITY_COLORS: Record<Severity, { bg: string; text: string; dot: string }> = {
-  [Severity.Critical]: { bg: 'bg-red-600', text: 'text-red-600', dot: 'bg-red-600' },
-  [Severity.High]: { bg: 'bg-orange-500', text: 'text-orange-500', dot: 'bg-orange-500' },
-  [Severity.Medium]: { bg: 'bg-yellow-500', text: 'text-yellow-700', dot: 'bg-yellow-500' },
-  [Severity.Low]: { bg: 'bg-green-500', text: 'text-green-600', dot: 'bg-green-500' },
-}
-
-const TYPE_ICONS: Record<string, string> = {
-  flood: '💧',
-  landslide: '🔺',
-  fire: '🔥',
-  earthquake: '⚡',
-  medical: '➕',
-  vehicle_accident: '🚗',
-  crime: '🛡️',
-  other: '❗',
+  [Severity.Critical]: { bg: 'bg-severity-critical', text: 'text-severity-critical', dot: 'bg-severity-critical' },
+  [Severity.High]: { bg: 'bg-severity-high', text: 'text-severity-high', dot: 'bg-severity-high' },
+  [Severity.Medium]: { bg: 'bg-severity-medium', text: 'text-severity-medium-text', dot: 'bg-severity-medium' },
+  [Severity.Low]: { bg: 'bg-severity-low', text: 'text-severity-low', dot: 'bg-severity-low' },
 }
 
 function formatRelativeTime(isoDate: string): string {
@@ -47,7 +59,8 @@ export function ReportFeedCard({ report, onClick, isSelected = false }: ReportFe
     [report.municipalityCode]
   )
   const severityStyle = SEVERITY_COLORS[report.severity]
-  const typeIcon = TYPE_ICONS[report.type] ?? TYPE_ICONS.other
+  const typeKey = (report.type as TypeKey) in TYPE_ICONS ? (report.type as TypeKey) : 'other'
+  const TypeIcon = TYPE_ICONS[typeKey]
   const publicStatus = WORKFLOW_TO_PUBLIC_STATUS[report.workflowState]
 
   return (
@@ -61,7 +74,7 @@ export function ReportFeedCard({ report, onClick, isSelected = false }: ReportFe
       <div className="flex items-center gap-3 h-[72px]">
         {/* Severity dot + type icon */}
         <div className="flex flex-col items-center gap-0.5 w-8 flex-shrink-0">
-          <span className="text-lg">{typeIcon}</span>
+          <TypeIcon className="w-5 h-5 text-gray-600" aria-hidden="true" />
           <span className={`w-2.5 h-2.5 rounded-full ${severityStyle.dot}`} />
         </div>
 

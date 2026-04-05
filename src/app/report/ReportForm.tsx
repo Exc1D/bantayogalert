@@ -6,9 +6,9 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { ArrowLeft, ArrowRight } from 'lucide-react'
 import {
   fullReportSchema,
-  step1Schema,
   step2Schema,
   step3Schema,
+  stepEvidenceSchema,
   ReportFormData,
 } from '@/features/report/ReportFormSchema'
 import { saveDraft, loadDraft, clearDraft } from '@/features/report/useReportDraft'
@@ -22,12 +22,13 @@ import {
 import { useAuth } from '@/lib/auth/AuthProvider'
 import { useConnectionStatus } from '@/hooks/useConnectionStatus'
 import { StepIndicator } from './StepIndicator'
-import { StepTypeSeverity } from './steps/StepTypeSeverity'
 import { StepDescription } from './steps/StepDescription'
 import { StepLocationMedia } from './steps/StepLocationMedia'
+import { StepEvidence } from './steps/StepEvidence'
 import { StepReview } from './steps/StepReview'
 
-const STEPS = ['Type & Severity', 'Description', 'Location & Media', 'Review']
+// Citizens don't classify — type/severity is admin triage only (§1.1)
+const STEPS = ['Evidence', 'Location', 'Description', 'Review']
 
 interface ReportFormProps {
   onSubmit: (

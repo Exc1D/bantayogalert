@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import {
   Shield,
   Map,
@@ -10,13 +10,12 @@ import {
   LayoutDashboard,
   Users,
   BarChart3,
-  ClipboardList,
+  History,
   LogOut,
+  type LucideProps,
 } from 'lucide-react'
 import { useAuth } from '@/lib/auth/hooks'
-import { useUIStore } from '@/stores/uiStore'
 import { UserRole } from '@/types/user'
-import { NavItem, type NavItemProps } from './NavItem'
 
 // Municipality code → display name mapping
 const MUNICIPALITY_LABELS: Record<string, string> = {
@@ -35,58 +34,47 @@ const MUNICIPALITY_LABELS: Record<string, string> = {
 
 const ALL_MUNICIPALITIES = Object.keys(MUNICIPALITY_LABELS)
 
-type NavItemConfig = Omit<NavItemProps, 'isActive'>
-type PanelType = 'report-detail' | 'contact-detail' | 'announcement-detail' | 'settings' | null
-
-function buildNavItems(
-  role: UserRole,
-  onPanel: (panel: PanelType) => () => void,
-  navigate: (path: string) => void
-): NavItemConfig[] {
-  const items: NavItemConfig[] = []
-
-  if (role === UserRole.Citizen || role === UserRole.MunicipalAdmin || role === UserRole.ProvincialSuperadmin) {
-    items.push({ icon: Map, label: 'Map', onClick: onPanel(null), variant: 'rail' })
-    items.push({ icon: Home, label: 'Feed', onClick: onPanel(null), variant: 'rail' })
-    items.push({ icon: Bell, label: 'Alerts', onClick: onPanel('announcement-detail'), variant: 'rail' })
-    items.push({ icon: User, label: 'Profile', onClick: onPanel('settings'), variant: 'rail' })
-    items.push({ icon: PlusCircle, label: 'Report', onClick: onPanel('report-detail'), variant: 'rail' })
-  }
-
-  if (role === UserRole.MunicipalAdmin || role === UserRole.ProvincialSuperadmin) {
-    items.push({ icon: LayoutDashboard, label: 'Dashboard', onClick: onPanel('report-detail'), variant: 'rail' })
-    items.push({ icon: ClipboardList, label: 'Admin Queue', onClick: () => navigate('/app/admin'), variant: 'rail' })
-    items.push({ icon: Users, label: 'Contacts', onClick: () => navigate('/app/contacts'), variant: 'rail' })
-    items.push({ icon: BarChart3, label: 'Analytics', onClick: onPanel('announcement-detail'), variant: 'rail' })
-    items.push({ icon: ClipboardList, label: 'Audit', onClick: onPanel('announcement-detail'), variant: 'rail' })
-  }
-
-  return items
+type NavLinkDef = {
+  href: string
+  icon: React.ForwardRefExoticComponent<LucideProps>
+  label: string
+  end?: boolean
 }
+
+const CITIZEN_LINKS: NavLinkDef[] = [
+  { href: '/', icon: Map, label: 'Map', end: true },
+  { href: '/app', icon: Home, label: 'Feed', end: true },
+  { href: '/app/alerts', icon: Bell, label: 'Alerts' },
+  { href: '/auth/profile', icon: User, label: 'Profile' },
+]
+
+const ADMIN_LINKS: NavLinkDef[] = [
+  { href: '/app/admin', icon: LayoutDashboard, label: 'Admin Queue', end: true },
+  { href: '/app/contacts', icon: Users, label: 'Contacts' },
+  { href: '/app/admin/analytics', icon: BarChart3, label: 'Analytics' },
+  { href: '/app/admin/audit', icon: History, label: 'Audit' },
+]
 
 export function DesktopNavRail() {
   const { customClaims } = useAuth()
-  const { activePanel, setActivePanel } = useUIStore()
-  const [scope, setScope] = useState<string>('all')
-  const navigate = useNavigate()
-
   const role = customClaims?.role ?? UserRole.Citizen
+  const isAdmin = role === UserRole.MunicipalAdmin || role === UserRole.ProvincialSuperadmin
   const isSuperadmin = role === UserRole.ProvincialSuperadmin
 
-  const handlePanelClick = (panel: PanelType) => () => {
-    setActivePanel(panel)
-  }
+  const citizenLinks = [...CITIZEN_LINKS]
+  const adminLinks = isAdmin ? ADMIN_LINKS : []
 
-  const navItems = buildNavItems(role, handlePanelClick, navigate)
+  const [scope, setScope] = useState<string>('all')
 
   return (
     <nav
-      className="w-16 flex-shrink-0 bg-white dark:bg-gray-900 border-r border-gray-200 dark:border-gray-800 flex flex-col items-center py-4 gap-1 overflow-y-auto"
+      className="flex-shrink-0 bg-[var(--color-nav)] text-white border-r border-white/10 flex flex-col items-center py-3 gap-2 overflow-y-auto"
+      style={{ width: '64px' }}
       aria-label="Desktop navigation"
     >
-      {/* Logo at top */}
-      <div className="w-10 h-10 flex items-center justify-center mb-2">
-        <Shield className="text-primary-600 dark:text-primary-400" size={32} strokeWidth={1.5} />
+      {/* Logo */}
+      <div className="w-10 h-10 flex items-center justify-center shrink-0">
+        <Shield className="text-white" size={28} strokeWidth={1.5} />
       </div>
 
       {/* Scope selector for superadmin */}
@@ -94,7 +82,7 @@ export function DesktopNavRail() {
         <select
           value={scope}
           onChange={(e) => setScope(e.target.value)}
-          className="w-12 text-[9px] text-center bg-transparent border border-gray-300 dark:border-gray-600 rounded text-gray-700 dark:text-gray-300 cursor-pointer mb-1"
+          className="w-12 text-[9px] text-center bg-transparent border border-white/20 rounded text-gray-400 cursor-pointer"
           aria-label="Municipality scope"
           title="Select municipality scope"
         >
@@ -107,54 +95,89 @@ export function DesktopNavRail() {
         </select>
       )}
 
-      {/* Nav items */}
-      <div className="flex flex-col items-center gap-1 w-full px-1">
-        {navItems.map((item) => {
-          // Determine if this item's panel is active
-          let isActive = false
-          if (item.label === 'Map' || item.label === 'Feed') {
-            isActive = activePanel === null
-          } else if (item.label === 'Alerts' || item.label === 'Analytics') {
-            isActive = activePanel === 'announcement-detail'
-          } else if (item.label === 'Profile') {
-            isActive = activePanel === 'settings'
-          } else if (item.label === 'Report' || item.label === 'Dashboard') {
-            isActive = activePanel === 'report-detail'
-          } else if (item.label === 'Contacts') {
-            isActive = activePanel === 'contact-detail'
-          } else if (item.label === 'Audit') {
-            isActive = activePanel === 'announcement-detail'
+      {/* Dividers between sections */}
+      <div className="w-8 h-px bg-white/10 my-1" />
+
+      {/* Citizen links */}
+      {citizenLinks.map(({ href, icon: Icon, label, end }) => (
+        <NavRailLink key={href} href={href} end={end} label={label} icon={Icon} />
+      ))}
+
+      {/* Admin section */}
+      {adminLinks.length > 0 && (
+        <>
+          <div className="w-8 h-px bg-white/10 my-1" />
+          {adminLinks.map(({ href, icon: Icon, label, end }) => (
+            <NavRailLink key={href} href={href} end={end} label={label} icon={Icon} />
+          ))}
+        </>
+      )}
+
+      {/* Bottom: Report CTA + User avatar */}
+      <div className="mt-auto flex flex-col items-center gap-3 pb-3 pt-2">
+        {/* Report CTA — 40px circle in brand blue */}
+        <NavLink
+          to="/app/report"
+          className={({ isActive }) =>
+            `w-10 h-10 rounded-full flex items-center justify-center transition-colors ${
+              isActive ? 'bg-brand text-white' : 'bg-brand text-white hover:bg-brand-light'
+            }`
           }
-
-          return (
-            <NavItem
-              key={item.label}
-              {...item}
-              isActive={isActive}
-            />
-          )
-        })}
-      </div>
-
-      {/* Bottom: user avatar + logout */}
-      <div className="mt-auto flex flex-col items-center gap-2 pt-4">
-        <button
-          type="button"
-          onClick={handlePanelClick('settings')}
-          className="w-10 h-10 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors"
-          aria-label="User profile"
+          aria-label="Submit a report"
+          title="Report"
         >
-          <User size={20} className="text-gray-600 dark:text-gray-300" />
-        </button>
+          <PlusCircle className="w-5 h-5" />
+        </NavLink>
+
+        {/* User avatar → profile link */}
+        <NavLink
+          to="/auth/profile"
+          className={({ isActive }) =>
+            `w-10 h-10 rounded-full flex items-center justify-center transition-colors ${
+              isActive
+                ? 'bg-white/10 text-white'
+                : 'bg-white/10 text-white/70 hover:bg-white/20 hover:text-white'
+            }`
+          }
+          aria-label="User profile"
+          title="Profile"
+        >
+          <User size={18} />
+        </NavLink>
+
+        {/* Logout button placeholder */}
         <button
           type="button"
-          className="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
+          className="text-slate-500 hover:text-slate-300 transition-colors"
           aria-label="Log out"
           title="Log out"
         >
-          <LogOut size={18} />
+          <LogOut size={16} />
         </button>
       </div>
     </nav>
+  )
+}
+
+// Internal helper — avoids duplication between citizen and admin links
+function NavRailLink({ href, end, label, icon: Icon }: { href: string; end?: boolean; label: string; icon: React.ForwardRefExoticComponent<LucideProps> }) {
+  return (
+    <NavLink
+      to={href}
+      end={end}
+      className={({ isActive }) =>
+        `w-10 h-10 rounded-lg flex items-center justify-center transition-colors ${
+          isActive
+            ? 'bg-white/10 text-white border-l-[3px] border-brand'
+            : 'text-slate-400 hover:text-white hover:bg-white/5 border-l-[3px] border-transparent'
+        }`
+      }
+      aria-label={label}
+      title={label}
+    >
+      {({ isActive }) => (
+        <Icon className="w-5 h-5" strokeWidth={isActive ? 2.5 : 2} />
+      )}
+    </NavLink>
   )
 }
