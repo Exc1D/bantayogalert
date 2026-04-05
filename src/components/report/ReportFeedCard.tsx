@@ -65,7 +65,7 @@ export function ReportFeedCard({ report, onClick, isSelected = false, compact = 
           {/* Severity dot + type icon */}
           <div className="flex flex-col items-center gap-0.5 w-8 flex-shrink-0">
             <IncidentIcon className="w-5 h-5" aria-hidden="true" />
-            <span className={`w-2.5 h-2.5 rounded-full ${severityStyle.dot}`} />
+            <span className={`w-2.5 h-2.5 rounded-full ${severityStyle.dot}`} aria-hidden="true" />
           </div>
 
           {/* Main info */}
@@ -74,7 +74,7 @@ export function ReportFeedCard({ report, onClick, isSelected = false, compact = 
               <span className="text-sm font-medium text-neutral-900 dark:text-neutral-100 capitalize">
                 {report.type.replace('_', ' ')}
               </span>
-              <span className={`text-xs px-1.5 py-0.5 rounded ${severityStyle.bg} text-white capitalize`}>
+              <span className={`text-xs px-1.5 py-0.5 rounded ${severityStyle.bg} text-white capitalize`} aria-label={`Severity: ${report.severity}`}>
                 {report.severity}
               </span>
             </div>

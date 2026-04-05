@@ -88,30 +88,36 @@ export function ContactForm({ contact, onSubmit, onCancel, isLoading }: ContactF
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
       <div>
-        <label className="block text-sm font-medium text-gray-700">Name</label>
+        <label htmlFor="contact-name" className="block text-sm font-medium text-gray-700">Name</label>
         <input
           {...register('name')}
-          className="mt-1 w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary-500"
+          id="contact-name"
+          aria-describedby={errors.name ? 'contact-name-error' : undefined}
+          className="mt-1 w-full px-3 py-2 border border-gray-300 rounded text-base focus:outline-none focus:ring-2 focus:ring-brand ring-offset-2"
           placeholder="Responder or unit name"
         />
-        {errors.name && <p className="mt-1 text-sm text-red-600">{String(errors.name?.message ?? '')}</p>}
+        {errors.name && <p id="contact-name-error" className="mt-1 text-sm text-red-600">{String(errors.name?.message ?? '')}</p>}
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-gray-700">Agency</label>
+        <label htmlFor="contact-agency" className="block text-sm font-medium text-gray-700">Agency</label>
         <input
           {...register('agency')}
-          className="mt-1 w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary-500"
+          id="contact-agency"
+          aria-describedby={errors.agency ? 'contact-agency-error' : undefined}
+          className="mt-1 w-full px-3 py-2 border border-gray-300 rounded text-base focus:outline-none focus:ring-2 focus:ring-brand ring-offset-2"
           placeholder="Agency or organization"
         />
-        {errors.agency && <p className="mt-1 text-sm text-red-600">{String(errors.agency?.message ?? '')}</p>}
+        {errors.agency && <p id="contact-agency-error" className="mt-1 text-sm text-red-600">{String(errors.agency?.message ?? '')}</p>}
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-gray-700">Type</label>
+        <label htmlFor="contact-type" className="block text-sm font-medium text-gray-700">Type</label>
         <select
           {...register('type')}
-          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500 sm:text-sm px-3 py-2 border"
+          id="contact-type"
+          aria-describedby={errors.type ? 'contact-type-error' : undefined}
+          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-2 focus:ring-brand ring-offset-2 text-base px-3 py-2 border"
         >
           {Object.values(ContactType).map((type) => (
             <option key={type} value={type}>
@@ -119,19 +125,21 @@ export function ContactForm({ contact, onSubmit, onCancel, isLoading }: ContactF
             </option>
           ))}
         </select>
-        {errors.type && <p className="mt-1 text-sm text-red-600">{String(errors.type?.message ?? '')}</p>}
+        {errors.type && <p id="contact-type-error" className="mt-1 text-sm text-red-600">{String(errors.type?.message ?? '')}</p>}
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-gray-700">Municipality Code</label>
+        <label htmlFor="contact-municipalityCode" className="block text-sm font-medium text-gray-700">Municipality Code</label>
         <input
           {...register('municipalityCode')}
-          className="mt-1 w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary-500"
+          id="contact-municipalityCode"
+          aria-describedby={errors.municipalityCode ? 'contact-municipalityCode-error' : undefined}
+          className="mt-1 w-full px-3 py-2 border border-gray-300 rounded text-base focus:outline-none focus:ring-2 focus:ring-brand ring-offset-2"
           placeholder="e.g., bas, labo"
           maxLength={4}
         />
         {errors.municipalityCode && (
-          <p className="mt-1 text-sm text-red-600">{String(errors.municipalityCode?.message ?? '')}</p>
+          <p id="contact-municipalityCode-error" className="mt-1 text-sm text-red-600">{String(errors.municipalityCode?.message ?? '')}</p>
         )}
       </div>
 
@@ -158,7 +166,9 @@ export function ContactForm({ contact, onSubmit, onCancel, isLoading }: ContactF
             <input
               value={newPhone}
               onChange={(e) => setNewPhone(e.target.value)}
-              className="flex-1 px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary-500"
+              id="contact-new-phone"
+              aria-label="New phone number"
+              className="flex-1 px-3 py-2 border border-gray-300 rounded text-base focus:outline-none focus:ring-2 focus:ring-brand ring-offset-2"
               placeholder="+63 9XX XXX XXXX"
               onKeyDown={(e) => e.key === 'Enter' && (e.preventDefault(), addPhone())}
             />
@@ -166,6 +176,7 @@ export function ContactForm({ contact, onSubmit, onCancel, isLoading }: ContactF
               type="button"
               className="px-3 py-2 border border-gray-300 bg-white hover:bg-gray-50 rounded"
               onClick={addPhone}
+              aria-label="Add phone"
             >
               <Plus className="w-4 h-4" />
             </button>
@@ -175,14 +186,16 @@ export function ContactForm({ contact, onSubmit, onCancel, isLoading }: ContactF
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-gray-700">Email (optional)</label>
+        <label htmlFor="contact-email" className="block text-sm font-medium text-gray-700">Email (optional)</label>
         <input
           type="email"
           {...register('email')}
-          className="mt-1 w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary-500"
+          id="contact-email"
+          aria-describedby={errors.email ? 'contact-email-error' : undefined}
+          className="mt-1 w-full px-3 py-2 border border-gray-300 rounded text-base focus:outline-none focus:ring-2 focus:ring-brand ring-offset-2"
           placeholder="contact@agency.gov.ph"
         />
-        {errors.email && <p className="mt-1 text-sm text-red-600">{String(errors.email?.message ?? '')}</p>}
+        {errors.email && <p id="contact-email-error" className="mt-1 text-sm text-red-600">{String(errors.email?.message ?? '')}</p>}
       </div>
 
       <div>
@@ -209,7 +222,9 @@ export function ContactForm({ contact, onSubmit, onCancel, isLoading }: ContactF
             <input
               value={newCapability}
               onChange={(e) => setNewCapability(e.target.value)}
-              className="flex-1 px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary-500"
+              id="contact-new-capability"
+              aria-label="New capability"
+              className="flex-1 px-3 py-2 border border-gray-300 rounded text-base focus:outline-none focus:ring-2 focus:ring-brand ring-offset-2"
               placeholder="e.g., Search and Rescue, Medical Transport"
               onKeyDown={(e) => e.key === 'Enter' && (e.preventDefault(), addCapability())}
             />
@@ -217,6 +232,7 @@ export function ContactForm({ contact, onSubmit, onCancel, isLoading }: ContactF
               type="button"
               className="px-3 py-2 border border-gray-300 bg-white hover:bg-gray-50 rounded"
               onClick={addCapability}
+              aria-label="Add capability"
             >
               <Plus className="w-4 h-4" />
             </button>

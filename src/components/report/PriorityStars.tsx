@@ -19,7 +19,7 @@ export function PriorityStars({
   const priority = value ?? 0
 
   return (
-    <div className={`flex items-center gap-0.5 ${className}`} role={readonly ? undefined : 'group'}>
+    <div className={`flex items-center gap-0.5 ${className}`} role={readonly ? undefined : 'group'} aria-label="Report priority">
       {[1, 2, 3, 4, 5].map((n) => {
         const filled = n <= priority
         return (

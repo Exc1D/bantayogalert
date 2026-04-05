@@ -84,13 +84,15 @@ export function StepLocation({
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-neutral-700 mb-1">Municipality</label>
+        <label htmlFor="municipality-select" className="block text-sm font-medium text-neutral-700 mb-1">Municipality</label>
         <Controller
           name="municipalityCode"
           control={control}
           render={({ field }) => (
             <select
               {...field}
+              id="municipality-select"
+              aria-describedby={form.formState.errors.municipalityCode ? 'municipality-error' : undefined}
               className="w-full border border-neutral-300 rounded-lg px-3 py-2 text-base text-neutral-900 focus:outline-none focus:ring-2 focus:ring-brand focus:border-transparent"
             >
               <option value="">Select municipality</option>
@@ -101,19 +103,20 @@ export function StepLocation({
           )}
         />
         {form.formState.errors.municipalityCode && (
-          <p className="text-severity-critical text-sm mt-1">{form.formState.errors.municipalityCode.message as string}</p>
+          <p id="municipality-error" className="text-severity-critical text-sm mt-1">{form.formState.errors.municipalityCode.message as string}</p>
         )}
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-neutral-700 mb-1">Barangay</label>
+        <label htmlFor="barangay-select" className="block text-sm font-medium text-neutral-700 mb-1">Barangay</label>
         <Controller
           name="barangayCode"
           control={control}
           render={({ field }) => (
             <select
               {...field}
-              disabled={!selectedMunicipality}
+              id="barangay-select"
+              aria-describedby={form.formState.errors.barangayCode ? 'barangay-error' : undefined}
               className="w-full border border-neutral-300 rounded-lg px-3 py-2 text-base text-neutral-900 focus:outline-none focus:ring-2 focus:ring-brand focus:border-transparent disabled:bg-neutral-100 disabled:cursor-not-allowed"
             >
               <option value="">{selectedMunicipality ? 'Select barangay' : 'Select municipality first'}</option>
@@ -124,7 +127,7 @@ export function StepLocation({
           )}
         />
         {form.formState.errors.barangayCode && (
-          <p className="text-severity-critical text-sm mt-1">{form.formState.errors.barangayCode.message as string}</p>
+          <p id="barangay-error" className="text-severity-critical text-sm mt-1">{form.formState.errors.barangayCode.message as string}</p>
         )}
       </div>
 

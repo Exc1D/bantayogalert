@@ -38,11 +38,13 @@ export function ContactsFilterBar({ municipalityOptions = [] }: ContactsFilterBa
         <div className="relative flex-1 min-w-[200px]">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
           <input
+            id="contacts-search"
             type="text"
+            aria-label="Search contacts by name or agency"
             placeholder="Search by name or agency..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full pl-9 pr-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary-500"
+            className="w-full pl-9 pr-3 py-2 border border-gray-300 rounded text-base focus:outline-none focus:ring-2 focus:ring-brand ring-offset-2"
           />
           {searchQuery && (
             <button
@@ -57,9 +59,10 @@ export function ContactsFilterBar({ municipalityOptions = [] }: ContactsFilterBa
 
         {/* Type Filter */}
         <select
+          aria-label="Filter by contact type"
           value={typeFilter ?? ''}
           onChange={(e) => setTypeFilter(e.target.value ? (e.target.value as ContactType) : null)}
-          className="rounded-md border border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500 text-sm min-w-[140px]"
+          className="rounded-md border border-gray-300 shadow-sm focus:border-primary-500 focus:ring-2 focus:ring-brand min-w-[140px]"
         >
           <option value="">All Types</option>
           {Object.values(ContactType).map((type) => (
@@ -72,9 +75,10 @@ export function ContactsFilterBar({ municipalityOptions = [] }: ContactsFilterBa
         {/* Municipality Filter (only shown if options provided) */}
         {municipalityOptions.length > 0 && (
           <select
+            aria-label="Filter by municipality"
             value={municipalityCode ?? ''}
             onChange={(e) => setMunicipalityCode(e.target.value || null)}
-            className="rounded-md border border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500 text-sm min-w-[140px]"
+            className="rounded-md border border-gray-300 shadow-sm focus:border-primary-500 focus:ring-2 focus:ring-brand min-w-[140px]"
           >
             <option value="">All Municipalities</option>
             {municipalityOptions.map((m) => (

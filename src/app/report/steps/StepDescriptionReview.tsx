@@ -18,14 +18,17 @@ export function StepDescriptionReview({ form, onSubmit, isSubmitting }: StepDesc
   return (
     <div className="space-y-4">
       <div>
-        <label className="block text-sm font-medium text-neutral-700 mb-2">
+        <label htmlFor="report-description" className="block text-sm font-medium text-neutral-700 mb-2">
           Description
         </label>
         <textarea
+          id="report-description"
+          name="description"
           value={data.description ?? ''}
           onChange={(e) => form.setValue('description', e.target.value, { shouldValidate: true })}
           rows={6}
           maxLength={2000}
+          aria-describedby={form.formState.errors.description ? 'description-error' : undefined}
           placeholder="Describe what happened, where, and when. Include any details that might help responders..."
           className="w-full border border-neutral-300 rounded-lg px-3 py-2 text-base text-neutral-900 placeholder-neutral-500 resize-y focus:outline-none focus:ring-2 focus:ring-brand focus:border-transparent"
         />
@@ -33,7 +36,7 @@ export function StepDescriptionReview({ form, onSubmit, isSubmitting }: StepDesc
           {(data.description ?? '').length} / 2000
         </div>
         {form.formState.errors.description && (
-          <p className="text-severity-critical text-sm mt-1">{form.formState.errors.description.message as string}</p>
+          <p id="description-error" className="text-severity-critical text-sm mt-1">{form.formState.errors.description.message as string}</p>
         )}
       </div>
 

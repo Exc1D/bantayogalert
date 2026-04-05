@@ -118,9 +118,15 @@ export function MobileShell({ children }: MobileShellProps) {
 
   return (
     <div className="flex flex-col h-screen w-screen overflow-hidden">
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[9999] focus:bg-white focus:text-gray-900 focus:px-4 focus:py-2 focus:rounded-lg focus:shadow-lg"
+      >
+        Skip to main content
+      </a>
       <div className="flex-1 overflow-hidden relative">
         {!showsRouteContent && (
-          <>
+          <main id="main-content" aria-label="App content">
             <div className={activeTab === 'feed' ? 'block h-full' : 'hidden'}>
               <TabContent tab="feed" />
             </div>
@@ -136,9 +142,9 @@ export function MobileShell({ children }: MobileShellProps) {
             <div className={activeTab === 'profile' ? 'block h-full' : 'hidden'}>
               <TabContent tab="profile" />
             </div>
-          </>
+          </main>
         )}
-        {showsRouteContent ? children : null}
+        {showsRouteContent && <main id="main-content">{children}</main>}
       </div>
 
       {/* Admin report detail bottom sheet (mobile) */}

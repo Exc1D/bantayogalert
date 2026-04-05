@@ -43,7 +43,7 @@ export function FilterBar() {
         <select
           value={type ?? ''}
           onChange={(e) => setType(e.target.value ? e.target.value as IncidentType : null)}
-          className="text-sm border border-gray-300 rounded px-2 py-1"
+          className="text-base border border-gray-300 rounded px-2 py-1 focus:outline-none focus:ring-2 focus:ring-brand"
           aria-label="Filter by incident type"
         >
           <option value="">All Types</option>
@@ -56,7 +56,7 @@ export function FilterBar() {
         <select
           value={severity ?? ''}
           onChange={(e) => setSeverity(e.target.value ? e.target.value as Severity : null)}
-          className="text-sm border border-gray-300 rounded px-2 py-1"
+          className="text-base border border-gray-300 rounded px-2 py-1 focus:outline-none focus:ring-2 focus:ring-brand"
           aria-label="Filter by severity"
         >
           <option value="">All Severities</option>
@@ -69,7 +69,7 @@ export function FilterBar() {
         <select
           value={municipalityCode ?? ''}
           onChange={(e) => setMunicipality(e.target.value || null)}
-          className="text-sm border border-gray-300 rounded px-2 py-1"
+          className="text-base border border-gray-300 rounded px-2 py-1 focus:outline-none focus:ring-2 focus:ring-brand"
           aria-label="Filter by municipality"
         >
           <option value="">All Municipalities</option>

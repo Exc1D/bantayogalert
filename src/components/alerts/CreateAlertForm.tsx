@@ -183,7 +183,7 @@ export function CreateAlertForm({
             type="text"
             value={title}
             onChange={(event) => setTitle(event.target.value)}
-            className="w-full rounded-2xl border border-gray-300 px-4 py-3 text-sm focus:border-red-500 focus:outline-none focus:ring-2 focus:ring-red-100"
+            className="w-full rounded-2xl border border-gray-300 px-4 py-3 text-base focus:border-red-500 focus:outline-none focus:ring-2 focus:ring-red-500"
             placeholder="Flood advisory for coastal barangays"
           />
         </div>
@@ -200,7 +200,7 @@ export function CreateAlertForm({
             value={body}
             onChange={(event) => setBody(event.target.value)}
             rows={5}
-            className="w-full rounded-2xl border border-gray-300 px-4 py-3 text-sm focus:border-red-500 focus:outline-none focus:ring-2 focus:ring-red-100"
+            className="w-full rounded-2xl border border-gray-300 px-4 py-3 text-base focus:border-red-500 focus:outline-none focus:ring-2 focus:ring-red-500"
             placeholder="Share the affected area, current risk, and what residents should do next."
           />
         </div>

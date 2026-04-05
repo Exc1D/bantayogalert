@@ -196,3 +196,9 @@
   background-size: 200% 100%;
   will-change: background-position;
 }
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-pulse-skeleton {
+    animation: none !important;
+  }
+}

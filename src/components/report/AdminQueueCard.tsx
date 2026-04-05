@@ -73,7 +73,7 @@ export function AdminQueueCard({
         {/* Left: type icon + severity dot */}
         <div className="flex flex-col items-center gap-0.5 w-8 flex-shrink-0">
           <IncidentIcon className="w-5 h-5" aria-hidden="true" />
-          <span className={`w-2.5 h-2.5 rounded-full ${severityStyle.dot}`} />
+          <span className={`w-2.5 h-2.5 rounded-full ${severityStyle.dot}`} aria-label={`Severity: ${report.severity}`} />
         </div>
 
         {/* Center: type + municipality + barangay + relative time */}
@@ -82,7 +82,7 @@ export function AdminQueueCard({
             <span className="text-sm font-medium text-gray-900 capitalize">
               {report.type.replace('_', ' ')}
             </span>
-            <span className={`text-xs px-1.5 py-0.5 rounded ${stateBadge.bg}`}>
+            <span className={`text-xs px-1.5 py-0.5 rounded ${stateBadge.bg}`} aria-label={`Workflow state: ${stateBadge.label}`}>
               {stateBadge.label}
             </span>
           </div>
@@ -100,7 +100,8 @@ export function AdminQueueCard({
           {priorityDot && (
             <span
               className={`w-2.5 h-2.5 rounded-full ${priorityDot}`}
-              title={`Priority ${report.priority}`}
+              aria-label={`Priority ${report.priority}`}
+              aria-hidden="true"
             />
           )}
         </div>
