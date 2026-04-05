@@ -33,7 +33,7 @@ export default {
           verified: 'var(--color-status-verified)',
           verifiedBg: 'var(--color-status-verified-bg)',
           dispatched: 'var(--color-status-dispatched)',
-          dispatchBg: 'var(--color-status-dispatched-bg)',
+          dispatchedBg: 'var(--color-status-dispatched-bg)',
           inProgress: 'var(--color-status-in-progress)',
           inProgressBg: 'var(--color-status-in-progress-bg)',
           resolved: 'var(--color-status-resolved)',

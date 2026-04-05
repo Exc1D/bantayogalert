@@ -1,4 +1,4 @@
-import { useState, type ReactNode } from 'react'
+import { useEffect, useState, type ReactNode } from 'react'
 import { useNavigate, useLocation } from 'react-router-dom'
 import { Bell, FilePlus2, LayoutList, Map, User, Shield } from 'lucide-react'
 import { useUIStore } from '@/stores/uiStore'
@@ -85,17 +85,21 @@ export function TabletShell({ children }: TabletShellProps) {
     typeof window !== 'undefined' && window.innerWidth > window.innerHeight
   )
 
-  if (typeof window !== 'undefined') {
-    window.addEventListener('resize', () => {
+  useEffect(() => {
+    const handleResize = () => {
       setIsLandscape(window.innerWidth > window.innerHeight)
-    })
-  }
+    }
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
 
   const showsRouteContent =
     location.pathname === '/app/report' ||
     location.pathname.startsWith('/app/report?') ||
     location.pathname.startsWith('/app/track/') ||
-    location.pathname.startsWith('/app/admin')
+    location.pathname.startsWith('/app/admin') ||
+    location.pathname === '/app/alerts' ||
+    location.pathname.startsWith('/app/alerts?')
 
   const placement = isLandscape ? 'right' as const : 'bottom' as const
 
