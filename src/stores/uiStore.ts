@@ -2,7 +2,7 @@ import { create } from 'zustand'
 import type { HotspotCount } from '@/types/analytics'
 
 export type ActivePanel = 'report-detail' | 'contact-detail' | 'announcement-detail' | 'report-form' | 'settings' | 'admin-report-detail' | null
-export type ActiveTab = 'feed' | 'map' | 'report' | 'alerts' | 'profile'
+export type ActiveTab = 'feed' | 'map' | 'report' | 'alerts' | 'profile' | 'admin'
 
 interface UIState {
   drawerOpen: boolean
