@@ -558,50 +558,180 @@ Visual spec:
 
 ### 8.5 Report Detail Modal (Desktop)
 
+The modal has two views of the same content depending on who is looking:
+
+- **Citizen view** — status tracker + timeline (pull) + push notification context
+- **Admin overlay** — same body, but the "Operations Command" panel replaces the citizen status tracker, and the full activity log replaces the simplified timeline
+
 ```
 ┌────────────────────────────────────────────────────┐
 │ ████████████████████████████████████████████████  │  ← 4px severity-colored top bar
-│                                                    │
-│  🔥 Fire in Brgy. Gahonon                ✕ Close  │
-│  ● HIGH  ·  RPT-2024-DAET-0042                    │
-│                                                    │
-├────────────────────────────────────────────────────┤
-│                                                    │
-│  📍 Daet, Brgy. Gahonon, Camarines Norte          │
-│  🕐 January 15, 2024 at 3:42 PM (2 hours ago)     │
-│  Status: ✓ Verified Incident                      │
-│                                                    │
-│  Description                                       │
-│  Structure fire near the public market. Smoke      │
-│  visible from the highway. Multiple structures...  │
-│                                                    │
-│  📷 Photos (3)                                     │
-│  ┌──────┐ ┌──────┐ ┌──────┐                       │
-│  │      │ │      │ │      │                        │
-│  └──────┘ └──────┘ └──────┘                        │
-│                                                    │
-│  📋 Timeline                                       │
-│  ● Submitted — Jan 15, 3:42 PM                     │
-│  ● Verified — Jan 15, 3:55 PM                      │
-│  ● Responders Notified — Jan 15, 4:01 PM           │
-│                                                    │
-│  ┌─ 🗺️ Location Map ──────────────────────────┐   │
-│  │                  📍                          │   │
-│  └──────────────────────────────────────────────┘   │
+│                                                    │     (gray if unclassified)
+│  🔥 Fire · ● HIGH                       ✕ Close  │
+│  Structure fire at public market                   │
+│  RPT-2024-DAET-0042                               │
 │                                                    │
 ├────────────────────────────────────────────────────┤
-│  ┌─── ADMIN TRIAGE ACTIONS (admin only) ──────┐   │
-│  │  Current State: DISPATCHED                  │   │
-│  │  Priority: ★★★☆☆  (clickable stars)         │   │
-│  │  Assigned: Daet Fire Station (snapshot)      │   │
-│  │  Admin Notes: [text area]  [Save Notes]      │   │
-│  │                                              │   │
-│  │  ┌──────────┐ ┌──────────┐ ┌──────────┐    │   │
-│  │  │ ✓ Ack    │ │ ↻ Reroute│ │ ✅ Resolve│   │   │
-│  │  └──────────┘ └──────────┘ └──────────┘    │   │
-│  │  Only valid next-state actions shown.        │   │
-│  └──────────────────────────────────────────────┘   │
+│                                                    │
+│  📍 Daet Public Market, Daet                      │
+│  🕐 Submitted Jan 15, 3:42 PM (2 hours ago)       │
+│                                                    │
+│  DESCRIPTION                                       │
+│  Fire has broken out at a stall inside Daet        │
+│  Public Market. Smoke visible from a distance.     │
+│  Evacuation in progress.                           │
+│                                                    │
+│  📷 Photos (2)                                     │
+│  ┌──────┐ ┌──────┐                                │
+│  │      │ │      │  ← Click to expand full-size   │
+│  └──────┘ └──────┘                                │
+│                                                    │
+│  ┌─ 🗺️ Location ──────────────────────────────┐  │
+│  │                  📍                          │  │
+│  └──────────────────────────────────────────────┘  │
+│                                                    │
+│  ──────────── STATUS TIMELINE ──────────────────  │  ← §8.6 component
+│  [see §8.6 for full wireframe]                     │
+│                                                    │
+├────────────────────────────────────────────────────┤
+│  ┌─── OPERATIONS COMMAND (admin only) ─────────┐  │  ← §14.2 for full detail
+│  │  [Classification panel if pending]           │  │
+│  │  [Dispatch panel if verified]                │  │
+│  │  [Post-dispatch actions if dispatched]       │  │
+│  └──────────────────────────────────────────────┘  │
 └────────────────────────────────────────────────────┘
+
+Visual spec (unchanged):
+  max-width: 640px  ·  max-height: 85vh  ·  centered over map
+  bg: white  ·  rounded-xl  ·  shadow-2xl  ·  backdrop: rgba(0,0,0,0.5)
+  scrollable body  ·  fixed severity bar + header at top
+```
+
+---
+
+### 8.6 Status Timeline Component
+
+> **Design inspiration:** The screenshots provided show an alternating zigzag timeline (odd events left, even events right) — a pattern also used by FedEx and HMPO trackers. This creates clear visual separation of steps without vertical stacking compression. NN/G research confirms: users need both a "current state at a glance" hero and a complete chronological log. Both are present here.
+
+This component is used in two contexts:
+
+1. **Citizen view** of their own report (Profile → My Reports → Report Detail)
+2. **Admin view** of any report (Triage / Report Detail Modal)
+
+The citizen and admin versions share the same visual structure but show different levels of detail.
+
+#### Timeline States & Icons
+
+| State               | Icon | Color             | Citizen-facing label         | Admin-facing label            |
+| ------------------- | ---- | ----------------- | ---------------------------- | ----------------------------- |
+| `submitted`         | 📋   | Gray `#6B7280`    | "Report Submitted"           | "Submitted — awaiting review" |
+| `under_review`      | 🔍   | Blue `#2563EB`    | "Being Reviewed"             | "Under Review"                |
+| `verified`          | ✅   | Green `#059669`   | "Verified by Authorities"    | "Verified"                    |
+| `dispatched`        | 🚒   | Purple `#7C3AED`  | "Responders Notified"        | "Dispatched → [Contact name]" |
+| `response_underway` | ⏳   | Amber `#D97706`   | "Help Is On the Way"         | "Response Underway"           |
+| `resolved`          | 🏁   | Emerald `#047857` | "Incident Resolved"          | "Resolved"                    |
+| `rejected`          | ✕    | Rose `#BE123C`    | "Report Closed"              | "Rejected — [reason]"         |
+| `duplicate`         | ⊘    | Slate `#4B5563`   | "Merged with Another Report" | "Duplicate of RPT-XXXX"       |
+
+> **Citizen label design principle:** Labels use plain language that answers "What does this mean for me?" — not internal workflow jargon. "Responders Notified" becomes "Help Is On the Way." "Resolved" stays as-is because it's universally understood.
+
+#### Citizen View — Full Wireframe
+
+```
+── STATUS TIMELINE ──────────────────────────────────
+
+CURRENT STATUS (hero — always topmost):
+┌────────────────────────────────────────────────┐
+│  🚒  Help Is On the Way                        │
+│      Emergency responders have been notified   │
+│      and are en route to your location.        │
+│      Updated Jan 15, 4:01 PM                   │
+└────────────────────────────────────────────────┘
+  bg: purple/10% (#F5F3FF)  ·  border-left: 4px #7C3AED
+  This card always reflects the LATEST state.
+  Pulses subtly (2s loop) if state is active (dispatched/underway).
+
+HISTORY (alternating zigzag, oldest → newest bottom-up):
+
+                              ┌──────────────────┐
+                              │ 📋 Submitted      │  ← Step 1 (RIGHT)
+                              │ Jan 15, 3:42 PM   │
+                              │ Report submitted  │
+                              │ and awaiting      │
+                              │ review.           │
+                              └──────────────────┘
+                                       │
+                         ●─────────────┘  ← Timeline dot on center line
+                         │
+         ┌───────────────┘
+         │
+┌────────────────────┐
+│ ✅ Verified         │  ← Step 2 (LEFT)
+│ Jan 15, 3:55 PM    │
+│ Incident verified  │
+│ by authorities.    │
+└────────────────────┘
+         │
+         └───────────────┐
+                         │
+                         ●
+                         │
+                         └─────────────┐
+                                       │
+                              ┌──────────────────┐
+                              │ 🚒 Help On Way    │  ← Step 3 (RIGHT) = current
+                              │ Jan 15, 4:01 PM   │     CURRENT state shown
+                              │ Responders have   │     here AND in hero above
+                              │ been notified.    │
+                              └──────────────────┘
+
+  ○ ○ ○  (3 ghost dots = pending future steps)
+  "Resolved" will appear here when the incident is closed.
+
+Timeline visual spec:
+  Center line: 2px solid #E5E7EB, extends full height
+  Completed dots: 10px filled circle, color matches state
+  Pending dots: 10px circle, #D1D5DB (gray, empty)
+  Cards: bg:white, border: 1px #E5E7EB, rounded-lg, shadow-sm
+  Card width: ~45% of container
+  LEFT cards: margin-right: auto, right edge touches center line
+  RIGHT cards: margin-left: auto, left edge touches center line
+  Alternating: odd steps RIGHT, even steps LEFT
+  Current state card: bg tinted by state color (10% opacity)
+  Future/pending steps: shown as ghost dots only, no card
+
+Next-step hint (always shown below last completed step):
+┌────────────────────────────────────────────────┐
+│  ○  What happens next?                          │
+│     Authorities will assess the situation and  │
+│     coordinate with emergency responders.      │
+└────────────────────────────────────────────────┘
+  bg: #F9FAFB  ·  border: 1px dashed #D1D5DB  ·  text: #6B7280
+  Hidden once report is Resolved or Rejected.
+```
+
+#### Admin View — Activity Log
+
+Admins see the same alternating timeline but with internal labels and additional metadata. The "Next-step hint" is replaced by the Operations Command panel.
+
+```
+── ACTIVITY LOG ─────────────────────────────────────
+
+  [Same alternating layout]
+
+  Admin-only additions per entry:
+  - Who performed the action (admin display name)
+  - Internal state name (not citizen-facing label)
+  - For Dispatched entries: contact snapshot inline
+    ┌────────────────────────────────────────────────┐
+    │ 🚒 Dispatched → Daet Municipal Fire Station    │
+    │    (0912) 345-6789  ·  Contact captured 4:01 PM│
+    │    Dispatch notes: "2 trucks en route"         │
+    │    — by Admin Santos, Jan 15, 4:01 PM          │
+    └────────────────────────────────────────────────┘
+  - For Rejected entries: reason shown inline
+  - For Re-classified entries: "Type changed from
+    Flood → Fire by Admin Cruz, Jan 15, 4:15 PM"
 ```
 
 ---
@@ -1293,134 +1423,408 @@ Initial payload target: <1MB on mobile
 **Pending queue card — unclassified state:**
 
 - No severity color badge or left border color (neutral gray `#6B7280`)
-- Shows: location, citizen's description (2 lines), photo count, submission time
-- Primary CTA is **"Classify & Verify"** — opens the classification panel
+- Shows: location, citizen's raw description (2 lines), photo count, submission time
+- Primary CTA is **"Classify & Verify"** — opens the Operations Command panel in report detail
 - "Reject" is secondary, requires confirmation + reason
 
-### 14.2 Triage Action Panel — Pending / Unclassified Report
+---
 
-When a report arrives in the queue it has no type or severity. The admin must classify it before they can verify and dispatch. The triage panel is structured in two phases: **Classify first, then act.**
+### 14.2 Operations Command Panel
+
+The "Operations Command" panel is the admin-only section inside every Report Detail view (both the desktop modal §8.5 and mobile full-screen detail). It sits below the public-facing report content and the status timeline. Its contents change with the report's current state.
+
+It is named **"Operations Command"** — not "Triage Actions" or "Admin Panel" — because this language signals authority and purpose to admins without exposing internal workflow jargon to citizens.
+
+#### State 1 — Pending / Unclassified
 
 ```
-Desktop — Pending Report Detail (Admin View):
-
-┌────────────────────────────────────────────────────┐
-│ ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ │  ← 4px neutral gray top bar
-│                                                    │     (no severity color yet)
-│  📋 Report from Brgy. Gahonon, Daet    ✕ Close   │
-│  ⬜ Unclassified  ·  RPT-2024-DAET-0042           │
+┌─── ● OPERATIONS COMMAND ─────────────────────────┐
 │                                                    │
-├────────────────────────────────────────────────────┤
-│  📍 Daet, Brgy. Gahonon                           │
-│  🕐 January 15, 2024 at 3:42 PM (12 min ago)      │
-│  Status: Under Review                              │
+│  CLASSIFY INCIDENT                                 │
 │                                                    │
-│  Citizen's Description                             │
-│  "Waist-deep tubig sa daan, ilang bahay na         │
-│  natatakpan na. Kailangan ng tulong."              │
-│                                                    │
-│  📷 Photos (2)                                     │
-│  ┌──────┐ ┌──────┐                                │
-│  │      │ │      │  ← Click to expand full-size   │
-│  └──────┘ └──────┘                                │
-│                                                    │
-│  ┌─ 🗺️ Location ──────────────────────────────┐  │
-│  │                  📍                          │  │
+│  Hazard / Disaster Type *                          │
+│  ┌──────────────────────────────────────────────┐  │
+│  │ Select type...                            ▾  │  │  ← All 12 types
 │  └──────────────────────────────────────────────┘  │
 │                                                    │
-├────────────────────────────────────────────────────┤
-│  ┌─── STEP 1: CLASSIFY (required to verify) ───┐  │
-│  │                                              │  │
-│  │  Hazard / Disaster Type *                    │  │
-│  │  ┌──────────────────────────────────────┐   │  │
-│  │  │ 🌊 Flood                          ▾ │   │  │  ← Dropdown, all 12 types
-│  │  └──────────────────────────────────────┘   │  │
-│  │                                              │  │
-│  │  Severity *                                  │  │
-│  │  ┌──────────────────────────────────────┐   │  │
-│  │  │ ○ Low  ○ Medium  ○ High  ○ Critical  │   │  │  ← Color-coded radio group
-│  │  └──────────────────────────────────────┘   │  │
-│  │                                              │  │
-│  │  Admin Notes (optional)                      │  │
-│  │  ┌──────────────────────────────────────┐   │  │
-│  │  │                                      │   │  │
-│  │  └──────────────────────────────────────┘   │  │
+│  Severity *                                        │
+│  ┌────────┐ ┌────────┐ ┌────────┐ ┌──────────┐   │
+│  │  Low   │ │ Medium │ │  High  │ │ Critical │   │  ← Segmented, color-coded
+│  └────────┘ └────────┘ └────────┘ └──────────┘   │
+│                                                    │
+│  Admin Notes (optional)                            │
+│  ┌──────────────────────────────────────────────┐  │
 │  │                                              │  │
 │  └──────────────────────────────────────────────┘  │
 │                                                    │
-│  ┌─── STEP 2: ACTION ──────────────────────────┐  │
-│  │                                              │  │
-│  │  ┌──────────────────┐  ┌──────────────────┐ │  │
-│  │  │  ✓ Verify Report  │  │  ✕ Reject Report │ │  │
-│  │  └──────────────────┘  └──────────────────┘ │  │
-│  │                                              │  │
-│  │  Verify is disabled until Type + Severity    │  │
-│  │  are both selected.                          │  │
-│  │                                              │  │
-│  └──────────────────────────────────────────────┘  │
+│  ┌──────────────────────┐  ┌──────────────────────┐│
+│  │   ✓ Verify Report    │  │   ✕ Reject Report    ││
+│  └──────────────────────┘  └──────────────────────┘│
+│  ℹ Verify is disabled until Type + Severity set.   │
+│                                                    │
 └────────────────────────────────────────────────────┘
 
 State behavior:
-  - Type and Severity fields are empty on arrival
-  - "Verify Report" button is disabled (grayed, not hidden) with
-    tooltip: "Select Type and Severity to verify"
-  - Once both are filled: "Verify Report" becomes active (Primary Blue)
-  - On Verify: report transitions to Verified; severity color fills
-    the top bar; type icon appears in the report header
-  - On Reject: confirmation bottom sheet with required reason
+  - Verify button is disabled (visible, grayed) until both Type +
+    Severity are selected. Tooltip: "Select Type and Severity first"
+  - On Verify: severity color fills the top bar, type icon appears
+    in report header, Operations Command transitions to State 2
+  - On Reject: confirmation dialog with required reason field
 ```
 
-### 14.3 Triage Action Panel — Post-Classification States
-
-Once classified and verified, the triage panel changes to show the standard action set for subsequent state transitions.
+#### State 2 — Verified (awaiting dispatch)
 
 ```
-┌─── TRIAGE ACTIONS (post-verify) ────────────────────┐
-│                                                      │
-│  Internal State: [ VERIFIED ]                        │
-│  Type: 🌊 Flood  ·  Severity: ● HIGH                │
-│  Priority: ★★★☆☆  (click stars to change)           │
-│                                                      │
-│  Admin Notes:                                        │
-│  [text area]  [Save Notes]                           │
-│                                                      │
-│  ── Available Actions ──                             │
-│  [ 📡 Dispatch ]  [ ✕ Reject ]                      │
-│  (Only valid next-state actions are shown)           │
-│                                                      │
-└──────────────────────────────────────────────────────┘
-
-Dispatched state adds:
-│  Assigned Contact:                                   │
-│  ┌──────────────────────────────────────────────┐   │
-│  │ 🚒 Daet Municipal Fire Station               │   │
-│  │ (0912) 345-6789  ·  Captured Jan 15, 4:01 PM │   │
-│  └──────────────────────────────────────────────┘   │
-│  [ ✓ Acknowledge ] [ ↻ Reroute ] [ ✅ Resolve ]     │
+┌─── ● OPERATIONS COMMAND ─────────────────────────┐
+│                                                    │
+│  ● VERIFIED  ·  🔥 Fire  ·  HIGH                  │
+│  Verified by Admin Santos · Jan 15, 3:55 PM       │
+│                                                    │
+│  ┌──────────────────────┐  ┌──────────────────────┐│
+│  │   📡 Dispatch Unit   │  │   ✕ Reject Report    ││
+│  └──────────────────────┘  └──────────────────────┘│
+│                                                    │
+└────────────────────────────────────────────────────┘
 ```
 
-### 14.4 Triage Action UX Rules
+**On "Dispatch Unit" — inline expansion (no new modal, panel expands in place):**
 
-| Rule                                                                     | Rationale                                                                                                                                      |
-| ------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Classification (Type + Severity) is required before Verify**           | Citizens don't classify — admins do. No report can go Verified without both fields set.                                                        |
-| **"Verify" is disabled (not hidden) until Type + Severity are selected** | Disabled with tooltip communicates what's needed. Hiding would leave admins confused about where the action went.                              |
-| **Classification fields are shown before action buttons**                | Visual hierarchy signals that classify-first is the expected workflow, not an afterthought.                                                    |
-| **Admin can re-classify after Verify**                                   | Mistakes happen. Type and Severity remain editable post-Verify by the same or higher-role admin. Re-classification creates an audit log entry. |
-| **Only show valid next-state actions**                                   | Prevents confusion. If dispatched, don't show "Verify."                                                                                        |
-| **Reject requires confirmation + reason**                                | Modal with required reason field; reason stored in audit log. Can be done before or after classification.                                      |
-| **Dispatch requires contact selection**                                  | Contact picker filtered by municipality.                                                                                                       |
-| **Resolve requires resolution summary**                                  | Text input before confirming; stored in activity log.                                                                                          |
-| **Duplicate action available from any state**                            | Admin can mark as duplicate of canonical report ID.                                                                                            |
-| **Version conflict shows inline error**                                  | "This report was updated by another admin. Please refresh."                                                                                    |
-| **verified → rejected**                                                  | Restricted to `provincial_superadmin` only; requires reason code `supervisory_override`; triggers audit alert.                                 |
+```
+┌─── ● OPERATIONS COMMAND ─────────────────────────┐
+│                                                    │
+│  ● VERIFIED  ·  🔥 Fire  ·  HIGH                  │
+│                                                    │
+│  ┌──────────────────────┐  ┌──────────────────────┐│
+│  │   📡 Dispatch Unit   │  │   ✕ Reject Report    ││  ← Buttons stay visible
+│  └──────────────────────┘  └──────────────────────┘│
+│                                                    │
+│  ┌─ ASSIGN EMERGENCY CONTACT ───────────────────┐  │
+│  │                                               │  │
+│  │  Assign Emergency Contact *                   │  │
+│  │  ┌───────────────────────────────────────┐   │  │
+│  │  │ Select emergency contact...        ▾  │   │  │  ← Grouped by category
+│  │  └───────────────────────────────────────┘   │  │     filtered by municipality
+│  │                                               │  │
+│  │  Dispatch Notes (optional)                    │  │
+│  │  ┌───────────────────────────────────────┐   │  │
+│  │  │ Optional instructions for the         │   │  │
+│  │  │ responding unit...                    │   │  │
+│  │  └───────────────────────────────────────┘   │  │
+│  │                                               │  │
+│  │  [Cancel]         [Confirm Dispatch →]        │  │
+│  └───────────────────────────────────────────────┘  │
+│                                                    │
+└────────────────────────────────────────────────────┘
+```
 
-### 14.4 Duplicate Report State
+#### State 3 — Dispatched
+
+```
+┌─── ● OPERATIONS COMMAND ─────────────────────────┐
+│                                                    │
+│  ● DISPATCHED  ·  🔥 Fire  ·  HIGH                │
+│                                                    │
+│  Assigned Responder:                               │
+│  ┌──────────────────────────────────────────────┐  │
+│  │ 🚒 Daet Municipal Fire Station               │  │
+│  │ (0912) 345-6789                              │  │
+│  │ Contact captured Jan 15, 4:01 PM             │  │  ← Immutable snapshot
+│  │ Dispatch notes: "2 trucks en route"          │  │
+│  └──────────────────────────────────────────────┘  │
+│                                                    │
+│  Admin Notes:                                      │
+│  ┌──────────────────────────────────────────────┐  │
+│  │                                              │  │
+│  └──────────────────────────────────────────────┘  │
+│  [Save Notes]                                      │
+│                                                    │
+│  ┌────────────┐  ┌──────────────┐  ┌────────────┐  │
+│  │ ↻ Reroute  │  │  ✓ Confirm   │  │ ✅ Resolve  │  │  ← Valid next actions only
+│  └────────────┘  └──────────────┘  └────────────┘  │
+│                                                    │
+└────────────────────────────────────────────────────┘
+
+Reroute inline expansion: same form as State 2, pre-filled with
+current contact. Cancel restores previous assigned contact.
+```
+
+#### State 4 — Resolved or Rejected (terminal)
+
+```
+┌─── ● OPERATIONS COMMAND ─────────────────────────┐
+│                                                    │
+│  ✅ RESOLVED  ·  🔥 Fire  ·  HIGH                 │
+│  Resolved by Admin Santos · Jan 15, 7:45 PM       │
+│  Resolution: "Fire contained and extinguished     │
+│  by BFP Daet team. No casualties."                │
+│                                                    │
+│  This report is closed. No further actions.       │
+│                                                    │
+│  ─────────────────────────────────────────────── │
+│  [Reopen / Override] ← superadmin only            │
+└────────────────────────────────────────────────────┘
+```
+
+---
+
+### 14.3 Dispatch Contact Management
+
+Admins manage a directory of emergency contacts that populate the dispatch dropdown. Accessible from the nav rail (📇 Contacts). This is a **per-municipality directory** — each admin manages only their own municipality's contacts, except provincial superadmins who can create province-wide shared contacts.
+
+#### 14.3a Contact Directory (Desktop — Workspace Drawer)
+
+```
+┌────────────────────────────────────────┐
+│  Contacts — Daet              ✕ Close  │
+├────────────────────────────────────────┤
+│  ┌────────────────────────────────┐    │
+│  │ Search contacts...         🔍  │    │
+│  └────────────────────────────────┘    │
+│  [All ▾]  [Active ▾]  [+ Add Contact] │
+│                                        │
+│  ─── 🚒 FIRE & RESCUE ───              │
+│  ┌──────────────────────────────────┐  │
+│  │ 🚒 Daet Municipal Fire Station   │  │
+│  │ (0912) 345-6789                  │  │
+│  │ ● Active · Last dispatched 2h ago│  │
+│  │ [Edit]  [Deactivate]             │  │
+│  └──────────────────────────────────┘  │
+│  ┌──────────────────────────────────┐  │
+│  │ 🚒 BFP Daet                      │  │
+│  │ (0917) 123-4567  ·  ● Active     │  │
+│  │ [Edit]  [Deactivate]             │  │
+│  └──────────────────────────────────┘  │
+│  ─── 🏥 MEDICAL ───                    │
+│  ─── 👮 POLICE ───                     │
+│  ─── 🏛️ MUNICIPAL DISASTER OFFICE ─── │
+│  ─── ⚓ COAST GUARD / MARINE ───       │
+│  ─── ⚡ UTILITIES ───                  │
+│  ─── 🤝 SOCIAL WELFARE ───            │
+│  ─── 📞 OTHER ───                      │
+└────────────────────────────────────────┘
+```
+
+#### 14.3b Contact Categories
+
+| Category                  | Icon | Typical contacts                                    |
+| ------------------------- | ---- | --------------------------------------------------- |
+| Fire & Rescue             | 🚒   | BFP stations, volunteer fire brigades               |
+| Medical                   | 🏥   | Hospitals, rural health units, NDRRMC medical teams |
+| Police                    | 👮   | PNP stations, barangay tanods                       |
+| Municipal Disaster Office | 🏛️   | MDRRMO, OCD local                                   |
+| Coast Guard / Marine      | ⚓   | PCG stations (coastal municipalities)               |
+| Utilities                 | ⚡   | CAMELEC/Meralco, LWUA water authority               |
+| Social Welfare            | 🤝   | DSWD, evacuation center managers                    |
+| Other                     | 📞   | Any unclassified emergency contact                  |
+
+#### 14.3c Add / Edit Contact Form
+
+```
+┌─── Add Contact ──────────────────────────────────┐
+│                                              ✕   │
+├──────────────────────────────────────────────────┤
+│                                                  │
+│  Contact Name *                                  │
+│  ┌──────────────────────────────────────────┐   │
+│  │ Daet Municipal Fire Station              │   │
+│  └──────────────────────────────────────────┘   │
+│                                                  │
+│  Category *                                      │
+│  ┌──────────────────────────────────────────┐   │
+│  │ 🚒 Fire & Rescue                      ▾  │   │
+│  └──────────────────────────────────────────┘   │
+│                                                  │
+│  Primary Phone *                                 │
+│  ┌──────────────────────────────────────────┐   │
+│  │ (0912) 345-6789                          │   │
+│  └──────────────────────────────────────────┘   │
+│                                                  │
+│  Secondary Phone (optional)                      │
+│  ┌──────────────────────────────────────────┐   │
+│  └──────────────────────────────────────────┘   │
+│                                                  │
+│  Address / Station Location (optional)           │
+│  ┌──────────────────────────────────────────┐   │
+│  └──────────────────────────────────────────┘   │
+│                                                  │
+│  Notes (optional)                                │
+│  ┌──────────────────────────────────────────┐   │
+│  │ e.g. Available 24/7. Radio: 156.8 MHz    │   │
+│  └──────────────────────────────────────────┘   │
+│                                                  │
+│  Municipality (auto-scoped)                      │
+│  ┌──────────────────────────────────────────┐   │
+│  │ Daet  [read-only for municipal admin]    │   │
+│  └──────────────────────────────────────────┘   │
+│                                                  │
+│  [Cancel]                 [Save Contact →]       │
+│                                                  │
+└──────────────────────────────────────────────────┘
+```
+
+**Contact management rules:**
+
+- Municipal admins create/edit contacts for their municipality only
+- Provincial superadmins can create province-wide contacts visible to all municipalities
+- Contacts are soft-deleted (deactivated), never hard-deleted — audit history preserved
+- Deactivated contacts do not appear in the dispatch dropdown but remain in the directory with an "Inactive" badge
+- Empty directory shows inline prompt: "No contacts yet. [+ Add your first contact]" with a link
+
+#### 14.3d Dispatch Dropdown (inside Operations Command)
+
+```
+┌──────────────────────────────────────────┐
+│ RECENTLY USED                            │
+│  🚒 Daet Municipal Fire Station          │
+│     (0912) 345-6789                      │
+│                                          │
+│ FIRE & RESCUE                            │
+│  🚒 BFP Daet · (0917) 123-4567          │
+│                                          │
+│ MEDICAL                                  │
+│  🏥 Daet District Hospital              │
+│     (054) 123-4567                       │
+│                                          │
+│ POLICE                                   │
+│  👮 Daet PNP · (054) 789-0123           │
+│  ...                                     │
+└──────────────────────────────────────────┘
+
+Rules:
+  - Active contacts only, scoped to report's municipality
+  - Grouped by category (§14.3b order)
+  - Last-dispatched contacts float to top as "Recently Used"
+  - Empty state: "+ Add contacts in Contacts directory"
+```
+
+---
+
+### 14.4 Operations Command — Mobile
+
+On mobile, all Operations Command states are presented in a **HALF bottom sheet**, which the admin can swipe to FULL for more detail.
+
+**Classify & Verify (bottom sheet):**
+
+```
+┌──────────────────────────────────┐
+│  ── ●● ──  (drag handle)         │
+│  Operations Command              │
+│  Daet, Brgy. Gahonon · 5m ago   │
+├──────────────────────────────────┤
+│  📷 [thumb] [thumb]              │  ← Evidence shown for reference
+│                                  │
+│  CLASSIFY INCIDENT               │
+│  ┌──────────────────────────────┐│
+│  │ Select type...            ▾  ││
+│  └──────────────────────────────┘│
+│  ┌──────┐┌──────┐┌──────┐┌──────┐│
+│  │  Low ││ Med  ││ High ││Crit. ││  ← Segmented control
+│  └──────┘└──────┘└──────┘└──────┘│
+│                                  │
+│  ┌──────────────────────────────┐│
+│  │     ✓ Verify Report          ││  ← Disabled until classified
+│  └──────────────────────────────┘│
+│  [Reject instead]                │
+└──────────────────────────────────┘
+```
+
+**Dispatch form (bottom sheet, after Verify or from Verified state):**
+
+```
+┌──────────────────────────────────┐
+│  ── ●● ──                        │
+│  Dispatch Unit                   │
+│  🔥 Fire · HIGH · Brgy. Gahonon  │
+├──────────────────────────────────┤
+│  Assign Emergency Contact *      │
+│  ┌──────────────────────────────┐│
+│  │ Select contact...         ▾  ││  ← Grouped dropdown
+│  └──────────────────────────────┘│
+│                                  │
+│  Dispatch Notes (optional)       │
+│  ┌──────────────────────────────┐│
+│  │                              ││
+│  └──────────────────────────────┘│
+│                                  │
+│  ┌──────────────────────────────┐│
+│  │   📡 Confirm Dispatch        ││  ← bg:#7C3AED (purple)
+│  └──────────────────────────────┘│
+│  [Cancel]                        │
+└──────────────────────────────────┘
+```
+
+---
+
+### 14.5 My Reports — Citizen Status View (Profile Tab)
+
+Citizens track their reports under Profile → My Reports. Each card shows the current plain-language status. Tapping opens the full Report Detail with the Status Timeline (§8.6).
+
+```
+MY REPORTS
+
+┌──────────────────────────────────┐
+│  Report from Brgy. Gahonon       │  ← Unclassified (no type yet)
+│  Submitted Jan 15, 3:42 PM       │
+│                                  │
+│  🔍 Being Reviewed               │  ← Current status
+│                                  │
+│  [View Details →]                │
+└──────────────────────────────────┘
+
+┌──────────────────────────────────┐
+│  🌊 Flood in Brgy. Lag-on        │  ← Classified (type shown)
+│  Submitted Jan 14, 6:12 PM       │
+│                                  │
+│  🚒 Help Is On the Way           │  ← Citizen-facing label
+│                                  │
+│  [View Details →]                │
+└──────────────────────────────────┘
+
+┌──────────────────────────────────┐
+│  🔥 Fire in Brgy. Gahonon        │
+│  Submitted Jan 10, 9:02 AM       │
+│                                  │
+│  🏁 Incident Resolved            │  ← Resolved state
+│                                  │
+│  [View Details →]                │
+└──────────────────────────────────┘
+```
+
+**Status display rules:**
+
+- Pending/unclassified: no type icon, show "Being Reviewed"
+- Classified+verified: type icon + "Help Is On the Way" / current citizen label
+- Resolved: type icon + "Incident Resolved" (emerald)
+- Rejected: "Report Closed" (muted rose) — no reason shown to citizen
+- Push notification sent on every state change, with citizen-facing language
+
+---
+
+### 14.6 Triage Action UX Rules
+
+| Rule                                                        | Rationale                                                                                                             |
+| ----------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
+| **Classification (Type + Severity) required before Verify** | Citizens don't classify — admins do. No report can be verified without both fields.                                   |
+| **"Verify" disabled, not hidden, until classified**         | Disabled + tooltip communicates what's needed. Hiding creates confusion about where the button went.                  |
+| **Dispatch is inline expansion, not a new modal**           | Admin keeps context (can still see report content) while filling the dispatch form. Matches the screenshot reference. |
+| **Contact snapshot on dispatch**                            | Preserves phone number at dispatch time. If the contact record is later edited, the audit snapshot stays accurate.    |
+| **Admin can re-classify after Verify**                      | Mistakes happen. Re-classification creates an audit log entry.                                                        |
+| **Only show valid next-state actions**                      | If dispatched, don't show "Verify." Reduces confusion.                                                                |
+| **Reject requires confirmation + reason**                   | Reason field is required, stored in audit log.                                                                        |
+| **Resolve requires resolution summary**                     | Text input before confirming; summary shown to citizen in timeline.                                                   |
+| **Duplicate action available from any state**               | Admin can mark as duplicate of canonical report ID.                                                                   |
+| **Version conflict shows inline error**                     | "This report was updated by another admin. Please refresh."                                                           |
+| **verified → rejected**                                     | Restricted to `provincial_superadmin` only; requires `supervisory_override` reason code; triggers audit alert.        |
+| **Deactivated contacts never appear in dispatch dropdown**  | Prevents dispatch to defunct contact.                                                                                 |
+
+---
+
+### 14.7 Duplicate Report State
 
 When a report is marked as duplicate:
 
 - Status changes to `duplicate` (terminal state)
-- Public feed hides the duplicate and shows only the canonical report
+- Public feed hides the duplicate; canonical report shown
 - Admin view shows "Duplicate of: RPT-2024-DAET-0039 → [View]" link
 - Analytics exclude duplicate reports from incident counts
 
@@ -1484,8 +1888,28 @@ When multiple notifications arrive simultaneously:
 Accessible via the 🔔 Alert tab. Shows:
 
 - All active and recent official announcements
-- Status updates on the user's own reports (last 30 days)
+- **Status updates on the user's own reports** (last 30 days) — with citizen-friendly language
 - Admin: triage actions performed by colleagues (last 24h)
+
+### 15.4 Citizen Report Status Push Notifications
+
+Every state transition on a citizen's own report triggers a push notification (FCM) using plain-language copy:
+
+| State transition                   | Push notification copy                                                       |
+| ---------------------------------- | ---------------------------------------------------------------------------- |
+| `submitted` → `under_review`       | "🔍 Your report is being reviewed by local authorities."                     |
+| `under_review` → `verified`        | "✅ Your report has been verified. Authorities are coordinating a response." |
+| `verified` → `dispatched`          | "🚒 Help is on the way! Emergency responders have been notified."            |
+| `dispatched` → `response_underway` | "⏳ Responders are on the scene. Stay safe and follow instructions."         |
+| any → `resolved`                   | "🏁 The incident has been resolved. Thank you for your report."              |
+| any → `rejected`                   | "📋 Your report has been reviewed and closed. [View Details]"                |
+
+**Design rules:**
+
+- Notifications deep-link to the report's detail screen (Status Timeline view)
+- Never expose internal state names (`under_review`, `dispatched`) in citizen-facing copy
+- Rejected notifications do not include the rejection reason in the push — citizen must open the app to see "Report Closed" (reason is not shown to citizen at all)
+- Notifications are opt-out, not opt-in — citizens are subscribed by default and can turn them off in Notification Preferences
 
 ---
 
@@ -1697,4 +2121,150 @@ Shimmer animation:
 
 ---
 
-> **The best emergency UI is the one you never have to think about using. Every pixel in Bantayog Alert serves one purpose: helping people act fast and act right when it matters most.**
+## 22. Frontend-Design Evaluation & Amendments
+
+> **Date:** 2026-04-05
+> **Reviewed against:** frontend-design skill (VARIANCE=8, MOTION=6, DENSITY=4 baseline)
+> **Purpose:** Identify visual/style gaps, font substitutions, and anti-pattern violations. Not a functional review — the crisis-UX rationale stands where it is sound.
+
+---
+
+### 22.1 Typography: Inter → Switzer
+
+**Original (§4.1):** Inter was chosen for screen legibility, tall x-height, and Latin Extended support for Filipino accented characters (ñ, etc.).
+
+**Frontend-design conflict:** Inter is on the forbidden font list as a ubiquitous AI default that makes everything look like every other AI-generated UI.
+
+**Amendment:** Replace Inter with **Switzer** (variable weight, tall x-height, extended Latin including Filipino diacritics). Switzer is a premium neo-grotesque sans-serif with identical on-screen readability characteristics but vastly more distinctive character. It loads at ~85KB as a WOFF2 variable font subset covering Latin Extended at weights 300–700.
+
+**Updated §4.1 §4.1 should now read:**
+
+```css
+--font-primary: 'Switzer', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+--font-mono: 'JetBrains Mono', 'Fira Code', monospace; /* report IDs, timestamps */
+```
+
+**Why Switzer works for crisis UX:**
+- Tall x-height (identical to Inter's legibility advantage)
+- Extended Latin support for Filipino characters (ñ, á, é, etc.)
+- Variable font = single ~85KB WOFF2 instead of 3 weight files
+- Distinctive character shapes — not the "every startup uses this" generic feel
+- Strong weight range: 300 (subtle metadata) to 700 (headings)
+
+**Font loading (updated from §4.1 + §20):**
+- Download WOFF2 subset: Switzer variable font, Latin Extended, weights 300–700
+- Single `@font-face` with `font-display: swap`
+- Preload in `<head>`: `<link rel="preload" href="/fonts/switzer-var.woff2" as="font" type="font/woff2" crossorigin>`
+- Remove Google Fonts CDN dependency
+- Total size: ~85KB (vs. Inter's ~90KB across 3 files)
+
+### 22.2 Emoji Usage
+
+**Original:** DESIGN.md uses emoji throughout wireframes (🔥, 📋, 📷, 🚨, ✅, etc.) as visual placeholders.
+
+**Amendment:** All emoji in production code must be replaced with **Lucide Icons**. The emoji in wireframes are acceptable as design shorthand but must not ship. See §5.1 for the Lucide icon mapping:
+
+| Emoji | Lucide replacement |
+|-------|-------------------|
+| 🔥 | `flame` |
+| 📋 | `clipboard-list` |
+| 📷 | `camera` |
+| 🚨 | `siren` or `megaphone` |
+| ✅ | `check-circle` |
+| 📡 | `satellite-dish` |
+| ⏳ | `hourglass` |
+| 🏁 | `flag` |
+| 📍 | `map-pin` |
+| 🛡️ | `shield-check` |
+| 👤 | `user` |
+| ➕ | `plus` |
+| 📊 | `bar-chart-3` |
+| 📇 | `contact` |
+| 📈 | `trending-up` |
+| 📜 | `scroll-text` |
+| 🗺️ | `map` |
+| 🔔 | `bell` |
+| ⚠️ | `alert-triangle` |
+| ℹ️ | `info` |
+| 🔒 | `lock` |
+| 📡 × | `wifi-off` |
+| 🚒 | `flame-kindling` or `truck` |
+| 👮 | `shield` |
+| 🏥 | `hospital` |
+| 🏛️ | `landmark` |
+| ⚓ | `anchor` |
+| ⚡ | `zap` |
+| 🤝 | `handshake` |
+| 📞 | `phone` |
+| ⊘ | `circle-slash` |
+
+### 22.3 Anti-Pattern Violations in Original Spec
+
+| Section | Pattern | Fix |
+|---|---|---|
+| §6.1 | Text badges with emoji dot | Replace with proper dot (4px circle div) + uppercase text label |
+| §7.1 | Emoji in report cards | Replace with Lucide `flame`, etc. |
+| §19.1 | Emoji as empty state icons | Replace with large Lucide icons (48px) |
+| §8.6 | Emoji timeline icons | Replace with Lucide in colored circles |
+| §11.2 | Emoji in success screen | Replace with Lucide `check-circle` |
+| §14.3b | Emoji category icons | Replace with Lucide in contact directory |
+
+### 22.4 Missing Specs Added
+
+**prefers-reduced-motion global rule** (to add to §16.2):
+```css
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  /* Exception: map zoom per §16.2 rule 3 */
+  .leaflet-zoom-animated { transition-duration: 250ms; }
+}
+```
+
+**Skeleton shimmer — dark mode support** (§19.3):
+```css
+/* Light mode */
+background: linear-gradient(90deg, #F3F4F6, #E5E7EB, #F3F4F6);
+/* Dark mode */
+background: linear-gradient(90deg, #27272a, #3f3f46, #27272a);
+background-size: 200% 100%;
+animation: shimmer 1.5s infinite;
+```
+
+**Focus-visible rule** (to add to §17.1):
+```css
+:focus-visible {
+  outline: 2px solid #2563EB;
+  outline-offset: 2px;
+}
+```
+
+### 22.5 Bridging Plan Recommendations
+
+**Wave 0 (new — foundation before components):**
+- Establish CSS custom properties as single source of truth for colors
+- Map all DESIGN.md color tokens to `:root` variables, then derive Tailwind config from them
+- This prevents duplicating color definitions in two places
+
+**Wave 1 amendment (§1.2):**
+- Add Switzer WOFF2 bundling to this wave (was §4.1 in Wave 4)
+- Font loading is a foundation — components depend on font availability
+
+**Wave 2 amendment (§2.5):**
+- Skeleton component should include dark mode shimmer variant from start
+
+**Wave 3 amendment (§3.4):**
+- Clarify tablet spec: `invalidateSize()` NOT called because drawer overlays map (correct per §10.1)
+- The "dimmed 40%" behavior is modal overlay — not a map resize
+
+**Wave 4 reorder:**
+- Move font bundling to Wave 1
+- Move emoji→Lucide replacement to Wave 1 (touches every component listed above)
+- Keep map pin design, municipality boundaries, empty states, accessibility, form fixes as Wave 4
+
+### 22.6 Color: No Changes Needed
+
+The DESIGN.md color system is well-reasoned and does not conflict with frontend-design principles. The severity palette's perceptual separation, WCAG AA verification, and deuteranopia testing are best practices. The brand navy (#1B2A4A) is a calm, professional alternative to the "AI purple/blue" aesthetic that the skill forbids. No palette changes are recommended.

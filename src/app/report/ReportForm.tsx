@@ -1,14 +1,13 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { useForm, UseFormReturn } from 'react-hook-form'
+import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { ArrowLeft, ArrowRight } from 'lucide-react'
 import {
   fullReportSchema,
-  step1Schema,
-  step2Schema,
-  step3Schema,
+  stepLocationSchema,
+  stepDescriptionSchema,
   ReportFormData,
 } from '@/features/report/ReportFormSchema'
 import { saveDraft, loadDraft, clearDraft } from '@/features/report/useReportDraft'
@@ -22,12 +21,11 @@ import {
 import { useAuth } from '@/lib/auth/AuthProvider'
 import { useConnectionStatus } from '@/hooks/useConnectionStatus'
 import { StepIndicator } from './StepIndicator'
-import { StepTypeSeverity } from './steps/StepTypeSeverity'
-import { StepDescription } from './steps/StepDescription'
-import { StepLocationMedia } from './steps/StepLocationMedia'
-import { StepReview } from './steps/StepReview'
+import { StepEvidence } from './steps/StepEvidence'
+import { StepLocation } from './steps/StepLocation'
+import { StepDescriptionReview } from './steps/StepDescriptionReview'
 
-const STEPS = ['Type & Severity', 'Description', 'Location & Media', 'Review']
+const STEPS = ['Evidence', 'Location', 'Description & Review']
 
 interface ReportFormProps {
   onSubmit: (
@@ -48,8 +46,8 @@ export function ReportForm({
   const { isOnline, lastChangeAt } = useConnectionStatus()
   const [currentStep, setCurrentStep] = useState(0)
   const [previewUrls, setPreviewUrls] = useState<string[]>([])
-  const [isSubmitting, setIsSubmitting] = useState(false)
   const [compressedFiles, setCompressedFiles] = useState<File[]>([])
+  const [isSubmitting, setIsSubmitting] = useState(false)
   const [statusMessage, setStatusMessage] = useState<string | null>(null)
   const [statusTone, setStatusTone] = useState<'info' | 'error'>('info')
 
@@ -57,34 +55,23 @@ export function ReportForm({
     resolver: zodResolver(fullReportSchema) as any,
     mode: 'onBlur',
     defaultValues: {
-      type: undefined,
-      severity: undefined,
       description: '',
       municipalityCode: '',
       barangayCode: '',
       location: { lat: 14.15, lng: 122.9, geohash: '' },
-      mediaUrls: [],
       photos: [],
     },
   })
 
-  // Keep photos field in sync with previewUrls
   useEffect(() => {
     form.setValue('photos', previewUrls, { shouldValidate: false, shouldDirty: false })
   }, [previewUrls, form])
 
   useEffect(() => {
-    if (!retryQueued || !user || !isOnline) {
-      return
-    }
-
+    if (!retryQueued || !user || !isOnline) return
     let cancelled = false
-
     void retryQueued().then((retriedCount) => {
-      if (cancelled || retriedCount === 0) {
-        return
-      }
-
+      if (cancelled || retriedCount === 0) return
       setStatusTone('info')
       setStatusMessage(
         retriedCount === 1
@@ -92,13 +79,9 @@ export function ReportForm({
           : `${retriedCount} queued reports were retried successfully after reconnection.`
       )
     })
-
-    return () => {
-      cancelled = true
-    }
+    return () => { cancelled = true }
   }, [isOnline, lastChangeAt, retryQueued, user])
 
-  // Load draft on mount
   useEffect(() => {
     if (!user) return
     loadDraft(user.uid).then((draft) => {
@@ -107,43 +90,50 @@ export function ReportForm({
           'You have a saved draft. Would you like to resume? Click OK to resume or Cancel to start fresh.'
         )
         if (confirmed) {
-          if (draft.step1?.type) form.setValue('type', draft.step1.type as ReportFormData['type'])
-          if (draft.step1?.severity) form.setValue('severity', draft.step1.severity as ReportFormData['severity'])
-          if (draft.step2?.description) form.setValue('description', draft.step2.description)
-          if (draft.step3?.municipalityCode) form.setValue('municipalityCode', draft.step3.municipalityCode)
-          if (draft.step3?.barangayCode) form.setValue('barangayCode', draft.step3.barangayCode)
-          if (draft.step3?.location) form.setValue('location', draft.step3.location)
+          if (draft.stepDescription?.description) form.setValue('description', draft.stepDescription.description)
+          if (draft.stepLocation?.municipalityCode) form.setValue('municipalityCode', draft.stepLocation.municipalityCode)
+          if (draft.stepLocation?.barangayCode) form.setValue('barangayCode', draft.stepLocation.barangayCode)
+          if (draft.stepLocation?.location) form.setValue('location', draft.stepLocation.location)
           if (typeof draft.currentStep === 'number') setCurrentStep(draft.currentStep)
         }
       }
     })
   }, [user, form])
 
-  async function handleNext() {
-    const schemas = [step1Schema, step2Schema, step3Schema]
+  function handleNext() {
+    if (currentStep === 0) {
+      if (user) {
+        saveCurrentDraft(1)
+      }
+      setCurrentStep((s) => s + 1)
+      return
+    }
+
+    const schemas = [null, stepLocationSchema, stepDescriptionSchema]
     const currentSchema = schemas[currentStep]
     if (!currentSchema) return
     const fields = Object.keys(currentSchema.shape) as (keyof ReportFormData)[]
-    const isValid = await form.trigger(fields as any)
+    const isValid = form.trigger(fields as any)
     if (!isValid) return
 
-    // Save draft
     if (user) {
-      const draftData = {
-        step1: { type: form.getValues('type'), severity: form.getValues('severity') },
-        step2: { description: form.getValues('description') },
-        step3: {
-          municipalityCode: form.getValues('municipalityCode'),
-          barangayCode: form.getValues('barangayCode'),
-          location: form.getValues('location'),
-        },
-        currentStep: currentStep + 1,
-        savedAt: new Date().toISOString(),
-      }
-      saveDraft(user.uid, draftData).catch(console.error)
+      saveCurrentDraft(currentStep + 1)
     }
-
     setCurrentStep((s) => s + 1)
+  }
+
+  function saveCurrentDraft(nextStep: number) {
+    if (!user) return
+    saveDraft(user.uid, {
+      stepLocation: {
+        municipalityCode: form.getValues('municipalityCode'),
+        barangayCode: form.getValues('barangayCode'),
+        location: form.getValues('location'),
+      },
+      stepDescription: { description: form.getValues('description') },
+      currentStep: nextStep,
+      savedAt: new Date().toISOString(),
+    }).catch(console.error)
   }
 
   function handleBack() {
@@ -152,7 +142,6 @@ export function ReportForm({
 
   async function handleSubmit() {
     if (!user) return
-
     const submissionId = createSubmissionId()
     setIsSubmitting(true)
     setStatusMessage(null)
@@ -168,9 +157,7 @@ export function ReportForm({
         setStatusMessage(getSubmissionErrorMessage(error))
         return
       }
-
       const payload = buildSubmitReportPayload(form.getValues(), submissionId)
-
       await savePendingSubmission({
         submissionId,
         userId: user.uid,
@@ -181,7 +168,6 @@ export function ReportForm({
         createdAt: new Date().toISOString(),
         updatedAt: new Date().toISOString(),
       })
-
       await clearDraft(user.uid)
       setStatusTone('info')
       setStatusMessage(
@@ -192,32 +178,20 @@ export function ReportForm({
     }
   }
 
-  function handleRemovePhoto(index: number) {
-    setPreviewUrls((prev) => prev.filter((_, i) => i !== index))
-    setCompressedFiles((prev) => prev.filter((_, i) => i !== index))
-  }
-
-  function handleCompressedFilesChange(files: File[]) {
-    setCompressedFiles(files)
-  }
-
   const showBack = currentStep > 0
   const showNext = currentStep < STEPS.length - 1
-
-  // Cast form to avoid resolver type noise
-  const formAny = form as any as UseFormReturn<ReportFormData>
 
   return (
     <div className="flex flex-col h-full">
       {/* Sticky Header */}
-      <div className="sticky top-0 bg-white border-b border-gray-200 p-4 z-10">
+      <div className="sticky top-0 bg-white border-b border-neutral-300 p-4 z-10">
         <div className="flex items-center justify-between mb-3">
-          <h1 className="text-lg font-semibold text-gray-900">Submit Report</h1>
+          <h1 className="text-lg font-semibold text-neutral-900">Submit Report</h1>
           {onCancel && (
             <button
               type="button"
               onClick={onCancel}
-              className="text-sm text-gray-500 hover:text-gray-700"
+              className="text-sm text-neutral-500 hover:text-neutral-700"
               aria-label="Cancel report submission"
             >
               Cancel
@@ -232,8 +206,8 @@ export function ReportForm({
         <div
           className={`mb-4 rounded-2xl border px-4 py-3 text-sm ${
             isOnline
-              ? 'border-emerald-100 bg-emerald-50 text-emerald-800'
-              : 'border-amber-200 bg-amber-50 text-amber-900'
+              ? 'border-status-verifiedBg bg-status-verifiedBg text-status-verified'
+              : 'border-[#FED7AA] bg-[#FFF7ED] text-high-text'
           }`}
           aria-live="polite"
         >
@@ -243,54 +217,56 @@ export function ReportForm({
           {isOnline && retryQueued ? (
             <button
               type="button"
-              onClick={() => {
-                void retryQueued()
-              }}
-              className="ml-2 font-semibold text-red-700 underline-offset-2 hover:underline"
+              onClick={() => void retryQueued()}
+              className="ml-2 font-semibold text-severity-criticalText underline-offset-2 hover:underline"
             >
               Retry queued
             </button>
           ) : null}
         </div>
-        {statusMessage ? (
+        {statusMessage && (
           <div
             className={`mb-4 rounded-2xl border px-4 py-3 text-sm ${
               statusTone === 'error'
-                ? 'border-red-200 bg-red-50 text-red-700'
-                : 'border-blue-200 bg-blue-50 text-blue-800'
+                ? 'border-severity-criticalBorder bg-severity-criticalBg text-severity-criticalText'
+                : 'border-[#BFDBFE] bg-[#EFF6FF] text-low-text'
             }`}
             aria-live="polite"
           >
             {statusMessage}
           </div>
-        ) : null}
-        {currentStep === 0 && <StepTypeSeverity form={formAny} />}
-        {currentStep === 1 && <StepDescription form={formAny} />}
-        {currentStep === 2 && (
-          <StepLocationMedia
-            form={formAny}
-            setPreviewUrls={setPreviewUrls}
-            onRemovePhoto={handleRemovePhoto}
-            onCompressedFilesChange={handleCompressedFilesChange}
+        )}
+        {currentStep === 0 && (
+          <StepEvidence
+            photos={compressedFiles}
+            photoUrls={previewUrls}
+            onPhotosChange={(files, urls) => {
+              setCompressedFiles(files)
+              setPreviewUrls(urls)
+            }}
           />
         )}
-        {currentStep === 3 && (
-          <StepReview
-            form={formAny}
-            onSubmit={handleSubmit}
-            isSubmitting={isSubmitting}
+        {currentStep === 1 && (
+          <StepLocation
+            form={form as any}
+            onPreviewUrlsChange={setPreviewUrls}
+            onFilesChange={setCompressedFiles}
+            photoUrls={previewUrls}
           />
+        )}
+        {currentStep === 2 && (
+          <StepDescriptionReview form={form as any} onSubmit={handleSubmit} isSubmitting={isSubmitting} />
         )}
       </div>
 
       {/* Navigation Footer */}
       {currentStep < STEPS.length - 1 && (
-        <div className="border-t border-gray-200 p-4 flex gap-3">
+        <div className="border-t border-neutral-300 p-4 flex gap-3">
           {showBack && (
             <button
               type="button"
               onClick={handleBack}
-              className="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition-colors text-sm font-medium"
+              className="flex items-center gap-2 px-4 py-2 border border-neutral-300 rounded-lg text-neutral-700 hover:bg-neutral-100 transition-colors text-sm font-medium"
               aria-label="Go back to the previous report step"
             >
               <ArrowLeft className="w-4 h-4" />
@@ -301,7 +277,7 @@ export function ReportForm({
             <button
               type="button"
               onClick={handleNext}
-              className="flex-1 flex items-center justify-center gap-2 px-4 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors text-sm font-medium ml-auto"
+              className="flex-1 flex items-center justify-center gap-2 px-4 py-2 bg-brand text-white rounded-lg hover:bg-brand-light transition-colors text-sm font-medium ml-auto"
               aria-label="Continue to the next report step"
             >
               Next

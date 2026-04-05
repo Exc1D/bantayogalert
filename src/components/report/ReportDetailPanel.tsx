@@ -1,5 +1,5 @@
 import { useMemo } from 'react'
-import { useQuery } from '@tanstack/react-query'
+import { useQuery, useQueryClient } from '@tanstack/react-query'
 import { type Report, Severity } from '@/types/report'
 import { WORKFLOW_TO_PUBLIC_STATUS } from '@/types/status'
 import { getMunicipality } from '@/lib/geo/municipality'
@@ -28,9 +28,12 @@ interface ReportDetailPanelProps {
 }
 
 export function ReportDetailPanel({ reportId }: ReportDetailPanelProps) {
+  const queryClient = useQueryClient()
+
   // Read from TanStack Query cache (populated by useVerifiedReportsListener)
   const { data: reports = [] } = useQuery<Report[]>({
     queryKey: REPORTS_QUERY_KEY,
+    initialData: () => queryClient.getQueryData<Report[]>(REPORTS_QUERY_KEY) ?? [],
     staleTime: Infinity,
   })
 

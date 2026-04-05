@@ -14,27 +14,19 @@ interface ReportDetailOwnerProps {
   reportId: string
 }
 
+const STATUS_BADGE_COLORS: Record<ReportStatus, string> = {
+  [ReportStatus.Submitted]: 'bg-status-submittedBg text-status-submitted',
+  [ReportStatus.UnderReview]: 'bg-status-underReviewBg text-status-underReview',
+  [ReportStatus.Verified]: 'bg-status-verifiedBg text-status-verified',
+  [ReportStatus.Rejected]: 'bg-status-rejectedBg text-status-rejected',
+  [ReportStatus.Dispatched]: 'bg-status-dispatchedBg text-status-dispatched',
+  [ReportStatus.Acknowledged]: 'bg-status-inProgressBg text-status-inProgress',
+  [ReportStatus.InProgress]: 'bg-status-inProgressBg text-status-inProgress',
+  [ReportStatus.Resolved]: 'bg-status-resolvedBg text-status-resolved',
+}
+
 function getStatusBadgeColor(status: ReportStatus): string {
-  switch (status) {
-    case ReportStatus.Submitted:
-      return 'bg-blue-100 text-blue-700'
-    case ReportStatus.UnderReview:
-      return 'bg-yellow-100 text-yellow-700'
-    case ReportStatus.Verified:
-      return 'bg-green-100 text-green-700'
-    case ReportStatus.Rejected:
-      return 'bg-red-100 text-red-700'
-    case ReportStatus.Dispatched:
-      return 'bg-purple-100 text-purple-700'
-    case ReportStatus.Acknowledged:
-      return 'bg-indigo-100 text-indigo-700'
-    case ReportStatus.InProgress:
-      return 'bg-orange-100 text-orange-700'
-    case ReportStatus.Resolved:
-      return 'bg-gray-100 text-gray-700'
-    default:
-      return 'bg-yellow-100 text-yellow-700'
-  }
+  return STATUS_BADGE_COLORS[status] ?? STATUS_BADGE_COLORS[ReportStatus.UnderReview]
 }
 
 function formatRelativeTime(isoString: string): string {

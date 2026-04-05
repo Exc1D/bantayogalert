@@ -1,5 +1,5 @@
 import { useEffect, useRef, useMemo } from 'react'
-import { useQuery } from '@tanstack/react-query'
+import { useQuery, useQueryClient } from '@tanstack/react-query'
 import L from 'leaflet'
 import { useMap } from '@/app/shell/MapContainerWrapper'
 import { useSupercluster } from '@/hooks/useSupercluster'
@@ -20,6 +20,7 @@ function getClusterExpansionZoom(cluster: Record<string, unknown>): number {
 export function ReportMarkers() {
   const { mapRef, mapReady } = useMap()
   const layerGroupRef = useRef<L.LayerGroup | null>(null)
+  const queryClient = useQueryClient()
   const { mapViewport, setViewport, selectedMarkerId, setSelectedMarkerId } = useMapViewportStore()
   const setActivePanel = useUIStore((s) => s.setActivePanel)
   const setSelectedReportId = useUIStore((s) => s.setSelectedReportId)
@@ -32,6 +33,7 @@ export function ReportMarkers() {
   // Fetch verified reports from TanStack Query cache
   const { data: reports = [] } = useQuery<Report[]>({
     queryKey: REPORTS_QUERY_KEY,
+    initialData: () => queryClient.getQueryData<Report[]>(REPORTS_QUERY_KEY) ?? [],
     staleTime: Infinity, // Real-time listener keeps this fresh
   })
 
@@ -47,12 +49,13 @@ export function ReportMarkers() {
       .map(reportToGeoJSON)
   }, [reports, filterType, filterSeverity, filterMunicipality])
 
-  // Get current map bounds for supercluster
-  const bounds = useMemo<BBox | null>(() => {
-    if (!mapRef.current) return null
-    const b = mapRef.current.getBounds()
-    return [b.getWest(), b.getSouth(), b.getEast(), b.getNorth()]
-  }, [mapRef.current, mapViewport]) // recalc when viewport changes
+  // Get current map bounds for supercluster from the latest viewport render.
+  const bounds: BBox | null = mapRef.current
+    ? (() => {
+        const b = mapRef.current!.getBounds()
+        return [b.getWest(), b.getSouth(), b.getEast(), b.getNorth()]
+      })()
+    : null
 
   const zoom = mapViewport.zoom
 
@@ -90,7 +93,6 @@ export function ReportMarkers() {
     clusters.forEach((cluster) => {
       const coords = cluster.geometry.coordinates as [number, number]
       const [lng, lat] = coords
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const props = cluster.properties as any
 
       if (props.cluster) {

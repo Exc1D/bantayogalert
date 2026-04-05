@@ -9,7 +9,7 @@ import {
 import { AdminQueueCard } from './AdminQueueCard'
 import { useUIStore } from '@/stores/uiStore'
 import { MUNICIPALITIES } from '@/lib/geo/municipality'
-import { useQuery } from '@tanstack/react-query'
+import { useQuery, useQueryClient } from '@tanstack/react-query'
 
 type Tab = 'pending' | 'verified' | 'dispatched'
 
@@ -22,6 +22,7 @@ function TabBadge({ count }: { count: number }) {
 }
 
 export function AdminQueueFeed() {
+  const queryClient = useQueryClient()
   const { customClaims } = useAuth()
   const role = customClaims?.role
   const userMunicipalityCode = customClaims?.municipalityCode ?? null
@@ -37,6 +38,7 @@ export function AdminQueueFeed() {
   // Fetch from TanStack Query cache
   const { data: allReports = [] } = useQuery<AdminQueueReport[]>({
     queryKey: ADMIN_QUEUE_QUERY_KEY(filterMunicipality),
+    initialData: () => queryClient.getQueryData<AdminQueueReport[]>(ADMIN_QUEUE_QUERY_KEY(filterMunicipality)) ?? [],
   })
 
   // Filter by workflowState for each tab

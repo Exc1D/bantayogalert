@@ -10,7 +10,9 @@
 import * as admin from 'firebase-admin'
 import { FieldValue, Timestamp } from 'firebase-admin/firestore'
 
-const db = admin.firestore()
+function getDb() {
+  return admin.firestore()
+}
 
 // Rate limit configuration
 const DEFAULT_RATE_LIMIT = {
@@ -56,6 +58,7 @@ export async function checkRateLimit(
   userId: string,
   _isAdminRequest: boolean = false
 ): Promise<RateLimitResult> {
+  const db = getDb()
   const rateLimitDoc = db.doc(`rate_limits/${userId}`)
   const doc = await rateLimitDoc.get()
 
@@ -121,6 +124,7 @@ export async function checkRateLimit(
  * @param userId - The Firebase Auth UID of the user
  */
 export async function incrementRateLimit(userId: string): Promise<void> {
+  const db = getDb()
   const rateLimitDoc = db.doc(`rate_limits/${userId}`)
   const now = Timestamp.now()
 
@@ -169,6 +173,7 @@ export async function incrementRateLimit(userId: string): Promise<void> {
  * @returns Promise with true if surge mode is active
  */
 export async function isSurgeModeActive(municipalityCode: string): Promise<boolean> {
+  const db = getDb()
   const surgeDoc = db.doc(`rate_limits/surge/${municipalityCode}`)
   const doc = await surgeDoc.get()
 
@@ -195,6 +200,7 @@ export async function setSurgeMode(
   enabled: boolean,
   durationMs: number = DEFAULT_SURGE_DURATION_MS
 ): Promise<void> {
+  const db = getDb()
   const surgeDoc = db.doc(`rate_limits/surge/${municipalityCode}`)
   const now = Timestamp.now()
 
@@ -226,6 +232,7 @@ export async function enableSurgeModeForMunicipality(
   enabledBy: string,
   durationMs: number = DEFAULT_SURGE_DURATION_MS
 ): Promise<void> {
+  const db = getDb()
   const surgeDoc = db.doc(`rate_limits/surge/${municipalityCode}`)
   const now = Timestamp.now()
   const expiresAt = Timestamp.fromMillis(now.toMillis() + durationMs)
@@ -245,6 +252,7 @@ export async function enableSurgeModeForMunicipality(
 export async function disableSurgeModeForMunicipality(
   municipalityCode: string
 ): Promise<void> {
+  const db = getDb()
   const surgeDoc = db.doc(`rate_limits/surge/${municipalityCode}`)
   await surgeDoc.set({
     enabled: false,

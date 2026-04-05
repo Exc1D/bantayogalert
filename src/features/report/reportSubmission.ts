@@ -7,7 +7,14 @@ import {
   removePendingSubmission,
 } from './usePendingReportSubmission'
 import type { ReportFormData } from './ReportFormSchema'
+import { IncidentType, Severity } from '@/types/report'
 import { db } from '@/lib/firebase/config'
+
+/**
+ * Default values for citizen reports — type/severity are assigned during admin triage.
+ */
+const DEFAULT_INCIDENT_TYPE: IncidentType = IncidentType.Other
+const DEFAULT_SEVERITY: Severity = Severity.Low
 
 export function createSubmissionId() {
   return doc(collection(db, 'reports')).id
@@ -18,8 +25,8 @@ export function buildSubmitReportPayload(
   submissionId: string
 ): SubmitReportData & { reportId: string } {
   return {
-    type: data.type,
-    severity: data.severity,
+    type: DEFAULT_INCIDENT_TYPE,
+    severity: DEFAULT_SEVERITY,
     description: data.description,
     municipalityCode: data.municipalityCode,
     barangayCode: data.barangayCode,

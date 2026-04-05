@@ -49,7 +49,9 @@ exports.enableSurgeModeForMunicipality = enableSurgeModeForMunicipality;
 exports.disableSurgeModeForMunicipality = disableSurgeModeForMunicipality;
 const admin = __importStar(require("firebase-admin"));
 const firestore_1 = require("firebase-admin/firestore");
-const db = admin.firestore();
+function getDb() {
+    return admin.firestore();
+}
 // Rate limit configuration
 const DEFAULT_RATE_LIMIT = {
     maxReports: 5,
@@ -69,6 +71,7 @@ const DEFAULT_SURGE_DURATION_MS = 24 * 60 * 60 * 1000; // 24 hours
  * @returns Promise with rate limit result
  */
 async function checkRateLimit(userId, _isAdminRequest = false) {
+    const db = getDb();
     const rateLimitDoc = db.doc(`rate_limits/${userId}`);
     const doc = await rateLimitDoc.get();
     const now = firestore_1.Timestamp.now();
@@ -124,6 +127,7 @@ async function checkRateLimit(userId, _isAdminRequest = false) {
  * @param userId - The Firebase Auth UID of the user
  */
 async function incrementRateLimit(userId) {
+    const db = getDb();
     const rateLimitDoc = db.doc(`rate_limits/${userId}`);
     const now = firestore_1.Timestamp.now();
     await db.runTransaction(async (transaction) => {
@@ -165,6 +169,7 @@ async function incrementRateLimit(userId) {
  * @returns Promise with true if surge mode is active
  */
 async function isSurgeModeActive(municipalityCode) {
+    const db = getDb();
     const surgeDoc = db.doc(`rate_limits/surge/${municipalityCode}`);
     const doc = await surgeDoc.get();
     if (!doc.exists) {
@@ -183,6 +188,7 @@ async function isSurgeModeActive(municipalityCode) {
  * @param durationMs - Duration in milliseconds (default 24 hours)
  */
 async function setSurgeMode(municipalityCode, enabled, durationMs = DEFAULT_SURGE_DURATION_MS) {
+    const db = getDb();
     const surgeDoc = db.doc(`rate_limits/surge/${municipalityCode}`);
     const now = firestore_1.Timestamp.now();
     if (enabled) {
@@ -208,6 +214,7 @@ async function setSurgeMode(municipalityCode, enabled, durationMs = DEFAULT_SURG
  * @param durationMs - Duration in milliseconds
  */
 async function enableSurgeModeForMunicipality(municipalityCode, enabledBy, durationMs = DEFAULT_SURGE_DURATION_MS) {
+    const db = getDb();
     const surgeDoc = db.doc(`rate_limits/surge/${municipalityCode}`);
     const now = firestore_1.Timestamp.now();
     const expiresAt = firestore_1.Timestamp.fromMillis(now.toMillis() + durationMs);
@@ -223,6 +230,7 @@ async function enableSurgeModeForMunicipality(municipalityCode, enabledBy, durat
  * @param municipalityCode - The municipality code
  */
 async function disableSurgeModeForMunicipality(municipalityCode) {
+    const db = getDb();
     const surgeDoc = db.doc(`rate_limits/surge/${municipalityCode}`);
     await surgeDoc.set({
         enabled: false,

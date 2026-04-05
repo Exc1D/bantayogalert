@@ -1,6 +1,7 @@
 import { initializeApp, getApps, type FirebaseApp } from 'firebase/app'
 import { getAuth, type Auth, connectAuthEmulator } from 'firebase/auth'
 import { getFirestore, type Firestore, connectFirestoreEmulator } from 'firebase/firestore'
+import { getFunctions, type Functions, connectFunctionsEmulator } from 'firebase/functions'
 import { getStorage, type FirebaseStorage, connectStorageEmulator } from 'firebase/storage'
 
 const firebaseConfig = {
@@ -44,6 +45,7 @@ function getOrInitializeFirebase(): {
   app: FirebaseApp
   auth: Auth
   db: Firestore
+  functions: Functions
   storage: FirebaseStorage
 } {
   const existingApps = getApps()
@@ -53,17 +55,19 @@ function getOrInitializeFirebase(): {
       : initializeApp(firebaseConfig)
   const auth = getAuth(app)
   const db = getFirestore(app)
+  const functions = getFunctions(app)
   const storage = getStorage(app)
 
   // Connect to Firebase Emulators when VITE_USE_EMULATOR=true
   if (firebaseRuntime.useEmulator) {
     connectAuthEmulator(auth, 'http://localhost:9099', { disableWarnings: true })
     connectFirestoreEmulator(db, 'localhost', 8080)
+    connectFunctionsEmulator(functions, 'localhost', 5001)
     connectStorageEmulator(storage, 'localhost', 9199)
   }
 
-  return { app, auth, db, storage }
+  return { app, auth, db, functions, storage }
 }
 
 export const firebase = getOrInitializeFirebase()
-export const { app: firebaseApp, auth, db, storage } = firebase
+export const { app: firebaseApp, auth, db, functions, storage } = firebase

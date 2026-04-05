@@ -1,0 +1,185 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ════════════════════════════════════════
+ * §0.1 CSS Custom Properties — Color System
+ * Single source of truth for all Design tokens.
+ * Dark mode swaps via @media (prefers-color-scheme: dark).
+ * ════════════════════════════════════════ */
+
+:root {
+  /* Brand (D-118) */
+  --color-navy: #1B2A4A;
+  --color-brand: #2563EB;
+  --color-brand-light: #3B82F6;
+
+  /* Neutral */
+  --color-gray-900: #111827;
+  --color-gray-700: #374151;
+  --color-gray-500: #6B7280;
+  --color-gray-300: #D1D5DB;
+  --color-gray-100: #F3F4F6;
+  --color-gray-50: #F9FAFB;
+
+  /* Severity (4 levels + bg variants) — D-120 */
+  --color-critical: #DC2626;
+  --color-critical-bg: #FEF2F2;
+  --color-critical-border: #FECACA;
+  --color-critical-text: #991B1B;
+
+  --color-high: #EA580C;
+  --color-high-bg: #FFF7ED;
+  --color-high-border: #FED7AA;
+  --color-high-text: #9A3412;
+
+  --color-medium: #65A30D;
+  --color-medium-bg: #F7FEE7;
+  --color-medium-border: #D9F99D;
+  --color-medium-text: #3F6212;
+
+  --color-low: #2563EB;
+  --color-low-bg: #EFF6FF;
+  --color-low-border: #BFDBFE;
+  --color-low-text: #1E40AF;
+
+  /* Status (8 workflow states) — §3.4 */
+  --color-status-submitted: #6B7280;
+  --color-status-submitted-bg: #F3F4F6;
+  --color-status-under-review: #2563EB;
+  --color-status-under-review-bg: #EFF6FF;
+  --color-status-verified: #059669;
+  --color-status-verified-bg: #ECFDF5;
+  --color-status-dispatched: #7C3AED;
+  --color-status-dispatched-bg: #F5F3FF;
+  --color-status-in-progress: #D97706;
+  --color-status-in-progress-bg: #FFFBEB;
+  --color-status-resolved: #047857;
+  --color-status-resolved-bg: #D1FAE5;
+  --color-status-rejected: #BE123C;
+  --color-status-rejected-bg: #FFF1F2;
+  --color-status-duplicate: #4B5563;
+  --color-status-duplicate-bg: #F1F5F9;
+
+  /* Alert (4 types) — §3.5 */
+  --color-alert-info: #2563EB;
+  --color-alert-info-bg: #EFF6FF;
+  --color-alert-warning: #D97706;
+  --color-alert-warning-bg: #FFFBEB;
+  --color-alert-critical: #DC2626;
+  --color-alert-critical-bg: #FEF2F2;
+  --color-alert-clear: #059669;
+  --color-alert-clear-bg: #ECFDF5;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-navy: #E2E8F0;
+    --color-brand: #3B82F6;
+    --color-brand-light: #60A5FA;
+    --color-gray-900: #F9FAFB;
+    --color-gray-700: #D1D5DB;
+    --color-gray-500: #9CA3AF;
+    --color-gray-300: #4B5563;
+    --color-gray-100: #1F2937;
+    --color-gray-50: #111827;
+
+    --color-critical: #F87171;
+    --color-critical-bg: #7F1D1D;
+    --color-critical-border: #991B1B;
+    --color-critical-text: #FCA5A5;
+    --color-high: #F97316;
+    --color-high-bg: #7C2D12;
+    --color-high-border: #9A3412;
+    --color-high-text: #FDBA74;
+    --color-medium: #84CC16;
+    --color-medium-bg: #365314;
+    --color-medium-border: #3F6212;
+    --color-medium-text: #D9F99D;
+    --color-low: #60A5FA;
+    --color-low-bg: #1E3A5F;
+    --color-low-border: #1D4ED8;
+    --color-low-text: #93C5FD;
+  }
+}
+
+/* ════════════════════════════════════════
+ * §0.2 Switzer Font Face Declarations
+ * Individual WOFF files (400, 500, 600, 700)
+ * ════════════════════════════════════════ */
+
+@font-face {
+  font-family: 'Switzer';
+  src: url('/fonts/Switzer-Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Switzer';
+  src: url('/fonts/Switzer-Semibold.woff') format('woff');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Switzer';
+  src: url('/fonts/Switzer-Semibold.woff') format('woff');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Switzer';
+  src: url('/fonts/Switzer-Bold.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ════════════════════════════════════════
+ * §0.3 Global Motion & Accessibility
+ * ════════════════════════════════════════ */
+
+/* Skeleton shimmer */
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+@keyframes skeleton-shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* Global focus-visible per DESIGN.md §17 */
+:focus-visible {
+  outline: 2px solid var(--color-brand);
+  outline-offset: 2px;
+}
+
+/* Motion reduction for accessibility per §16.2 */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Performance guardrails for animated elements */
+.will-animate { will-change: transform, opacity; }
