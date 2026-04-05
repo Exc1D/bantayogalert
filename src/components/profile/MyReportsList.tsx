@@ -1,7 +1,8 @@
 import { useMyReports } from '@/hooks/useMyReports'
+import { EmptyState } from '@/components/ui/EmptyState'
 import { OWNER_STATUS_LABELS } from '@/types/status'
 import { ReportStatus, type ActivityLogEntry } from '@/types/report'
-import { AlertCircle, Clock, CheckCircle } from 'lucide-react'
+import { AlertCircle, Clock, CheckCircle, FileText } from 'lucide-react'
 
 interface MyReportsListProps {
   onSelectReport?: (reportId: string) => void
@@ -91,13 +92,12 @@ export function MyReportsList({ onSelectReport }: MyReportsListProps) {
     return (
       <div className="space-y-3">
         <h2 className="text-lg font-medium text-gray-900">My Reports</h2>
-        <div className="text-center py-8 bg-gray-50 rounded-lg border border-gray-200">
-          <AlertCircle className="w-12 h-12 text-gray-300 mx-auto mb-3" />
-          <p className="text-gray-500">No reports yet</p>
-          <p className="text-sm text-gray-400 mt-1">
-            When you submit a report, it will appear here
-          </p>
-        </div>
+        <EmptyState
+          icon={FileText}
+          title="No reports yet"
+          description="When you submit a report, it will appear here with its current status."
+          aria-live="polite"
+        />
       </div>
     )
   }

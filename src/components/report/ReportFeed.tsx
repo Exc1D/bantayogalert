@@ -3,6 +3,8 @@ import { useReportFeed } from '@/hooks/useReportFeed'
 import { ReportFeedCard } from './ReportFeedCard'
 import { useUIStore } from '@/stores/uiStore'
 import { useFilterStore } from '@/stores/filterStore'
+import { EmptyState } from '@/components/ui/EmptyState'
+import { FileText, FilterX } from 'lucide-react'
 
 function SkeletonCard() {
   return (
@@ -77,19 +79,26 @@ export function ReportFeed() {
   if (!isLoading && allReports.length === 0) {
     return (
       <div className="flex-1 flex items-center justify-center p-4">
-        <div className="text-center">
-          <p className="text-gray-500 text-sm">
-            {hasActiveFilters ? 'No reports match your filters' : 'No verified reports yet'}
-          </p>
-          {hasActiveFilters && (
-            <button
-              onClick={() => useFilterStore.getState().clearFilters()}
-              className="text-blue-600 text-sm mt-1 underline"
-            >
-              Clear filters
-            </button>
-          )}
-        </div>
+        <EmptyState
+          icon={hasActiveFilters ? FilterX : FileText}
+          title={hasActiveFilters ? 'No reports match your filters' : 'No verified reports yet'}
+          description={
+            hasActiveFilters
+              ? 'Try adjusting your filter criteria.'
+              : 'Verified reports from admins will appear here.'
+          }
+          action={
+            hasActiveFilters && (
+              <button
+                onClick={() => useFilterStore.getState().clearFilters()}
+                className="text-sm font-medium text-blue-600 hover:underline"
+              >
+                Clear filters
+              </button>
+            )
+          }
+          aria-live="polite"
+        />
       </div>
     )
   }
