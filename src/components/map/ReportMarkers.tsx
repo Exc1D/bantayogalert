@@ -109,7 +109,8 @@ export function ReportMarkers() {
         // Cluster marker — collect severities from children for fill color
         const clusterSeverities: Severity[] = []
         if (supercluster && props.cluster_id) {
-          const leaves = supercluster.getLeaves(props.cluster_id, Infinity, 0) as Record<string, any>[]
+          // Fetch first batch of leaves to determine worst severity (no need for full expansion)
+          const leaves = supercluster.getLeaves(props.cluster_id, 100, 0) as Record<string, any>[]
           for (const leaf of leaves) {
             const sev = severityMap.get(leaf.properties?.id)
             if (sev) clusterSeverities.push(sev)

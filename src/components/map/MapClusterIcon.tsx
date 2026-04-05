@@ -10,12 +10,16 @@ const SEVERITY_COLORS: Record<Severity, { fill: string; stroke: string }> = {
   [Severity.Low]:      { fill: '#2563EB', stroke: '#1E40AF' },
 }
 
+// Ordered by urgency — lower index = more urgent
+const SEVERITY_ORDER: Severity[] = [Severity.Critical, Severity.High, Severity.Medium, Severity.Low]
+const severityPriority = (sev: Severity): number => SEVERITY_ORDER.indexOf(sev)
+
 const worstSeverity = (sevs: Severity[]): Severity => {
-  const order = [Severity.Critical, Severity.High, Severity.Medium, Severity.Low]
-  for (const sev of order) {
-    if (sevs.includes(sev)) return sev
-  }
-  return Severity.Low
+  if (sevs.length === 1) return sevs[0]!
+  return sevs.reduce(
+    (worst, sev) => (severityPriority(sev) < severityPriority(worst) ? sev : worst),
+    sevs[0]!
+  )
 }
 
 export function createClusterIcon(count: number, severs?: Severity[]): L.DivIcon {
@@ -34,9 +38,10 @@ export function createReportIcon(severity: Severity, type: IncidentType, isResol
   const iconSvg = getIncidentIconSvg(type)
   const scale = isSelected ? 'pin-marker-selected' : ''
 
+  const resolvedClass = isResolved ? 'pin-resolved ' : ''
   return L.divIcon({
     html: `
-      <div class="pin-wrapper ${scale}" style="--pin-fill:${color.fill};--pin-stroke:${color.stroke};${isResolved ? 'opacity:0.5;--pin-resolved:1;' : ''}">
+      <div class="${resolvedClass}pin-wrapper ${scale}" style="--pin-fill:${color.fill};--pin-stroke:${color.stroke}">
         <div class="pin-bubble" style="background:var(--pin-fill);border-color:var(--pin-stroke)">${iconSvg}</div>
         <div class="pin-pointer" style="background:var(--pin-fill);border-color:var(--pin-stroke)"></div>
       </div>
