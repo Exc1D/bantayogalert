@@ -2,7 +2,7 @@ import { create } from 'zustand'
 import type { HotspotCount } from '@/types/analytics'
 
 export type ActivePanel = 'report-detail' | 'contact-detail' | 'announcement-detail' | 'report-form' | 'settings' | 'admin-report-detail' | null
-export type ActiveTab = 'feed' | 'map' | 'report' | 'alerts' | 'profile'
+export type ActiveTab = 'feed' | 'map' | 'report' | 'alerts' | 'profile' | 'admin'
 
 interface UIState {
   drawerOpen: boolean
@@ -17,6 +17,8 @@ interface UIState {
   setAnalyticsHeatmapEnabled: (enabled: boolean) => void
   analyticsHotspots: HotspotCount[]
   setAnalyticsHotspots: (hotspots: HotspotCount[]) => void
+  feedDensity: 'normal' | 'compact'
+  setFeedDensity: (density: 'normal' | 'compact') => void
 }
 
 export const useUIStore = create<UIState>((set) => ({
@@ -33,4 +35,6 @@ export const useUIStore = create<UIState>((set) => ({
   setAnalyticsHeatmapEnabled: (enabled) => set({ analyticsHeatmapEnabled: enabled }),
   analyticsHotspots: [],
   setAnalyticsHotspots: (hotspots) => set({ analyticsHotspots: hotspots }),
+  feedDensity: 'normal',
+  setFeedDensity: (density) => set({ feedDensity: density }),
 }))

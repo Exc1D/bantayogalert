@@ -14,16 +14,40 @@ export function MunicipalityBoundaries() {
     loadMunicipalitiesGeoJSON()
       .then((data) => {
         if (!mounted || !mapRef.current) return
-        // Remove existing layer if any (handles hot reload)
         layerRef.current?.remove()
+
         layerRef.current = L.geoJSON(data, {
-          style: {
-            fillColor: '#6b7280',
-            fillOpacity: 0.05,
-            color: '#6b7280',
-            weight: 1.5,
+          style: () => ({
+            fillColor: 'transparent',
+            fillOpacity: 0,
+            color: '#2563EB',
+            opacity: 0.4,
+            weight: 2,
+            dashArray: '8 4',
+          }),
+          interactive: true,
+          onEachFeature: (_feature: unknown, layer: L.Layer) => {
+            const pathLayer = layer as any
+
+            pathLayer.on({
+              mouseover: (e: any) => {
+                const lyr = e.target
+                lyr.bringToFront()
+                lyr.setStyle({
+                  color: '#2563EB',
+                  weight: 2,
+                  fillOpacity: 0.1,
+                  fillColor: '#2563EB',
+                })
+                const name = lyr.feature?.properties?.name ?? ''
+                lyr.bindTooltip(name, { sticky: true })
+              },
+              mouseout: (e: any) => {
+                layerRef.current?.resetStyle(e.target)
+                e.target.unbindTooltip()
+              },
+            })
           },
-          interactive: false, // D-120: non-interactive
         })
         layerRef.current.addTo(mapRef.current)
       })
@@ -38,5 +62,5 @@ export function MunicipalityBoundaries() {
     }
   }, [mapRef, mapReady])
 
-  return null // Pure side-effect component
+  return null
 }

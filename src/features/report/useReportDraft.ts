@@ -5,13 +5,12 @@
 import { openDB, type IDBPDatabase } from 'idb'
 
 export interface ReportDraft {
-  step1?: { type?: string; severity?: string }
-  step2?: { description?: string }
-  step3?: {
+  stepLocation?: {
     municipalityCode?: string
     barangayCode?: string
     location?: { lat: number; lng: number; geohash: string }
   }
+  stepDescription?: { description?: string }
   currentStep: number
   savedAt: string
 }

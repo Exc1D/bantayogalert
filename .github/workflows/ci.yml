@@ -25,7 +25,9 @@ jobs:
           cache: 'npm'
 
       - name: Install dependencies
-        run: npm ci
+        # --legacy-peer-deps needed: vite-plugin-pwa and typescript-eslint peer
+        # deps lag behind our vite 8 / typescript 6 versions (all runtime-safe)
+        run: npm ci --legacy-peer-deps
 
       - name: TypeScript compilation
         run: npm run build
@@ -52,7 +54,9 @@ jobs:
           cache: 'npm'
 
       - name: Install dependencies
-        run: npm ci
+        # --legacy-peer-deps needed: vite-plugin-pwa and typescript-eslint peer
+        # deps lag behind our vite 8 / typescript 6 versions (all runtime-safe)
+        run: npm ci --legacy-peer-deps
 
       - name: Install Playwright browsers
         run: npx playwright install --with-deps

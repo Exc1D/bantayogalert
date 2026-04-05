@@ -1,5 +1,5 @@
 import { useEffect, useRef, useMemo } from 'react'
-import { useQuery } from '@tanstack/react-query'
+import { useQuery, useQueryClient } from '@tanstack/react-query'
 import L from 'leaflet'
 import { useMap } from '@/app/shell/MapContainerWrapper'
 import { useSupercluster } from '@/hooks/useSupercluster'
@@ -9,8 +9,9 @@ import { useUIStore } from '@/stores/uiStore'
 import { reportToGeoJSON } from '@/lib/geo/reportToGeoJSON'
 import { createClusterIcon, createReportIcon } from './MapClusterIcon'
 import type { Feature, Point, BBox } from 'geojson'
-import type { Report } from '@/types/report'
+import type { Report, Severity } from '@/types/report'
 import { REPORTS_QUERY_KEY } from '@/hooks/useVerifiedReportsListener'
+import { WorkflowState } from '@/types/report'
 
 function getClusterExpansionZoom(cluster: Record<string, unknown>): number {
   // Supercluster 8.x: cluster.expansion_zoom or fallback
@@ -20,6 +21,7 @@ function getClusterExpansionZoom(cluster: Record<string, unknown>): number {
 export function ReportMarkers() {
   const { mapRef, mapReady } = useMap()
   const layerGroupRef = useRef<L.LayerGroup | null>(null)
+  const queryClient = useQueryClient()
   const { mapViewport, setViewport, selectedMarkerId, setSelectedMarkerId } = useMapViewportStore()
   const setActivePanel = useUIStore((s) => s.setActivePanel)
   const setSelectedReportId = useUIStore((s) => s.setSelectedReportId)
@@ -29,9 +31,11 @@ export function ReportMarkers() {
   const filterSeverity = useFilterStore((s) => s.severity)
   const filterMunicipality = useFilterStore((s) => s.municipalityCode)
 
-  // Fetch verified reports from TanStack Query cache
+  // Fetch verified reports from TanStack Query cache (populated by listener)
   const { data: reports = [] } = useQuery<Report[]>({
     queryKey: REPORTS_QUERY_KEY,
+    queryFn: () => queryClient.getQueryData<Report[]>(REPORTS_QUERY_KEY) ?? [],
+    initialData: () => queryClient.getQueryData<Report[]>(REPORTS_QUERY_KEY) ?? [],
     staleTime: Infinity, // Real-time listener keeps this fresh
   })
 
@@ -45,18 +49,20 @@ export function ReportMarkers() {
         return true
       })
       .map(reportToGeoJSON)
+      .filter((f): f is Feature<Point> => f !== null)
   }, [reports, filterType, filterSeverity, filterMunicipality])
 
-  // Get current map bounds for supercluster
-  const bounds = useMemo<BBox | null>(() => {
-    if (!mapRef.current) return null
-    const b = mapRef.current.getBounds()
-    return [b.getWest(), b.getSouth(), b.getEast(), b.getNorth()]
-  }, [mapRef.current, mapViewport]) // recalc when viewport changes
+  // Get current map bounds for supercluster from the latest viewport render.
+  const bounds: BBox | null = mapRef.current
+    ? (() => {
+        const b = mapRef.current!.getBounds()
+        return [b.getWest(), b.getSouth(), b.getEast(), b.getNorth()]
+      })()
+    : null
 
   const zoom = mapViewport.zoom
 
-  const { clusters } = useSupercluster({ features, bounds, zoom })
+  const { clusters, supercluster } = useSupercluster({ features, bounds, zoom })
 
   // Sync map viewport to Zustand on moveend/zoomend
   useEffect(() => {
@@ -77,6 +83,13 @@ export function ReportMarkers() {
     }
   }, [mapRef, mapReady, setViewport])
 
+  // Build a map of report id -> severity for cluster severity coloring
+  const severityMap = useMemo<Map<string, Severity>>(() => {
+    const m = new Map()
+    reports.forEach((r) => m.set(r.id, r.severity))
+    return m
+  }, [reports])
+
   // Manage Leaflet layer group imperatively
   useEffect(() => {
     if (!mapReady || !mapRef.current) return
@@ -90,13 +103,21 @@ export function ReportMarkers() {
     clusters.forEach((cluster) => {
       const coords = cluster.geometry.coordinates as [number, number]
       const [lng, lat] = coords
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const props = cluster.properties as any
 
       if (props.cluster) {
-        // Cluster marker
+        // Cluster marker — collect severities from children for fill color
+        const clusterSeverities: Severity[] = []
+        if (supercluster && props.cluster_id) {
+          // Fetch first batch of leaves to determine worst severity (no need for full expansion)
+          const leaves = supercluster.getLeaves(props.cluster_id, 100, 0) as Record<string, any>[]
+          for (const leaf of leaves) {
+            const sev = severityMap.get(leaf.properties?.id)
+            if (sev) clusterSeverities.push(sev)
+          }
+        }
         const count = props.point_count
-        const icon = createClusterIcon(count)
+        const icon = createClusterIcon(count, clusterSeverities)
         const marker = L.marker([lat, lng], { icon })
         marker.on('click', () => {
           const expansionZoom = getClusterExpansionZoom(props)
@@ -106,7 +127,8 @@ export function ReportMarkers() {
       } else {
         // Individual report marker
         const isSelected = props.id === selectedMarkerId
-        const icon = createReportIcon(props.severity, props.type, isSelected)
+        const isResolved = props.workflowState === WorkflowState.Resolved
+        const icon = createReportIcon(props.severity, props.type, isResolved, isSelected)
         const marker = L.marker([lat, lng], { icon })
         marker.on('click', () => {
           setSelectedMarkerId(props.id)
@@ -120,7 +142,7 @@ export function ReportMarkers() {
     return () => {
       layerGroup.clearLayers()
     }
-  }, [clusters, selectedMarkerId, mapReady, mapRef, setSelectedMarkerId, setSelectedReportId, setActivePanel])
+  }, [clusters, selectedMarkerId, severityMap, supercluster, mapReady, mapRef, setSelectedMarkerId, setSelectedReportId, setActivePanel])
 
   return null // Pure side-effect component
 }

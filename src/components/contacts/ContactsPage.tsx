@@ -7,6 +7,7 @@ import { ContactsList } from './ContactsList'
 export function ContactsPage() {
   const { contacts, isLoading } = useContacts({ includeInactive: true })
   const { searchQuery, typeFilter } = useContactsFilterStore()
+  const hasActiveFilters = Boolean(searchQuery || typeFilter)
 
   // Client-side filtering based on filter state
   const filteredContacts = useMemo(() => {
@@ -37,7 +38,11 @@ export function ContactsPage() {
   return (
     <div className="space-y-6">
       <ContactsFilterBar />
-      <ContactsList contacts={filteredContacts} />
+      <ContactsList
+        contacts={filteredContacts}
+        hasActiveFilters={hasActiveFilters}
+        totalContacts={contacts.length}
+      />
     </div>
   )
 }

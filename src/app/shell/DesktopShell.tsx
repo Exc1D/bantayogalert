@@ -129,6 +129,12 @@ export function DesktopShell({ children }: DesktopShellProps) {
 
   return (
     <div className="flex h-screen w-screen overflow-hidden">
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[9999] focus:bg-white focus:text-gray-900 focus:px-4 focus:py-2 focus:rounded-lg focus:shadow-lg"
+      >
+        Skip to main content
+      </a>
       <NavRail />
       <div className="flex-1 relative overflow-hidden flex">
         <div className="flex-[3] relative overflow-hidden">
@@ -136,7 +142,7 @@ export function DesktopShell({ children }: DesktopShellProps) {
             <WorkspaceDrawer />
           </MapContainerWrapper>
         </div>
-        <div className="flex-[2] flex flex-col border-l border-gray-200 bg-white overflow-hidden">
+        <div id="main-content" className="flex-[2] flex flex-col border-l border-gray-200 bg-white overflow-hidden" role="main">
           {panelContent}
         </div>
       </div>

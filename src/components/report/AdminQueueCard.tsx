@@ -2,23 +2,13 @@ import { useMemo } from 'react'
 import type { AdminQueueReport } from '@/hooks/useAdminQueueListener'
 import type { Severity } from '@/types/report'
 import { getMunicipality } from '@/lib/geo/municipality'
+import { getIncidentIcon } from '@/lib/icons/incidentIcons'
 
 const SEVERITY_COLORS: Record<Severity, { bg: string; dot: string }> = {
-  critical: { bg: 'bg-red-600', dot: 'bg-red-600' },
-  high: { bg: 'bg-orange-500', dot: 'bg-orange-500' },
-  medium: { bg: 'bg-yellow-500', dot: 'bg-yellow-500' },
-  low: { bg: 'bg-green-500', dot: 'bg-green-500' },
-}
-
-const TYPE_ICONS: Record<string, string> = {
-  flood: '💧',
-  landslide: '🔺',
-  fire: '🔥',
-  earthquake: '⚡',
-  medical: '➕',
-  vehicle_accident: '🚗',
-  crime: '🛡️',
-  other: '❗',
+  critical: { bg: 'bg-severity-critical', dot: 'bg-severity-critical' },
+  high: { bg: 'bg-severity-high', dot: 'bg-severity-high' },
+  medium: { bg: 'bg-severity-medium', dot: 'bg-severity-medium' },
+  low: { bg: 'bg-severity-low', dot: 'bg-severity-low' },
 }
 
 const PRIORITY_DOT: Record<number, string> = {
@@ -67,7 +57,7 @@ export function AdminQueueCard({
     [report.municipalityCode]
   )
   const severityStyle = SEVERITY_COLORS[report.severity]
-  const typeIcon = TYPE_ICONS[report.type] ?? TYPE_ICONS.other
+  const IncidentIcon = getIncidentIcon(report.type)
   const stateBadge = WORKFLOW_STATE_BADGE[report.workflowState] ?? { bg: 'bg-gray-100 text-gray-600', label: report.workflowState }
   const priorityDot = report.priority ? PRIORITY_DOT[report.priority] : null
 
@@ -82,8 +72,8 @@ export function AdminQueueCard({
       <div className="flex items-center gap-3 h-[72px]">
         {/* Left: type icon + severity dot */}
         <div className="flex flex-col items-center gap-0.5 w-8 flex-shrink-0">
-          <span className="text-lg">{typeIcon}</span>
-          <span className={`w-2.5 h-2.5 rounded-full ${severityStyle.dot}`} />
+          <IncidentIcon className="w-5 h-5" aria-hidden="true" />
+          <span className={`w-2.5 h-2.5 rounded-full ${severityStyle.dot}`} aria-label={`Severity: ${report.severity}`} />
         </div>
 
         {/* Center: type + municipality + barangay + relative time */}
@@ -92,7 +82,7 @@ export function AdminQueueCard({
             <span className="text-sm font-medium text-gray-900 capitalize">
               {report.type.replace('_', ' ')}
             </span>
-            <span className={`text-xs px-1.5 py-0.5 rounded ${stateBadge.bg}`}>
+            <span className={`text-xs px-1.5 py-0.5 rounded ${stateBadge.bg}`} aria-label={`Workflow state: ${stateBadge.label}`}>
               {stateBadge.label}
             </span>
           </div>
@@ -110,7 +100,8 @@ export function AdminQueueCard({
           {priorityDot && (
             <span
               className={`w-2.5 h-2.5 rounded-full ${priorityDot}`}
-              title={`Priority ${report.priority}`}
+              aria-label={`Priority ${report.priority}`}
+              aria-hidden="true"
             />
           )}
         </div>

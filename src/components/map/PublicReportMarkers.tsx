@@ -24,7 +24,7 @@ export function PublicReportMarkers({ reports }: PublicReportMarkersProps) {
   const { mapViewport, setViewport } = useMapViewportStore()
 
   const features = useMemo<Feature<Point>[]>(
-    () => reports.map(reportToGeoJSON),
+    () => reports.map(reportToGeoJSON).filter((f): f is Feature<Point> => f !== null),
     [reports]
   )
 

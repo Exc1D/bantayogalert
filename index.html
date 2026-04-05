@@ -7,13 +7,16 @@
     <meta name="theme-color" content="#dc2626" />
     <meta name="description" content="Disaster reporting and emergency coordination for Camarines Norte, Philippines" />
     <link rel="manifest" href="/manifest.json" />
-    <title>Bantayog Alert</title>
+    <link rel="preload" href="/fonts/Switzer-Regular.woff" as="font" type="font/woff" crossorigin />
+    <link rel="preload" href="/fonts/Switzer-Semibold.woff" as="font" type="font/woff" crossorigin />
+    <link rel="preload" href="/fonts/Switzer-Bold.woff" as="font" type="font/woff" crossorigin />
+
     <style>
+      /* Cluster markers */
       .custom-cluster-icon { background: transparent; }
       .cluster-marker-inner {
-        width: 44px;
-        height: 44px;
-        background: #3b82f6;
+        width: 48px;
+        height: 48px;
         border: 3px solid white;
         border-radius: 50%;
         display: flex;
@@ -24,18 +27,55 @@
         font-size: 14px;
         box-shadow: 0 2px 8px rgba(0,0,0,0.3);
       }
-      .custom-report-icon { background: transparent; }
-      .custom-report-icon > div {
-        width: 32px;
-        height: 32px;
+
+      /* Report pin - pin shape with severity fill (DESIGN.md §13.1) */
+      .custom-report-icon {
+        background: transparent;
+        width: 48px !important;   /* 48px touch target */
+        height: 48px !important;  /* 48px touch target */
+      }
+      .pin-wrapper {
+        position: relative;
+        width: 28px;
+        height: 40px;
+        margin: 4px auto 0;
+        transition: transform 0.15s cubic-bezier(0.34, 1.56, 0.64, 1);
+      }
+      .pin-bubble {
+        width: 28px;
+        height: 28px;
         border-radius: 50%;
-        border: 2px solid white;
+        border: 2px solid var(--pin-stroke, #1E40AF);
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 14px;
         box-shadow: 0 2px 6px rgba(0,0,0,0.3);
-        transition: transform 0.15s ease;
+      }
+      .pin-bubble svg { flex-shrink: 0; }
+      .pin-pointer {
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%) rotate(45deg);
+        width: 10px;
+        height: 10px;
+        border-bottom-right-radius: 2px;
+        border-right: 2px solid var(--pin-stroke, #1E40AF);
+        border-bottom: 2px solid var(--pin-stroke, #1E40AF);
+      }
+      /* Selected state: scale + white ring + bounce */
+      .pin-marker-selected {
+        transform: scale(1.25);
+      }
+      .pin-marker-selected .pin-bubble {
+        border-width: 3px;
+        border-color: white !important;
+        box-shadow: 0 0 0 3px white, 0 0 0 5px rgba(0,0,0,0.25), 0 2px 6px rgba(0,0,0,0.3);
+      }
+      /* Resolved state: 50% opacity + gray overlay ring */
+      .pin-resolved { opacity: 0.5; }
+      .pin-resolved .pin-bubble {
+        border-color: #9CA3AF !important;
       }
     </style>
   </head>

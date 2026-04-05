@@ -1,33 +1,26 @@
 import { useMyReports } from '@/hooks/useMyReports'
+import { EmptyState } from '@/components/ui/EmptyState'
 import { OWNER_STATUS_LABELS } from '@/types/status'
 import { ReportStatus, type ActivityLogEntry } from '@/types/report'
-import { AlertCircle, Clock, CheckCircle } from 'lucide-react'
+import { AlertCircle, Clock, CheckCircle, FileText } from 'lucide-react'
 
 interface MyReportsListProps {
   onSelectReport?: (reportId: string) => void
 }
 
+const STATUS_BADGE_COLORS: Record<ReportStatus, string> = {
+  [ReportStatus.Submitted]: 'bg-status-submittedBg text-status-submitted',
+  [ReportStatus.UnderReview]: 'bg-status-underReviewBg text-status-underReview',
+  [ReportStatus.Verified]: 'bg-status-verifiedBg text-status-verified',
+  [ReportStatus.Rejected]: 'bg-status-rejectedBg text-status-rejected',
+  [ReportStatus.Dispatched]: 'bg-status-dispatchedBg text-status-dispatched',
+  [ReportStatus.Acknowledged]: 'bg-status-inProgressBg text-status-inProgress',
+  [ReportStatus.InProgress]: 'bg-status-inProgressBg text-status-inProgress',
+  [ReportStatus.Resolved]: 'bg-status-resolvedBg text-status-resolved',
+}
+
 function getStatusBadgeColor(status: ReportStatus): string {
-  switch (status) {
-    case ReportStatus.Submitted:
-      return 'bg-blue-100 text-blue-800'
-    case ReportStatus.UnderReview:
-      return 'bg-yellow-100 text-yellow-800'
-    case ReportStatus.Verified:
-      return 'bg-green-100 text-green-800'
-    case ReportStatus.Rejected:
-      return 'bg-red-100 text-red-800'
-    case ReportStatus.Dispatched:
-      return 'bg-purple-100 text-purple-800'
-    case ReportStatus.Acknowledged:
-      return 'bg-indigo-100 text-indigo-800'
-    case ReportStatus.InProgress:
-      return 'bg-orange-100 text-orange-800'
-    case ReportStatus.Resolved:
-      return 'bg-gray-100 text-gray-800'
-    default:
-      return 'bg-yellow-100 text-yellow-800'
-  }
+  return STATUS_BADGE_COLORS[status] ?? STATUS_BADGE_COLORS[ReportStatus.UnderReview]
 }
 
 function getStatusIcon(status: ReportStatus) {
@@ -99,13 +92,12 @@ export function MyReportsList({ onSelectReport }: MyReportsListProps) {
     return (
       <div className="space-y-3">
         <h2 className="text-lg font-medium text-gray-900">My Reports</h2>
-        <div className="text-center py-8 bg-gray-50 rounded-lg border border-gray-200">
-          <AlertCircle className="w-12 h-12 text-gray-300 mx-auto mb-3" />
-          <p className="text-gray-500">No reports yet</p>
-          <p className="text-sm text-gray-400 mt-1">
-            When you submit a report, it will appear here
-          </p>
-        </div>
+        <EmptyState
+          icon={FileText}
+          title="No reports yet"
+          description="When you submit a report, it will appear here with its current status."
+          aria-live="polite"
+        />
       </div>
     )
   }

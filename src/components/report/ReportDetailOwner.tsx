@@ -8,33 +8,26 @@ import { doc, onSnapshot } from 'firebase/firestore'
 import { getFirestore } from 'firebase/firestore'
 import { MapPinIcon } from 'lucide-react'
 import { OWNER_STATUS_LABELS } from '@/types/status'
-import { ReportStatus, type ReportPrivate, type ActivityLogEntry } from '@/types/report'
+import { ReportStatus, type ReportPrivate } from '@/types/report'
+import { StatusTimeline, StatusTimelineSkeleton } from '@/components/report/StatusTimeline'
 
 interface ReportDetailOwnerProps {
   reportId: string
 }
 
+const STATUS_BADGE_COLORS: Record<ReportStatus, string> = {
+  [ReportStatus.Submitted]: 'bg-status-submittedBg text-status-submitted',
+  [ReportStatus.UnderReview]: 'bg-status-underReviewBg text-status-underReview',
+  [ReportStatus.Verified]: 'bg-status-verifiedBg text-status-verified',
+  [ReportStatus.Rejected]: 'bg-status-rejectedBg text-status-rejected',
+  [ReportStatus.Dispatched]: 'bg-status-dispatchedBg text-status-dispatched',
+  [ReportStatus.Acknowledged]: 'bg-status-inProgressBg text-status-inProgress',
+  [ReportStatus.InProgress]: 'bg-status-inProgressBg text-status-inProgress',
+  [ReportStatus.Resolved]: 'bg-status-resolvedBg text-status-resolved',
+}
+
 function getStatusBadgeColor(status: ReportStatus): string {
-  switch (status) {
-    case ReportStatus.Submitted:
-      return 'bg-blue-100 text-blue-700'
-    case ReportStatus.UnderReview:
-      return 'bg-yellow-100 text-yellow-700'
-    case ReportStatus.Verified:
-      return 'bg-green-100 text-green-700'
-    case ReportStatus.Rejected:
-      return 'bg-red-100 text-red-700'
-    case ReportStatus.Dispatched:
-      return 'bg-purple-100 text-purple-700'
-    case ReportStatus.Acknowledged:
-      return 'bg-indigo-100 text-indigo-700'
-    case ReportStatus.InProgress:
-      return 'bg-orange-100 text-orange-700'
-    case ReportStatus.Resolved:
-      return 'bg-gray-100 text-gray-700'
-    default:
-      return 'bg-yellow-100 text-yellow-700'
-  }
+  return STATUS_BADGE_COLORS[status] ?? STATUS_BADGE_COLORS[ReportStatus.UnderReview]
 }
 
 function formatRelativeTime(isoString: string): string {
@@ -52,28 +45,6 @@ function formatRelativeTime(isoString: string): string {
   if (diffHours < 24) return `${diffHours} hour${diffHours !== 1 ? 's' : ''} ago`
   if (diffDays < 7) return `${diffDays} day${diffDays !== 1 ? 's' : ''} ago`
   return date.toLocaleDateString()
-}
-
-function TimelineEntry({ entry, isLast }: { entry: ActivityLogEntry; isLast: boolean }) {
-  return (
-    <div className="flex gap-3">
-      <div className="flex flex-col items-center">
-        <div className="w-2.5 h-2.5 rounded-full bg-primary-500 mt-1.5" />
-        {!isLast && <div className="w-0.5 flex-1 bg-gray-200 mt-1 min-h-[2rem]" />}
-      </div>
-      <div className="flex-1 pb-4">
-        <div className="text-sm font-medium text-gray-900">{entry.action}</div>
-        <div className="text-xs text-gray-500 mt-0.5">
-          {formatRelativeTime(entry.performedAt)} &middot; {entry.performedBy}
-        </div>
-        {entry.details && (
-          <div className="text-sm text-gray-600 mt-1 bg-gray-50 rounded p-2 mt-1">
-            {entry.details}
-          </div>
-        )}
-      </div>
-    </div>
-  )
 }
 
 export function ReportDetailOwner({ reportId }: ReportDetailOwnerProps) {
@@ -108,11 +79,8 @@ export function ReportDetailOwner({ reportId }: ReportDetailOwnerProps) {
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center h-full min-h-[12rem]">
-        <div className="text-center">
-          <div className="w-8 h-8 border-4 border-primary-600 border-t-transparent rounded-full animate-spin mx-auto mb-3" />
-          <p className="text-sm text-gray-500">Loading your report...</p>
-        </div>
+      <div className="p-4 space-y-4" aria-label="Loading report details">
+        <StatusTimelineSkeleton />
       </div>
     )
   }
@@ -120,7 +88,7 @@ export function ReportDetailOwner({ reportId }: ReportDetailOwnerProps) {
   if (error || !reportPrivate) {
     return (
       <div className="p-4 text-center">
-        <p className="text-sm text-red-500">{error ?? 'Report not found'}</p>
+        <p className="text-sm text-severity-critical">{error ?? 'Report not found'}</p>
       </div>
     )
   }
@@ -131,11 +99,11 @@ export function ReportDetailOwner({ reportId }: ReportDetailOwnerProps) {
   return (
     <div className="flex flex-col h-full">
       {/* Header: owner status badge + report ID */}
-      <div className="p-4 border-b border-gray-200 bg-gradient-to-r from-blue-50 to-indigo-50">
+      <div className="p-4 border-b border-neutral-200 dark:border-neutral-700 bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-neutral-800 dark:to-neutral-800">
         <div className="flex items-start justify-between mb-2">
           <div>
-            <h2 className="text-lg font-semibold text-gray-900">Your Report</h2>
-            <p className="text-xs text-gray-500 font-mono mt-0.5">{reportId}</p>
+            <h2 className="text-lg font-semibold text-neutral-900 dark:text-neutral-100">Your Report</h2>
+            <p className="text-xs text-neutral-500 dark:text-neutral-400 font-mono mt-0.5">{reportId}</p>
           </div>
           <span
             className={`inline-flex items-center px-3 py-1 rounded-full text-sm font-medium ${statusColor}`}
@@ -143,7 +111,7 @@ export function ReportDetailOwner({ reportId }: ReportDetailOwnerProps) {
             {statusLabel}
           </span>
         </div>
-        <p className="text-sm text-gray-600">
+        <p className="text-sm text-neutral-600 dark:text-neutral-400">
           Submitted {reportPrivate.activityLog?.[0]?.performedAt
             ? formatRelativeTime(reportPrivate.activityLog[0].performedAt)
             : 'just now'}
@@ -196,29 +164,8 @@ export function ReportDetailOwner({ reportId }: ReportDetailOwnerProps) {
           </div>
         )}
 
-        {/* Activity Timeline */}
-        {reportPrivate.activityLog && reportPrivate.activityLog.length > 0 ? (
-          <div className="bg-white rounded-xl border border-gray-200 p-4">
-            <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-4">
-              Activity Timeline
-            </h3>
-            <div>
-              {reportPrivate.activityLog.map((entry, i) => (
-                <TimelineEntry
-                  key={i}
-                  entry={entry}
-                  isLast={i === reportPrivate.activityLog.length - 1}
-                />
-              ))}
-            </div>
-          </div>
-        ) : (
-          <div className="bg-white rounded-xl border border-gray-200 p-4">
-            <p className="text-sm text-gray-500 text-center py-4">
-              No activity recorded yet
-            </p>
-          </div>
-        )}
+        {/* Status Timeline */}
+        <StatusTimeline currentStatus={reportPrivate.ownerStatus} activityLog={reportPrivate.activityLog} />
 
         {/* Internal Notes (if any) */}
         {reportPrivate.internalNotes && (

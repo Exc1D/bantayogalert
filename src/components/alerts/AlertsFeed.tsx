@@ -2,6 +2,7 @@ import { Bell, BellOff, RefreshCw } from 'lucide-react'
 import { AlertCard } from './AlertCard'
 import { useAnnouncements } from '@/hooks/useAnnouncements'
 import type { Announcement } from '@/types/announcement'
+import { EmptyState } from '@/components/ui/EmptyState'
 
 interface AlertsFeedProps {
   onAlertClick?: (announcement: Announcement) => void
@@ -44,13 +45,13 @@ export function AlertsFeed({ onAlertClick }: AlertsFeedProps) {
 
   if (announcements.length === 0) {
     return (
-      <div className="flex h-full flex-col items-center justify-center gap-3 py-12 text-center">
-        <Bell className="h-8 w-8 text-gray-300" />
-        <p className="text-sm font-medium text-gray-700">No alerts yet</p>
-        <p className="max-w-xs text-xs text-gray-500">
-          Official advisories and emergency alerts will appear here after they
-          are published.
-        </p>
+      <div className="flex h-full items-center justify-center">
+        <EmptyState
+          icon={Bell}
+          title="No alerts yet"
+          description="Official advisories and emergency alerts will appear here after they are published."
+          aria-live="polite"
+        />
       </div>
     )
   }

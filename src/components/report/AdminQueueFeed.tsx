@@ -1,5 +1,6 @@
 import { useState, useMemo } from 'react'
 import { Link } from 'react-router-dom'
+import { ListChecks } from 'lucide-react'
 import { useAuth } from '@/lib/auth/AuthProvider'
 import {
   useAdminQueueListener,
@@ -7,9 +8,10 @@ import {
   ADMIN_QUEUE_QUERY_KEY,
 } from '@/hooks/useAdminQueueListener'
 import { AdminQueueCard } from './AdminQueueCard'
+import { EmptyState } from '@/components/ui/EmptyState'
 import { useUIStore } from '@/stores/uiStore'
 import { MUNICIPALITIES } from '@/lib/geo/municipality'
-import { useQuery } from '@tanstack/react-query'
+import { useQuery, useQueryClient } from '@tanstack/react-query'
 
 type Tab = 'pending' | 'verified' | 'dispatched'
 
@@ -22,6 +24,7 @@ function TabBadge({ count }: { count: number }) {
 }
 
 export function AdminQueueFeed() {
+  const queryClient = useQueryClient()
   const { customClaims } = useAuth()
   const role = customClaims?.role
   const userMunicipalityCode = customClaims?.municipalityCode ?? null
@@ -37,6 +40,7 @@ export function AdminQueueFeed() {
   // Fetch from TanStack Query cache
   const { data: allReports = [] } = useQuery<AdminQueueReport[]>({
     queryKey: ADMIN_QUEUE_QUERY_KEY(filterMunicipality),
+    initialData: () => queryClient.getQueryData<AdminQueueReport[]>(ADMIN_QUEUE_QUERY_KEY(filterMunicipality)) ?? [],
   })
 
   // Filter by workflowState for each tab
@@ -113,11 +117,10 @@ export function AdminQueueFeed() {
           {/* Superadmin municipality filter */}
           {role === 'provincial_superadmin' && (
             <select
+              aria-label="Filter by municipality"
               value={filterMunicipality ?? ''}
-              onChange={(e) =>
-                setFilterMunicipality(e.target.value || null)
-              }
-              className="text-sm border border-gray-300 rounded-md px-2 py-1 text-gray-700"
+              onChange={(e) => setFilterMunicipality(e.target.value || null)}
+              className="text-base border border-gray-300 rounded-md px-2 py-1 text-gray-700 focus:outline-none focus:ring-2 focus:ring-brand"
             >
               <option value="">All Municipalities</option>
               {MUNICIPALITIES.map((m) => (
@@ -164,11 +167,20 @@ export function AdminQueueFeed() {
       {/* Card list */}
       <div className="flex-1 overflow-y-auto">
         {activeReports.length === 0 ? (
-          <div className="flex flex-col items-center justify-center h-32 text-gray-400 text-sm">
-            {activeTab === 'pending' && 'No pending reports'}
-            {activeTab === 'verified' && 'No verified reports'}
-            {activeTab === 'dispatched' && 'No active reports'}
-          </div>
+          <EmptyState
+            icon={ListChecks}
+            title={
+              activeTab === 'pending' ? 'No pending reports'
+              : activeTab === 'verified' ? 'No verified reports'
+              : 'No active reports'
+            }
+            description={
+              activeTab === 'pending' ? 'All caught up — no reports awaiting review.'
+              : activeTab === 'verified' ? 'No verified reports ready for dispatch.'
+              : 'No reports currently being responded to.'
+            }
+            aria-live="polite"
+          />
         ) : (
           activeReports.map((report) => (
             <AdminQueueCard
