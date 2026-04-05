@@ -9,6 +9,14 @@ export default defineConfig({
     globals: true,
     setupFiles: ['./tests/setup.ts'],
     include: ['src/**/*.test.{ts,tsx}', 'tests/**/*.test.{ts,tsx}'],
+    exclude: [
+      ...['node_modules', 'dist', '.idea', '.git', '.cache', 'e2e', 'smoke'].map(
+        (d) => `**/${d}/**`
+      ),
+      // These require Firebase emulators — run in separate CI job
+      'tests/firestore.rules.test.ts',
+      'tests/storage.rules.test.ts',
+    ],
     coverage: {
       provider: 'v8',
       reporter: ['text', 'html'],
